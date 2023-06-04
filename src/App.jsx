@@ -1,9 +1,10 @@
 import Layout from './components/Layout/Layout';
+import UserAvatar from './assets/images/user-avatar.jpg';
 
 function App() {
   return (
     <>
-      <Layout />
+      <Layout imgSrc={UserAvatar} imgAlt={'User avatar'} />
     </>
   );
 }

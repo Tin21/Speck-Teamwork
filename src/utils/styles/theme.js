@@ -5,6 +5,8 @@ export const fonts = {
 export const colors = {
   bgPrimary: '#EBEFF2',
   bgSecondary: '#ffffff',
+  avatarBorder: '#CACACA',
+  logoText: '#626267',
 };
 
 export const breakpoints = {
@@ -12,5 +14,5 @@ export const breakpoints = {
   tabletSmall: 'min-width: 580px',
   tabletLarge: 'min-width: 768px',
   desktopSmall: 'min-width: 1024px',
-  desktopLarge: 'min-width: 1300px',
+  desktopLarge: 'min-width: 1440px',
 };

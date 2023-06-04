@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Header as HeaderWrapper,
   HeaderInner,
@@ -6,9 +7,12 @@ import {
   SpeckLogo,
   LogoWrapper,
   LogoText,
+  UserAvatar,
+  DropdownArrow,
+  AvatarHamburgerWrapper,
 } from './LayoutStyle';
 
-const Layout = () => {
+const Layout = ({ imgSrc, imgAlt }) => {
   return (
     <>
       <HeaderWrapper>
@@ -17,11 +21,20 @@ const Layout = () => {
             <SpeckLogo />
             <LogoText> Learning Academy</LogoText>
           </LogoWrapper>
-          <HamburgerLogo />
+          <AvatarHamburgerWrapper>
+            <UserAvatar src={imgSrc} alt={imgAlt} />
+            <DropdownArrow />
+            <HamburgerLogo />
+          </AvatarHamburgerWrapper>
         </HeaderInner>
       </HeaderWrapper>
     </>
   );
+};
+
+Layout.PropTypes = {
+  imgSrc: PropTypes.string,
+  imgAlt: PropTypes.string,
 };
 
 export default Layout;
