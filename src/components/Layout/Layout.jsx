@@ -16,6 +16,13 @@ import {
   MenuLogoWrapper,
   MenuSpeckLogo,
   MenuLogoText,
+  MenuInner,
+  MenuLecturesIcon,
+  MenuResultsIcon,
+  MenuItem,
+  MenuAchievementsIcon,
+  MenuColleaugesIcon,
+  MenuItemText,
 } from './LayoutStyle';
 
 const Layout = ({ imgSrc, imgAlt }) => {
@@ -26,6 +33,24 @@ const Layout = ({ imgSrc, imgAlt }) => {
           <MenuSpeckLogo src={SpeckLogoImage} alt="Speck logo" />
           <MenuLogoText>Learning Academy</MenuLogoText>
         </MenuLogoWrapper>
+        <MenuInner>
+          <MenuItem>
+            <MenuLecturesIcon />
+            <MenuItemText>Lectures</MenuItemText>
+          </MenuItem>
+          <MenuItem>
+            <MenuResultsIcon />
+            <MenuItemText>My Results</MenuItemText>
+          </MenuItem>
+          <MenuItem>
+            <MenuAchievementsIcon />
+            <MenuItemText>Achievements</MenuItemText>
+          </MenuItem>
+          <MenuItem>
+            <MenuColleaugesIcon />
+            <MenuItemText>Colleauges</MenuItemText>
+          </MenuItem>
+        </MenuInner>
       </Menu>
       <HeaderWrapper>
         <HeaderInner>
