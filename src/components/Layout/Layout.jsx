@@ -23,6 +23,7 @@ import {
   MenuAchievementsIcon,
   MenuColleaugesIcon,
   MenuItemText,
+  /* ActivePageIndicator, */
 } from './LayoutStyle';
 
 const Layout = ({ imgSrc, imgAlt }) => {
@@ -34,19 +35,23 @@ const Layout = ({ imgSrc, imgAlt }) => {
           <MenuLogoText>Learning Academy</MenuLogoText>
         </MenuLogoWrapper>
         <MenuInner>
-          <MenuItem>
+          <MenuItem to={'/lectures'}>
             <MenuLecturesIcon />
             <MenuItemText>Lectures</MenuItemText>
+            {/* <ActivePageIndicator /> */}
           </MenuItem>
-          <MenuItem>
+
+          <MenuItem to={'/myresults'}>
             <MenuResultsIcon />
-            <MenuItemText>My Results</MenuItemText>
+            <MenuItemText>My results</MenuItemText>
           </MenuItem>
-          <MenuItem>
+
+          <MenuItem to={'/achievements'}>
             <MenuAchievementsIcon />
             <MenuItemText>Achievements</MenuItemText>
           </MenuItem>
-          <MenuItem>
+
+          <MenuItem to={'/colleagues'}>
             <MenuColleaugesIcon />
             <MenuItemText>Colleauges</MenuItemText>
           </MenuItem>

@@ -9,6 +9,7 @@ export const colors = {
   logoText: '#626267',
   border: '#e8e8e8',
   bgMenuItem: '#FAFAFA',
+  textPrimary: '#000000',
 };
 
 export const breakpoints = {
