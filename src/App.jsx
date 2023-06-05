@@ -7,10 +7,13 @@ import Reset from './pages/Reset';
 import LectureDetails from './pages/LectureDetails';
 import Lectures from './pages/Lectures';
 import Colleagues from './pages/Colleagues';
+import Layout from './components/Layout/Layout';
+import UserAvatar from './assets/images/user-avatar.jpg';
 
 function App() {
   return (
     <>
+      <Layout imgSrc={UserAvatar} imgAlt={'User avatar'} />
       <main>
         <Routes>
           <Route path={'/'} element={<Profile />} />
