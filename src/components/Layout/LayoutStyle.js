@@ -7,6 +7,7 @@ import { ReactComponent as LecturesIcon } from '../../assets/images/lectures-ico
 import { ReactComponent as ResultsIcon } from '../../assets/images/results-icon.svg';
 import { ReactComponent as AchievementsIcon } from '../../assets/images/achievements-icon.svg';
 import { ReactComponent as ColleaugesIcon } from '../../assets/images/colleauges-icon.svg';
+import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   background-color: ${colors.bgSecondary};
@@ -175,17 +176,47 @@ export const MenuInner = styled.nav`
   margin-left: 16px;
 `;
 
-export const MenuItem = styled.div`
+/* export const MenuItem = styled.div`
   width: 100%;
   height: 43px;
   background-color: ${colors.bgMenuItem};
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+
+  &.active{
+    background-color:rgba(191, 57, 57, 0.08);
+  }
+`; */
+
+export const MenuItem = styled(NavLink)`
+  width: 100%;
+  height: 43px;
+  background-color: ${colors.bgMenuItem};
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  text-decoration: none;
+  color: ${colors.textPrimary};
+
+  &.active {
+    background-color: rgba(191, 57, 57, 0.08);
+    font-weight: 600;
+  }
+
+  //red dot active page indicator
+  &.active::after {
+    content: '';
+    position: absolute;
+    right: 17px;
+    background-color: #bf3939;
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+  }
 `;
 
 export const MenuItemText = styled.p`
-  font-weight: 400;
   font-size: 16px;
 `;
 
@@ -207,4 +238,11 @@ export const MenuColleaugesIcon = styled(ColleaugesIcon)`
 export const MenuAchievementsIcon = styled(AchievementsIcon)`
   padding: 15px 18px 10px 17px;
   width: 20px;
+`;
+
+export const MenuLink = styled(NavLink)`
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: none;
+  color: ${colors.textPrimary};
 `;
