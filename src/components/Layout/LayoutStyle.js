@@ -191,16 +191,16 @@ export const MenuItem = styled(NavLink)`
   color: ${colors.textPrimary};
 
   &.active {
-    background-color: rgba(191, 57, 57, 0.08);
+    background-color: ${colors.lightRed};
     font-weight: 600;
   }
 
-  //red dot active page indicator
+  //red dot active page
   &.active::after {
     content: '';
     position: absolute;
     right: 17px;
-    background-color: #bf3939;
+    background-color: ${colors.redPrimary};
     border-radius: 50%;
     width: 9px;
     height: 9px;
