@@ -9,12 +9,12 @@ export const colors = {
   logoText: '#626267',
   border: '#e8e8e8',
   bgMenuItem: '#FAFAFA',
+  textPrimary: '#081131',
+  textSecondary: '#4D4D4D',
 };
 
 export const breakpoints = {
   mobileLarge: 'min-width: 420px',
-  tabletSmall: 'min-width: 580px',
-  tabletLarge: 'min-width: 768px',
-  desktopSmall: 'min-width: 1024px',
-  desktopLarge: 'min-width: 1440px',
+  tablet: 'min-width: 768px',
+  desktop: 'min-width: 1440px',
 };
