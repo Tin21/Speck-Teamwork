@@ -8,6 +8,7 @@ export const colors = {
   avatarBorder: '#CACACA',
   logoText: '#626267',
   border: '#e8e8e8',
+  bgMenuItem: '#FAFAFA',
 };
 
 export const breakpoints = {
