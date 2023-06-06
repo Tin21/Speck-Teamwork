@@ -5,6 +5,7 @@ export const fonts = {
 export const colors = {
   bgPrimary: '#EBEFF2',
   bgSecondary: '#ffffff',
+  bgOpaque: '#00000040',
   avatarBorder: '#CACACA',
   logoText: '#626267',
   border: '#e8e8e8',
