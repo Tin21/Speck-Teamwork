@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import SpeckLogoImage from '../../assets/images/speck-menu-icon.png';
 import {
   Header as HeaderWrapper,
@@ -26,10 +27,21 @@ import {
   MenuItemText,
   LeftContainer,
   RightContainer,
+  HamburgerMenu,
+  HamburgerMenuTitleWrapper,
+  HamburgerMenuTitle,
+  HamburgerMenuCancel,
+  HamburgerMenuInner,
 } from './LayoutStyle';
 import { Outlet } from 'react-router-dom';
 
 const Layout = ({ imgSrc, imgAlt }) => {
+  const [hamburgerMenuActive, setHamburgerMenuActive] = useState(false);
+
+  const changeHamburgerMenuState = () => {
+    setHamburgerMenuActive(!hamburgerMenuActive);
+  };
+
   return (
     <>
       <main>
@@ -39,6 +51,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
               <NavLink to={'/'}>
                 <MenuSpeckLogo src={SpeckLogoImage} alt="Speck logo" />
               </NavLink>
+
               <MenuLogoText>Learning Academy</MenuLogoText>
             </MenuLogoWrapper>
             <MenuInner>
@@ -58,7 +71,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
                 <MenuItemText>Achievements</MenuItemText>
               </MenuItem>
 
-              <MenuItem to={'/colleagues'}>
+              <MenuItem to={'/colleauges'}>
                 <MenuColleaugesIcon />
                 <MenuItemText>Colleauges</MenuItemText>
               </MenuItem>
@@ -78,8 +91,53 @@ const Layout = ({ imgSrc, imgAlt }) => {
                 <AvatarHamburgerWrapper>
                   <UserAvatar src={imgSrc} alt={imgAlt} />
                   <DropdownArrow />
-                  <HamburgerLogo />
+                  <HamburgerLogo onClick={() => changeHamburgerMenuState()} />
                 </AvatarHamburgerWrapper>
+
+                {hamburgerMenuActive && (
+                  <HamburgerMenu>
+                    <HamburgerMenuTitleWrapper>
+                      <HamburgerMenuTitle>Menu</HamburgerMenuTitle>
+                      <HamburgerMenuCancel
+                        onClick={() => changeHamburgerMenuState()}
+                      />
+                    </HamburgerMenuTitleWrapper>
+                    <HamburgerMenuInner>
+                      <MenuItem
+                        to={'/lectures'}
+                        onClick={() => changeHamburgerMenuState()}>
+                        <MenuLecturesIcon />
+                        <MenuItemText>Lectures</MenuItemText>
+                      </MenuItem>
+
+                      <MenuItem
+                        to={'/myresults'}
+                        onClick={() => changeHamburgerMenuState()}>
+                        <MenuResultsIcon />
+                        <MenuItemText>My results</MenuItemText>
+                      </MenuItem>
+
+                      <MenuItem
+                        to={'/achievements'}
+                        onClick={() => changeHamburgerMenuState()}>
+                        <MenuAchievementsIcon />
+                        <MenuItemText>Achievements</MenuItemText>
+                      </MenuItem>
+
+                      <MenuItem
+                        to={'/colleauges'}
+                        onClick={() => changeHamburgerMenuState()}>
+                        <MenuColleaugesIcon />
+                        <MenuItemText>Colleauges</MenuItemText>
+                      </MenuItem>
+
+                      {/* <MenuItem to={'/'} onClick={() => changeHamburgerMenuState()}>
+                  <UserAvatar src={imgSrc} alt={imgAlt} />
+                  <MenuItemText>Your Profile</MenuItemText>
+                </MenuItem> */}
+                    </HamburgerMenuInner>
+                  </HamburgerMenu>
+                )}
               </HeaderInner>
             </HeaderWrapper>
             <Outlet />
