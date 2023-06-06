@@ -84,7 +84,7 @@ export const LogoText = styled.p`
 export const UserAvatar = styled.img`
   display: none;
 
-  @media screen and (${breakpoints.tabletSmall}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: block;
     object-fit: cover;
     height: 40px;
@@ -98,7 +98,7 @@ export const DropdownArrow = styled(DropdownArrowIcon)`
   display: none;
   margin-left: 8px;
 
-  @media screen and (${breakpoints.tabletSmall}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: block;
   }
 
@@ -167,19 +167,6 @@ export const MenuInner = styled.nav`
   margin-left: 16px;
 `;
 
-/* export const MenuItem = styled.div`
-  width: 100%;
-  height: 43px;
-  background-color: ${colors.bgMenuItem};
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-
-  &.active{
-    background-color:rgba(191, 57, 57, 0.08);
-  }
-`; */
-
 export const MenuItem = styled(NavLink)`
   width: 100%;
   height: 43px;
@@ -189,6 +176,12 @@ export const MenuItem = styled(NavLink)`
   margin-bottom: 8px;
   text-decoration: none;
   color: ${colors.textPrimary};
+  transition: font-weight 0.2s ease-out, background-color 0.2s ease-out;
+
+  &:hover {
+    font-weight: 600;
+    background-color: ${colors.lighterRed};
+  }
 
   &.active {
     background-color: ${colors.lightRed};
