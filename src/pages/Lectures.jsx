@@ -8,9 +8,7 @@ const Lectures = () => {
         isFlexDisplay={false}
         title={'Your lectures'}
         subtitle={'Lorem ipsum sit dolor amet bl abla'}
-      >
-        <Button isVariant>Cancel</Button>
-      </Section>
+      ></Section>
     </>
   );
 };

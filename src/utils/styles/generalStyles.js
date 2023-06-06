@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { colors } from './theme';
 
 export const Button = styled.button`
   padding: 14px 24px;
   gap: 8px;
-  background: #bf3939;
+  background: ${colors.buttonPrimary};
   border-radius: 48px;
   color: white;
   border: 0;
@@ -13,22 +14,22 @@ export const Button = styled.button`
   ${(props) =>
     props.isSecondary &&
     `
-      border: 1px solid #D2D2D2;
+      border: 1px solid ${colors.buttonBorder};
       padding: 12px 24px;
-      color: #bf3939;
+      color: ${colors.buttonPrimary};
       background: rgba(191, 57, 57, 0);
     `}
 
   ${(props) =>
     props.isVariant &&
     `
-      color: #081131;
-      background: #FAFAFA;
+      color: ${colors.textPrimary};;
+      background: ${colors.bgMenuItem};;
 
     `}
 
   &:hover {
-    background: #aa1d1d;
+    background: ${colors.buttonPrimaryDark};
     cursor: pointer;
 
     ${(props) =>

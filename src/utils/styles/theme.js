@@ -11,6 +11,9 @@ export const colors = {
   bgMenuItem: '#FAFAFA',
   textPrimary: '#081131',
   textSecondary: '#4D4D4D',
+  buttonPrimary: '#bf3939',
+  buttonPrimaryDark: '#aa1d1d',
+  buttonBorder: '#D2D2D2',
 };
 
 export const breakpoints = {
