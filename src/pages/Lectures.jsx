@@ -1,4 +1,5 @@
 import Section from '../components/Section/Section';
+import { Button } from '../utils/styles/generalStyles';
 
 const Lectures = () => {
   return (
