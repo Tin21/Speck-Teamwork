@@ -7,6 +7,7 @@ import { ReactComponent as LecturesIcon } from '../../assets/images/lectures-ico
 import { ReactComponent as ResultsIcon } from '../../assets/images/results-icon.svg';
 import { ReactComponent as AchievementsIcon } from '../../assets/images/achievements-icon.svg';
 import { ReactComponent as ColleaugesIcon } from '../../assets/images/colleauges-icon.svg';
+import { ReactComponent as CancelIcon } from '../../assets/images/cancel-icon.svg';
 import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
@@ -192,7 +193,7 @@ export const MenuItem = styled(NavLink)`
   &.active::after {
     content: '';
     position: absolute;
-    right: 17px;
+    left: 214px;
     background-color: ${colors.redPrimary};
     border-radius: 50%;
     width: 9px;
@@ -229,4 +230,39 @@ export const MenuLink = styled(NavLink)`
   font-size: 16px;
   text-decoration: none;
   color: ${colors.textPrimary};
+`;
+
+export const HamburgerMenu = styled.div`
+  position: absolute;
+  z-index: 5;
+  height: 100vh;
+  width: 260px;
+  right: 0;
+  top: 0;
+  background-color: ${colors.bgSecondary};
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    display: none;
+  }
+`;
+
+export const HamburgerMenuTitleWrapper = styled.div`
+  margin: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const HamburgerMenuTitle = styled.h2`
+  font-weight: 500;
+  font-size: 18px;
+`;
+
+export const HamburgerMenuCancel = styled(CancelIcon)`
+  width: 12px;
+  height: 12px;
+`;
+
+export const HamburgerMenuInner = styled.nav`
+  padding: 5px 18px 200px 18px;
 `;
