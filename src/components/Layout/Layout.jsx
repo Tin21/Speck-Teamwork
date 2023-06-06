@@ -1,3 +1,5 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SpeckLogoImage from '../../assets/images/speck-menu-icon.png';
 import {
@@ -34,7 +36,9 @@ const Layout = ({ imgSrc, imgAlt }) => {
         <LeftContainer>
           <Menu>
             <MenuLogoWrapper>
-              <MenuSpeckLogo src={SpeckLogoImage} alt="Speck logo" />
+              <NavLink to={'/'}>
+                <MenuSpeckLogo src={SpeckLogoImage} alt="Speck logo" />
+              </NavLink>
               <MenuLogoText>Learning Academy</MenuLogoText>
             </MenuLogoWrapper>
             <MenuInner>
@@ -65,7 +69,9 @@ const Layout = ({ imgSrc, imgAlt }) => {
             <HeaderWrapper>
               <HeaderInner>
                 <LogoWrapper>
-                  <SpeckLogo />
+                  <NavLink to={'/'}>
+                    <SpeckLogo />
+                  </NavLink>
                   <LogoText> Learning Academy</LogoText>
                 </LogoWrapper>
                 <HeaderText>Lectures</HeaderText>

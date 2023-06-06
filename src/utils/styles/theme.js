@@ -21,6 +21,7 @@ export const colors = {
   redPrimary: ' #BF3939',
   redPrimaryDark: '#AA1D1D',
   lightRed: '#BF393914', //npr aktivan nav item, neaktivan page number
+  lighterRed: '#FBF7F8', //npr za hover nad nav itemom
   textPrimaryGrey: '#081131', //npr title u sectionu, nav itemi
   textSecondaryGrey: '#4D4D4D', //npr text u lecturima, subtitle u sectionu
   white: '#FFFFFF',
