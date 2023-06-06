@@ -30,6 +30,10 @@ import {
   HamburgerMenuTitle,
   HamburgerMenuCancel,
   HamburgerMenuInner,
+  HamburgerMenuBackground,
+  HamburgerMenuLogoutWrapper,
+  HamburgerMenuLogoutIcon,
+  HamburgerMenuLogoutText,
 } from './LayoutStyle';
 
 const Layout = ({ imgSrc, imgAlt }) => {
@@ -57,52 +61,59 @@ const Layout = ({ imgSrc, imgAlt }) => {
           </AvatarHamburgerWrapper>
 
           {hamburgerMenuActive && (
-            <HamburgerMenu>
-              <HamburgerMenuTitleWrapper>
-                <HamburgerMenuTitle>Menu</HamburgerMenuTitle>
-                <HamburgerMenuCancel
-                  onClick={() => changeHamburgerMenuState()}
-                />
-              </HamburgerMenuTitleWrapper>
-              <HamburgerMenuInner>
-                <MenuItem
-                  to={'/lectures'}
-                  onClick={() => changeHamburgerMenuState()}
-                >
-                  <MenuLecturesIcon />
-                  <MenuItemText>Lectures</MenuItemText>
-                </MenuItem>
+            <>
+              <HamburgerMenuBackground />
+              <HamburgerMenu>
+                <HamburgerMenuTitleWrapper>
+                  <HamburgerMenuTitle>Menu</HamburgerMenuTitle>
+                  <HamburgerMenuCancel
+                    onClick={() => changeHamburgerMenuState()}
+                  />
+                </HamburgerMenuTitleWrapper>
+                <HamburgerMenuInner>
+                  <MenuItem
+                    to={'/lectures'}
+                    onClick={() => changeHamburgerMenuState()}
+                  >
+                    <MenuLecturesIcon />
+                    <MenuItemText>Lectures</MenuItemText>
+                  </MenuItem>
 
-                <MenuItem
-                  to={'/myresults'}
-                  onClick={() => changeHamburgerMenuState()}
-                >
-                  <MenuResultsIcon />
-                  <MenuItemText>My results</MenuItemText>
-                </MenuItem>
+                  <MenuItem
+                    to={'/myresults'}
+                    onClick={() => changeHamburgerMenuState()}
+                  >
+                    <MenuResultsIcon />
+                    <MenuItemText>My results</MenuItemText>
+                  </MenuItem>
 
-                <MenuItem
-                  to={'/achievements'}
-                  onClick={() => changeHamburgerMenuState()}
-                >
-                  <MenuAchievementsIcon />
-                  <MenuItemText>Achievements</MenuItemText>
-                </MenuItem>
+                  <MenuItem
+                    to={'/achievements'}
+                    onClick={() => changeHamburgerMenuState()}
+                  >
+                    <MenuAchievementsIcon />
+                    <MenuItemText>Achievements</MenuItemText>
+                  </MenuItem>
 
-                <MenuItem
-                  to={'/colleagues'}
-                  onClick={() => changeHamburgerMenuState()}
-                >
-                  <MenuColleaugesIcon />
-                  <MenuItemText>Colleauges</MenuItemText>
-                </MenuItem>
+                  <MenuItem
+                    to={'/colleagues'}
+                    onClick={() => changeHamburgerMenuState()}
+                  >
+                    <MenuColleaugesIcon />
+                    <MenuItemText>Colleauges</MenuItemText>
+                  </MenuItem>
 
-                {/* <MenuItem to={'/'} onClick={() => changeHamburgerMenuState()}>
-                  <UserAvatar src={imgSrc} alt={imgAlt} />
-                  <MenuItemText>Your Profile</MenuItemText>
-                </MenuItem> */}
-              </HamburgerMenuInner>
-            </HamburgerMenu>
+                  <MenuItem to={'/'} onClick={() => changeHamburgerMenuState()}>
+                    <UserAvatar isInHamburgerMenu src={imgSrc} alt={imgAlt} />
+                    <MenuItemText>Your profile</MenuItemText>
+                  </MenuItem>
+                </HamburgerMenuInner>
+                <HamburgerMenuLogoutWrapper>
+                  <HamburgerMenuLogoutIcon />
+                  <HamburgerMenuLogoutText>Log out</HamburgerMenuLogoutText>
+                </HamburgerMenuLogoutWrapper>
+              </HamburgerMenu>
+            </>
           )}
         </HeaderInner>
       </HeaderWrapper>

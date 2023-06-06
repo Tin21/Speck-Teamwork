@@ -8,6 +8,7 @@ import { ReactComponent as ResultsIcon } from '../../assets/images/results-icon.
 import { ReactComponent as AchievementsIcon } from '../../assets/images/achievements-icon.svg';
 import { ReactComponent as ColleaugesIcon } from '../../assets/images/colleauges-icon.svg';
 import { ReactComponent as CancelIcon } from '../../assets/images/cancel-icon.svg';
+import { ReactComponent as LogoutIcon } from '../../assets/images/logout-icon.svg';
 import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
@@ -84,15 +85,24 @@ export const LogoText = styled.p`
 
 export const UserAvatar = styled.img`
   display: none;
+  object-fit: cover;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 
   @media screen and (${breakpoints.desktopSmall}) {
     display: block;
-    object-fit: cover;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
     border: 1.5px solid ${colors.avatarBorder};
   }
+
+  ${(props) =>
+    props.isInHamburgerMenu &&
+    `
+    display: block;
+    margin: 15px 16px 10px 16px;
+    width: 24px;
+    height: 24px;
+  `}
 `;
 
 export const DropdownArrow = styled(DropdownArrowIcon)`
@@ -203,6 +213,7 @@ export const MenuItem = styled(NavLink)`
 
 export const MenuItemText = styled.p`
   font-size: 16px;
+  color: ${colors.textPrimaryGrey};
 `;
 
 export const MenuLecturesIcon = styled(LecturesIcon)`
@@ -265,4 +276,35 @@ export const HamburgerMenuCancel = styled(CancelIcon)`
 
 export const HamburgerMenuInner = styled.nav`
   padding: 5px 18px 200px 18px;
+`;
+
+export const HamburgerMenuBackground = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: ${colors.bgOpaque};
+  z-index: 1;
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    display: none;
+  }
+`;
+export const HamburgerMenuLogoutWrapper = styled.div`
+  width: 92px;
+  margin-left: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const HamburgerMenuLogoutIcon = styled(LogoutIcon)`
+  height: 24px;
+  width: 24px;
+`;
+
+export const HamburgerMenuLogoutText = styled.p`
+  font-weight: 500;
+  color: ${colors.textSecondaryGrey};
 `;
