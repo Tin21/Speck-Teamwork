@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import SpeckLogoImage from '../../assets/images/speck-menu-icon.png';
@@ -111,35 +112,40 @@ const Layout = ({ imgSrc, imgAlt }) => {
                       <HamburgerMenuInner>
                         <MenuItem
                           to={'/lectures'}
-                          onClick={() => changeHamburgerMenuState()}>
+                          onClick={() => changeHamburgerMenuState()}
+                        >
                           <MenuLecturesIcon />
                           <MenuItemText>Lectures</MenuItemText>
                         </MenuItem>
 
                         <MenuItem
                           to={'/myresults'}
-                          onClick={() => changeHamburgerMenuState()}>
+                          onClick={() => changeHamburgerMenuState()}
+                        >
                           <MenuResultsIcon />
                           <MenuItemText>My results</MenuItemText>
                         </MenuItem>
 
                         <MenuItem
                           to={'/achievements'}
-                          onClick={() => changeHamburgerMenuState()}>
+                          onClick={() => changeHamburgerMenuState()}
+                        >
                           <MenuAchievementsIcon />
                           <MenuItemText>Achievements</MenuItemText>
                         </MenuItem>
 
                         <MenuItem
                           to={'/colleauges'}
-                          onClick={() => changeHamburgerMenuState()}>
+                          onClick={() => changeHamburgerMenuState()}
+                        >
                           <MenuColleaugesIcon />
                           <MenuItemText>Colleauges</MenuItemText>
                         </MenuItem>
 
                         <MenuItem
                           to={'/'}
-                          onClick={() => changeHamburgerMenuState()}>
+                          onClick={() => changeHamburgerMenuState()}
+                        >
                           <UserAvatar
                             isInHamburgerMenu
                             src={imgSrc}

@@ -10,7 +10,7 @@ export const colors = {
   logoText: '#626267',
   border: '#e8e8e8',
   bgMenuItem: '#FAFAFA',
-  textPrimary: '#081131',
+  textPrimary: '#000000',
   textSecondary: '#4D4D4D',
   buttonPrimary: '#bf3939',
   buttonPrimaryDark: '#aa1d1d',

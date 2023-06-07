@@ -261,7 +261,7 @@ export const HamburgerMenu = styled.div`
   top: 0;
   background-color: ${colors.bgSecondary};
 
-  @media screen and (${breakpoints.desktopSmall}) {
+  @media screen and (${breakpoints.desktop}) {
     display: none;
   }
 `;
