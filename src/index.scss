@@ -15,3 +15,8 @@ body {
   background-color: var(--color-bg-primary);
   font-family: var(--font-primary);
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

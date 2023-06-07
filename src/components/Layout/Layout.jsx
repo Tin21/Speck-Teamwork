@@ -1,4 +1,8 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import SpeckLogoImage from '../../assets/images/speck-menu-icon.png';
 import {
   Header as HeaderWrapper,
@@ -24,33 +28,55 @@ import {
   MenuItemText,
   LeftContainer,
   RightContainer,
+  HamburgerMenu,
+  HamburgerMenuTitleWrapper,
+  HamburgerMenuTitle,
+  HamburgerMenuCancel,
+  HamburgerMenuInner,
+  HamburgerMenuBackground,
+  HamburgerMenuLogoutWrapper,
+  HamburgerMenuLogoutIcon,
+  HamburgerMenuLogoutText,
 } from './LayoutStyle';
 import { Outlet } from 'react-router-dom';
 
 const Layout = ({ imgSrc, imgAlt }) => {
+  const [hamburgerMenuActive, setHamburgerMenuActive] = useState(false);
+
+  const changeHamburgerMenuState = () => {
+    setHamburgerMenuActive(!hamburgerMenuActive);
+  };
+
   return (
     <>
       <main>
         <LeftContainer>
           <Menu>
             <MenuLogoWrapper>
-              <MenuSpeckLogo src={SpeckLogoImage} alt="Speck logo" />
+              <NavLink to={'/'}>
+                <MenuSpeckLogo src={SpeckLogoImage} alt="Speck logo" />
+              </NavLink>
+
               <MenuLogoText>Learning Academy</MenuLogoText>
             </MenuLogoWrapper>
             <MenuInner>
-              <MenuItem>
+              <MenuItem to={'/lectures'}>
                 <MenuLecturesIcon />
                 <MenuItemText>Lectures</MenuItemText>
+                {/* <ActivePageIndicator /> */}
               </MenuItem>
-              <MenuItem>
+
+              <MenuItem to={'/myresults'}>
                 <MenuResultsIcon />
-                <MenuItemText>My Results</MenuItemText>
+                <MenuItemText>My results</MenuItemText>
               </MenuItem>
-              <MenuItem>
+
+              <MenuItem to={'/achievements'}>
                 <MenuAchievementsIcon />
                 <MenuItemText>Achievements</MenuItemText>
               </MenuItem>
-              <MenuItem>
+
+              <MenuItem to={'/colleauges'}>
                 <MenuColleaugesIcon />
                 <MenuItemText>Colleauges</MenuItemText>
               </MenuItem>
@@ -61,15 +87,88 @@ const Layout = ({ imgSrc, imgAlt }) => {
             <HeaderWrapper>
               <HeaderInner>
                 <LogoWrapper>
-                  <SpeckLogo />
+                  <NavLink to={'/'}>
+                    <SpeckLogo />
+                  </NavLink>
                   <LogoText> Learning Academy</LogoText>
                 </LogoWrapper>
                 <HeaderText>Lectures</HeaderText>
                 <AvatarHamburgerWrapper>
                   <UserAvatar src={imgSrc} alt={imgAlt} />
                   <DropdownArrow />
-                  <HamburgerLogo />
+                  <HamburgerLogo onClick={() => changeHamburgerMenuState()} />
                 </AvatarHamburgerWrapper>
+
+                {hamburgerMenuActive && (
+                  <>
+                    <HamburgerMenuBackground />
+                    <HamburgerMenu>
+                      <HamburgerMenuTitleWrapper>
+                        <HamburgerMenuTitle>Menu</HamburgerMenuTitle>
+                        <HamburgerMenuCancel
+                          onClick={() => changeHamburgerMenuState()}
+                        />
+                      </HamburgerMenuTitleWrapper>
+                      <HamburgerMenuInner>
+                        <MenuItem
+                          to={'/lectures'}
+                          onClick={() => changeHamburgerMenuState()}
+                        >
+                          <MenuLecturesIcon />
+                          <MenuItemText>Lectures</MenuItemText>
+                        </MenuItem>
+
+                        <MenuItem
+                          to={'/myresults'}
+                          onClick={() => changeHamburgerMenuState()}
+                        >
+                          <MenuResultsIcon />
+                          <MenuItemText>My results</MenuItemText>
+                        </MenuItem>
+
+                        <MenuItem
+                          to={'/achievements'}
+                          onClick={() => changeHamburgerMenuState()}
+                        >
+                          <MenuAchievementsIcon />
+                          <MenuItemText>Achievements</MenuItemText>
+                        </MenuItem>
+
+                        <MenuItem
+                          to={'/colleauges'}
+                          onClick={() => changeHamburgerMenuState()}
+                        >
+                          <MenuColleaugesIcon />
+                          <MenuItemText>Colleauges</MenuItemText>
+                        </MenuItem>
+
+                        <MenuItem
+                          to={'/profile'}
+                          onClick={() => changeHamburgerMenuState()}
+                        >
+                          <UserAvatar
+                            isInHamburgerMenu
+                            src={imgSrc}
+                            alt={imgAlt}
+                          />
+                          <MenuItemText>Your profile</MenuItemText>
+                        </MenuItem>
+                      </HamburgerMenuInner>
+
+                      <NavLink
+                        to={'/login'}
+                        onClick={() => changeHamburgerMenuState()}
+                      >
+                        <HamburgerMenuLogoutWrapper>
+                          <HamburgerMenuLogoutIcon />
+                          <HamburgerMenuLogoutText>
+                            Log out
+                          </HamburgerMenuLogoutText>
+                        </HamburgerMenuLogoutWrapper>
+                      </NavLink>
+                    </HamburgerMenu>
+                  </>
+                )}
               </HeaderInner>
             </HeaderWrapper>
             <Outlet />

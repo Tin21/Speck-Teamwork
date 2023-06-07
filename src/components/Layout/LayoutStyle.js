@@ -7,6 +7,9 @@ import { ReactComponent as LecturesIcon } from '../../assets/images/lectures-ico
 import { ReactComponent as ResultsIcon } from '../../assets/images/results-icon.svg';
 import { ReactComponent as AchievementsIcon } from '../../assets/images/achievements-icon.svg';
 import { ReactComponent as ColleaugesIcon } from '../../assets/images/colleauges-icon.svg';
+import { ReactComponent as CancelIcon } from '../../assets/images/cancel-icon.svg';
+import { ReactComponent as LogoutIcon } from '../../assets/images/logout-icon.svg';
+import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
   background-color: ${colors.bgSecondary};
@@ -82,22 +85,31 @@ export const LogoText = styled.p`
 
 export const UserAvatar = styled.img`
   display: none;
+  object-fit: cover;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 
-  @media screen and (${breakpoints.tablet}) {
+  @media screen and (${breakpoints.desktop}) {
     display: block;
-    object-fit: cover;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
     border: 1.5px solid ${colors.avatarBorder};
   }
+
+  ${(props) =>
+    props.isInHamburgerMenu &&
+    `
+    display: block;
+    margin: 15px 16px 10px 16px;
+    width: 24px;
+    height: 24px;
+  `}
 `;
 
 export const DropdownArrow = styled(DropdownArrowIcon)`
   display: none;
   margin-left: 8px;
 
-  @media screen and (${breakpoints.tablet}) {
+  @media screen and (${breakpoints.desktop}) {
     display: block;
   }
 
@@ -175,18 +187,42 @@ export const MenuInner = styled.nav`
   margin-left: 16px;
 `;
 
-export const MenuItem = styled.div`
+export const MenuItem = styled(NavLink)`
   width: 100%;
   height: 43px;
   background-color: ${colors.bgMenuItem};
   display: flex;
   align-items: center;
   margin-bottom: 8px;
+  text-decoration: none;
+  color: ${colors.textPrimary};
+  transition: font-weight 0.2s ease-out, background-color 0.2s ease-out;
+
+  &:hover {
+    font-weight: 600;
+    background-color: ${colors.lighterRed};
+  }
+
+  &.active {
+    background-color: ${colors.lightRed};
+    font-weight: 600;
+  }
+
+  //red dot active page
+  &.active::after {
+    content: '';
+    position: absolute;
+    left: 214px;
+    background-color: ${colors.redPrimary};
+    border-radius: 50%;
+    width: 9px;
+    height: 9px;
+  }
 `;
 
 export const MenuItemText = styled.p`
-  font-weight: 400;
   font-size: 16px;
+  color: ${colors.textPrimaryGrey};
 `;
 
 export const MenuLecturesIcon = styled(LecturesIcon)`
@@ -207,4 +243,77 @@ export const MenuColleaugesIcon = styled(ColleaugesIcon)`
 export const MenuAchievementsIcon = styled(AchievementsIcon)`
   padding: 15px 18px 10px 17px;
   width: 20px;
+`;
+
+export const MenuLink = styled(NavLink)`
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: none;
+  color: ${colors.textPrimary};
+`;
+
+export const HamburgerMenu = styled.div`
+  position: absolute;
+  z-index: 5;
+  height: 100vh;
+  width: 260px;
+  right: 0;
+  top: 0;
+  background-color: ${colors.bgSecondary};
+
+  @media screen and (${breakpoints.desktop}) {
+    display: none;
+  }
+`;
+
+export const HamburgerMenuTitleWrapper = styled.div`
+  margin: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const HamburgerMenuTitle = styled.h2`
+  font-weight: 500;
+  font-size: 18px;
+`;
+
+export const HamburgerMenuCancel = styled(CancelIcon)`
+  width: 12px;
+  height: 12px;
+`;
+
+export const HamburgerMenuInner = styled.nav`
+  padding: 5px 18px 200px 18px;
+`;
+
+export const HamburgerMenuBackground = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: ${colors.bgOpaque};
+  z-index: 1;
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    display: none;
+  }
+`;
+export const HamburgerMenuLogoutWrapper = styled.div`
+  width: 92px;
+  margin-left: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const HamburgerMenuLogoutIcon = styled(LogoutIcon)`
+  height: 24px;
+  width: 24px;
+`;
+
+export const HamburgerMenuLogoutText = styled.p`
+  font-weight: 500;
+  color: ${colors.textSecondaryGrey};
 `;
