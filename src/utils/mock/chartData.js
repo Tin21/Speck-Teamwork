@@ -25,6 +25,11 @@ export const chartMock = [
     percentage: 64,
   },
   {
+    id: 6,
+    title: 'Advanced JS',
+    percentage: 75,
+  },
+  {
     id: 7,
     title: 'Intro To React',
     percentage: 52,
