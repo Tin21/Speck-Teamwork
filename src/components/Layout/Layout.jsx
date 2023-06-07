@@ -37,14 +37,22 @@ import {
   HamburgerMenuLogoutWrapper,
   HamburgerMenuLogoutIcon,
   HamburgerMenuLogoutText,
+  ProfileDropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuText,
 } from './LayoutStyle';
 import { Outlet } from 'react-router-dom';
 
 const Layout = ({ imgSrc, imgAlt }) => {
   const [hamburgerMenuActive, setHamburgerMenuActive] = useState(false);
+  const [profileDropdownActive, setProfileDropdownActive] = useState(false);
 
   const changeHamburgerMenuState = () => {
     setHamburgerMenuActive(!hamburgerMenuActive);
+  };
+
+  const changeProfileDropdownState = () => {
+    setProfileDropdownActive(!profileDropdownActive);
   };
 
   return (
@@ -93,9 +101,30 @@ const Layout = ({ imgSrc, imgAlt }) => {
                   <LogoText> Learning Academy</LogoText>
                 </LogoWrapper>
                 <HeaderText>Lectures</HeaderText>
-                <AvatarHamburgerWrapper>
+                <AvatarHamburgerWrapper
+                  onClick={() => changeProfileDropdownState()}
+                >
                   <UserAvatar src={imgSrc} alt={imgAlt} />
                   <DropdownArrow />
+                  {profileDropdownActive && (
+                    <ProfileDropdownMenu>
+                      <NavLink to={'/profile'}>
+                        <DropdownMenuItem
+                          onClick={() => changeProfileDropdownState()}
+                        >
+                          <DropdownMenuText>Your profile</DropdownMenuText>
+                        </DropdownMenuItem>
+                      </NavLink>
+                      <NavLink to={'/login'}>
+                        <DropdownMenuItem
+                          isBottomItem
+                          onClick={() => changeProfileDropdownState()}
+                        >
+                          <DropdownMenuText>Log out</DropdownMenuText>
+                        </DropdownMenuItem>
+                      </NavLink>
+                    </ProfileDropdownMenu>
+                  )}
                   <HamburgerLogo onClick={() => changeHamburgerMenuState()} />
                 </AvatarHamburgerWrapper>
 
