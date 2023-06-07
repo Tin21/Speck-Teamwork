@@ -1,5 +1,7 @@
+import BarChart from '../components/BarChart/BarChart';
+
 const Achievements = () => {
-  return <div>Achievements</div>;
+  return <BarChart />;
 };
 
 export default Achievements;
