@@ -143,7 +143,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
                         </MenuItem>
 
                         <MenuItem
-                          to={'/'}
+                          to={'/profile'}
                           onClick={() => changeHamburgerMenuState()}
                         >
                           <UserAvatar
@@ -154,12 +154,18 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItemText>Your profile</MenuItemText>
                         </MenuItem>
                       </HamburgerMenuInner>
-                      <HamburgerMenuLogoutWrapper>
-                        <HamburgerMenuLogoutIcon />
-                        <HamburgerMenuLogoutText>
-                          Log out
-                        </HamburgerMenuLogoutText>
-                      </HamburgerMenuLogoutWrapper>
+
+                      <NavLink
+                        to={'/login'}
+                        onClick={() => changeHamburgerMenuState()}
+                      >
+                        <HamburgerMenuLogoutWrapper>
+                          <HamburgerMenuLogoutIcon />
+                          <HamburgerMenuLogoutText>
+                            Log out
+                          </HamburgerMenuLogoutText>
+                        </HamburgerMenuLogoutWrapper>
+                      </NavLink>
                     </HamburgerMenu>
                   </>
                 )}
