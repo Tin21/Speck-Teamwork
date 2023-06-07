@@ -33,6 +33,7 @@ export const colors = {
   chartBarGreyDark: '#dcdedf',
   chartBarGreyMedium: '#e3e5e5',
   chartBarGreyLight: '#eaebec',
+  greyBody: '#7F8591',
 };
 
 export const breakpoints = {
