@@ -37,14 +37,32 @@ import {
   HamburgerMenuLogoutWrapper,
   HamburgerMenuLogoutIcon,
   HamburgerMenuLogoutText,
+  ProfileDropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuText,
 } from './LayoutStyle';
 import { Outlet } from 'react-router-dom';
 
 const Layout = ({ imgSrc, imgAlt }) => {
   const [hamburgerMenuActive, setHamburgerMenuActive] = useState(false);
+  const [profileDropdownActive, setProfileDropdownActive] = useState(false);
+  const [headerText, setHeaderText] = useState(
+    localStorage.getItem('header_text')
+      ? localStorage.getItem('header_text')
+      : 'Lectures',
+  );
 
   const changeHamburgerMenuState = () => {
     setHamburgerMenuActive(!hamburgerMenuActive);
+  };
+
+  const changeProfileDropdownState = () => {
+    setProfileDropdownActive(!profileDropdownActive);
+  };
+
+  const changeHeaderText = (pageName) => {
+    setHeaderText(pageName);
+    localStorage.setItem('header_text', pageName);
   };
 
   return (
@@ -60,23 +78,35 @@ const Layout = ({ imgSrc, imgAlt }) => {
               <MenuLogoText>Learning Academy</MenuLogoText>
             </MenuLogoWrapper>
             <MenuInner>
-              <MenuItem to={'/lectures'}>
+              <MenuItem
+                to={'/lectures'}
+                onClick={() => changeHeaderText('Lectures')}
+              >
                 <MenuLecturesIcon />
                 <MenuItemText>Lectures</MenuItemText>
                 {/* <ActivePageIndicator /> */}
               </MenuItem>
 
-              <MenuItem to={'/myresults'}>
+              <MenuItem
+                to={'/myresults'}
+                onClick={() => changeHeaderText('Results')}
+              >
                 <MenuResultsIcon />
                 <MenuItemText>My results</MenuItemText>
               </MenuItem>
 
-              <MenuItem to={'/achievements'}>
+              <MenuItem
+                to={'/achievements'}
+                onClick={() => changeHeaderText('Achievements')}
+              >
                 <MenuAchievementsIcon />
                 <MenuItemText>Achievements</MenuItemText>
               </MenuItem>
 
-              <MenuItem to={'/colleauges'}>
+              <MenuItem
+                to={'/colleauges'}
+                onClick={() => changeHeaderText('Colleauges')}
+              >
                 <MenuColleaugesIcon />
                 <MenuItemText>Colleauges</MenuItemText>
               </MenuItem>
@@ -92,10 +122,46 @@ const Layout = ({ imgSrc, imgAlt }) => {
                   </NavLink>
                   <LogoText> Learning Academy</LogoText>
                 </LogoWrapper>
-                <HeaderText>Lectures</HeaderText>
+                {headerText === 'Lectures' && <HeaderText>Lectures</HeaderText>}
+                {headerText === 'Results' && <HeaderText>Results</HeaderText>}
+                {headerText === 'Achievements' && (
+                  <HeaderText>Achievements</HeaderText>
+                )}
+                {headerText === 'Colleauges' && (
+                  <HeaderText>Colleauges</HeaderText>
+                )}
+                {headerText === 'Your profile' && (
+                  <HeaderText>Your profile</HeaderText>
+                )}
                 <AvatarHamburgerWrapper>
-                  <UserAvatar src={imgSrc} alt={imgAlt} />
-                  <DropdownArrow />
+                  <UserAvatar
+                    src={imgSrc}
+                    alt={imgAlt}
+                    onClick={() => changeProfileDropdownState()}
+                  />
+                  <DropdownArrow onClick={() => changeProfileDropdownState()} />
+                  {profileDropdownActive && (
+                    <ProfileDropdownMenu>
+                      <NavLink to={'/profile'}>
+                        <DropdownMenuItem
+                          onClick={() => {
+                            changeHeaderText('Your profile');
+                            changeProfileDropdownState();
+                          }}
+                        >
+                          <DropdownMenuText>Your profile</DropdownMenuText>
+                        </DropdownMenuItem>
+                      </NavLink>
+                      <NavLink to={'/login'}>
+                        <DropdownMenuItem
+                          isBottomItem
+                          onClick={() => changeProfileDropdownState()}
+                        >
+                          <DropdownMenuText>Log out</DropdownMenuText>
+                        </DropdownMenuItem>
+                      </NavLink>
+                    </ProfileDropdownMenu>
+                  )}
                   <HamburgerLogo onClick={() => changeHamburgerMenuState()} />
                 </AvatarHamburgerWrapper>
 
@@ -112,7 +178,10 @@ const Layout = ({ imgSrc, imgAlt }) => {
                       <HamburgerMenuInner>
                         <MenuItem
                           to={'/lectures'}
-                          onClick={() => changeHamburgerMenuState()}
+                          onClick={() => {
+                            changeHeaderText('Lectures');
+                            changeHamburgerMenuState();
+                          }}
                         >
                           <MenuLecturesIcon />
                           <MenuItemText>Lectures</MenuItemText>
@@ -120,7 +189,10 @@ const Layout = ({ imgSrc, imgAlt }) => {
 
                         <MenuItem
                           to={'/myresults'}
-                          onClick={() => changeHamburgerMenuState()}
+                          onClick={() => {
+                            changeHeaderText('Results');
+                            changeHamburgerMenuState();
+                          }}
                         >
                           <MenuResultsIcon />
                           <MenuItemText>My results</MenuItemText>
@@ -128,7 +200,10 @@ const Layout = ({ imgSrc, imgAlt }) => {
 
                         <MenuItem
                           to={'/achievements'}
-                          onClick={() => changeHamburgerMenuState()}
+                          onClick={() => {
+                            changeHeaderText('Achievements');
+                            changeHamburgerMenuState();
+                          }}
                         >
                           <MenuAchievementsIcon />
                           <MenuItemText>Achievements</MenuItemText>
@@ -136,7 +211,10 @@ const Layout = ({ imgSrc, imgAlt }) => {
 
                         <MenuItem
                           to={'/colleauges'}
-                          onClick={() => changeHamburgerMenuState()}
+                          onClick={() => {
+                            changeHeaderText('Colleauges');
+                            changeHamburgerMenuState();
+                          }}
                         >
                           <MenuColleaugesIcon />
                           <MenuItemText>Colleauges</MenuItemText>
@@ -144,7 +222,10 @@ const Layout = ({ imgSrc, imgAlt }) => {
 
                         <MenuItem
                           to={'/profile'}
-                          onClick={() => changeHamburgerMenuState()}
+                          onClick={() => {
+                            changeHeaderText('Your profile');
+                            changeHamburgerMenuState();
+                          }}
                         >
                           <UserAvatar
                             isInHamburgerMenu
@@ -157,7 +238,9 @@ const Layout = ({ imgSrc, imgAlt }) => {
 
                       <NavLink
                         to={'/login'}
-                        onClick={() => changeHamburgerMenuState()}
+                        onClick={() => {
+                          changeHamburgerMenuState();
+                        }}
                       >
                         <HamburgerMenuLogoutWrapper>
                           <HamburgerMenuLogoutIcon />
