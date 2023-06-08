@@ -7,16 +7,24 @@ export const BadgesWrapper = styled.div`
   margin: 24px;
   border-radius: 12px;
   width: 100% - 24px;
-  /* height: 476px; */
   height: max-content;
   padding: 24px 20px 32px 20px;
+
+  @media screen and (${breakpoints.tablet}) {
+    margin: 32px 70px 24px 70px;
+    padding: 34px;
+  }
 `;
 
 export const BadgesTitle = styled.h2`
   font-weight: 500;
   font-size: 18px;
   color: ${colors.textPrimaryGrey};
-  /* width: 100%; */
+
+  @media screen and (${breakpoints.tablet}) {
+    font-weight: 600;
+    font-size: 20px;
+  }
 `;
 
 export const BadgesGrid = styled.div`
@@ -25,22 +33,22 @@ export const BadgesGrid = styled.div`
   grid-template-columns: repeat(2, 1fr);
 
   @media screen and (${breakpoints.tablet}) {
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, 120px);
     grid-template-columns: repeat(5, 1fr);
-    gap: 40px;
   }
 `;
 
 export const SingleBadgeWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 
 export const BadgeTickIcon = styled(TickIcon)`
   position: relative;
-  width: 24px;
-  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   left: 18px;
   top: 21px;
   z-index: 1;
@@ -50,6 +58,11 @@ export const BadgeTickIcon = styled(TickIcon)`
     `
       z-index: -1;
     `}
+
+  @media screen and (${breakpoints.tablet}) {
+    left: 25px;
+    top: 30px;
+  }
 `;
 
 export const SingleBadgeTitle = styled.p`
@@ -63,9 +76,23 @@ export const SingleBadgeTitle = styled.p`
     `
         color: ${colors.textGold};
     `}
+
+  @media screen and (${breakpoints.tablet}) {
+    font-size: 18px;
+  }
 `;
 
 export const BadgeIcon = styled.img`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 45px;
   width: 45px;
+
+  @media screen and (${breakpoints.tablet}) {
+    min-height: 76px;
+    max-height: 76px;
+    min-width: 76px;
+    max-width: 76px;
+  }
 `;
