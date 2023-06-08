@@ -31,7 +31,7 @@ export const HeaderInner = styled.div`
   align-items: center;
 
   @media screen and (${breakpoints.tablet}) {
-    padding: 0 90px 0 70px;
+    padding: 0 70px;
   }
 
   @media screen and (${breakpoints.desktop}) {
