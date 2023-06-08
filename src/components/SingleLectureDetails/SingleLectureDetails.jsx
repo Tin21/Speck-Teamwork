@@ -7,7 +7,6 @@ import {
   DetailsTitle,
   LectureDetailsInner,
   LectureDetailsWrapper,
-  LogoContainer,
   LogoImg,
 } from './SingleLectureDetailsStyle';
 
@@ -15,12 +14,10 @@ const SingleLectureDetails = ({ logoImg, imageAward, title, subtitle }) => {
   return (
     <LectureDetailsWrapper>
       <LectureDetailsInner>
-        <LogoContainer>
-          <DetailsFigure>
-            <LogoImg src={logoImg} />
-            <AwardImg src={imageAward} />
-          </DetailsFigure>
-        </LogoContainer>
+        <DetailsFigure>
+          <LogoImg src={logoImg} />
+          <AwardImg src={imageAward} />
+        </DetailsFigure>
         <DetailsTitle>{title}</DetailsTitle>
         <DetailsSubtitle>{subtitle}</DetailsSubtitle>
       </LectureDetailsInner>

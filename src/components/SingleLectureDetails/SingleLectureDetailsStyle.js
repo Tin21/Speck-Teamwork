@@ -6,15 +6,23 @@ export const LectureDetailsWrapper = styled.div`
   border-radius: 8px;
 `;
 
-export const LectureDetailsInner = styled.div``;
+export const LectureDetailsInner = styled.div`
+  padding: 24px 32px;
+`;
 
 export const DetailsTitle = styled.h3`
   font-family: ${fonts.primary};
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 18px;
+  line-height: 22px;
   color: ${colors.textPrimaryGrey};
+  padding-bottom: 16px;
+
+  @media screen and (${breakpoints.tablet}) {
+    font-size: 20px;
+    line-height: 24px;
+  }
 `;
 
 export const DetailsSubtitle = styled.p`
@@ -26,23 +34,18 @@ export const DetailsSubtitle = styled.p`
   color: #7f8591;
 `;
 
-export const LogoContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const DetailsFigure = styled.figure`
   display: flex;
   justify-content: space-between;
   overflow: hidden;
   border-radius: 6px;
   width: 100%;
-  padding: 10px;
+  padding-bottom: 24px;
 `;
 
 export const LogoImg = styled.img`
-  width: 52px;
-  height: 52px;
+  width: 60px;
+  height: 60px;
 `;
 
 export const AwardImg = styled.img`
