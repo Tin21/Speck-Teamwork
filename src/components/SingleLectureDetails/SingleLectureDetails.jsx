@@ -5,23 +5,23 @@ import {
   DetailsFigure,
   DetailsSubtitle,
   DetailsTitle,
-  LectureDetailsInner,
-  LectureDetailsWrapper,
+  DetailsInner,
+  DetailsWrapper,
   LogoImg,
 } from './SingleLectureDetailsStyle';
 
 const SingleLectureDetails = ({ logoImg, imageAward, title, subtitle }) => {
   return (
-    <LectureDetailsWrapper>
-      <LectureDetailsInner>
+    <DetailsWrapper>
+      <DetailsInner>
         <DetailsFigure>
           <LogoImg src={logoImg} />
           <AwardImg src={imageAward} />
         </DetailsFigure>
         <DetailsTitle>{title}</DetailsTitle>
         <DetailsSubtitle>{subtitle}</DetailsSubtitle>
-      </LectureDetailsInner>
-    </LectureDetailsWrapper>
+      </DetailsInner>
+    </DetailsWrapper>
   );
 };
 
