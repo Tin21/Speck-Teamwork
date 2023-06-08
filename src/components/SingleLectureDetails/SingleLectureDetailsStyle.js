@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { colors, breakpoints, fonts } from '../../utils/styles/theme';
 
 export const LectureDetailsWrapper = styled.div`
-  padding: 0 24px;
   margin-bottom: 40px;
 
   @media screen and (${breakpoints.tablet}) {
@@ -11,6 +10,28 @@ export const LectureDetailsWrapper = styled.div`
   @media screen and (${breakpoints.desktop}) {
     margin-bottom: 56px;
   }
+`;
+
+export const LectureFlexedNav = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-direction: row;
+
+  @media screen and (${breakpoints.desktop}) {
+    display: none;
+  }
+`;
+
+export const LectureUnderline = styled.p`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-decoration-line: underline;
+  color: ${colors.textLink};
 `;
 
 export const LectureDetailsTitle = styled.h1`
@@ -38,6 +59,15 @@ export const LectureDetailsContent = styled.p`
   letter-spacing: 0.01em;
 `;
 
+export const LectureCriteriaText = styled.p`
+  color: ${colors.textSecondaryGrey};
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 16px;
+`;
 export const DetailsWrapper = styled.div`
   background: ${colors.white};
   border-radius: 8px;

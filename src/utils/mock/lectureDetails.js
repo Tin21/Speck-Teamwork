@@ -6,6 +6,7 @@ import imgAward1 from '../../assets/images/criteria-award1.png';
 import imgAward2 from '../../assets/images/criteria-award2.png';
 import imgAward3 from '../../assets/images/criteria-award3.png';
 import imgAward4 from '../../assets/images/criteria-award4.png';
+
 const cardsDetailData = [
   {
     id: 1,

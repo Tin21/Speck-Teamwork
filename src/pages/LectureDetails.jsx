@@ -5,12 +5,19 @@ import { Grid } from '../utils/styles/generalStyles';
 import cardsDetailData from '../utils/mock/lectureDetails';
 import SingleLectureDetails from '../components/SingleLectureDetails/SingleLectureDetails';
 import singleLectureMock from '../utils/mock/singleLecture';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
+  LectureCriteriaText,
   LectureDetailsContent,
   LectureDetailsTitle,
   LectureDetailsWrapper,
+  LectureFlexedNav,
+  LectureUnderline,
 } from '../components/SingleLectureDetails/SingleLectureDetailsStyle';
+
+import { ReactComponent as ArrowImg } from '../assets/images/right-arrow.svg';
+import { HeaderText } from '../components/Layout/LayoutStyle';
+import { breakpoints } from '../utils/styles/theme';
 
 const LectureDetails = () => {
   const { id } = useParams();
@@ -34,10 +41,19 @@ const LectureDetails = () => {
   return (
     <>
       <Section isFlexDisplay={false}>
+        <LectureFlexedNav>
+          <Link to={'/lectures'}>
+            <LectureUnderline>Lectures</LectureUnderline>
+          </Link>
+          <ArrowImg />
+          {lecture?.title}
+        </LectureFlexedNav>
         <LectureDetailsWrapper>
           <LectureDetailsTitle>{lecture?.title}</LectureDetailsTitle>
           <LectureDetailsContent>{lecture?.content}</LectureDetailsContent>
         </LectureDetailsWrapper>
+
+        <LectureCriteriaText>Lecture criteria's</LectureCriteriaText>
 
         {detail && (
           <Grid isAwards>

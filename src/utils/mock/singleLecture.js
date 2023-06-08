@@ -1,7 +1,7 @@
 const singleLectureMock = [
   {
     id: 1,
-    title: '1. Introduction',
+    title: 'Introduction',
     subtitle:
       'Embrace endless learning possibilities with us and embark on a journey of personal growth.',
     content:
@@ -9,7 +9,7 @@ const singleLectureMock = [
   },
   {
     id: 2,
-    title: '2. HTML & CSS',
+    title: 'HTML & CSS',
     subtitle:
       'Unlock the World of Web Development: Dive into the Fundamentals of HTML & CSS.',
     content:
@@ -17,7 +17,7 @@ const singleLectureMock = [
   },
   {
     id: 3,
-    title: '3. Version Control System',
+    title: 'Version Control System',
     subtitle:
       'Master Version Control: Explore the Essentials of GIT to Streamline your Development Workflow.',
     content:
@@ -25,7 +25,7 @@ const singleLectureMock = [
   },
   {
     id: 4,
-    title: '4. Advanced CSS',
+    title: 'Advanced CSS',
     subtitle:
       'Enhance Web Layouts: Master Grid Systems, Flexbox, and BEM for Seamless Design.',
     content:
