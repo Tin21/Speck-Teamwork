@@ -7,6 +7,7 @@ import SingleLectureDetails from '../components/SingleLectureDetails/SingleLectu
 import singleLectureMock from '../utils/mock/singleLecture';
 import { Link, useParams } from 'react-router-dom';
 import {
+  LectureBreadcrumbText,
   LectureCriteriaText,
   LectureDetailsContent,
   LectureDetailsTitle,
@@ -46,7 +47,9 @@ const LectureDetails = () => {
             <LectureUnderline>Lectures</LectureUnderline>
           </Link>
           <ArrowImg />
-          {lecture?.title}
+          <LectureBreadcrumbText>
+            {lecture?.id}. {lecture?.title}
+          </LectureBreadcrumbText>
         </LectureFlexedNav>
         <LectureDetailsWrapper>
           <LectureDetailsTitle>{lecture?.title}</LectureDetailsTitle>

@@ -34,6 +34,15 @@ export const LectureUnderline = styled.p`
   color: ${colors.textLink};
 `;
 
+export const LectureBreadcrumbText = styled.p`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: (${colors.textPrimaryGrey});
+`;
+
 export const LectureDetailsTitle = styled.h1`
   color: ${colors.textPrimaryGrey};
   font-family: 'Inter';
