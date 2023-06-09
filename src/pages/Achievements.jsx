@@ -1,5 +1,11 @@
+import Badges from '../components/Badges/Badges';
+
 const Achievements = () => {
-  return <div>Achievements</div>;
+  return (
+    <>
+      <Badges />
+    </>
+  );
 };
 
 export default Achievements;
