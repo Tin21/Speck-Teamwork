@@ -16,7 +16,6 @@ export const Header = styled.header`
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.04);
 
   @media screen and (${breakpoints.desktop}) {
-    //position: absolute;
     left: 242px;
     right: 0;
   }
@@ -112,8 +111,6 @@ export const DropdownArrow = styled(DropdownArrowIcon)`
   @media screen and (${breakpoints.desktop}) {
     display: block;
   }
-
-  //hover: ?
 `;
 
 export const AvatarHamburgerWrapper = styled.div`
