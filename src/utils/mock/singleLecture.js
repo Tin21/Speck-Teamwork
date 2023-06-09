@@ -33,7 +33,7 @@ const singleLectureMock = [
   },
   {
     id: 5,
-    title: '5. Intro to Javascript',
+    title: 'Intro to Javascript',
     subtitle:
       "Unleash the Potential of JavaScript: Dive into the Basics of Web Development's Dynamic Language.",
     content:
@@ -41,7 +41,7 @@ const singleLectureMock = [
   },
   {
     id: 6,
-    title: '6. Introduction to GitHub',
+    title: 'Introduction to GitHub',
     subtitle:
       'Collaboration Amplified: Empowering Developers through JavaScript Fundamentals.',
     content:
