@@ -12,6 +12,12 @@ export const Grid = styled.div`
   @media screen and (${breakpoints.desktop}) {
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
+
+    ${(props) =>
+      props.isAwards &&
+      `
+      grid-template-columns:repeat(4,1fr)
+    `}
   }
 `;
 export const Button = styled.button`
