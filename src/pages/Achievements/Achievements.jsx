@@ -1,4 +1,4 @@
-import Badges from '../components/Badges/Badges';
+import Badges from '../../components/Badges/Badges';
 
 const Achievements = () => {
   return (

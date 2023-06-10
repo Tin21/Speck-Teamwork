@@ -84,11 +84,10 @@ const Layout = ({ imgSrc, imgAlt }) => {
               >
                 <MenuLecturesIcon />
                 <MenuItemText>Lectures</MenuItemText>
-                {/* <ActivePageIndicator /> */}
               </MenuItem>
 
               <MenuItem
-                to={'/myresults'}
+                to={'/my-results'}
                 onClick={() => changeHeaderText('Results')}
               >
                 <MenuResultsIcon />
@@ -188,7 +187,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
                         </MenuItem>
 
                         <MenuItem
-                          to={'/myresults'}
+                          to={'/my-results'}
                           onClick={() => {
                             changeHeaderText('Results');
                             changeHamburgerMenuState();

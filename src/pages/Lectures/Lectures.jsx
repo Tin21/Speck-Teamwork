@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Section from '../components/Section/Section';
-import SingleLecture from '../components/SingleLecture/SingleLecture';
-import singleLectureMock from '../utils/mock/singleLecture';
-import { Grid } from '../utils/styles/generalStyles';
+import Section from '../../components/Section/Section';
+import SingleLecture from '../../components/SingleLecture/SingleLecture';
+import singleLectureMock from '../../utils/mock/singleLecture';
+import { Grid } from '../../utils/styles/generalStyles';
 
 const Lectures = () => {
   const [lectures, setLectures] = useState(null);
