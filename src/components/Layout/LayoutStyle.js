@@ -16,7 +16,7 @@ export const Header = styled.header`
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.04);
 
   @media screen and (${breakpoints.desktop}) {
-    left: 242px;
+    left: 240px;
     right: 0;
   }
 `;
@@ -148,7 +148,7 @@ export const Menu = styled.div`
     display: block;
     left: 0;
     top: 0;
-    width: 240px;
+    width: 242px;
     height: 100vh;
     background-color: ${colors.bgSecondary};
     border-right: 2px solid ${colors.border};
@@ -193,6 +193,8 @@ export const MenuItem = styled(NavLink)`
   margin-bottom: 8px;
   text-decoration: none;
   color: ${colors.textPrimary};
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
   transition: font-weight 0.2s ease-out, background-color 0.2s ease-out;
 
   &:hover {
@@ -223,22 +225,22 @@ export const MenuItemText = styled.p`
 `;
 
 export const MenuLecturesIcon = styled(LecturesIcon)`
-  padding: 15px 18px 10px 17px;
+  margin: 0 16px;
   width: 20px;
 `;
 
 export const MenuResultsIcon = styled(ResultsIcon)`
-  padding: 15px 18px 10px 17px;
+  margin: 0 16px;
   width: 20px;
 `;
 
 export const MenuColleaugesIcon = styled(ColleaugesIcon)`
-  padding: 15px 18px 10px 17px;
+  margin: 0 16px;
   width: 20px;
 `;
 
 export const MenuAchievementsIcon = styled(AchievementsIcon)`
-  padding: 15px 18px 10px 17px;
+  margin: 0 16px;
   width: 20px;
 `;
 
