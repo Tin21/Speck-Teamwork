@@ -21,7 +21,7 @@ const Lectures = () => {
               <SingleLecture
                 key={lecture.id}
                 title={lecture.title}
-                subtitle={lecture.subtitle}
+                content={lecture.content}
                 id={lecture.id}
               />
             ))}

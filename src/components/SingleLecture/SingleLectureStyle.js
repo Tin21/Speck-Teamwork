@@ -29,5 +29,11 @@ export const SingleLectureSubtitle = styled.p`
   font-size: 14px;
   line-height: 20px;
   color: #7f8591;
-  padding-bottom: 24px;
+  margin-bottom: 24px;
+  //fix za 2 retka
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: pre-wrap;
 `;
