@@ -32,6 +32,8 @@ export const colors = {
 
 export const breakpoints = {
   mobileLarge: 'min-width: 420px',
+  tabletSmall: 'min-width: 576px',
   tablet: 'min-width: 768px',
+  desktopSmall: 'min-width: 1024px',
   desktop: 'min-width: 1440px',
 };

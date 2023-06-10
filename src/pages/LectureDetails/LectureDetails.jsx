@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import Section from '../components/Section/Section';
-import { Grid } from '../utils/styles/generalStyles';
-import cardsDetailData from '../utils/mock/lectureDetails';
-import SingleLectureDetails from '../components/SingleLectureDetails/SingleLectureDetails';
-import singleLectureMock from '../utils/mock/singleLecture';
+import Section from '../../components/Section/Section';
+import { Grid } from '../../utils/styles/generalStyles';
+import cardsDetailData from '../../utils/mock/lectureDetails';
+import SingleLectureDetails from '../../components/SingleLectureDetails/SingleLectureDetails';
+import singleLectureMock from '../../utils/mock/singleLecture';
 import { Link, useParams } from 'react-router-dom';
 import {
   LectureBreadcrumbText,
@@ -14,11 +14,11 @@ import {
   LectureDetailsWrapper,
   LectureFlexedNav,
   LectureUnderline,
-} from '../components/SingleLectureDetails/SingleLectureDetailsStyle';
+} from '../../components/SingleLectureDetails/SingleLectureDetailsStyle';
 
-import { ReactComponent as ArrowImg } from '../assets/images/right-arrow.svg';
-import { HeaderText } from '../components/Layout/LayoutStyle';
-import { breakpoints } from '../utils/styles/theme';
+import { ReactComponent as ArrowImg } from '../../assets/images/right-arrow.svg';
+import { HeaderText } from '../../components/Layout/LayoutStyle';
+import { breakpoints } from '../../utils/styles/theme';
 
 const LectureDetails = () => {
   const { id } = useParams();
