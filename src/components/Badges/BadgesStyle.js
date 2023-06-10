@@ -9,9 +9,15 @@ export const BadgesWrapper = styled.div`
   height: max-content;
   padding: 24px 20px 6px 20px;
 
+  @media screen and (${breakpoints.tabletSmall}) {
+    max-width: 528px; /* !! uskladiti s ostalim komponentama na pageu !! */
+    margin: 32px calc((100% - 528px) / 2);
+  }
+
   @media screen and (${breakpoints.tablet}) {
     margin: 32px 70px 24px 70px;
     padding: 34px 34px 14px 34px;
+    max-width: none;
   }
 
   @media screen and (${breakpoints.desktop}) {
@@ -27,9 +33,14 @@ export const BadgesTitle = styled.h2`
   margin-bottom: 20px;
   color: ${colors.textPrimaryGrey};
 
-  @media screen and (${breakpoints.tablet}) {
-    font-weight: 600;
+  @media screen and (${breakpoints.tabletSmall}) {
+    font-weight: 600; /* !! uskladiti s ostalim komponentama na pageu !! */
     font-size: 20px;
+    margin-left: 6px;
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    margin-left: 0;
     margin-bottom: 24px;
   }
 
@@ -50,6 +61,6 @@ export const BadgesGrid = styled.div`
   }
 
   @media screen and (${breakpoints.desktop}) {
-    gap: 0 14px;
+    gap: 0 10px;
   }
 `;

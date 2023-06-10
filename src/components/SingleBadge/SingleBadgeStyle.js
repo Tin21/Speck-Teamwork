@@ -77,6 +77,6 @@ export const SingleBadgeTitle = styled.p`
   }
 
   @media screen and (${breakpoints.desktop}) {
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
