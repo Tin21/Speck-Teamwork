@@ -364,3 +364,29 @@ export const DropdownMenuText = styled.p`
   font-weight: 400;
   font-size: 16px;
 `;
+
+export const LectureLink = styled(NavLink)`
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration-line: underline;
+  color: ${colors.textLink};
+`;
+
+export const LectureBreadcrumbText = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  color: (${colors.textPrimaryGrey});
+`;
+
+export const LectureBreadcrumbWrapper = styled.div`
+  display: none;
+  height: max-content;
+  width: max-content;
+  gap: 12px;
+  flex-direction: row;
+  align-items: center;
+
+  @media screen and (${breakpoints.desktop}) {
+    display: flex;
+  }
+`;
