@@ -102,5 +102,5 @@ export const InputLabel = styled.label`
 export const RequiredField = styled.span`
   font-size: 16px;
   font-weight: 500;
-  color: ${colors.primaryRed};
+  color: ${colors.redPrimary};
 `;
