@@ -6,10 +6,22 @@ import { Field as FieldFormik } from 'formik';
 export const Grid = styled.div`
   display: grid;
   gap: 16px;
+
+  @media screen and (min-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
   @media screen and (${breakpoints.tablet}) {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
   @media screen and (${breakpoints.desktop}) {
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
@@ -22,7 +34,10 @@ export const Grid = styled.div`
   }
 `;
 
-//BUTTON
+export const GridWrapper = styled.div`
+  max-width: 1120px;
+`;
+
 export const Button = styled.button`
   padding: 14px 24px;
   gap: 8px;
@@ -32,6 +47,7 @@ export const Button = styled.button`
   border: 0;
   width: 100%;
   font-weight: 600;
+
   ${(props) =>
     props.isSecondary &&
     `
@@ -46,14 +62,17 @@ export const Button = styled.button`
       color: ${colors.textPrimary};;
       background: ${colors.bgMenuItem};;
     `}
+
   &:hover {
     background: ${colors.buttonPrimaryDark};
     cursor: pointer;
+
     ${(props) =>
       props.isSecondary &&
       `
         background: rgba(191, 57, 57, 0.08);
       `}
+
     ${(props) =>
       props.isVariant &&
       `
@@ -69,19 +88,24 @@ export const InputField = styled(FieldFormik)`
   margin-top: 8px;
   font-size: 16px;
   color: ${colors.textPrimaryGrey};
+
   &::placeholder {
     color: ${colors.textSecondaryGrey};
     font-weight: 400;
   }
+
   border: ${({ error }) =>
     error
       ? `2px solid ${colors.redPrimary}`
       : `1px solid ${colors.avatarBorder}`};
+
   @media screen and (${breakpoints.desktop}) {
   }
+
   @media screen and (${breakpoints.tablet}) {
     padding: 16px 24px;
   }
+
   @media screen and (${breakpoints.desktop}) {
     padding: 16px 24px;
   }

@@ -66,6 +66,15 @@ export const LectureDetailsContent = styled.p`
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.01em;
+  max-width: 272px;
+
+  @media screen and (${breakpoints.tablet}) {
+    max-width: 621px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    max-width: 663px;
+  }
 `;
 
 export const LectureCriteriaText = styled.p`
@@ -119,6 +128,12 @@ export const DetailsFigure = styled.figure`
   padding-bottom: 24px;
 `;
 
+export const AwardWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+
 export const LogoImg = styled.img`
   width: 60px;
   height: 60px;
@@ -127,4 +142,18 @@ export const LogoImg = styled.img`
 export const AwardImg = styled.img`
   width: 52px;
   height: 52px;
+`;
+
+export const AwardText = styled.p`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-55%, -50%);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+  color: ${colors.white};
 `;

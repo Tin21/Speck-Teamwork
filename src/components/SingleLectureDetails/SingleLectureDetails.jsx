@@ -8,15 +8,26 @@ import {
   DetailsInner,
   DetailsWrapper,
   LogoImg,
+  AwardWrapper,
+  AwardText,
 } from './SingleLectureDetailsStyle';
 
-const SingleLectureDetails = ({ logoImg, imageAward, title, subtitle }) => {
+const SingleLectureDetails = ({
+  logoImg,
+  imageAward,
+  title,
+  subtitle,
+  awardPoint,
+}) => {
   return (
     <DetailsWrapper>
       <DetailsInner>
         <DetailsFigure>
           <LogoImg src={logoImg} />
-          <AwardImg src={imageAward} />
+          <AwardWrapper>
+            <AwardImg src={imageAward} />
+            <AwardText>{awardPoint}</AwardText>
+          </AwardWrapper>
         </DetailsFigure>
         <DetailsTitle>{title}</DetailsTitle>
         <DetailsSubtitle>{subtitle}</DetailsSubtitle>
@@ -30,6 +41,7 @@ SingleLectureDetails.propTypes = {
   imageAward: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  awardPoint: PropTypes.string,
 };
 
 export default SingleLectureDetails;
