@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 
 import Section from '../../components/Section/Section';
-import { Grid } from '../../utils/styles/generalStyles';
+import { Grid, GridWrapper } from '../../utils/styles/generalStyles';
 import cardsDetailData from '../../utils/mock/lectureDetails';
 import SingleLectureDetails from '../../components/SingleLectureDetails/SingleLectureDetails';
 import singleLectureMock from '../../utils/mock/singleLecture';
@@ -17,8 +17,6 @@ import {
 } from '../../components/SingleLectureDetails/SingleLectureDetailsStyle';
 import { LecturesContext } from '../../context/LecturesContext';
 import { ReactComponent as ArrowImg } from '../../assets/images/right-arrow.svg';
-import { HeaderText } from '../../components/Layout/LayoutStyle';
-import { breakpoints } from '../../utils/styles/theme';
 
 const LectureDetails = () => {
   const { id } = useParams();
@@ -59,20 +57,23 @@ const LectureDetails = () => {
 
         <LectureCriteriaText>Lecture criteria's</LectureCriteriaText>
 
-        {detail && (
-          <Grid isAwards>
-            {detail.map((detail) => (
-              <SingleLectureDetails
-                key={detail.id}
-                title={detail.title}
-                subtitle={detail.subtitle}
-                imageAward={detail.imageAward}
-                logoImg={detail.logoImage}
-                id={detail.id}
-              />
-            ))}
-          </Grid>
-        )}
+        <GridWrapper>
+          {detail && (
+            <Grid isAwards>
+              {detail.map((detail) => (
+                <SingleLectureDetails
+                  key={detail.id}
+                  title={detail.title}
+                  subtitle={detail.subtitle}
+                  imageAward={detail.imageAward}
+                  logoImg={detail.logoImage}
+                  awardPoint={lecture?.awardPoint[detail.title]}
+                  id={detail.id}
+                />
+              ))}
+            </Grid>
+          )}
+        </GridWrapper>
       </Section>
     </>
   );

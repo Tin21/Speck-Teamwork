@@ -88,19 +88,24 @@ export const InputField = styled(FieldFormik)`
   margin-top: 8px;
   font-size: 16px;
   color: ${colors.textPrimaryGrey};
+
   &::placeholder {
     color: ${colors.textSecondaryGrey};
     font-weight: 400;
   }
+
   border: ${({ error }) =>
     error
       ? `2px solid ${colors.redPrimary}`
       : `1px solid ${colors.avatarBorder}`};
+
   @media screen and (${breakpoints.desktop}) {
   }
+
   @media screen and (${breakpoints.tablet}) {
     padding: 16px 24px;
   }
+
   @media screen and (${breakpoints.desktop}) {
     padding: 16px 24px;
   }
