@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { breakpoints, colors } from './theme';
-import { Field as FieldFormik } from 'formik';
+import { Field as FieldFormik, Form as FormFormik } from 'formik';
 
 //GRID
 export const Grid = styled.div`
@@ -109,16 +109,59 @@ export const InputField = styled(FieldFormik)`
   @media screen and (${breakpoints.desktop}) {
     padding: 16px 24px;
   }
+
+  ${(props) =>
+    props.isProfile &&
+    `
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textLightGrey};
+  `}
+
+  ${(props) =>
+    props.isPassword &&
+    `
+      height: 44px;
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textLightGrey};
+      font-size: 30px;
+      letter-spacing: 3px;
+  `}
 `;
 
 export const InputLabel = styled.label`
   color: ${colors.textPrimaryGrey};
   font-size: 16px;
   font-weight: 500;
+
+  ${(props) =>
+    props.isDisabled &&
+    `
+      color: ${colors.textSecondaryGrey};
+  `}
 `;
 
 export const RequiredField = styled.span`
   font-size: 16px;
   font-weight: 500;
   color: ${colors.primaryRed};
+`;
+
+// FORM
+
+export const Form = styled(FormFormik)`
+  @media screen and (${breakpoints.tabletSmall}) {
+    max-width: 400px;
+  }
+`;
+
+export const FormRow = styled.div`
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
