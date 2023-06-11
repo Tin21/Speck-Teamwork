@@ -134,13 +134,15 @@ export const HeaderText = styled.p`
 export const LeftContainer = styled.div`
   @media screen and (${breakpoints.desktop}) {
     display: flex;
+    position: sticky;
+    bottom: 0;
   }
 `;
 
 export const RightContainer = styled.div`
   width: 100%;
-  position: sticky;
-  bottom: 0;
+  /* position: sticky;
+  bottom: 0;  */
 `;
 
 export const Menu = styled.div`
@@ -151,7 +153,7 @@ export const Menu = styled.div`
     left: 0;
     top: 0;
     width: 242px;
-    height: 100vh;
+    height: 100%;
     background-color: ${colors.bgSecondary};
     border-right: 2px solid ${colors.border};
   }
@@ -182,6 +184,7 @@ export const MenuLogoText = styled.p`
 `;
 
 export const MenuInner = styled.nav`
+  height: 100vh;
   width: 224px;
   margin-left: 16px;
 `;
