@@ -111,7 +111,7 @@ export const InputField = styled(FieldFormik)`
   }
 
   ${(props) =>
-    props.isProfile &&
+    props.isDisabled &&
     `
       width: 100%;
       background-color: ${colors.bgSecondary};
@@ -120,7 +120,16 @@ export const InputField = styled(FieldFormik)`
   `}
 
   ${(props) =>
-    props.isPassword &&
+    props.isEnabled &&
+    `
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textPrimary};
+  `}
+
+  ${(props) =>
+    props.isPasswordDisabled &&
     `
       height: 44px;
       width: 100%;
@@ -129,6 +138,30 @@ export const InputField = styled(FieldFormik)`
       color: ${colors.textLightGrey};
       font-size: 30px;
       letter-spacing: 3px;
+  `}
+
+${(props) =>
+    props.isPasswordEnabled &&
+    `
+      height: 44px;
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textPrimary};
+      font-size: 30px;
+      letter-spacing: 3px;
+  `}
+
+${(props) =>
+    props.isPasswordVisible &&
+    `
+      height: 44px;
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textPrimary};
+      font-size: 18px;
+      /* letter-spacing: 3px; */
   `}
 `;
 
@@ -141,6 +174,12 @@ export const InputLabel = styled.label`
     props.isDisabled &&
     `
       color: ${colors.textSecondaryGrey};
+  `}
+
+  ${(props) =>
+    props.isEnabled &&
+    `
+      color: ${colors.textPrimary};
   `}
 `;
 

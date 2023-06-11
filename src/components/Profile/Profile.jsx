@@ -10,6 +10,7 @@ import {
   ProfileButton,
   UserAvatar,
   ProfileWrapper,
+  VisibleIcon,
 } from './ProfileStyle';
 import { Formik } from 'formik';
 import {
@@ -18,15 +19,19 @@ import {
   RequiredField,
   Form,
   FormRow,
-  Button,
 } from '../../utils/styles/generalStyles';
 import * as Yup from 'yup';
 
 const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
   const [update, setUpdate] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const changeUpdate = () => {
     setUpdate(!update);
+  };
+
+  const changePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
 
   return (
@@ -53,7 +58,7 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
         <UserAvatar src={imgSrc} alt={imgAlt} />
         <PictureFrame />
       </PictureWrapper>
-      {!update && (
+      {!update && ( //INITIAL STATE
         <Formik>
           {(formik) => (
             <Form>
@@ -62,7 +67,7 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                   Ime
                 </InputLabel>
                 <InputField
-                  isProfile
+                  isDisabled
                   type="text"
                   name="firstName"
                   value={firstName}
@@ -74,7 +79,7 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                   Prezime
                 </InputLabel>
                 <InputField
-                  isProfile
+                  isDisabled
                   type="text"
                   name="lastName"
                   value={lastName}
@@ -86,7 +91,7 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                   Email
                 </InputLabel>
                 <InputField
-                  isProfile
+                  isDisabled
                   type="text"
                   name="email"
                   value={email}
@@ -94,10 +99,13 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                 />
               </FormRow>
               <FormRow>
-                <InputLabel htmlFor="password">Password</InputLabel>
+                <InputLabel isDisabled htmlFor="password">
+                  Password
+                </InputLabel>
+
                 <InputField
-                  isPassword
-                  isProfile
+                  isPasswordDisabled
+                  isDisabled
                   type="password"
                   name="password"
                   value={password}
@@ -105,7 +113,74 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                 />
               </FormRow>
               <FormRow>
-                <ProfileButton disabled isSecondary>
+                <ProfileButton disabled isSecondaryDisabled>
+                  Delete your account
+                </ProfileButton>
+              </FormRow>
+            </Form>
+          )}
+        </Formik>
+      )}
+      {update && ( //UPDATING
+        <Formik>
+          {(formik) => (
+            <Form>
+              <FormRow>
+                <InputLabel isEnabled htmlFor="firstName">
+                  Ime
+                </InputLabel>
+                <InputField
+                  isEnabled
+                  type="text"
+                  name="firstName"
+                  value={firstName}
+                />
+              </FormRow>
+              <FormRow>
+                <InputLabel isEnabled htmlFor="lastName">
+                  Prezime
+                </InputLabel>
+                <InputField
+                  isEnabled
+                  type="text"
+                  name="lastName"
+                  value={lastName}
+                />
+              </FormRow>
+              <FormRow>
+                <InputLabel isEnabled htmlFor="email">
+                  Email
+                </InputLabel>
+                <InputField isEnabled type="text" name="email" value={email} />
+              </FormRow>
+
+              <FormRow>
+                <InputLabel isEnabled htmlFor="password">
+                  Password
+                </InputLabel>
+                <VisibleIcon onClick={() => changePasswordVisibility()} />
+                {!passwordVisible && (
+                  <InputField
+                    isPasswordEnabled
+                    isEnabled
+                    type="password"
+                    name="password"
+                    value={password}
+                  />
+                )}
+                {passwordVisible && (
+                  <InputField
+                    isPasswordVisible
+                    isEnabled
+                    type="text"
+                    name="password"
+                    value={password}
+                  />
+                )}
+              </FormRow>
+
+              <FormRow>
+                <ProfileButton isSecondaryEnabled>
                   Delete your account
                 </ProfileButton>
               </FormRow>
