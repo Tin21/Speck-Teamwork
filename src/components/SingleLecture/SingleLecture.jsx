@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, createContext } from 'react';
 import {
   SingleLectureInner,
   SingleLectureSubtitle,
@@ -8,16 +8,29 @@ import {
 import PropTypes from 'prop-types';
 import { Button } from '../../utils/styles/generalStyles';
 import { useNavigate } from 'react-router-dom';
+import { LecturesContext } from '../../context/LecturesContext';
 
 const SingleLecture = ({ title, content, id }) => {
   const navigate = useNavigate();
+  const { contextLecture, setContextLecture } = useContext(LecturesContext);
+
+  const onClickActions = () => {
+    navigate(`/lectures/${id}`);
+    setContextLecture(`${id}. ${title}`);
+    localStorage.setItem('active_lecture', `${id}. ${title}`);
+  };
 
   return (
     <SingleLectureWrapper>
       <SingleLectureInner>
         <SingleLectureTitle>{title}</SingleLectureTitle>
         <SingleLectureSubtitle>{content}</SingleLectureSubtitle>
-        <Button onClick={() => navigate(`/lectures/${id}`)} isSecondary>
+        <Button
+          onClick={() => {
+            onClickActions();
+          }}
+          isSecondary
+        >
           View
         </Button>
       </SingleLectureInner>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BadgesGrid, BadgesTitle, BadgesWrapper } from './BadgesStyle';
 import { badges } from '../../utils/badges/badgesList';
-import SingleBadge from './SingleBadge';
+import SingleBadge from '../SingleBadge/SingleBadge';
 
 const Badges = () => {
   return (

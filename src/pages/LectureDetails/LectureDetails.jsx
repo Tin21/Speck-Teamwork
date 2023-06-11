@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
-import Section from '../components/Section/Section';
-import { Grid } from '../utils/styles/generalStyles';
-import cardsDetailData from '../utils/mock/lectureDetails';
-import SingleLectureDetails from '../components/SingleLectureDetails/SingleLectureDetails';
-import singleLectureMock from '../utils/mock/singleLecture';
+import Section from '../../components/Section/Section';
+import { Grid } from '../../utils/styles/generalStyles';
+import cardsDetailData from '../../utils/mock/lectureDetails';
+import SingleLectureDetails from '../../components/SingleLectureDetails/SingleLectureDetails';
+import singleLectureMock from '../../utils/mock/singleLecture';
 import { Link, useParams } from 'react-router-dom';
 import {
   LectureBreadcrumbText,
@@ -14,15 +14,16 @@ import {
   LectureDetailsWrapper,
   LectureFlexedNav,
   LectureUnderline,
-} from '../components/SingleLectureDetails/SingleLectureDetailsStyle';
-
-import { ReactComponent as ArrowImg } from '../assets/images/right-arrow.svg';
-import { HeaderText } from '../components/Layout/LayoutStyle';
-import { breakpoints } from '../utils/styles/theme';
+} from '../../components/SingleLectureDetails/SingleLectureDetailsStyle';
+import { LecturesContext } from '../../context/LecturesContext';
+import { ReactComponent as ArrowImg } from '../../assets/images/right-arrow.svg';
+import { HeaderText } from '../../components/Layout/LayoutStyle';
+import { breakpoints } from '../../utils/styles/theme';
 
 const LectureDetails = () => {
   const { id } = useParams();
 
+  const { contextLecture, setContextLecture } = useContext(LecturesContext);
   const [detail, setDetail] = useState(null);
   const [lectures, setLectures] = useState(null);
   const [lecture, setLecture] = useState(null);

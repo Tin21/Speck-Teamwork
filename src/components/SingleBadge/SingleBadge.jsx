@@ -4,10 +4,10 @@ import {
   BadgeTickIcon,
   SingleBadgeTitle,
   SingleBadgeWrapper,
-} from './BadgesStyle';
+} from './SingleBadgeStyle';
 import PropTypes from 'prop-types';
 
-const SingleBadge = ({ id, title, imgSrc, imgAlt, checked, isGolden }) => {
+const SingleBadge = ({ title, imgSrc, imgAlt, checked, isGolden }) => {
   return (
     <SingleBadgeWrapper>
       <BadgeIcon src={imgSrc} alt={imgAlt} />
@@ -22,7 +22,7 @@ const SingleBadge = ({ id, title, imgSrc, imgAlt, checked, isGolden }) => {
 };
 
 SingleBadge.propTypes = {
-  id: PropTypes.number,
+  /* id: PropTypes.number, */
   title: PropTypes.string,
   checked: PropTypes.bool,
   imgSrc: PropTypes.string,

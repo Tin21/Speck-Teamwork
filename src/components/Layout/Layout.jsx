@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { ReactComponent as ArrowImg } from '../../assets/images/right-arrow.svg';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import SpeckLogoImage from '../../assets/images/speck-menu-icon.png';
@@ -40,8 +40,12 @@ import {
   ProfileDropdownMenu,
   DropdownMenuItem,
   DropdownMenuText,
+  LectureLink,
+  LectureBreadcrumbText,
+  LectureBreadcrumbWrapper,
 } from './LayoutStyle';
 import { Outlet } from 'react-router-dom';
+import { LecturesContext } from '../../context/LecturesContext';
 
 const Layout = ({ imgSrc, imgAlt }) => {
   const [hamburgerMenuActive, setHamburgerMenuActive] = useState(false);
@@ -51,6 +55,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
       ? localStorage.getItem('header_text')
       : 'Lectures',
   );
+  const { contextLecture, setContextLecture } = useContext(LecturesContext);
 
   const changeHamburgerMenuState = () => {
     setHamburgerMenuActive(!hamburgerMenuActive);
@@ -84,11 +89,10 @@ const Layout = ({ imgSrc, imgAlt }) => {
               >
                 <MenuLecturesIcon />
                 <MenuItemText>Lectures</MenuItemText>
-                {/* <ActivePageIndicator /> */}
               </MenuItem>
 
               <MenuItem
-                to={'/myresults'}
+                to={'/my-results'}
                 onClick={() => changeHeaderText('Results')}
               >
                 <MenuResultsIcon />
@@ -122,7 +126,24 @@ const Layout = ({ imgSrc, imgAlt }) => {
                   </NavLink>
                   <LogoText> Learning Academy</LogoText>
                 </LogoWrapper>
-                {headerText === 'Lectures' && <HeaderText>Lectures</HeaderText>}
+                {headerText === 'Lectures' && contextLecture === '' && (
+                  <>
+                    {/* <LectureLink to={'/lectures'}>Lecture</LectureLink> */}
+                    <HeaderText>Lectures</HeaderText>
+
+                    <p>{contextLecture}</p>
+                  </>
+                )}
+                {headerText === 'Lectures' && contextLecture !== '' && (
+                  <LectureBreadcrumbWrapper>
+                    <LectureLink to={'/lectures'}>Lectures</LectureLink>
+                    <ArrowImg />
+                    <LectureBreadcrumbText>
+                      {contextLecture}
+                    </LectureBreadcrumbText>
+                  </LectureBreadcrumbWrapper>
+                )}
+
                 {headerText === 'Results' && <HeaderText>Results</HeaderText>}
                 {headerText === 'Achievements' && (
                   <HeaderText>Achievements</HeaderText>
@@ -188,7 +209,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
                         </MenuItem>
 
                         <MenuItem
-                          to={'/myresults'}
+                          to={'/my-results'}
                           onClick={() => {
                             changeHeaderText('Results');
                             changeHamburgerMenuState();
