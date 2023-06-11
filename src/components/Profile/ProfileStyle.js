@@ -4,7 +4,7 @@ import { Button } from '../../utils/styles/generalStyles';
 import { ReactComponent as ProfilePictureCircle } from '../../assets/images/profile-circle.svg';
 
 export const ProfileWrapper = styled.div`
-  margin: 24px;
+  padding: 24px;
 `;
 
 export const TitleWrapper = styled.div`
@@ -32,7 +32,7 @@ export const ProfileButton = styled(Button)`
   ${(props) =>
     props.isSecondary &&
     `
-        margin-top: 10px;
+        margin-top: 14px;
         height: 32px;
         width: 160px;
         border: 1px solid ${colors.buttonBorder};

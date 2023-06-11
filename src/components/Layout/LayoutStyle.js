@@ -139,6 +139,8 @@ export const LeftContainer = styled.div`
 
 export const RightContainer = styled.div`
   width: 100%;
+  position: sticky;
+  bottom: 0;
 `;
 
 export const Menu = styled.div`
@@ -254,7 +256,7 @@ export const MenuLink = styled(NavLink)`
 export const HamburgerMenu = styled.div`
   position: absolute;
   z-index: 5;
-  height: 100vh;
+  height: 100%;
   width: 260px;
   right: 0;
   top: 0;
@@ -294,6 +296,7 @@ export const HamburgerMenuBackground = styled.div`
   bottom: 0;
   background-color: ${colors.bgOpaque};
   z-index: 3;
+  height: 100%;
 
   @media screen and (${breakpoints.desktop}) {
     display: none;
