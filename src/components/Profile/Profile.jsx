@@ -11,6 +11,8 @@ import {
   UserAvatar,
   ProfileWrapper,
   VisibleIcon,
+  PassChangeWrapper,
+  PassChangeLink,
 } from './ProfileStyle';
 import { Formik } from 'formik';
 import {
@@ -19,12 +21,19 @@ import {
   RequiredField,
   Form,
   FormRow,
+  ErrorMessage,
 } from '../../utils/styles/generalStyles';
 import * as Yup from 'yup';
 
-const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
+const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [user, setUser] = useState({
+    firstName: 'Ivan',
+    lastName: 'Ivanovic',
+    email: 'ivanivanovic@gmail.com',
+    password: '123456789abc',
+  });
 
   const changeUpdate = () => {
     setUpdate(!update);
@@ -34,34 +43,33 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const changeData = (newData) => {
+    setUser({
+      firstName: newData.firstName,
+      lastName: newData.lastName,
+      email: newData.email,
+      password: newData.password,
+    });
+  };
+
   return (
     <ProfileWrapper>
-      <TitleWrapper>
-        <Title>Profile</Title>
-        {!update && (
-          <ButtonWrapper>
-            <ProfileButton onClick={() => changeUpdate()}>Edit</ProfileButton>
-          </ButtonWrapper>
-        )}
-        {update && (
-          <>
-            <Cancel onClick={() => changeUpdate()}>Cancel</Cancel>
-            <ButtonWrapper isUpdate>
-              <ProfileButton onClick={() => changeUpdate()}>
-                Update
-              </ProfileButton>
-            </ButtonWrapper>
-          </>
-        )}
-      </TitleWrapper>
-      <PictureWrapper>
-        <UserAvatar src={imgSrc} alt={imgAlt} />
-        <PictureFrame />
-      </PictureWrapper>
       {!update && ( //INITIAL STATE
         <Formik>
           {(formik) => (
             <Form>
+              <TitleWrapper>
+                <Title>Profile</Title>
+                <ButtonWrapper>
+                  <ProfileButton onClick={() => changeUpdate()}>
+                    Edit
+                  </ProfileButton>
+                </ButtonWrapper>
+              </TitleWrapper>
+              <PictureWrapper>
+                <UserAvatar src={imgSrc} alt={imgAlt} />
+                <PictureFrame />
+              </PictureWrapper>
               <FormRow>
                 <InputLabel isDisabled htmlFor="firstName">
                   Ime
@@ -70,9 +78,10 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                   isDisabled
                   type="text"
                   name="firstName"
-                  value={firstName}
+                  value={user.firstName}
                   disabled
                 />
+                <ErrorMessage component={'div'} name="firstName" />
               </FormRow>
               <FormRow>
                 <InputLabel isDisabled htmlFor="lastName">
@@ -82,9 +91,10 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                   isDisabled
                   type="text"
                   name="lastName"
-                  value={lastName}
+                  value={user.lastName}
                   disabled
                 />
+                <ErrorMessage component={'div'} name="lastName" />
               </FormRow>
               <FormRow>
                 <InputLabel isDisabled htmlFor="email">
@@ -94,9 +104,10 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                   isDisabled
                   type="text"
                   name="email"
-                  value={email}
+                  value={user.email}
                   disabled
                 />
+                <ErrorMessage component={'div'} name="email" />
               </FormRow>
               <FormRow>
                 <InputLabel isDisabled htmlFor="password">
@@ -108,9 +119,10 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                   isDisabled
                   type="password"
                   name="password"
-                  value={password}
+                  value={user.password}
                   disabled
                 />
+                <ErrorMessage component={'div'} name="password" />
               </FormRow>
               <FormRow>
                 <ProfileButton disabled isSecondaryDisabled>
@@ -122,36 +134,75 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
         </Formik>
       )}
       {update && ( //UPDATING
-        <Formik>
+        <Formik
+          initialValues={{
+            firstName: `${user.firstName}`,
+            lastName: `${user.lastName}`,
+            email: `${user.email}`,
+            password: `${user.password}`,
+          }}
+          validationSchema={Yup.object({
+            firstName: Yup.string()
+              .required('First name is required')
+              .min(3, 'First name must be at least 3 characters long'),
+            lastName: Yup.string()
+              .required('Last name is required')
+              .min(3, 'Last name must be at least 3 characters long'),
+            email: Yup.string()
+              .required('Email is required')
+              .email('Invalid email adress'),
+          })}
+          onSubmit={(values, { setSubmitting, resetForm }) => {
+            const newData = {
+              firstName: values.firstName,
+              lastName: values.lastName,
+              email: values.email,
+              password: values.password,
+            };
+            changeUpdate();
+            setSubmitting();
+            changeData(newData);
+            resetForm();
+          }}
+        >
           {(formik) => (
             <Form>
+              <TitleWrapper>
+                <Title>Profile</Title>
+                <Cancel onClick={() => changeUpdate()}>Cancel</Cancel>
+                <ButtonWrapper isUpdate>
+                  <ProfileButton
+                    type="submit" /* onClick={() => changeUpdate() }*/
+                  >
+                    Update
+                  </ProfileButton>
+                </ButtonWrapper>
+              </TitleWrapper>
+              <PictureWrapper>
+                <UserAvatar src={imgSrc} alt={imgAlt} />
+                <PictureFrame />
+              </PictureWrapper>
               <FormRow>
                 <InputLabel isEnabled htmlFor="firstName">
                   Ime
                 </InputLabel>
-                <InputField
-                  isEnabled
-                  type="text"
-                  name="firstName"
-                  value={firstName}
-                />
+                <InputField isEnabled type="text" name="firstName" />
+
+                <ErrorMessage component={'div'} name="firstName" />
               </FormRow>
               <FormRow>
                 <InputLabel isEnabled htmlFor="lastName">
                   Prezime
                 </InputLabel>
-                <InputField
-                  isEnabled
-                  type="text"
-                  name="lastName"
-                  value={lastName}
-                />
+                <InputField isEnabled type="text" name="lastName" />
+                <ErrorMessage component={'div'} name="lastName" />
               </FormRow>
               <FormRow>
                 <InputLabel isEnabled htmlFor="email">
                   Email
                 </InputLabel>
-                <InputField isEnabled type="text" name="email" value={email} />
+                <InputField isEnabled type="text" name="email" />
+                <ErrorMessage component={'div'} name="email" />
               </FormRow>
 
               <FormRow>
@@ -165,7 +216,7 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                     isEnabled
                     type="password"
                     name="password"
-                    value={password}
+                    value={user.password}
                   />
                 )}
                 {passwordVisible && (
@@ -174,11 +225,16 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
                     isEnabled
                     type="text"
                     name="password"
-                    value={password}
+                    value={user.password}
                   />
                 )}
+                <ErrorMessage component={'div'} name="password" />
+                <PassChangeWrapper>
+                  <PassChangeLink to={'/reset'}>
+                    Change your password
+                  </PassChangeLink>
+                </PassChangeWrapper>
               </FormRow>
-
               <FormRow>
                 <ProfileButton isSecondaryEnabled>
                   Delete your account
@@ -188,15 +244,6 @@ const Profile = ({ imgSrc, imgAlt, firstName, lastName, email, password }) => {
           )}
         </Formik>
       )}
-      {/* <Formik
-        initialValues={{
-          firstName: `${firstName}`,
-          lastName: `${lastName}`,
-          email: `${email}`,
-          password: `${password}`,
-        }}>
-            {formik }
-        </Formik> */}
     </ProfileWrapper>
   );
 };
