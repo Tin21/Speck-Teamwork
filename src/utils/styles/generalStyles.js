@@ -64,6 +64,12 @@ export const Button = styled.button`
 
 //INPUT
 export const InputField = styled(FieldFormik)`
+  &:focus {
+    border: 2px solid ${colors.textLink};
+  }
+  width: 100%;
+  outline: none;
+  height: 24px;
   padding: 12px 24px;
   border-radius: 8px;
   margin-top: 8px;
