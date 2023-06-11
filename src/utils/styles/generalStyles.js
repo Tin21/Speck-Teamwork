@@ -236,3 +236,9 @@ export const FormRow = styled.div`
     margin-bottom: 0;
   }
 `;
+
+export const ErrorMessage = styled(ErrorMessageFormik)`
+  font-size: 14px;
+  color: ${colors.redPrimary};
+  padding-top: 6px;
+`;
