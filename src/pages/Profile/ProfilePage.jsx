@@ -8,10 +8,12 @@ const ProfilePage = () => {
       <Profile
         imgSrc={UserAvatar}
         imgAlt={'User avatar'}
-        firstName={'Ivan'}
-        lastName={'Ivanovic'}
-        email={'ivanivanovic@gmail.com'}
-        password={'123456789abc'}
+        user={{
+          firstName: 'Ivan',
+          lastName: 'Ivanovic',
+          email: 'ivanivanovic@gmail.com',
+          password: '123456789abc',
+        }}
       />
     </>
   );

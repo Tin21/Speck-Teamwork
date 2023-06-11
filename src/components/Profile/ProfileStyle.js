@@ -3,6 +3,7 @@ import { colors, breakpoints } from '../../utils/styles/theme';
 import { Button } from '../../utils/styles/generalStyles';
 import { ReactComponent as ProfilePictureCircle } from '../../assets/images/profile-circle.svg';
 import { ReactComponent as VisibilityIcon } from '../../assets/images/visibility-icon.svg';
+import { NavLink } from 'react-router-dom';
 
 export const ProfileWrapper = styled.div`
   padding: 24px;
@@ -105,4 +106,16 @@ export const VisibleIcon = styled(VisibilityIcon)`
   width: 22px;
   height: 15px;
   z-index: 2;
+`;
+
+export const PassChangeWrapper = styled.div`
+  display: flex;
+  justify-content: right;
+  margin-top: 8px;
+`;
+
+export const PassChangeLink = styled(NavLink)`
+  font-weight: 600;
+  font-size: 14px;
+  color: #0085ff;
 `;
