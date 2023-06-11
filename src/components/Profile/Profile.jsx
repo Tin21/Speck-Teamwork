@@ -163,8 +163,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
             setSubmitting();
             changeData(newData);
             resetForm();
-          }}
-        >
+          }}>
           {(formik) => (
             <Form>
               <TitleWrapper>

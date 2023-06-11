@@ -220,3 +220,19 @@ export const ErrorMessage = styled(ErrorMessageFormik)`
   color: ${colors.redPrimary};
   padding-top: 6px;
 `;
+
+// FORM
+
+export const Form = styled(FormFormik)`
+  @media screen and (${breakpoints.tabletSmall}) {
+    max-width: 400px;
+  }
+`;
+
+export const FormRow = styled.div`
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
