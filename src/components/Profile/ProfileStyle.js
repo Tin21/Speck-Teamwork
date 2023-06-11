@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { colors, breakpoints } from '../../utils/styles/theme';
 import { Button } from '../../utils/styles/generalStyles';
 import { ReactComponent as ProfilePictureCircle } from '../../assets/images/profile-circle.svg';
+import { ReactComponent as VisibilityIcon } from '../../assets/images/visibility-icon.svg';
 
 export const ProfileWrapper = styled.div`
   padding: 24px;
@@ -30,7 +31,7 @@ export const ProfileButton = styled(Button)`
   padding: 0;
 
   ${(props) =>
-    props.isSecondary &&
+    props.isSecondaryDisabled &&
     `
         margin-top: 14px;
         height: 32px;
@@ -46,6 +47,22 @@ export const ProfileButton = styled(Button)`
         cursor: auto;
     }
     `}
+
+  ${(props) =>
+    props.isSecondaryEnabled &&
+    `
+            margin-top: 14px;
+            height: 32px;
+            width: 160px;
+            border: 1px solid ${colors.buttonBorder};
+            padding: 6px 12px;
+            color: ${colors.buttonPrimary};
+            background: rgba(191, 57, 57, 0);
+
+            &:hover {
+                color: ${colors.white};
+             }
+        `}
 `;
 
 export const ButtonWrapper = styled.div`
@@ -79,4 +96,13 @@ export const UserAvatar = styled.img`
   border-radius: 50%;
   z-index: 1;
   border: 2px solid ${colors.profileAvatarBorder};
+`;
+
+export const VisibleIcon = styled(VisibilityIcon)`
+  position: absolute;
+  right: 40px;
+  top: 613px;
+  width: 22px;
+  height: 15px;
+  z-index: 2;
 `;
