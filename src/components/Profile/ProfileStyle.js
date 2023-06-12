@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { colors, breakpoints } from '../../utils/styles/theme';
-import { Button } from '../../utils/styles/generalStyles';
+import {
+  Button,
+  InputField,
+  InputLabel,
+} from '../../utils/styles/generalStyles';
 import { ReactComponent as ProfilePictureCircle } from '../../assets/images/profile-circle.svg';
 import { ReactComponent as VisibilityIcon } from '../../assets/images/visibility-icon.svg';
 import { NavLink } from 'react-router-dom';
@@ -64,6 +68,76 @@ export const ProfileButton = styled(Button)`
                 color: ${colors.white};
              }
         `}
+`;
+
+export const Field = styled(InputField)`
+  ${(props) =>
+    props.isDisabled &&
+    `
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textLightGrey};
+  `}
+
+  ${(props) =>
+    props.isEnabled &&
+    `
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textPrimary};
+  `}
+
+  ${(props) =>
+    props.isPasswordDisabled &&
+    `
+      height: 44px;
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textLightGrey};
+      font-size: 30px;
+      letter-spacing: 3px;
+  `}
+
+${(props) =>
+    props.isPasswordEnabled &&
+    `
+      height: 44px;
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textPrimary};
+      font-size: 30px;
+      letter-spacing: 3px;
+  `}
+
+${(props) =>
+    props.isPasswordVisible &&
+    `
+      height: 44px;
+      width: 100%;
+      background-color: ${colors.bgSecondary};
+      padding: 12px 24px;
+      color: ${colors.textPrimary};
+      font-size: 18px;
+      /* letter-spacing: 3px; */
+  `}
+`;
+
+export const Label = styled(InputLabel)`
+  ${(props) =>
+    props.isDisabled &&
+    `
+      color: ${colors.textSecondaryGrey};
+  `}
+
+  ${(props) =>
+    props.isEnabled &&
+    `
+      color: ${colors.textPrimary};
+  `}
 `;
 
 export const ButtonWrapper = styled.div`
