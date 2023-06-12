@@ -19,7 +19,7 @@ export const LectureFlexedNav = styled.div`
   margin-bottom: 28px;
   flex-direction: row;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: none;
   }
 `;
