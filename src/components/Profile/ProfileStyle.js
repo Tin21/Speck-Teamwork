@@ -17,6 +17,10 @@ export const ProfileWrapper = styled.div`
   @media screen and (${breakpoints.tablet}) {
     padding: 42px 72px;
   }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    padding: 42px;
+  }
 `;
 
 export const TitleWrapper = styled.div`
@@ -33,6 +37,16 @@ export const TitleWrapper = styled.div`
       props.isUpdating &&
       `
           max-width: 450px;
+      `}
+  }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    max-width: 520px;
+
+    ${(props) =>
+      props.isUpdating &&
+      `
+          max-width: 542px;
       `}
   }
 `;
@@ -275,6 +289,10 @@ export const UserAvatar = styled.img`
     left: 80px;
     top: 176px;
   }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    left: 292px;
+  }
 `;
 
 export const VisibleIcon = styled(VisibilityIcon)`
@@ -298,6 +316,10 @@ export const VisibleIcon = styled(VisibilityIcon)`
     top: 724px;
     left: 548px;
   }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    left: 810px;
+  }
 `;
 
 export const PassChangeWrapper = styled.div`
@@ -315,6 +337,10 @@ export const PassChangeLink = styled(NavLink)`
 export const Form = styled(FormikForm)`
   @media screen and (${breakpoints.tabletSmall}) {
     min-width: 520px;
+  }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    min-width: 572px;
   }
 `;
 
@@ -341,5 +367,9 @@ export const UploadPhotoIcon = styled(UploadIcon)`
   @media screen and (${breakpoints.tablet}) {
     top: 282px;
     left: 172px;
+  }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    left: 384px;
   }
 `;

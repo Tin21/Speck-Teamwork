@@ -125,18 +125,6 @@ export const InputLabel = styled.label`
   color: ${colors.textPrimaryGrey};
   font-size: 16px;
   font-weight: 500;
-
-  ${(props) =>
-    props.isDisabled &&
-    `
-      color: ${colors.textSecondaryGrey};
-  `}
-
-  ${(props) =>
-    props.isEnabled &&
-    `
-      color: ${colors.textPrimary};
-  `}
 `;
 
 export const RequiredField = styled.span`

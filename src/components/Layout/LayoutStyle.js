@@ -15,7 +15,7 @@ export const Header = styled.header`
   background-color: ${colors.bgSecondary};
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.04);
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     left: 240px;
     right: 0;
   }
@@ -33,7 +33,7 @@ export const HeaderInner = styled.div`
     padding: 0 70px;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     padding: 0 40px;
   }
 `;
@@ -44,7 +44,7 @@ export const HamburgerLogo = styled(HamburgerIcon)`
   width: 27px;
   margin-left: 37px;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: none;
   }
 `;
@@ -53,7 +53,7 @@ export const LogoWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: none;
   }
 `;
@@ -89,7 +89,7 @@ export const UserAvatar = styled.img`
   width: 40px;
   border-radius: 50%;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: block;
     border: 1.5px solid ${colors.avatarBorder};
   }
@@ -108,7 +108,7 @@ export const DropdownArrow = styled(DropdownArrowIcon)`
   display: none;
   margin-left: 8px;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: block;
   }
 `;
@@ -124,7 +124,7 @@ export const AvatarHamburgerWrapper = styled.div`
 export const HeaderText = styled.p`
   display: none;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: block;
     font-weight: 500;
     font-size: 16px;
@@ -132,7 +132,7 @@ export const HeaderText = styled.p`
 `;
 
 export const LeftContainer = styled.div`
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: flex;
     position: sticky;
     bottom: 0;
@@ -148,7 +148,7 @@ export const RightContainer = styled.div`
 export const Menu = styled.div`
   display: none;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: block;
     left: 0;
     top: 0;
@@ -162,7 +162,7 @@ export const Menu = styled.div`
 export const MenuLogoWrapper = styled.div`
   display: none;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: flex;
     flex-direction: column;
     padding: 32px 30px 0 30px;
@@ -265,7 +265,7 @@ export const HamburgerMenu = styled.div`
   top: 0;
   background-color: ${colors.bgSecondary};
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: none;
   }
 `;
@@ -301,7 +301,7 @@ export const HamburgerMenuBackground = styled.div`
   z-index: 3;
   height: 100%;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: none;
   }
 `;
@@ -336,7 +336,7 @@ export const ProfileDropdownMenu = styled.div`
     0px 2px 16px rgba(119, 119, 119, 0.1);
   border-radius: 8px;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: block;
   }
 `;
@@ -392,7 +392,7 @@ export const LectureBreadcrumbWrapper = styled.div`
   flex-direction: row;
   align-items: center;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     display: flex;
   }
 `;
