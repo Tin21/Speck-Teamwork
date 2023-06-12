@@ -19,11 +19,7 @@ import {
   UploadPhotoIcon,
 } from './ProfileStyle';
 import { Formik } from 'formik';
-import {
-  RequiredField,
-  FormRow,
-  ErrorMessage,
-} from '../../utils/styles/generalStyles';
+import { FormRow, ErrorMessage } from '../../utils/styles/generalStyles';
 import * as Yup from 'yup';
 
 const Profile = ({ imgSrc, imgAlt }) => {
@@ -164,7 +160,8 @@ const Profile = ({ imgSrc, imgAlt }) => {
             setSubmitting();
             changeData(newData);
             resetForm();
-          }}>
+          }}
+        >
           {(formik) => (
             <Form>
               <TitleWrapper isUpdating>
