@@ -15,11 +15,12 @@ import {
   PassChangeLink,
   Field,
   Label,
+  Form,
+  UploadPhotoIcon,
 } from './ProfileStyle';
 import { Formik } from 'formik';
 import {
   RequiredField,
-  Form,
   FormRow,
   ErrorMessage,
 } from '../../utils/styles/generalStyles';
@@ -59,11 +60,11 @@ const Profile = ({ imgSrc, imgAlt }) => {
           {(formik) => (
             <Form>
               <TitleWrapper>
-                <Title>Profile</Title>
+                <Title />
                 <ButtonWrapper>
-                  <ProfileButton onClick={() => changeUpdate()}>
-                    Edit
-                  </ProfileButton>
+                  <ProfileButton isEdit onClick={() => changeUpdate()} />
+                  {/* Edit
+                  </ProfileButton> */}
                 </ButtonWrapper>
               </TitleWrapper>
               <PictureWrapper>
@@ -167,20 +168,22 @@ const Profile = ({ imgSrc, imgAlt }) => {
         >
           {(formik) => (
             <Form>
-              <TitleWrapper>
-                <Title>Profile</Title>
+              <TitleWrapper isUpdating>
+                <Title />
                 <Cancel onClick={() => changeUpdate()}>Cancel</Cancel>
                 <ButtonWrapper isUpdate>
                   <ProfileButton
+                    isUpdate
                     type="submit" /* onClick={() => changeUpdate() }*/
                   >
-                    Update
+                    {/* Update */}
                   </ProfileButton>
                 </ButtonWrapper>
               </TitleWrapper>
               <PictureWrapper>
                 <UserAvatar src={imgSrc} alt={imgAlt} />
                 <PictureFrame />
+                <UploadPhotoIcon />
               </PictureWrapper>
               <FormRow>
                 <Label isEnabled htmlFor="firstName">
@@ -236,7 +239,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 </PassChangeWrapper>
               </FormRow>
               <FormRow>
-                <ProfileButton isSecondaryEnabled>
+                <ProfileButton type="button" isSecondaryEnabled>
                   Delete your account
                 </ProfileButton>
               </FormRow>
