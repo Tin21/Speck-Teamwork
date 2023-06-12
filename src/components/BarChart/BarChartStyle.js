@@ -5,16 +5,28 @@ export const SingleChartWrapper = styled.div`
   background: ${colors.white};
   border-radius: 8px;
   margin: 26px;
-  padding: 24px 16px 0;
+  padding: 24px 16px;
+  flex-grow: 1;
 
   @media screen and (${breakpoints.tablet}) {
-    margin: 16px 36px;
+    margin: 16px 32px;
+
+    ${(props) =>
+      props.isDoughnut &&
+      `
+      margin: 0;
+    `}
   }
 
   @media screen and (${breakpoints.desktop}) {
     margin: 0;
-    width: 595px; // TODO FIX
-    max-width: 700px;
+    width: 491px;
+
+    ${(props) =>
+      props.isDoughnut &&
+      `      
+      width: 215px; 
+    `}
   }
 `;
 
