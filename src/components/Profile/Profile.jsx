@@ -13,11 +13,11 @@ import {
   VisibleIcon,
   PassChangeWrapper,
   PassChangeLink,
+  Field,
+  Label,
 } from './ProfileStyle';
 import { Formik } from 'formik';
 import {
-  InputField,
-  InputLabel,
   RequiredField,
   Form,
   FormRow,
@@ -71,10 +71,10 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <PictureFrame />
               </PictureWrapper>
               <FormRow>
-                <InputLabel isDisabled htmlFor="firstName">
+                <Label isDisabled htmlFor="firstName">
                   Ime
-                </InputLabel>
-                <InputField
+                </Label>
+                <Field
                   isDisabled
                   type="text"
                   name="firstName"
@@ -84,10 +84,10 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ErrorMessage component={'div'} name="firstName" />
               </FormRow>
               <FormRow>
-                <InputLabel isDisabled htmlFor="lastName">
+                <Label isDisabled htmlFor="lastName">
                   Prezime
-                </InputLabel>
-                <InputField
+                </Label>
+                <Field
                   isDisabled
                   type="text"
                   name="lastName"
@@ -97,10 +97,10 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ErrorMessage component={'div'} name="lastName" />
               </FormRow>
               <FormRow>
-                <InputLabel isDisabled htmlFor="email">
+                <Label isDisabled htmlFor="email">
                   Email
-                </InputLabel>
-                <InputField
+                </Label>
+                <Field
                   isDisabled
                   type="text"
                   name="email"
@@ -110,11 +110,11 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ErrorMessage component={'div'} name="email" />
               </FormRow>
               <FormRow>
-                <InputLabel isDisabled htmlFor="password">
+                <Label isDisabled htmlFor="password">
                   Password
-                </InputLabel>
+                </Label>
 
-                <InputField
+                <Field
                   isPasswordDisabled
                   isDisabled
                   type="password"
@@ -183,35 +183,35 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <PictureFrame />
               </PictureWrapper>
               <FormRow>
-                <InputLabel isEnabled htmlFor="firstName">
+                <Label isEnabled htmlFor="firstName">
                   Ime
-                </InputLabel>
-                <InputField isEnabled type="text" name="firstName" />
+                </Label>
+                <Field isEnabled type="text" name="firstName" />
 
                 <ErrorMessage component={'div'} name="firstName" />
               </FormRow>
               <FormRow>
-                <InputLabel isEnabled htmlFor="lastName">
+                <Label isEnabled htmlFor="lastName">
                   Prezime
-                </InputLabel>
-                <InputField isEnabled type="text" name="lastName" />
+                </Label>
+                <Field isEnabled type="text" name="lastName" />
                 <ErrorMessage component={'div'} name="lastName" />
               </FormRow>
               <FormRow>
-                <InputLabel isEnabled htmlFor="email">
+                <Label isEnabled htmlFor="email">
                   Email
-                </InputLabel>
-                <InputField isEnabled type="text" name="email" />
+                </Label>
+                <Field isEnabled type="text" name="email" />
                 <ErrorMessage component={'div'} name="email" />
               </FormRow>
 
               <FormRow>
-                <InputLabel isEnabled htmlFor="password">
+                <Label isEnabled htmlFor="password">
                   Password
-                </InputLabel>
+                </Label>
                 <VisibleIcon onClick={() => changePasswordVisibility()} />
                 {!passwordVisible && (
-                  <InputField
+                  <Field
                     isPasswordEnabled
                     isEnabled
                     type="password"
@@ -220,7 +220,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
                   />
                 )}
                 {passwordVisible && (
-                  <InputField
+                  <Field
                     isPasswordVisible
                     isEnabled
                     type="text"
