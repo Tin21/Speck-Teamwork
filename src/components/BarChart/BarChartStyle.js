@@ -1,11 +1,21 @@
 import styled from 'styled-components';
 import { colors, breakpoints, fonts } from '../../utils/styles/theme';
 
-export const ChartWrapper = styled.div`
+export const SingleChartWrapper = styled.div`
   background: ${colors.white};
   border-radius: 8px;
-  height: 100%;
   margin: 26px;
+  padding: 24px 16px 0;
+
+  @media screen and (${breakpoints.tablet}) {
+    margin: 16px 36px;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    margin: 0;
+    width: 595px; // TODO FIX
+    max-width: 700px;
+  }
 `;
 
 export const ChartTitle = styled.h3`
@@ -15,7 +25,6 @@ export const ChartTitle = styled.h3`
   line-height: 24px;
   color: ${colors.textPrimaryGrey};
   letter-spacing: 0.44px;
-  padding: 24px 16px 0;
 `;
 
 export const ChartSubtitle = styled.p`
@@ -25,5 +34,28 @@ export const ChartSubtitle = styled.p`
   line-height: 20px;
   color: ${colors.greyBody};
   letter-spacing: 0.25px;
-  padding: 0px 16px;
+`;
+
+export const BarChartGrid = styled.div`
+  @media screen and (${breakpoints.desktop}) {
+    display: grid;
+
+    gap: 27px;
+    grid-template-columns: repeat(2, 1fr);
+    // width: 100%;
+    max-width: 1200;
+    // margin: 24px 49px;
+  }
+`;
+
+export const ChartsWrapper = styled.div`
+  @media screen and (${breakpoints.desktop}) {
+    display: grid;
+
+    gap: 27px;
+    grid-template-columns: repeat(2, 1fr);
+    // width: 100%;
+    max-width: 1200;
+    margin: 24px 49px;
+  }
 `;
