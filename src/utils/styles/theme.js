@@ -28,6 +28,8 @@ export const colors = {
   textPrimaryGrey: '#081131', //npr title u sectionu, nav itemi
   textSecondaryGrey: '#4D4D4D', //npr text u lecturima, subtitle u sectionu
   white: '#FFFFFF',
+  textTertiaryGrey: '#515151',
+  textGold: '#774C0D',
   chartBarGreyDark: '#dcdedf',
   chartBarGreyMedium: '#e3e5e5',
   chartBarGreyLight: '#eaebec',

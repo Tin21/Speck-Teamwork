@@ -16,7 +16,6 @@ export const Header = styled.header`
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.04);
 
   @media screen and (${breakpoints.desktop}) {
-    //position: absolute;
     left: 242px;
     right: 0;
   }
@@ -31,7 +30,7 @@ export const HeaderInner = styled.div`
   align-items: center;
 
   @media screen and (${breakpoints.tablet}) {
-    padding: 0 90px 0 70px;
+    padding: 0 70px;
   }
 
   @media screen and (${breakpoints.desktop}) {
@@ -112,13 +111,11 @@ export const DropdownArrow = styled(DropdownArrowIcon)`
   @media screen and (${breakpoints.desktop}) {
     display: block;
   }
-
-  //hover: ?
 `;
 
 export const AvatarHamburgerWrapper = styled.div`
   height: 40px;
-  width: 124px;
+  width: 64px;
   display: flex;
   align-items: center;
   justify-content: right;
@@ -294,9 +291,9 @@ export const HamburgerMenuBackground = styled.div`
   top: 0;
   bottom: 0;
   background-color: ${colors.bgOpaque};
-  z-index: 1;
+  z-index: 3;
 
-  @media screen and (${breakpoints.desktopSmall}) {
+  @media screen and (${breakpoints.desktop}) {
     display: none;
   }
 `;
@@ -316,4 +313,52 @@ export const HamburgerMenuLogoutIcon = styled(LogoutIcon)`
 export const HamburgerMenuLogoutText = styled.p`
   font-weight: 500;
   color: ${colors.textSecondaryGrey};
+`;
+
+export const ProfileDropdownMenu = styled.div`
+  display: none;
+  position: absolute;
+  top: 44px;
+  right: 40px;
+  z-index: 1;
+  width: 306px;
+  height: max-content;
+  background-color: ${colors.bgSecondary};
+  box-shadow: 0px 1px 6px rgba(89, 89, 89, 0.04),
+    0px 2px 16px rgba(119, 119, 119, 0.1);
+  border-radius: 8px;
+
+  @media screen and (${breakpoints.desktop}) {
+    display: block;
+  }
+`;
+
+export const DropdownMenuItem = styled.div`
+  display: flex;
+  align-items: center;
+  /* padding: 12px 18px; */
+  height: 48px;
+  width: 100%;
+  transition: background-color 0.2s ease-out, border-radius 0.2s ease-out;
+
+  &:hover {
+    background-color: ${colors.lightRed};
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+
+    ${(props) =>
+      props.isBottomItem &&
+      `
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+  `}
+  }
+`;
+
+export const DropdownMenuText = styled.p`
+  margin: 12px 18px;
+  font-weight: 400;
+  font-size: 16px;
 `;

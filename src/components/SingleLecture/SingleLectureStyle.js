@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors, breakpoints, fonts } from '../../utils/styles/theme';
+
 export const SingleLectureWrapper = styled.div`
   /* box-sizing: border-box; */
   background: #ffffff;
@@ -14,7 +15,7 @@ export const SingleLectureTitle = styled.h3`
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
-  color: ${colors.textPrimary};
+  color: ${colors.textPrimaryGrey};
   margin-bottom: 8px;
   @media screen and (${breakpoints.tablet}) {
     font-size: 20px;
@@ -28,5 +29,11 @@ export const SingleLectureSubtitle = styled.p`
   font-size: 14px;
   line-height: 20px;
   color: #7f8591;
-  padding-bottom: 24px;
+  margin-bottom: 24px;
+  //fix za 2 retka
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: pre-wrap;
 `;

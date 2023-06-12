@@ -7,14 +7,19 @@ import {
 } from './SingleLectureStyle';
 import PropTypes from 'prop-types';
 import { Button } from '../../utils/styles/generalStyles';
+import { useNavigate } from 'react-router-dom';
 
-const SingleLecture = ({ title, subtitle }) => {
+const SingleLecture = ({ title, content, id }) => {
+  const navigate = useNavigate();
+
   return (
     <SingleLectureWrapper>
       <SingleLectureInner>
         <SingleLectureTitle>{title}</SingleLectureTitle>
-        <SingleLectureSubtitle>{subtitle}</SingleLectureSubtitle>
-        <Button isSecondary>View</Button>
+        <SingleLectureSubtitle>{content}</SingleLectureSubtitle>
+        <Button onClick={() => navigate(`/lectures/${id}`)} isSecondary>
+          View
+        </Button>
       </SingleLectureInner>
     </SingleLectureWrapper>
   );
@@ -22,7 +27,8 @@ const SingleLecture = ({ title, subtitle }) => {
 
 SingleLecture.propTypes = {
   title: PropTypes.string,
-  subtitle: PropTypes.string,
+  content: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default SingleLecture;

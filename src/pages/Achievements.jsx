@@ -1,3 +1,5 @@
+import Badges from '../components/Badges/Badges';
+
 import BarChart from '../components/BarChart/BarChart';
 import {
   ChartSubtitle,
@@ -7,11 +9,15 @@ import {
 
 const Achievements = () => {
   return (
-    <ChartWrapper>
-      <ChartTitle>Quiz results per lecture (%)</ChartTitle>
-      <ChartSubtitle>Your quiz results</ChartSubtitle>
-      <BarChart />
-    </ChartWrapper>
+    <>
+      <Badges />
+
+      <ChartWrapper>
+        <ChartTitle>Quiz results per lecture (%)</ChartTitle>
+        <ChartSubtitle>Your quiz results</ChartSubtitle>
+        <BarChart />
+      </ChartWrapper>
+    </>
   );
 };
 

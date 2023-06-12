@@ -4,7 +4,7 @@ import { colors, breakpoints, fonts } from '../../utils/styles/theme';
 export const ChartWrapper = styled.div`
   background: ${colors.white};
   border-radius: 8px;
-  height: 271px;
+  height: 100%;
   margin: 26px;
 `;
 

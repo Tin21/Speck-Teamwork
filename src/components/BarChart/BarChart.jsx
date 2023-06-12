@@ -53,9 +53,21 @@ export const options = {
   customText: {
     textData: chartMock.map((item) => item.title),
   },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+    },
+    y: {
+      grid: {
+        display: false,
+      },
+    },
+  },
 };
 
-const labels = ['', '', '', '', '', '', ''];
+const labels = chartMock.map((item) => item.title);
 
 export const data = {
   labels,
