@@ -5,16 +5,7 @@ import UserAvatar from '../../assets/images/user-avatar.jpg';
 const ProfilePage = () => {
   return (
     <>
-      <Profile
-        imgSrc={UserAvatar}
-        imgAlt={'User avatar'}
-        user={{
-          firstName: 'Ivan',
-          lastName: 'Ivanovic',
-          email: 'ivanivanovic@gmail.com',
-          password: '123456789abc',
-        }}
-      />
+      <Profile imgSrc={UserAvatar} imgAlt={'User avatar'} />
     </>
   );
 };
