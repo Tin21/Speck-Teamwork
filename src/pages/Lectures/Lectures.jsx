@@ -3,11 +3,11 @@ import Section from '../../components/Section/Section';
 import SingleLecture from '../../components/SingleLecture/SingleLecture';
 import singleLectureMock from '../../utils/mock/singleLecture';
 import { Grid, GridWrapper } from '../../utils/styles/generalStyles';
-import { LecturesContext } from '../../context/LecturesContext';
+import { Context } from '../../context/Context';
 
 const Lectures = () => {
   const [lectures, setLectures] = useState(null);
-  const { contextLecture, setContextLecture } = useContext(LecturesContext);
+  const { setContextLecture } = useContext(Context);
 
   useEffect(() => {
     setTimeout(() => {
