@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { breakpoints, colors } from './theme';
-import { Field as FieldFormik } from 'formik';
+import {
+  Field as FieldFormik,
+  Form as FormFormik,
+  ErrorMessage as ErrorMessageFormik,
+} from 'formik';
 
 //GRID
 export const Grid = styled.div`
@@ -127,4 +131,26 @@ export const RequiredField = styled.span`
   font-size: 16px;
   font-weight: 500;
   color: ${colors.redPrimary};
+`;
+
+// FORM
+
+export const Form = styled(FormFormik)`
+  @media screen and (${breakpoints.tabletSmall}) {
+    max-width: 400px;
+  }
+`;
+
+export const FormRow = styled.div`
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const ErrorMessage = styled(ErrorMessageFormik)`
+  font-size: 14px;
+  color: ${colors.redPrimary};
+  padding-top: 6px;
 `;

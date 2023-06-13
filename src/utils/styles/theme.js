@@ -7,6 +7,7 @@ export const colors = {
   bgSecondary: '#ffffff',
   bgOpaque: '#00000040',
   avatarBorder: '#CACACA',
+  profileAvatarBorder: '#0A4A85',
   logoText: '#626267',
   border: '#e8e8e8',
   bgMenuItem: '#FAFAFA',
@@ -28,6 +29,7 @@ export const colors = {
   white: '#FFFFFF',
   textTertiaryGrey: '#515151',
   textGold: '#774C0D',
+  textLightGrey: '#a3a2a2', //npr za text u disabled fieldovima
 };
 
 export const breakpoints = {
