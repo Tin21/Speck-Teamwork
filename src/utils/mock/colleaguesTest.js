@@ -1,30 +1,30 @@
-export const colleaguesData = [...Array(5)].flatMap((_, i) => [
+export const colleaguesData = [
   {
-    id: i * 4 + 0,
-    firstName: 'John',
+    id: 0,
+    firstName: 'Dohn',
     lastName: 'Doe',
-    email: `john.doe${i}@example.com`,
+    email: `john.doe@example.com`,
     year: 2022,
   },
   {
-    id: i * 4 + 1,
-    firstName: 'Jane',
+    id: 1,
+    firstName: 'Cane',
     lastName: 'Smith',
-    email: `jane.smith${i}@example.com`,
+    email: `jane.smith@example.com`,
     year: 2022,
   },
   {
-    id: i * 4 + 2,
+    id: 2,
     firstName: 'Alice',
     lastName: 'Johnson',
-    email: `alice.johnson${i}@example.com`,
+    email: `alice.johnson@example.com`,
     year: 2022,
   },
   {
-    id: i * 4 + 3,
+    id: 3,
     firstName: 'Bob',
     lastName: 'Brown',
-    email: `bob.brown${i}@example.com`,
+    email: `bob.brown@example.com`,
     year: 2022,
   },
-]);
+];
