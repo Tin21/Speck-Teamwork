@@ -4,36 +4,50 @@ import { ReactComponent as ToastSuccessIcon } from '../../assets/images/toast-su
 import { ReactComponent as ToastCancelIcon } from '../../assets/images/cancel-icon.svg';
 
 export const ToastWrapper = styled.div`
-  display: none;
-  position: absolute;
-  top: 78px;
-  right: 40px;
-  height: max-content;
-  width: 450px;
+  position: fixed;
+  top: 76px;
+  left: 24px;
+  right: 24px;
   border-radius: 8px;
-  padding: 16px 24px;
   background-color: ${colors.bgGrey};
-  /* background-color: rgba(84,84,84,0.95); */
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: row;
+  z-index: 6;
+  height: max-content;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    left: auto;
+    right: 12px;
+    width: 450px;
+  }
 
   @media screen and (${breakpoints.desktopSmall}) {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
+    right: 40px;
   }
 `;
 
 export const SuccessIcon = styled(ToastSuccessIcon)`
-  margin-top: 2px;
-  margin-right: 16px;
-  height: 20px;
-  width: 20px;
+  margin-right: 10px;
+  min-height: 20px;
+  min-width: 20px;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    margin-right: 16px;
+  }
 `;
 
 export const ToastContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 350px;
+  align-items: center;
   margin-bottom: 6px;
+  width: 90%;
+  overflow-wrap: break-word;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    width: 364px;
+  }
 `;
 
 export const ToastTextWrapper = styled.div`
@@ -41,10 +55,15 @@ export const ToastTextWrapper = styled.div`
 `;
 
 export const ToastTitle = styled.p`
+  display: none;
   color: ${colors.white};
   font-weight: 500;
   font-size: 18px;
   margin-bottom: 6px;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    display: block;
+  }
 `;
 
 export const ToastSubtitle = styled.p`
@@ -52,11 +71,16 @@ export const ToastSubtitle = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 130%;
+  margin-top: 2px;
 `;
 
 export const CancelIconWrapper = styled.div`
-  display: flex;
-  align-items: center;
+  display: none;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const CancelIcon = styled(ToastCancelIcon)`
@@ -65,5 +89,9 @@ export const CancelIcon = styled(ToastCancelIcon)`
   width: 14px;
   path {
     fill: ${colors.avatarBorder};
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CancelIcon,
   CancelIconWrapper,
@@ -9,22 +9,44 @@ import {
   ToastTitle,
   ToastWrapper,
 } from './ToastStyle';
+import PropTypes from 'prop-types';
 
-const Toast = () => {
+const Toast = ({ title, subtitle }) => {
+  const [visible, setVisible] = useState(true);
+
+  const changeVisibility = () => {
+    setVisible(false);
+  };
+
+  /*  useEffect(() => {
+    setTimeout(() => {
+      setVisible(false);
+    }, 4000);
+  }, []);
+ */
   return (
-    <ToastWrapper>
-      <SuccessIcon />
-      <ToastContentWrapper>
-        <ToastTextWrapper>
-          <ToastTitle>Successfully Message</ToastTitle>
-          <ToastSubtitle>Additional description text </ToastSubtitle>
-        </ToastTextWrapper>
-        <CancelIconWrapper>
-          <CancelIcon />
-        </CancelIconWrapper>
-      </ToastContentWrapper>
-    </ToastWrapper>
+    <>
+      {visible && (
+        <ToastWrapper>
+          <SuccessIcon />
+          <ToastContentWrapper>
+            <ToastTextWrapper>
+              <ToastTitle>{title}</ToastTitle>
+              <ToastSubtitle>{subtitle}</ToastSubtitle>
+            </ToastTextWrapper>
+            <CancelIconWrapper>
+              <CancelIcon onClick={() => changeVisibility()} />
+            </CancelIconWrapper>
+          </ToastContentWrapper>
+        </ToastWrapper>
+      )}
+    </>
   );
+};
+
+Toast.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
 };
 
 export default Toast;

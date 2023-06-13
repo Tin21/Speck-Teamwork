@@ -142,7 +142,7 @@ export const LeftContainer = styled.div`
 export const RightContainer = styled.div`
   width: 100%;
   /* position: sticky;
-  bottom: 0;  */
+  bottom: 0; */
 `;
 
 export const Menu = styled.div`
@@ -257,8 +257,8 @@ export const MenuLink = styled(NavLink)`
 `;
 
 export const HamburgerMenu = styled.div`
-  position: absolute;
-  z-index: 5;
+  position: fixed;
+  z-index: 10;
   height: 100%;
   width: 260px;
   right: 0;
@@ -292,13 +292,13 @@ export const HamburgerMenuInner = styled.nav`
 `;
 
 export const HamburgerMenuBackground = styled.div`
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   background-color: ${colors.bgOpaque};
-  z-index: 3;
+  z-index: 8;
   height: 100%;
 
   @media screen and (${breakpoints.desktopSmall}) {
@@ -328,7 +328,7 @@ export const ProfileDropdownMenu = styled.div`
   position: absolute;
   top: 44px;
   right: 40px;
-  z-index: 1;
+  z-index: 5;
   width: 306px;
   height: max-content;
   background-color: ${colors.bgSecondary};
@@ -344,7 +344,6 @@ export const ProfileDropdownMenu = styled.div`
 export const DropdownMenuItem = styled.div`
   display: flex;
   align-items: center;
-  /* padding: 12px 18px; */
   height: 48px;
   width: 100%;
   transition: background-color 0.2s ease-out, border-radius 0.2s ease-out;
