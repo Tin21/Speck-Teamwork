@@ -21,6 +21,7 @@ import {
 import { Formik } from 'formik';
 import { FormRow, ErrorMessage } from '../../utils/styles/generalStyles';
 import * as Yup from 'yup';
+import Toast from '../Toast/Toast';
 
 const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
@@ -51,6 +52,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
 
   return (
     <ProfileWrapper>
+      <Toast />
       {!update && ( //INITIAL STATE
         <Formik>
           {(formik) => (
