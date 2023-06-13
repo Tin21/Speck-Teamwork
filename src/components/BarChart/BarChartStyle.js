@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { colors, breakpoints, fonts } from '../../utils/styles/theme';
 
-export const SingleChartWrapper = styled.div`
+export const SingleChartOuterWrapper = styled.div`
   background: ${colors.white};
   border-radius: 8px;
   margin: 26px;
-  padding: 24px 16px;
   flex-grow: 1;
 
   @media screen and (${breakpoints.tablet}) {
@@ -20,14 +19,18 @@ export const SingleChartWrapper = styled.div`
 
   @media screen and (${breakpoints.desktop}) {
     margin: 0;
-    width: 491px;
+    width: 539px;
 
     ${(props) =>
       props.isDoughnut &&
       `      
-      width: 215px; 
+      width: 255px; 
     `}
   }
+`;
+
+export const SingleChartInnerWrapper = styled.div`
+  padding: 24px 16px;
 `;
 
 export const ChartTitle = styled.h3`
@@ -37,6 +40,7 @@ export const ChartTitle = styled.h3`
   line-height: 24px;
   color: ${colors.textPrimaryGrey};
   letter-spacing: 0.44px;
+  color: ${colors.textQuaternaryGrey};
 `;
 
 export const ChartSubtitle = styled.p`
@@ -51,22 +55,17 @@ export const ChartSubtitle = styled.p`
 export const BarChartGrid = styled.div`
   @media screen and (${breakpoints.desktop}) {
     display: grid;
-
     gap: 27px;
     grid-template-columns: repeat(2, 1fr);
-    // width: 100%;
     max-width: 1200;
-    // margin: 24px 49px;
   }
 `;
 
 export const ChartsWrapper = styled.div`
   @media screen and (${breakpoints.desktop}) {
     display: grid;
-
     gap: 27px;
     grid-template-columns: repeat(2, 1fr);
-    // width: 100%;
     max-width: 1200;
     margin: 24px 49px;
   }

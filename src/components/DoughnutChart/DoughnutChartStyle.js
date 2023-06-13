@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../utils/styles/theme';
+import { breakpoints, colors } from '../../utils/styles/theme';
 
 export const DoughnutChartText = styled.span`
   position: absolute;
@@ -8,10 +8,12 @@ export const DoughnutChartText = styled.span`
   transform: translate(-50%, -50%);
   font-size: 32px;
   font-weight: bold;
+  color: ${colors.textPrimaryGrey};
 `;
 
 export const DoughnutChartWrapper = styled.div`
   position: relative;
+  margin-top: 32px;
 `;
 
 export const DoughnutChartsWrapper = styled.div`

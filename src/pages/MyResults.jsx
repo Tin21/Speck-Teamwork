@@ -4,7 +4,8 @@ import {
   ChartSubtitle,
   ChartTitle,
   ChartsWrapper,
-  SingleChartWrapper,
+  SingleChartInnerWrapper,
+  SingleChartOuterWrapper,
 } from '../components/BarChart/BarChartStyle';
 import DoughnutChart from '../components/DoughnutChart/DoughnutChart';
 import { DoughnutChartsWrapper } from '../components/DoughnutChart/DoughnutChartStyle';
@@ -14,32 +15,42 @@ const MyResults = () => {
     <>
       <ChartsWrapper>
         <BarChartGrid>
-          <SingleChartWrapper>
-            <ChartTitle>Quiz results per lecture (%)</ChartTitle>
-            <ChartSubtitle>Your quiz results</ChartSubtitle>
-            <BarChart />
-          </SingleChartWrapper>
-          <SingleChartWrapper>
-            <ChartTitle>Quiz results per lecture (%)</ChartTitle>
-            <ChartSubtitle>Your quiz results</ChartSubtitle>
-            <BarChart />
-          </SingleChartWrapper>
-          <SingleChartWrapper>
-            <ChartTitle>Quiz results per lecture (%)</ChartTitle>
-            <ChartSubtitle>Your quiz results</ChartSubtitle>
-            <BarChart />
-          </SingleChartWrapper>
+          <SingleChartOuterWrapper>
+            <SingleChartInnerWrapper>
+              <ChartTitle>Attendance per lecture (%)</ChartTitle>
+              <ChartSubtitle>Your attendance</ChartSubtitle>
+              <BarChart />
+            </SingleChartInnerWrapper>
+          </SingleChartOuterWrapper>
+          <SingleChartOuterWrapper>
+            <SingleChartInnerWrapper>
+              <ChartTitle>Quiz results per lecture (%)</ChartTitle>
+              <ChartSubtitle>Your quiz results</ChartSubtitle>
+              <BarChart />
+            </SingleChartInnerWrapper>
+          </SingleChartOuterWrapper>
+          <SingleChartOuterWrapper>
+            <SingleChartInnerWrapper>
+              <ChartTitle>Quiz results per lecture (%)</ChartTitle>
+              <ChartSubtitle>Your quiz results</ChartSubtitle>
+              <BarChart />
+            </SingleChartInnerWrapper>
+          </SingleChartOuterWrapper>
           <DoughnutChartsWrapper>
-            <SingleChartWrapper isDoughnut={true}>
-              <ChartTitle>Quiz results per lecture (%)</ChartTitle>
-              <ChartSubtitle>Your quiz results</ChartSubtitle>
-              <DoughnutChart />
-            </SingleChartWrapper>
-            <SingleChartWrapper isDoughnut={true}>
-              <ChartTitle>Quiz results per lecture (%)</ChartTitle>
-              <ChartSubtitle>Your quiz results</ChartSubtitle>
-              <DoughnutChart />
-            </SingleChartWrapper>
+            <SingleChartOuterWrapper isDoughnut={true}>
+              <SingleChartInnerWrapper>
+                <ChartTitle>Team work</ChartTitle>
+                <ChartSubtitle>Your team work results</ChartSubtitle>
+                <DoughnutChart />
+              </SingleChartInnerWrapper>
+            </SingleChartOuterWrapper>
+            <SingleChartOuterWrapper isDoughnut={true}>
+              <SingleChartInnerWrapper>
+                <ChartTitle>Final exam</ChartTitle>
+                <ChartSubtitle>Your final exam results</ChartSubtitle>
+                <DoughnutChart />
+              </SingleChartInnerWrapper>
+            </SingleChartOuterWrapper>
           </DoughnutChartsWrapper>
         </BarChartGrid>
       </ChartsWrapper>
