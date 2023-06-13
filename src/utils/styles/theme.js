@@ -18,7 +18,9 @@ export const colors = {
   buttonBorder: '#D2D2D2',
   logoText: '#626267',
   textLink: '#0085FF', //npr link za Git
-  chartBarColor: '#CB7B2C',
+  chartBarBrownDark: '#CB7B2C',
+  chartBarBrownMedium: '#d59556',
+  chartBarBrownLight: '#dba36c',
   greenSuccess: '#2E8A0D',
   redPrimary: ' #BF3939',
   redPrimaryDark: '#AA1D1D',
@@ -28,7 +30,13 @@ export const colors = {
   textSecondaryGrey: '#4D4D4D', //npr text u lecturima, subtitle u sectionu
   white: '#FFFFFF',
   textTertiaryGrey: '#515151',
+  textQuaternaryGrey: '#263238',
   textGold: '#774C0D',
+  chartBarGreyDark: '#dcdedf',
+  chartBarGreyMedium: '#e3e5e5',
+  chartBarGreyLight: '#eaebec',
+  doughnutChartGrey: '#CFD8DC',
+  greyBody: '#7F8591',
   textLightGrey: '#a3a2a2', //npr za text u disabled fieldovima
 };
 
