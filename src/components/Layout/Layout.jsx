@@ -45,7 +45,7 @@ import {
   LectureBreadcrumbWrapper,
 } from './LayoutStyle';
 import { Outlet } from 'react-router-dom';
-import { LecturesContext } from '../../context/LecturesContext';
+import { Context } from '../../context/Context';
 
 const Layout = ({ imgSrc, imgAlt }) => {
   const [hamburgerMenuActive, setHamburgerMenuActive] = useState(false);
@@ -55,7 +55,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
       ? localStorage.getItem('header_text')
       : 'Lectures',
   );
-  const { contextLecture, setContextLecture } = useContext(LecturesContext);
+  const { contextLecture, setContextLecture } = useContext(Context);
 
   const changeHamburgerMenuState = () => {
     setHamburgerMenuActive(!hamburgerMenuActive);

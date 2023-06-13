@@ -8,11 +8,11 @@ import {
 import PropTypes from 'prop-types';
 import { Button } from '../../utils/styles/generalStyles';
 import { useNavigate } from 'react-router-dom';
-import { LecturesContext } from '../../context/LecturesContext';
+import { Context } from '../../context/Context';
 
 const SingleLecture = ({ title, content, id }) => {
   const navigate = useNavigate();
-  const { contextLecture, setContextLecture } = useContext(LecturesContext);
+  const { contextLecture, setContextLecture } = useContext(Context);
 
   const onClickActions = () => {
     navigate(`/lectures/${id}`);
