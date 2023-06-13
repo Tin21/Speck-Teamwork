@@ -12,8 +12,7 @@ const ContextProvider = (props) => {
 
   return (
     <Context.Provider
-      value={{ contextLecture, setContextLecture, showModal, setShowModal }}
-    >
+      value={{ contextLecture, setContextLecture, showModal, setShowModal }}>
       {props.children}
     </Context.Provider>
   );
