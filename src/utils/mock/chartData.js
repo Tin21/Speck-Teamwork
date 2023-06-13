@@ -35,3 +35,6 @@ export const chartMock = [
     percentage: 52,
   },
 ];
+
+export const doughnutMock1 = 12.5;
+export const doughnutMock2 = 62.5;

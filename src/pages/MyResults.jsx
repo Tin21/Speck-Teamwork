@@ -1,14 +1,15 @@
-import BarChart from '../components/BarChart/BarChart';
 import {
   BarChartGrid,
   ChartSubtitle,
   ChartTitle,
   ChartsWrapper,
+  DoughnutChartsWrapper,
   SingleChartInnerWrapper,
   SingleChartOuterWrapper,
-} from '../components/BarChart/BarChartStyle';
-import DoughnutChart from '../components/DoughnutChart/DoughnutChart';
-import { DoughnutChartsWrapper } from '../components/DoughnutChart/DoughnutChartStyle';
+} from '../components/Chart/ChartStyle';
+import BarChart from '../components/Chart/BarChart';
+import DoughnutChart from '../components/Chart/DoughnutChart';
+import { doughnutMock1, doughnutMock2 } from '../utils/mock/chartData';
 
 const MyResults = () => {
   return (
@@ -41,14 +42,14 @@ const MyResults = () => {
               <SingleChartInnerWrapper>
                 <ChartTitle>Team work</ChartTitle>
                 <ChartSubtitle>Your team work results</ChartSubtitle>
-                <DoughnutChart />
+                <DoughnutChart doughnutData={doughnutMock1} />
               </SingleChartInnerWrapper>
             </SingleChartOuterWrapper>
             <SingleChartOuterWrapper isDoughnut={true}>
               <SingleChartInnerWrapper>
                 <ChartTitle>Final exam</ChartTitle>
                 <ChartSubtitle>Your final exam results</ChartSubtitle>
-                <DoughnutChart />
+                <DoughnutChart doughnutData={doughnutMock2} />
               </SingleChartInnerWrapper>
             </SingleChartOuterWrapper>
           </DoughnutChartsWrapper>

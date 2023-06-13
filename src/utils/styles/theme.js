@@ -34,7 +34,7 @@ export const colors = {
   chartBarGreyDark: '#dcdedf',
   chartBarGreyMedium: '#e3e5e5',
   chartBarGreyLight: '#eaebec',
-  doughnutChartGrey: 'CFD8DC',
+  doughnutChartGrey: '#CFD8DC',
   greyBody: '#7F8591',
 };
 
