@@ -1,7 +1,18 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { colors, breakpoints } from '../../utils/styles/theme';
 import { ReactComponent as ToastSuccessIcon } from '../../assets/images/toast-success-icon.svg';
 import { ReactComponent as ToastCancelIcon } from '../../assets/images/cancel-icon.svg';
+
+const fadeOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }`;
 
 export const ToastWrapper = styled.div`
   position: fixed;
@@ -15,6 +26,7 @@ export const ToastWrapper = styled.div`
   flex-direction: row;
   z-index: 6;
   height: max-content;
+  animation: ${fadeOut} 3s ease-in-out;
 
   @media screen and (${breakpoints.tabletSmall}) {
     left: auto;
