@@ -22,11 +22,13 @@ import { Formik } from 'formik';
 import { FormRow, ErrorMessage } from '../../utils/styles/generalStyles';
 import * as Yup from 'yup';
 import Toast from '../Toast/Toast';
+import Modal from '../Modal/Modal';
 
 const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState({
     firstName: 'Ivan',
     lastName: 'Ivanovic',
@@ -49,6 +51,10 @@ const Profile = ({ imgSrc, imgAlt }) => {
     }, 3000);
   };
 
+  const changeModal = () => {
+    setShowModal(!showModal);
+  };
+
   const changeData = (newData) => {
     setUser({
       firstName: newData.firstName,
@@ -66,6 +72,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
           subtitle={'Profile information successfuly changed'}
         />
       )}
+      {showModal && <Modal>bok</Modal>}
       {!update && ( //INITIAL STATE
         <Formik>
           {(formik) => (
@@ -251,7 +258,11 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 </PassChangeWrapper>
               </FormRow>
               <FormRow>
-                <ProfileButton type="button" isSecondaryEnabled>
+                <ProfileButton
+                  type="button"
+                  isSecondaryEnabled
+                  onClick={() => changeModal()}
+                >
                   Delete your account
                 </ProfileButton>
               </FormRow>
