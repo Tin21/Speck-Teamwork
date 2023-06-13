@@ -188,7 +188,9 @@ const Layout = ({ imgSrc, imgAlt }) => {
 
                 {hamburgerMenuActive && (
                   <>
-                    <HamburgerMenuBackground />
+                    <HamburgerMenuBackground
+                      onClick={() => changeHamburgerMenuState()}
+                    />
                     <HamburgerMenu>
                       <HamburgerMenuTitleWrapper>
                         <HamburgerMenuTitle>Menu</HamburgerMenuTitle>
