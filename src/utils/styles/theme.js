@@ -7,6 +7,7 @@ export const colors = {
   bgSecondary: '#ffffff',
   bgOpaque: '#00000040',
   bgGrey: '#545454', //npr toast background
+  bgModalOpaque: '#2e2e2e99',
   avatarBorder: '#CACACA',
   profileAvatarBorder: '#0A4A85',
   logoText: '#626267',
