@@ -67,7 +67,7 @@ function ColleaguesTable() {
 
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <StyledRow key={`row_${row.id}`}>
+            <StyledRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <StyledCell key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
