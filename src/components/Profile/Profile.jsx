@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   ButtonWrapper,
@@ -23,12 +23,13 @@ import { FormRow, ErrorMessage } from '../../utils/styles/generalStyles';
 import * as Yup from 'yup';
 import Toast from '../Toast/Toast';
 import Modal from '../Modal/Modal';
+import { Context } from '../../context/Context';
 
 const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const { showModal, setShowModal } = useContext(Context);
   const [user, setUser] = useState({
     firstName: 'Ivan',
     lastName: 'Ivanovic',
@@ -52,7 +53,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
   };
 
   const changeModal = () => {
-    setShowModal(!showModal);
+    setShowModal(true);
   };
 
   const changeData = (newData) => {
@@ -180,6 +181,8 @@ const Profile = ({ imgSrc, imgAlt }) => {
             };
             changeUpdate();
             setSubmitting();
+            changeToast();
+            changeUpdate();
             changeData(newData);
             resetForm();
           }}
@@ -194,10 +197,10 @@ const Profile = ({ imgSrc, imgAlt }) => {
                     isUpdate
                     type="submit"
                     disabled={showToast}
-                    onClick={() => {
+                    /*  onClick={() => {
                       changeToast();
-                      changeUpdate();
-                    }}
+                        changeUpdate();
+                    }}*/
                   ></ProfileButton>
                 </ButtonWrapper>
               </TitleWrapper>

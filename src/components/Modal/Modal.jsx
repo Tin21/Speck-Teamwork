@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   CancelIcon,
   ModalBackground,
@@ -10,17 +10,22 @@ import {
   TitleWrapper,
   Button,
 } from './ModalStyle';
+import { Context } from '../../context/Context';
 
 const Modal = () => {
-  const [visible, setVisible] = useState(true);
+  const { showModal, setShowModal } = useContext(Context);
 
   const changeVisibility = () => {
-    setVisible(false);
+    setShowModal(false);
   };
+
+  useEffect(() => {
+    setShowModal(true);
+  }, []);
 
   return (
     <>
-      {visible && (
+      {showModal && (
         <ModalBackground>
           <ModalWrapper>
             <TitleWrapper>

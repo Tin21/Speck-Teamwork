@@ -18,12 +18,6 @@ const Toast = ({ title, subtitle }) => {
     setVisible(false);
   };
 
-  /*  useEffect(() => {
-    setTimeout(() => {
-      setVisible(false);
-    }, 4000);
-  }, []);
- */
   return (
     <>
       {visible && (

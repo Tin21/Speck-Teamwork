@@ -8,9 +8,12 @@ const ContextProvider = (props) => {
       ? localStorage.getItem('active_lecture')
       : '',
   );
+  const [showModal, setShowModal] = useState(false);
 
   return (
-    <Context.Provider value={{ contextLecture, setContextLecture }}>
+    <Context.Provider
+      value={{ contextLecture, setContextLecture, showModal, setShowModal }}
+    >
       {props.children}
     </Context.Provider>
   );
