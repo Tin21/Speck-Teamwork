@@ -1,4 +1,3 @@
-import React from 'react';
 import { ReactComponent as AscendIcon } from '../../../assets/images/sort-up.svg';
 import { ReactComponent as DescendIcon } from '../../../assets/images/sort-down.svg';
 import { AscDesc, HeaderColumn } from './ColumnHeaderStyle';

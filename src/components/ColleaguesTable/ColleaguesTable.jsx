@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { colleaguesData } from '../../utils/mock/colleaguesTest';
 import {
-  createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
@@ -15,9 +14,9 @@ import {
   StyledRow,
   StyledTable,
   TableContainer,
-  Test,
 } from './ColleaguesTableStyle';
 import columns from './CreateColumn/CreateColumn';
+import TableFooter from './TableFooter/TableFooter';
 
 function ColleaguesTable() {
   const [data, setData] = useState(() => [...colleaguesData]);
@@ -32,12 +31,12 @@ function ColleaguesTable() {
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     debugTable: true,
   });
 
   return (
     <TableContainer>
-      {/* <Test>Show</Test> */}
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map((headerGroup, index) => (
@@ -77,6 +76,7 @@ function ColleaguesTable() {
           ))}
         </tbody>
       </StyledTable>
+      <TableFooter table={table} />
     </TableContainer>
   );
 }
