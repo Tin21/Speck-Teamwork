@@ -19,7 +19,7 @@ ChartJS.register(
   Tooltip,
   Legend,
 );
-
+// TODO make rows thicker and remove space between 2 rows
 const getBarColor = (percentage) => {
   if (percentage === 100) {
     return colors.chartBarBrownDark;
@@ -33,6 +33,14 @@ const getBarColor = (percentage) => {
     return colors.chartBarGreyMedium;
   } else {
     return colors.chartBarGreyLight;
+  }
+};
+
+const getTextColor = (percentage) => {
+  if (percentage >= 80) {
+    return colors.white;
+  } else {
+    return colors.textPrimaryGrey;
   }
 };
 
@@ -50,9 +58,6 @@ export const options = {
   hover: {
     mode: null,
   },
-  customText: {
-    textData: chartMock.map((item) => item.title),
-  },
   scales: {
     x: {
       grid: {
@@ -61,6 +66,9 @@ export const options = {
     },
     y: {
       grid: {
+        display: false,
+      },
+      ticks: {
         display: false,
       },
     },
@@ -75,12 +83,42 @@ export const data = {
     {
       data: chartMock.map((item) => item.percentage),
       backgroundColor: chartMock.map((item) => getBarColor(item.percentage)),
+      barPercentage: 1.0,
+      categoryPercentage: 1.0,
     },
   ],
 };
 
 const BarChart = () => {
-  return <Bar options={options} data={data} />;
+  const handleAfterRender = (chart) => {
+    const ctx = chart.ctx;
+    const meta = chart.getDatasetMeta(0);
+
+    ctx.font = '12px Inter';
+
+    meta.data.forEach((bar, index) => {
+      const data = chart.data.datasets[0].data[index];
+      const label = chart.data.labels[index];
+      ctx.save();
+
+      ctx.textBaseline = 'middle';
+      ctx.textAlign = 'end';
+      ctx.fillStyle = `${getTextColor(data)}`;
+
+      const x = bar.x - 10;
+      const y = bar.y;
+      ctx.fillText(`${index + 1}. ${label} ${data}%`, x, y);
+      ctx.restore();
+    });
+  };
+
+  return (
+    <Bar
+      options={options}
+      data={data}
+      plugins={[{ afterDraw: handleAfterRender }]}
+    />
+  );
 };
 
 export default BarChart;

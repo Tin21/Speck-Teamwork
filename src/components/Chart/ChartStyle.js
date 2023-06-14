@@ -29,8 +29,12 @@ export const SingleChartOuterWrapper = styled.div`
   }
 `;
 
+export const BarChartWrapper = styled.div`
+  padding: 21px 0;
+`;
+
 export const SingleChartInnerWrapper = styled.div`
-  padding: 24px 16px;
+  padding: 24px 21px 0px 24px;
 `;
 
 export const ChartTitle = styled.h3`

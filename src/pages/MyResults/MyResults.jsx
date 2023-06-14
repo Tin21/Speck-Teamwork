@@ -1,5 +1,6 @@
 import {
   BarChartGrid,
+  BarChartWrapper,
   ChartSubtitle,
   ChartTitle,
   ChartsWrapper,
@@ -20,21 +21,27 @@ const MyResults = () => {
             <SingleChartInnerWrapper>
               <ChartTitle>Attendance per lecture (%)</ChartTitle>
               <ChartSubtitle>Your attendance</ChartSubtitle>
-              <BarChart />
+              <BarChartWrapper>
+                <BarChart />
+              </BarChartWrapper>
             </SingleChartInnerWrapper>
           </SingleChartOuterWrapper>
           <SingleChartOuterWrapper>
             <SingleChartInnerWrapper>
               <ChartTitle>Quiz results per lecture (%)</ChartTitle>
               <ChartSubtitle>Your quiz results</ChartSubtitle>
-              <BarChart />
+              <BarChartWrapper>
+                <BarChart />
+              </BarChartWrapper>
             </SingleChartInnerWrapper>
           </SingleChartOuterWrapper>
           <SingleChartOuterWrapper>
             <SingleChartInnerWrapper>
               <ChartTitle>Quiz results per lecture (%)</ChartTitle>
               <ChartSubtitle>Your quiz results</ChartSubtitle>
-              <BarChart />
+              <BarChartWrapper>
+                <BarChart />
+              </BarChartWrapper>
             </SingleChartInnerWrapper>
           </SingleChartOuterWrapper>
           <DoughnutChartsWrapper>
