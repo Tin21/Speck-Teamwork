@@ -73,7 +73,14 @@ const Profile = ({ imgSrc, imgAlt }) => {
           subtitle={'Profile information successfuly changed'}
         />
       )}
-      {showModal && <Modal></Modal>}
+      {showModal && (
+        <Modal
+          title={'Delete account?'}
+          subtitle={'If you delete your account, all your data will be lost.'}
+          acceptText={'Delete'}
+          declineText={'Keep editing'}
+        />
+      )}
       {!update && ( //INITIAL STATE
         <Formik>
           {(formik) => (
