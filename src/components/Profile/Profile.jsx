@@ -21,10 +21,12 @@ import {
 import { Formik } from 'formik';
 import { FormRow, ErrorMessage } from '../../utils/styles/generalStyles';
 import * as Yup from 'yup';
+import Toast from '../Toast/Toast';
 
 const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [user, setUser] = useState({
     firstName: 'Ivan',
     lastName: 'Ivanovic',
@@ -40,6 +42,13 @@ const Profile = ({ imgSrc, imgAlt }) => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const changeToast = () => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+  };
+
   const changeData = (newData) => {
     setUser({
       firstName: newData.firstName,
@@ -51,6 +60,12 @@ const Profile = ({ imgSrc, imgAlt }) => {
 
   return (
     <ProfileWrapper>
+      {showToast && (
+        <Toast
+          title={'Success!'}
+          subtitle={'Profile information successfuly changed'}
+        />
+      )}
       {!update && ( //INITIAL STATE
         <Formik>
           {(formik) => (
@@ -170,7 +185,8 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ButtonWrapper isUpdate>
                   <ProfileButton
                     isUpdate
-                    type="submit" /* onClick={() => changeUpdate() }*/
+                    type="submit"
+                    onClick={() => changeToast()}
                   >
                     {/* Update */}
                   </ProfileButton>
@@ -250,10 +266,6 @@ const Profile = ({ imgSrc, imgAlt }) => {
 Profile.propTypes = {
   imgSrc: PropTypes.string,
   imgAlt: PropTypes.string,
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  email: PropTypes.string,
-  password: PropTypes.string,
 };
 
 export default Profile;

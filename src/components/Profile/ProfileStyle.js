@@ -361,7 +361,7 @@ export const UploadPhotoIcon = styled(UploadIcon)`
     position: absolute;
     top: 264px;
     left: 124px;
-    z-index: 2;
+    z-index: 3;
   }
 
   @media screen and (${breakpoints.tablet}) {
