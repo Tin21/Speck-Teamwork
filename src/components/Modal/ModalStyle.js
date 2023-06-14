@@ -140,13 +140,11 @@ export const Button = styled(GeneralButton)`
   @media screen and (${breakpoints.desktopSmall}) {
     height: 40px;
     font-size: 14px;
-    /* margin-left: 20px; */
   }
 
   @media screen and (${breakpoints.desktopSmall}) {
     height: 43px;
     font-size: 15px;
-    /* margin-left: 24px; */
   }
 
   ${(props) =>

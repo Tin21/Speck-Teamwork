@@ -97,7 +97,6 @@ export const ProfileButton = styled(Button)`
     content: "Update";
     }
     `}
- 
 
     @media screen and (${breakpoints.tabletSmall}) {
     height: 43px;
