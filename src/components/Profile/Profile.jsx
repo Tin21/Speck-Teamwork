@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   ButtonWrapper,
@@ -73,7 +73,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
           subtitle={'Profile information successfuly changed'}
         />
       )}
-      {showModal && <Modal>bok</Modal>}
+      {showModal && <Modal></Modal>}
       {!update && ( //INITIAL STATE
         <Formik>
           {(formik) => (
@@ -197,10 +197,6 @@ const Profile = ({ imgSrc, imgAlt }) => {
                     isUpdate
                     type="submit"
                     disabled={showToast}
-                    /*  onClick={() => {
-                      changeToast();
-                        changeUpdate();
-                    }}*/
                   ></ProfileButton>
                 </ButtonWrapper>
               </TitleWrapper>

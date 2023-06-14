@@ -13,14 +13,21 @@ import {
 import { Context } from '../../context/Context';
 
 const Modal = () => {
-  const { showModal, setShowModal } = useContext(Context);
+  const { showModal, setShowModal, modalAccept, setModalAccept } =
+    useContext(Context);
 
   const changeVisibility = () => {
     setShowModal(false);
   };
 
+  const acceptModal = () => {
+    setModalAccept(true);
+    console.log(modalAccept);
+  };
+
   useEffect(() => {
     setShowModal(true);
+    setModalAccept(false);
   }, []);
 
   return (
@@ -38,7 +45,13 @@ const Modal = () => {
                 deleted.
               </ModalBodyText>
               <ModalButtonWrapper>
-                <Button isYesButton onClick={() => changeVisibility()}>
+                <Button
+                  isAcceptButton
+                  onClick={() => {
+                    changeVisibility();
+                    acceptModal();
+                  }}
+                >
                   Delete
                 </Button>
                 <Button onClick={() => changeVisibility()}>Keep editing</Button>

@@ -79,7 +79,7 @@ export const Button = styled(GeneralButton)`
   width: max-content;
 
   ${(props) =>
-    props.isYesButton &&
+    props.isAcceptButton &&
     `
       border: 1px solid ${colors.buttonBorder};
       color: ${colors.buttonPrimary};

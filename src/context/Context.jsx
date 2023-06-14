@@ -8,11 +8,19 @@ const ContextProvider = (props) => {
       ? localStorage.getItem('active_lecture')
       : '',
   );
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false); //na true Modal je prikazan, na false je zatvoren
+  const [modalAccept, setModalAccept] = useState(false); //postavlja se na true kada se pritisne Accept(lijevi) gumb u Modalu
 
   return (
     <Context.Provider
-      value={{ contextLecture, setContextLecture, showModal, setShowModal }}
+      value={{
+        contextLecture,
+        setContextLecture,
+        showModal,
+        setShowModal,
+        modalAccept,
+        setModalAccept,
+      }}
     >
       {props.children}
     </Context.Provider>
