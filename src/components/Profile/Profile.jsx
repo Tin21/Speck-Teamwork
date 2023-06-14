@@ -193,10 +193,12 @@ const Profile = ({ imgSrc, imgAlt }) => {
                   <ProfileButton
                     isUpdate
                     type="submit"
-                    onClick={() => changeToast()}
-                  >
-                    {/* Update */}
-                  </ProfileButton>
+                    disabled={showToast}
+                    onClick={() => {
+                      changeToast();
+                      changeUpdate();
+                    }}
+                  ></ProfileButton>
                 </ButtonWrapper>
               </TitleWrapper>
               <PictureWrapper>
