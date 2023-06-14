@@ -187,7 +187,8 @@ const Profile = ({ imgSrc, imgAlt }) => {
             changeUpdate();
             changeData(newData);
             resetForm();
-          }}>
+          }}
+        >
           {(formik) => (
             <Form>
               <TitleWrapper isUpdating>
@@ -263,7 +264,8 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ProfileButton
                   type="button"
                   isSecondaryEnabled
-                  onClick={() => changeModal()}>
+                  onClick={() => changeModal()}
+                >
                   Delete your account
                 </ProfileButton>
               </FormRow>
