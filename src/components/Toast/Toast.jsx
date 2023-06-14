@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   CancelIcon,
   CancelIconWrapper,
@@ -10,23 +10,26 @@ import {
   ToastWrapper,
 } from './ToastStyle';
 import PropTypes from 'prop-types';
+import { Context } from '../../context/Context';
 
 const Toast = ({ title, subtitle }) => {
+  const { showToast, setShowToast } = useContext(Context);
   const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+  }, []);
 
   const changeVisibility = () => {
     setVisible(false);
   };
 
-  /*  useEffect(() => {
-    setTimeout(() => {
-      setVisible(false);
-    }, 4000);
-  }, []);
- */
   return (
     <>
-      {visible && (
+      {visible && showToast && (
         <ToastWrapper>
           <SuccessIcon />
           <ToastContentWrapper>

@@ -26,7 +26,7 @@ export const ToastWrapper = styled.div`
   flex-direction: row;
   z-index: 6;
   height: max-content;
-  animation: ${fadeOut} 3s ease-in-out;
+  animation: ${fadeOut} 3.1s ease-in-out;
   border: 1px solid ${colors.greyBody};
 
   @media screen and (${breakpoints.tabletSmall}) {
