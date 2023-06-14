@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   ButtonWrapper,
@@ -28,8 +28,8 @@ import { Context } from '../../context/Context';
 const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const { showModal, setShowModal } = useContext(Context);
+  const { showModal, setShowModal, showToast, setShowToast } =
+    useContext(Context);
   const [user, setUser] = useState({
     firstName: 'Ivan',
     lastName: 'Ivanovic',
@@ -47,9 +47,6 @@ const Profile = ({ imgSrc, imgAlt }) => {
 
   const changeToast = () => {
     setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
   };
 
   const changeModal = () => {
@@ -89,8 +86,6 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <Title />
                 <ButtonWrapper>
                   <ProfileButton isEdit onClick={() => changeUpdate()} />
-                  {/* Edit
-                  </ProfileButton> */}
                 </ButtonWrapper>
               </TitleWrapper>
               <PictureWrapper>
