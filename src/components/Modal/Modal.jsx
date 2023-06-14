@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   CancelIcon,
   ModalBackground,
@@ -12,7 +13,7 @@ import {
 } from './ModalStyle';
 import { Context } from '../../context/Context';
 
-const Modal = () => {
+const Modal = ({ title, subtitle, acceptText, declineText }) => {
   const { showModal, setShowModal, modalAccept, setModalAccept } =
     useContext(Context);
 
@@ -36,14 +37,11 @@ const Modal = () => {
         <ModalBackground>
           <ModalWrapper>
             <TitleWrapper>
-              <TitleText>Delete email?</TitleText>
+              <TitleText>{title}</TitleText>
               <CancelIcon onClick={() => changeVisibility()} />
             </TitleWrapper>
             <ModalBody>
-              <ModalBodyText>
-                If you delete email, all of the content from email will be
-                deleted.
-              </ModalBodyText>
+              <ModalBodyText>{subtitle}</ModalBodyText>
               <ModalButtonWrapper>
                 <Button
                   isAcceptButton
@@ -52,9 +50,11 @@ const Modal = () => {
                     acceptModal();
                   }}
                 >
-                  Delete
+                  {acceptText}
                 </Button>
-                <Button onClick={() => changeVisibility()}>Keep editing</Button>
+                <Button onClick={() => changeVisibility()}>
+                  {declineText}
+                </Button>
               </ModalButtonWrapper>
             </ModalBody>
           </ModalWrapper>
@@ -62,6 +62,13 @@ const Modal = () => {
       )}
     </>
   );
+};
+
+Modal.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  acceptText: PropTypes.string,
+  declineText: PropTypes.string,
 };
 
 export default Modal;
