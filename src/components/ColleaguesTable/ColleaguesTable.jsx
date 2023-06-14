@@ -41,17 +41,17 @@ function ColleaguesTable() {
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map((headerGroup, index) => (
-            <StyledHeaderRow key={`headerGroup_${index}`}>
-              {headerGroup.headers.map((header, innerIndex) => (
+            <StyledHeaderRow key={index}>
+              {headerGroup.headers.map((header) => (
                 <StyledHeaderCell key={header.id}>
                   {header.isPlaceholder ? null : (
                     <div
-                      {...{
-                        className: header.column.getCanSort()
+                      className={
+                        header.column.getCanSort()
                           ? 'cursor-pointer select-none'
-                          : '',
-                        onClick: header.column.getToggleSortingHandler(),
-                      }}
+                          : ''
+                      }
+                      onClick={header.column.getToggleSortingHandler()}
                     >
                       {flexRender(
                         header.column.columnDef.header,
@@ -64,10 +64,11 @@ function ColleaguesTable() {
             </StyledHeaderRow>
           ))}
         </thead>
+
         <tbody>
-          {table.getRowModel().rows.map((row, index) => (
-            <StyledRow key={`row_${row.id}_${index}`}>
-              {row.getVisibleCells().map((cell, innerIndex) => (
+          {table.getRowModel().rows.map((row) => (
+            <StyledRow key={`row_${row.id}`}>
+              {row.getVisibleCells().map((cell) => (
                 <StyledCell key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </StyledCell>
