@@ -1,5 +1,5 @@
 import ColleaguesTable from '../../components/ColleaguesTable/ColleaguesTable';
-import { Section } from '../../components/Section/SectionStyle';
+import Section from '../../components/Section/Section';
 
 const Colleauges = () => {
   return (
