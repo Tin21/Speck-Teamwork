@@ -1,23 +1,29 @@
 import styled from 'styled-components';
-import { colors } from '../../utils/styles/theme';
+import { breakpoints, colors } from '../../utils/styles/theme';
 
 export const TableContainer = styled.div`
-  padding: 20px;
   overflow-x: auto;
-  /* width: 100%; */
-`;
+  /* width: 300%; */
 
-export const Test = styled.div`
-  padding: 24px;
+  @media screen and (${breakpoints.tablet}) {
+    background-color: ${colors.white};
+    border-radius: 10px;
+    /* width: 832px; */
+  }
+  @media screen and (${breakpoints.tablet}) {
+    padding: 16px 16px 24px 16px;
+    /* width: 1120px; */
+  }
 `;
 
 export const StyledTable = styled.table`
   font-family: sans-serif;
   border-collapse: collapse;
-  margin: 25px;
+  margin: 24px 0;
   background-color: #fff;
   border-radius: 10px;
   table-layout: fixed;
+  /* border: 1px solid #ccc; */
 `;
 export const StyledHeaderCell = styled.th`
   font-family: 'Inter';
