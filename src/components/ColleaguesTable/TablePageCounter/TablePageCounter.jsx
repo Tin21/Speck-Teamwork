@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { TablePageCounterWrapper } from './TablePageCounterStyle';
+
 function calculateFirstEntryOfPage(table) {
   return (
     table.getState().pagination.pageSize *
@@ -22,11 +24,11 @@ function calculateLastEntryOfTable(table) {
 
 const TablePageCounter = ({ table }) => {
   return (
-    <p>
+    <TablePageCounterWrapper>
       Showing {calculateFirstEntryOfPage(table)} to{' '}
       {calculateLastEntryOfPage(table)} of {calculateLastEntryOfTable(table)}{' '}
       entries
-    </p>
+    </TablePageCounterWrapper>
   );
 };
 

@@ -34,6 +34,11 @@ function ColleaguesTable() {
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     debugTable: true,
+    initialState: {
+      pagination: {
+        pageSize: 12,
+      },
+    },
   });
 
   return (

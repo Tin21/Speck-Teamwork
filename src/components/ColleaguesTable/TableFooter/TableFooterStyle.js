@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakpoints, colors } from '../../../utils/styles/theme';
+import { breakpoints } from '../../../utils/styles/theme';
 
 export const FooterWrapper = styled.div`
   display: block;
