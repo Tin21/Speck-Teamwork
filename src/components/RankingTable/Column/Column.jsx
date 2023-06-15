@@ -1,38 +1,46 @@
 import { createColumnHelper } from '@tanstack/table-core';
 import { ColumnHeader } from '../ColumnHeader/ColumnHeader';
+import { ColumnBody } from './ColumnStyle';
+import SilverIcon from '../../../assets/images/badges/badge-exam-icon-gold.svg';
 
 const columnHelper = createColumnHelper();
 
+const badge = 'src/assets/images/badges/badge-quiz-icon-gold.svg';
+
 const columns = [
   columnHelper.accessor('ranking', {
-    cell: (info) => info.column.id,
+    cell: (info) => <ColumnBody isRanking>{info.row.index + 1}</ColumnBody>,
     header: () => <ColumnHeader columnName="Ranking" />,
-    /* size: 4, */
   }),
   columnHelper.accessor('name', {
-    cell: (info) => info.getValue(),
-    header: () => <ColumnHeader columnName="Student" />,
-    size: 50,
-    // footer: (info) => info.column.id,
+    cell: (info) => <ColumnBody isName>{info.getValue()}</ColumnBody>,
+    header: () => <ColumnHeader asdDesc={true} columnName="Student" />,
   }),
 
   columnHelper.accessor('points', {
-    cell: (info) => info.renderValue(),
-    header: () => <ColumnHeader columnName="Points" />,
-    size: 50,
+    cell: (info) => <ColumnBody>{info.renderValue()}</ColumnBody>,
+    header: () => <ColumnHeader asdDesc={true} columnName="Points" />,
   }),
 
   columnHelper.accessor('percentage', {
-    cell: (info) => info.renderValue(),
-    header: () => <ColumnHeader columnName="Percentage" />,
+    cell: (info) => <ColumnBody isPercentage>{info.renderValue()}</ColumnBody>,
+    header: () => <ColumnHeader asdDesc={true} columnName="Percentage" />,
     size: 50,
   }),
 
-  /* columnHelper.accessor('badges', {
-    cell: (info) => info.renderValue(),
-    header: () => <ColumnHeader columnName="Percentage" />,
+  columnHelper.accessor('badges', {
+    cell: () => (
+      <>
+        <img src={badge} />
+        <img src={badge} />
+        <img src={badge} />
+        <img src={badge} />
+        <img src={badge} />
+      </>
+    ),
+    header: () => <ColumnHeader columnName="Badges" />,
     size: 50,
-  }), */
+  }),
 ];
 
 export default columns;

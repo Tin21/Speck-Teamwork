@@ -6,17 +6,15 @@ export const TableContainer = styled.div`
   overflow-x: auto;
 `;
 
-export const Test = styled.div`
-  padding: 24px;
-`;
-
 export const StyledTable = styled.table`
+  table-layout: fixed;
   font-family: sans-serif;
   border-collapse: collapse;
   margin: 25px;
   background-color: #fff;
   border-radius: 10px;
   table-layout: fixed;
+  width: max-content;
 `;
 export const StyledHeaderCell = styled.th`
   font-family: 'Inter';

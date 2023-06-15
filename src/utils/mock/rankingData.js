@@ -1,29 +1,10 @@
-import BadgeExamSilver from '../../assets/images/badges/badge-exam-icon-silver.svg';
-import BadgeExamGold from '../../assets/images/badges/badge-exam-icon-gold.svg';
-import BadgeTaskSilver from '../../assets/images/badges/badge-task-icon-silver.svg';
-import BadgeTaskGold from '../../assets/images/badges/badge-task-icon-gold.svg';
-import BadgeTeamSilver from '../../assets/images/badges/badge-team-icon-silver.svg';
-import BadgeTeamGold from '../../assets/images/badges/badge-team-icon-gold.svg';
-import BadgeQuizSilver from '../../assets/images/badges/badge-quiz-icon-silver.svg';
-import BadgeQuizGold from '../../assets/images/badges/badge-quiz-icon-gold.svg';
-import BadgeTimeSilver from '../../assets/images/badges/badge-time-icon-silver.svg';
-import BadgeTimeGold from '../../assets/images/badges/badge-time-icon-gold.svg';
-
 export const rankingData = [
   {
     id: 1,
     name: 'Adrijano Tubak',
     points: 145,
     percentage: '90%',
-    badges: [
-      BadgeExamSilver,
-      BadgeExamGold,
-      BadgeTaskGold,
-      BadgeTeamSilver,
-      BadgeTaskSilver,
-      BadgeQuizSilver,
-      BadgeTeamGold,
-    ],
+    badges: 'badge-exam-icon-silver.svg',
   },
   {
     id: 2,
@@ -31,13 +12,14 @@ export const rankingData = [
     points: 141,
     percentage: '88%',
     badges: [
-      BadgeExamSilver,
-      BadgeExamGold,
-      BadgeTaskGold,
-      BadgeQuizGold,
-      BadgeTimeGold,
-      BadgeTimeGold,
-      BadgeTeamGold,
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+      'badge-team-icon-silver.svg',
+      'badge-team-icon-gold.svg',
+      'badge-quiz-icon-silver.svg',
+      'badge-quiz-icon-gold.svg',
     ],
   },
   {
@@ -46,12 +28,13 @@ export const rankingData = [
     points: 132,
     percentage: '85%',
     badges: [
-      BadgeExamSilver,
-      BadgeExamGold,
-      BadgeTaskGold,
-      BadgeQuizGold,
-      BadgeTimeGold,
-      BadgeTeamGold,
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+      'badge-team-icon-silver.svg',
+      'badge-team-icon-gold.svg',
+      'badge-quiz-icon-silver.svg',
     ],
   },
   {
@@ -59,35 +42,69 @@ export const rankingData = [
     name: 'Gabrijela Leskovac',
     points: 130,
     percentage: '79%',
-    badges: [BadgeExamSilver, BadgeExamGold, BadgeTaskGold, BadgeQuizGold],
+    badges: [
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+      'badge-team-icon-silver.svg',
+      'badge-team-icon-gold.svg',
+      'badge-quiz-icon-silver.svg',
+    ],
   },
   {
     id: 5,
     name: 'Rafael Bodrušić',
     points: 123,
     percentage: '77%',
-    badges: [BadgeExamSilver, BadgeExamGold, BadgeTaskGold, BadgeQuizGold],
+    badges: [
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+      'badge-team-icon-silver.svg',
+      'badge-team-icon-gold.svg',
+    ],
   },
   {
     id: 6,
     name: 'Ivan Horvat',
     points: 120,
     percentage: '75%',
-    badges: [BadgeExamSilver, BadgeExamGold, BadgeTaskGold, BadgeQuizGold],
+    badges: [
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+      'badge-team-icon-silver.svg',
+      'badge-team-icon-gold.svg',
+    ],
   },
   {
     id: 7,
     name: 'Marija Horvat',
     points: 118,
     percentage: '74%',
-    badges: [BadgeExamSilver, BadgeExamGold, BadgeTaskGold, BadgeQuizGold],
+    badges: [
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+      'badge-team-icon-silver.svg',
+    ],
   },
   {
     id: 8,
     name: 'Hrvoje Horvat',
     points: 115,
     percentage: '72%',
-    badges: [BadgeExamSilver, BadgeExamGold, BadgeTaskGold, BadgeQuizGold],
+    badges: [
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+      'badge-team-icon-silver.svg',
+    ],
   },
   {
     id: 9,
@@ -95,13 +112,11 @@ export const rankingData = [
     points: 145,
     percentage: '90%',
     badges: [
-      BadgeExamSilver,
-      BadgeExamGold,
-      BadgeTaskGold,
-      BadgeTeamSilver,
-      BadgeTaskSilver,
-      BadgeQuizSilver,
-      BadgeTeamGold,
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+      'badge-team-icon-silver.svg',
     ],
   },
   {
@@ -110,13 +125,11 @@ export const rankingData = [
     points: 141,
     percentage: '88%',
     badges: [
-      BadgeExamSilver,
-      BadgeExamGold,
-      BadgeTaskGold,
-      BadgeQuizGold,
-      BadgeTimeGold,
-      BadgeTimeGold,
-      BadgeTeamGold,
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+      'badge-team-icon-silver.svg',
     ],
   },
   {
@@ -125,12 +138,10 @@ export const rankingData = [
     points: 132,
     percentage: '85%',
     badges: [
-      BadgeExamSilver,
-      BadgeExamGold,
-      BadgeTaskGold,
-      BadgeQuizGold,
-      BadgeTimeGold,
-      BadgeTeamGold,
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
     ],
   },
   {
@@ -138,27 +149,36 @@ export const rankingData = [
     name: 'Gabrijela Leskovac',
     points: 130,
     percentage: '79%',
-    badges: [BadgeExamSilver, BadgeExamGold, BadgeTaskGold, BadgeQuizGold],
+    badges: [
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+      'badge-task-icon-gold.svg',
+    ],
   },
   {
     id: 13,
     name: 'Rafael Bodrušić',
     points: 123,
     percentage: '77%',
-    badges: [BadgeExamSilver, BadgeExamGold, BadgeTaskGold, BadgeQuizGold],
+    badges: [
+      'badge-exam-icon-silver.svg',
+      'badge-exam-icon-gold.svg',
+      'badge-task-icon-silver.svg',
+    ],
   },
   {
     id: 14,
     name: 'Ivan Horvat',
     points: 120,
     percentage: '75%',
-    badges: [BadgeExamSilver, BadgeExamGold, BadgeTaskGold, BadgeQuizGold],
+    badges: ['badge-exam-icon-silver.svg', 'badge-exam-icon-gold.svg'],
   },
   {
     id: 15,
     name: 'Marija Horvat',
     points: 118,
     percentage: '74%',
-    badges: [BadgeExamSilver, BadgeExamGold, BadgeTaskGold, BadgeQuizGold],
+    badges: ['badge-exam-icon-silver.svg', 'badge-exam-icon-gold.svg'],
   },
 ];
