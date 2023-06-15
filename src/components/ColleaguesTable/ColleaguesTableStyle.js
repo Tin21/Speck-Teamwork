@@ -18,12 +18,13 @@ export const TableContainer = styled.div`
 
 export const StyledTable = styled.table`
   font-family: sans-serif;
-  border-collapse: collapse;
+  border-collapse: separate;
   margin: 24px 0;
   background-color: #fff;
   border-radius: 10px;
+  border-spacing: 0;
   table-layout: fixed;
-  /* border: 1px solid #ccc; */
+  border: 1px solid #ccc;
 `;
 export const StyledHeaderCell = styled.th`
   font-family: 'Inter';
@@ -44,6 +45,7 @@ export const StyledHeaderRow = styled.tr`
   align-items: center;
   padding-left: 24px;
   border-bottom: 1px solid #ccc;
+  background-color: #f9f9f9;
 `;
 
 export const StyledRow = styled.tr`
