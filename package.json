@@ -11,6 +11,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@tanstack/react-table": "^8.9.2",
     "chart.js": "^4.3.0",
     "chartjs-plugin-datalabels": "^2.2.0",
     "formik": "^2.4.1",
