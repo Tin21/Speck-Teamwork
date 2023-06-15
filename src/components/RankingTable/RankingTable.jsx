@@ -17,6 +17,7 @@ import {
 } from '@tanstack/react-table';
 import columns from './Column/Column';
 import Header from './RankingTableHeader/Header';
+import Footer from './Footer/Footer';
 
 const RankingTable = () => {
   const [data, setData] = useState(() => [...rankingData]);
@@ -81,6 +82,7 @@ const RankingTable = () => {
           ))}
         </tbody>
       </StyledTable>
+      <Footer table={table} />
     </TableContainer>
   );
 };
