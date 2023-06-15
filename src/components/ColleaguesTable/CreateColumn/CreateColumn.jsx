@@ -18,17 +18,6 @@ const columns = [
     header: () => <ColumnHeader columnName="Last Name" />,
   }),
 
-  columnHelper.accessor('email', {
-    header: 'Email',
-    cell: (info) => info.renderValue(),
-    size: 200,
-  }),
-
-  columnHelper.accessor('year', {
-    header: 'Year',
-    cell: (info) => info.renderValue(),
-  }),
-
   columnHelper.accessor((row) => row.email, {
     id: 'actions',
     header: 'Actions',
@@ -43,6 +32,17 @@ const columns = [
         </Button>
       );
     },
+  }),
+
+  columnHelper.accessor('email', {
+    header: 'Email',
+    cell: (info) => info.renderValue(),
+    size: 200,
+  }),
+
+  columnHelper.accessor('year', {
+    header: 'Year',
+    cell: (info) => info.renderValue(),
   }),
 ];
 
