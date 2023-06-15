@@ -38,7 +38,7 @@ function ColleaguesTable() {
 
   return (
     <TableContainer>
-      <TableHeader table={table} />
+      <TableHeader table={table} setData={setData} />
 
       <StyledTable>
         <thead>
