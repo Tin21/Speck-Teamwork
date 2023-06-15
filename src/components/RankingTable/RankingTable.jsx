@@ -69,6 +69,17 @@ const RankingTable = () => {
             </StyledHeaderRow>
           ))}
         </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <StyledRow key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <StyledCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </StyledCell>
+              ))}
+            </StyledRow>
+          ))}
+        </tbody>
       </StyledTable>
     </TableContainer>
   );
