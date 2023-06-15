@@ -8,9 +8,8 @@ import BadgeQuizSilver from '../../assets/images/badges/badge-quiz-icon-silver.s
 import BadgeQuizGold from '../../assets/images/badges/badge-quiz-icon-gold.svg';
 import BadgeTimeSilver from '../../assets/images/badges/badge-time-icon-silver.svg';
 import BadgeTimeGold from '../../assets/images/badges/badge-time-icon-gold.svg';
-import { SingleBadge } from '../../components/SingleBadge/SingleBadge';
 
-export const rankingMock = [
+export const rankingData = [
   {
     id: 1,
     name: 'Adrijano Tubak',
