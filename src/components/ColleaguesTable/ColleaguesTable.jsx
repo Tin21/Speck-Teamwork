@@ -17,6 +17,7 @@ import {
 } from './ColleaguesTableStyle';
 import columns from './CreateColumn/CreateColumn';
 import TableFooter from './TableFooter/TableFooter';
+import TableHeader from './TableHeader/TableHeader';
 
 function ColleaguesTable() {
   const [data, setData] = useState(() => [...colleaguesData]);
@@ -37,6 +38,8 @@ function ColleaguesTable() {
 
   return (
     <TableContainer>
+      <TableHeader table={table} />
+
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map((headerGroup, index) => (

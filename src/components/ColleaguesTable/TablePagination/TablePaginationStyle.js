@@ -21,4 +21,11 @@ export const PaginationNumberWrapper = styled.button`
   background-color: ${colors.lightRed};
   border: none;
   border-radius: 8px;
+
+  ${(props) =>
+    props.isCurrent &&
+    `
+      background-color: ${colors.buttonPrimary};
+      color: ${colors.white};
+    `}
 `;

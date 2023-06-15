@@ -15,6 +15,7 @@ const TablePagination = ({ table }) => {
         &lt;
       </PaginationArrowWrapper>
       <PaginationNumberWrapper
+        isCurrent
         onClick={() =>
           table.setPageIndex(table.getState().pagination.pageIndex)
         }
