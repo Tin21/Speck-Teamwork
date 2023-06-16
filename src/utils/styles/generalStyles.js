@@ -133,6 +133,8 @@ export const RequiredField = styled.span`
   color: ${colors.redPrimary};
 `;
 
+export const FieldLabelWrapper = styled.div``;
+
 // FORM
 
 export const Form = styled(FormFormik)`
