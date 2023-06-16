@@ -3,8 +3,11 @@ import { breakpoints } from '../../../utils/styles/theme';
 
 export const FooterWrapper = styled.div`
   display: block;
+  margin: 0 24px 24px 24px;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.tablet}) {
     display: flex;
+    align-items: center;
+    gap: 50px;
   }
 `;

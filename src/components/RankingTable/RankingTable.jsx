@@ -7,6 +7,7 @@ import {
   StyledRow,
   StyledTable,
   TableContainer,
+  TableWrapper,
 } from './RankingTableStyle';
 import {
   flexRender,
@@ -42,48 +43,50 @@ const RankingTable = () => {
   });
 
   return (
-    <TableContainer>
-      <Header table={table} setData={setData}></Header>
-      <StyledTable>
-        <thead>
-          {table.getHeaderGroups().map((headerGroup, index) => (
-            <StyledHeaderRow key={index}>
-              {headerGroup.headers.map((header) => (
-                <StyledHeaderCell key={header.id}>
-                  {header.isPlaceholder ? null : (
-                    <div
-                      className={
-                        header.column.getCanSort()
-                          ? 'cursor-pointer select-none'
-                          : ''
-                      }
-                      onClick={header.column.getToggleSortingHandler()}
-                    >
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
-                    </div>
-                  )}
-                </StyledHeaderCell>
-              ))}
-            </StyledHeaderRow>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <StyledRow key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <StyledCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </StyledCell>
-              ))}
-            </StyledRow>
-          ))}
-        </tbody>
-      </StyledTable>
-      <Footer table={table} />
-    </TableContainer>
+    <TableWrapper>
+      <TableContainer>
+        <Header table={table} setData={setData}></Header>
+        <StyledTable>
+          <thead>
+            {table.getHeaderGroups().map((headerGroup, index) => (
+              <StyledHeaderRow key={index}>
+                {headerGroup.headers.map((header) => (
+                  <StyledHeaderCell key={header.id}>
+                    {header.isPlaceholder ? null : (
+                      <div
+                        className={
+                          header.column.getCanSort()
+                            ? 'cursor-pointer select-none'
+                            : ''
+                        }
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                      </div>
+                    )}
+                  </StyledHeaderCell>
+                ))}
+              </StyledHeaderRow>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <StyledRow key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <StyledCell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </StyledCell>
+                ))}
+              </StyledRow>
+            ))}
+          </tbody>
+        </StyledTable>
+        <Footer table={table} />
+      </TableContainer>
+    </TableWrapper>
   );
 };
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../../utils/styles/theme';
+import { colors, breakpoints } from '../../../utils/styles/theme';
 
 export const PaginationWrapper = styled.div`
   padding: 8px;
@@ -7,6 +7,11 @@ export const PaginationWrapper = styled.div`
   background-color: ${colors.white};
   gap: 7px;
   width: fit-content;
+  margin: 0 auto;
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    margin-right: 0;
+  }
 `;
 
 export const PaginationArrowWrapper = styled.button`

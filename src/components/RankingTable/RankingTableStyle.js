@@ -1,8 +1,22 @@
 import styled from 'styled-components';
 import { colors, breakpoints } from '../../utils/styles/theme';
 
+export const TableWrapper = styled.div`
+  @media screen and (${breakpoints.tabletSmall}) {
+    background-color: ${colors.bgSecondary};
+    padding: 16px;
+    margin-left: 70px;
+    margin-bottom: 70px;
+    border-radius: 12px;
+  }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    margin-left: 32px;
+  }
+`;
+
 export const TableContainer = styled.div`
-  padding: 20px;
+  /* padding: 20px; */
   overflow-x: auto;
 `;
 
@@ -15,7 +29,12 @@ export const StyledTable = styled.table`
   border-radius: 10px;
   table-layout: fixed;
   width: max-content;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    border-bottom: 1px solid rgb(189, 195, 199);
+  }
 `;
+
 export const StyledHeaderCell = styled.th`
   font-family: 'Inter';
   font-style: normal;

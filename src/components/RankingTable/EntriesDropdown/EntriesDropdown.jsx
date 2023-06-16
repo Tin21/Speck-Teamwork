@@ -20,7 +20,7 @@ const HeaderEntriesDropdown = ({ table }) => {
           </option>
         ))}
       </HeaderSelect>
-      <HeaderEntriesText>entries</HeaderEntriesText>
+      <HeaderEntriesText isEntries>entries</HeaderEntriesText>
     </HeaderEntriesWrapper>
   );
 };

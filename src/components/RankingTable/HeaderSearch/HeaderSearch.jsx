@@ -26,7 +26,7 @@ const HeaderSearch = ({ setData }) => {
           style={{ color: '#7F8590' }}
         />
         <SearchBarInput
-          placeholder="Search name, email or year"
+          placeholder="Search name or ranking..."
           onChange={(event) => handleSearch(event.target.value)}
         />
       </SearchBarWrapper>
