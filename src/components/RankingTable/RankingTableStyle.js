@@ -13,6 +13,10 @@ export const TableWrapper = styled.div`
   @media screen and (${breakpoints.desktopSmall}) {
     margin-left: 32px;
   }
+
+  @media screen and (${breakpoints.desktop}) {
+    max-width: 1200px;
+  }
 `;
 
 export const TableContainer = styled.div`

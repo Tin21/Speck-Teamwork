@@ -3,15 +3,13 @@ import styled from 'styled-components';
 export const HeaderColumn = styled.div`
   display: flex;
   gap: 9px;
-  margin-left: 60px;
+  margin-right: 90px;
 
-  &:first-of-type {
-    margin-left: 0px;
-  }
-
-  &:last-of-type {
-    margin-right: 80px;
-  }
+  ${(props) =>
+    props.isName &&
+    `
+        width: 150px;
+      `}
 `;
 
 export const AscDesc = styled.div`

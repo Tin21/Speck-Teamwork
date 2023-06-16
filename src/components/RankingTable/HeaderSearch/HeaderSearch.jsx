@@ -17,7 +17,7 @@ const HeaderSearch = ({ setData }) => {
     } else {
       const filteredData = rankingData.filter((item) => {
         const lowerCasedValue = value.toLowerCase();
-        return item.name.toLowerCase().includes(lowerCasedValue);
+        return item.name.toLowerCase().includes(lowerCasedValue); //dodati pretrativanje po rankingu
       });
 
       setData(filteredData);
