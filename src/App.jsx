@@ -14,13 +14,13 @@ import UserAvatar from './assets/images/user-avatar.jpg';
 function App() {
   return (
     <Routes>
+      <Route path={'/login'} element={<Login />} />
       <Route
         path={'/'}
         element={<Layout imgSrc={UserAvatar} imgAlt={'User avatar'} />}
       >
         <Route path={'/profile'} element={<ProfilePage />} />
         <Route path={'/achievements'} element={<Achievements />} />
-        <Route path={'/login'} element={<Login />} />
         <Route path={'/my-results'} element={<MyResults />} />
         <Route path={'/reset'} element={<Reset />} />
         <Route path={'/colleauges'} element={<Colleagues />} />
