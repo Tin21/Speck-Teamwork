@@ -46,10 +46,22 @@ export const StyledHeaderCell = styled.th`
   font-size: 16px;
   line-height: 19px;
   height: 54px;
-  /* width: 111px; */
+  width: 120px;
   display: flex;
   align-items: center;
   color: ${colors.textSecondaryGrey};
+
+  &:nth-child(2) {
+    width: 200px;
+  }
+
+  &:nth-child(4) {
+    width: 180px;
+  }
+
+  &:last-child {
+    width: 400px;
+  }
 `;
 
 export const StyledHeaderRow = styled.tr`
@@ -65,7 +77,8 @@ export const StyledRow = styled.tr`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 20.5px;
+  padding-left: 24px;
+  min-width: 100px;
 
   &:last-child {
     border-bottom: none;
@@ -73,14 +86,25 @@ export const StyledRow = styled.tr`
 `;
 
 export const StyledCell = styled.td`
-  padding: 14px 10px;
+  padding: 0;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 150%;
   color: ${colors.textSecondary};
-  padding: 14.5px 8px;
-  /* width: 150px; */
   overflow: hidden;
+  width: 120px;
+
+  &:nth-child(2) {
+    width: 200px;
+  }
+
+  &:nth-child(4) {
+    width: 180px;
+  }
+
+  &:last-child {
+    width: 400px;
+  }
 `;
