@@ -11,6 +11,7 @@ const columns = [
   columnHelper.accessor('id', {
     cell: (info) => <ColumnBody isRanking>{info.getValue()}</ColumnBody>,
     header: () => <ColumnHeader columnName="Ranking" />,
+    enableSorting: false,
   }),
   columnHelper.accessor('name', {
     cell: (info) => <ColumnBody isName>{info.getValue()}</ColumnBody>,
@@ -29,7 +30,6 @@ const columns = [
     header: () => (
       <ColumnHeader isWider={true} asdDesc={true} columnName="Percentage" />
     ),
-    size: 50,
   }),
 
   columnHelper.accessor('badges', {
@@ -43,7 +43,7 @@ const columns = [
       </ColumnBody>
     ),
     header: () => <ColumnHeader columnName="Badges" />,
-    size: 50,
+    enableSorting: false,
   }),
 ];
 

@@ -45,6 +45,13 @@ const RankingTable = () => {
     },
   });
 
+  const SortTable = (index) => {
+    if (index !== 1) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <TableWrapper>
       <TableContainer>
