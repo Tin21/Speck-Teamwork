@@ -4,6 +4,8 @@ import { breakpoints } from '../../../utils/styles/theme';
 export const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  position: sticky;
+  left: 0;
   gap: 16px;
   margin-bottom: 67px;
 

@@ -25,7 +25,11 @@ export const StyledTable = styled.table`
   border-spacing: 0;
   table-layout: fixed;
   border: 1px solid #ccc;
+  width: max-content;
 `;
+
+export const HeaderTable = styled.thead``;
+
 export const StyledHeaderCell = styled.th`
   font-family: 'Inter';
   font-style: normal;
@@ -47,6 +51,8 @@ export const StyledHeaderRow = styled.tr`
   border-bottom: 1px solid #ccc;
   background-color: #f9f9f9;
 `;
+
+export const BodyTable = styled.tbody``;
 
 export const StyledRow = styled.tr`
   border-bottom: 1px solid #ccc;
