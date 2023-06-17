@@ -4,7 +4,9 @@ import {
   SearchBarWrapper,
   SearchBarInput,
   SearchIcon,
+  SearchCancelIcon,
 } from './HeaderSearchStyle';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
@@ -43,12 +45,12 @@ const HeaderSearch = ({ setData }) => {
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             style={{ color: '#7F8590' }}
-            onClick={() => changeSeachBar()}
           />
           <SearchBarInput
             placeholder="Search name or ranking..."
             onChange={(event) => handleSearch(event.target.value)}
           />
+          <SearchCancelIcon onClick={() => changeSeachBar()} />
         </SearchBarWrapper>
       )}
 

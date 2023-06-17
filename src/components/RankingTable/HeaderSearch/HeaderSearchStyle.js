@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { colors, breakpoints } from '../../../utils/styles/theme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ReactComponent as CancelIcon } from '../../../assets/images/cancel-icon.svg';
 
 export const SearchBarWrapper = styled.div`
   display: flex;
@@ -56,4 +57,9 @@ export const SearchIcon = styled(FontAwesomeIcon)`
         display: none;
   }
   `}
+`;
+
+export const SearchCancelIcon = styled(CancelIcon)`
+  min-height: 12px;
+  min-width: 12px;
 `;

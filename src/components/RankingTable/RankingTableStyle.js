@@ -2,16 +2,12 @@ import styled from 'styled-components';
 import { colors, breakpoints } from '../../utils/styles/theme';
 
 export const TableWrapper = styled.div`
-  @media screen and (${breakpoints.tabletSmall}) {
-    background-color: ${colors.bgSecondary};
-    padding: 16px;
-    margin-left: 70px;
-    margin-bottom: 70px;
-    border-radius: 12px;
-  }
-
   @media screen and (${breakpoints.desktopSmall}) {
     margin-left: 32px;
+    background-color: ${colors.bgSecondary};
+    padding: 16px;
+    margin-bottom: 70px;
+    border-radius: 12px;
   }
 
   @media screen and (${breakpoints.desktop}) {
