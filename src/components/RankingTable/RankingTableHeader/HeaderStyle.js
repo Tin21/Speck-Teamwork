@@ -6,4 +6,6 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 24px;
+  position: sticky;
+  left: 24px;
 `;

@@ -25,7 +25,7 @@ export const HeaderEntriesText = styled.div`
 `;
 
 export const HeaderSelect = styled.select`
-  padding: 15px 12px;
+  padding: 12px 12px;
   background-color: ${colors.white};
   border: solid 1px ${colors.avatarBorder};
   border-radius: 8px;
