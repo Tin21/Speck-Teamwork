@@ -131,6 +131,8 @@ export const StyledCell = styled.td`
   overflow: hidden;
   width: 140px;
   display: flex;
+  align-items: center;
+  min-height: 50px;
 
   &:nth-child(2) {
     width: 200px;

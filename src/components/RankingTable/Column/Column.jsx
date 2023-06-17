@@ -33,13 +33,11 @@ const columns = [
   }),
 
   columnHelper.accessor('badges', {
-    cell: () => (
-      <ColumnBody isBadges>
-        <img src={badge} />
-        <img src={badge} />
-        <img src={badge} />
-        <img src={badge} />
-        <img src={badge} />
+    cell: (info) => (
+      <ColumnBody>
+        {info.renderValue().map((badge) => (
+          <img key={badge.id} src={badge.src} />
+        ))}
       </ColumnBody>
     ),
     header: () => <ColumnHeader columnName="Badges" />,
