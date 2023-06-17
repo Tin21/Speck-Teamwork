@@ -9,7 +9,6 @@ export const PaginationWrapper = styled.div`
   background-color: ${colors.white};
   gap: 7px;
   width: fit-content;
-  /* margin-left: calc((100% - 232px) / 2); */
   margin: 0 auto;
   border-radius: 8px;
 

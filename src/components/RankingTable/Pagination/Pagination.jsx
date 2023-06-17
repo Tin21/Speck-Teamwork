@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
   PaginationArrowWrapper,
   PaginationNumberWrapper,
@@ -13,12 +12,10 @@ const Pagination = ({ table }) => {
 
   const incrementPageNumber = (number) => {
     setPageNumber(pageNumber + number);
-    console.log(pageNumber);
   };
 
   const changePageNumber = (number) => {
     setPageNumber(number);
-    console.log(pageNumber);
   };
 
   return (
@@ -32,7 +29,6 @@ const Pagination = ({ table }) => {
       >
         <PageLeft />
       </PaginationArrowWrapper>
-
       {pageNumber - 2 > 0 && (
         <PaginationNumberWrapper
           disabled={!table.getCanPreviousPage()}
@@ -44,11 +40,9 @@ const Pagination = ({ table }) => {
           1
         </PaginationNumberWrapper>
       )}
-
       {pageNumber - 3 > 0 && (
         <PaginationNumberWrapper>...</PaginationNumberWrapper>
       )}
-
       {pageNumber - 1 > 0 && (
         <PaginationNumberWrapper
           disabled={!table.getCanPreviousPage()}
@@ -60,14 +54,12 @@ const Pagination = ({ table }) => {
           {table.getState().pagination.pageIndex}
         </PaginationNumberWrapper>
       )}
-
       <PaginationNumberWrapper
         isCurrent
         onClick={() =>
           table.setPageIndex(table.getState().pagination.pageIndex)
         }
       >
-        {/* TODO prouci kak se krece kad se klikne, jel uvijek trenutna stranica na prvoj poziciji ili? */}
         {table.getState().pagination.pageIndex + 1}
       </PaginationNumberWrapper>
       {table.getPageCount() - pageNumber > 1 && (
@@ -81,7 +73,6 @@ const Pagination = ({ table }) => {
           {table.getState().pagination.pageIndex + 2}
         </PaginationNumberWrapper>
       )}
-
       {table.getPageCount() - pageNumber > 2 && (
         <PaginationNumberWrapper>...</PaginationNumberWrapper>
       )}
@@ -96,7 +87,6 @@ const Pagination = ({ table }) => {
           {table.getPageCount()}
         </PaginationNumberWrapper>
       )}
-
       <PaginationArrowWrapper
         onClick={() => {
           table.nextPage();

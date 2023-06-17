@@ -6,6 +6,7 @@ export const FooterWrapper = styled.div`
   margin-bottom: 16px;
   position: sticky;
   left: 0;
+  overflow-x: auto;
 
   @media screen and (${breakpoints.tablet}) {
     display: flex;
