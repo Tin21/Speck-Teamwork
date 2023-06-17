@@ -8,6 +8,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import {
+  BodyTable,
+  HeaderTable,
   StyledCell,
   StyledHeaderCell,
   StyledHeaderRow,
@@ -46,7 +48,7 @@ function ColleaguesTable() {
       <TableHeader table={table} setData={setData} />
 
       <StyledTable>
-        <thead>
+        <HeaderTable>
           {table.getHeaderGroups().map((headerGroup, index) => (
             <StyledHeaderRow key={index}>
               {headerGroup.headers.map((header) => (
@@ -70,9 +72,9 @@ function ColleaguesTable() {
               ))}
             </StyledHeaderRow>
           ))}
-        </thead>
+        </HeaderTable>
 
-        <tbody>
+        <BodyTable>
           {table.getRowModel().rows.map((row) => (
             <StyledRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
@@ -82,7 +84,7 @@ function ColleaguesTable() {
               ))}
             </StyledRow>
           ))}
-        </tbody>
+        </BodyTable>
       </StyledTable>
       <TableFooter table={table} />
     </TableContainer>
