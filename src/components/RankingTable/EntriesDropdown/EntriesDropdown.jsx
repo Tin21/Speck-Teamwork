@@ -2,6 +2,7 @@ import {
   HeaderEntriesText,
   HeaderEntriesWrapper,
   HeaderSelect,
+  HeaderEntriesOption,
 } from './EntriesDropdownStyle';
 
 const HeaderEntriesDropdown = ({ table }) => {
@@ -15,9 +16,9 @@ const HeaderEntriesDropdown = ({ table }) => {
         }}
       >
         {[5, 10, 25, 50].map((pageSize) => (
-          <option key={pageSize} value={pageSize}>
+          <HeaderEntriesOption key={pageSize} value={pageSize}>
             {pageSize}
-          </option>
+          </HeaderEntriesOption>
         ))}
       </HeaderSelect>
       <HeaderEntriesText isEntries>entries</HeaderEntriesText>

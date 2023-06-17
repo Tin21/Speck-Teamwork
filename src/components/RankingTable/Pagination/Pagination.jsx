@@ -3,6 +3,8 @@ import {
   PaginationArrowWrapper,
   PaginationNumberWrapper,
   PaginationWrapper,
+  PageLeft,
+  PageRight,
 } from './PaginationStyle';
 
 const Pagination = ({ table }) => {
@@ -12,7 +14,7 @@ const Pagination = ({ table }) => {
         onClick={() => table.previousPage()}
         disabled={!table.getCanPreviousPage()}
       >
-        &lt;
+        <PageLeft />
       </PaginationArrowWrapper>
       <PaginationNumberWrapper
         isCurrent
@@ -41,7 +43,7 @@ const Pagination = ({ table }) => {
         onClick={() => table.nextPage()}
         disabled={!table.getCanNextPage()}
       >
-        &gt;
+        <PageRight />
       </PaginationArrowWrapper>
     </PaginationWrapper>
   );

@@ -8,8 +8,8 @@ const columnHelper = createColumnHelper();
 const badge = 'src/assets/images/badges/badge-quiz-icon-gold.svg';
 
 const columns = [
-  columnHelper.accessor('ranking', {
-    cell: (info) => <ColumnBody isRanking>{info.row.index + 1}</ColumnBody>,
+  columnHelper.accessor('id', {
+    cell: (info) => <ColumnBody isRanking>{info.getValue()}</ColumnBody>,
     header: () => <ColumnHeader columnName="Ranking" />,
   }),
   columnHelper.accessor('name', {

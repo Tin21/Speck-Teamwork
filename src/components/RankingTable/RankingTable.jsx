@@ -8,6 +8,9 @@ import {
   StyledTable,
   TableContainer,
   TableWrapper,
+  TableHeader,
+  TableBody,
+  HeaderCellContent,
 } from './RankingTableStyle';
 import {
   flexRender,
@@ -47,13 +50,13 @@ const RankingTable = () => {
       <TableContainer>
         <Header table={table} setData={setData}></Header>
         <StyledTable>
-          <thead>
+          <TableHeader>
             {table.getHeaderGroups().map((headerGroup, index) => (
               <StyledHeaderRow key={index}>
                 {headerGroup.headers.map((header) => (
                   <StyledHeaderCell key={header.id}>
                     {header.isPlaceholder ? null : (
-                      <div
+                      <HeaderCellContent
                         className={
                           header.column.getCanSort()
                             ? 'cursor-pointer select-none'
@@ -65,14 +68,14 @@ const RankingTable = () => {
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
-                      </div>
+                      </HeaderCellContent>
                     )}
                   </StyledHeaderCell>
                 ))}
               </StyledHeaderRow>
             ))}
-          </thead>
-          <tbody>
+          </TableHeader>
+          <TableBody>
             {table.getRowModel().rows.map((row) => (
               <StyledRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
@@ -82,7 +85,7 @@ const RankingTable = () => {
                 ))}
               </StyledRow>
             ))}
-          </tbody>
+          </TableBody>
         </StyledTable>
         <Footer table={table} />
       </TableContainer>

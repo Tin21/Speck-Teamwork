@@ -38,6 +38,8 @@ export const StyledTable = styled.table`
   width: max-content;
 `;
 
+export const TableHeader = styled.thead``;
+
 export const StyledHeaderCell = styled.th`
   font-family: 'Inter';
   font-style: normal;
@@ -78,6 +80,8 @@ export const StyledHeaderCell = styled.th`
   }
 `;
 
+export const HeaderCellContent = styled.div``;
+
 export const StyledHeaderRow = styled.tr`
   display: flex;
   justify-content: space-between;
@@ -93,6 +97,8 @@ export const StyledHeaderRow = styled.tr`
     padding-left: 36px;
   }
 `;
+
+export const TableBody = styled.div``;
 
 export const StyledRow = styled.tr`
   border-bottom: 1px solid ${colors.tableBorder};

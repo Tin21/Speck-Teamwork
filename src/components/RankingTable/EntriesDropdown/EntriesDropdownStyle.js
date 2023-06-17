@@ -8,6 +8,8 @@ export const HeaderEntriesWrapper = styled.div`
   align-items: center;
 `;
 
+export const HeaderEntriesOption = styled.option``;
+
 export const HeaderEntriesText = styled.div`
   font-size: 14px;
   font-weight: 400;
