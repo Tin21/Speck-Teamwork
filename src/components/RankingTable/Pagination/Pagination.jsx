@@ -26,6 +26,7 @@ const Pagination = ({ table }) => {
         {table.getState().pagination.pageIndex + 1}
       </PaginationNumberWrapper>
       <PaginationNumberWrapper
+        disabled={!table.getCanNextPage()}
         onClick={() =>
           table.setPageIndex(table.getState().pagination.pageIndex + 1)
         }

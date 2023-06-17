@@ -19,7 +19,10 @@ const HeaderSearch = ({ setData }) => {
     } else {
       const filteredData = rankingData.filter((item) => {
         const lowerCasedValue = value.toLowerCase();
-        return item.name.toLowerCase().includes(lowerCasedValue); //dodati pretrativanje po rankingu
+        return (
+          item.name.toLowerCase().includes(lowerCasedValue) ||
+          item.id.toString().includes(lowerCasedValue)
+        );
       });
 
       setData(filteredData);
