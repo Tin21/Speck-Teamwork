@@ -40,6 +40,7 @@ const RankingTable = () => {
     debugTable: true,
     initialState: {
       pagination: {
+        autoResetPageIndex: true,
         pageSize: 5,
       },
     },
