@@ -20,13 +20,26 @@ const columns = [
   columnHelper.accessor((row) => row.email, {
     id: 'actions',
     header: 'Actions',
+    enableSorting: false,
     cell: (info) => {
       const mailTo = () => {
         window.open(`mailto:${info.getValue()}`, '_blank');
       };
 
       return (
-        <Button isSecondary onClick={mailTo}>
+        <Button
+          isSecondary
+          onClick={mailTo}
+          style={{
+            padding: '12px 10px',
+            width: 'auto',
+            fontFamily: 'Roboto',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '16px',
+          }}
+        >
           Send email
         </Button>
       );
@@ -36,11 +49,13 @@ const columns = [
   columnHelper.accessor('email', {
     header: 'Email',
     cell: (info) => info.renderValue(),
+    enableSorting: false,
   }),
 
   columnHelper.accessor('year', {
     header: 'Year',
     cell: (info) => info.renderValue(),
+    enableSorting: false,
   }),
 ];
 
