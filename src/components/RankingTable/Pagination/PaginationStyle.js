@@ -7,7 +7,8 @@ export const PaginationWrapper = styled.div`
   background-color: ${colors.white};
   gap: 7px;
   width: fit-content;
-  margin: 0 auto;
+  margin-left: calc((100% - 232px) / 2);
+  border-radius: 8px;
 
   @media screen and (${breakpoints.desktopSmall}) {
     margin-right: 0;

@@ -42,6 +42,7 @@ export const colors = {
   greyBody: '#7F8591',
   textLightGrey: '#a3a2a2', //npr za text u disabled fieldovima
   tableHeaderBg: '#F9F9F9', //pozadina headera u tablicama
+  tableBorder: '#e6e6e6',
 };
 
 export const breakpoints = {

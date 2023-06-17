@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { colors, breakpoints } from '../../utils/styles/theme';
 
 export const TableWrapper = styled.div`
+  margin-right: 24px;
+
   @media screen and (${breakpoints.desktopSmall}) {
     margin-left: 32px;
     background-color: ${colors.bgSecondary};
@@ -36,7 +38,7 @@ export const StyledHeaderCell = styled.th`
   font-size: 16px;
   line-height: 19px;
   height: 54px;
-  width: 120px;
+  width: 140px;
   display: flex;
   align-items: center;
 
@@ -58,17 +60,17 @@ export const StyledHeaderRow = styled.tr`
   justify-content: space-between;
   align-items: center;
   padding-left: 24px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${colors.tableBorder};
   background-color: ${colors.tableHeaderBg};
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid ${colors.tableBorder};
 `;
 
 export const StyledRow = styled.tr`
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border-bottom: 1px solid ${colors.tableBorder};
+  border-left: 1px solid ${colors.tableBorder};
+  border-right: 1px solid ${colors.tableBorder};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -90,7 +92,8 @@ export const StyledCell = styled.td`
   line-height: 150%;
   color: ${colors.textSecondary};
   overflow: hidden;
-  width: 120px;
+  width: 140px;
+  display: flex;
 
   &:nth-child(2) {
     width: 200px;
