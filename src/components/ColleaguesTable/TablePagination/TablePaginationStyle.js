@@ -19,6 +19,8 @@ export const PaginationArrowWrapper = styled.button`
   padding: 11px 19px;
   background-color: ${colors.lightRed};
   border: none;
+  color: #828282;
+  font-weight: 800;
   border-radius: 8px;
 `;
 

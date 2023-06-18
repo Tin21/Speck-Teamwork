@@ -13,6 +13,8 @@ export const SearchBarWrapper = styled.div`
 `;
 
 export const SearchBarInput = styled.input`
+  font-weight: 400;
+  line-height: 18px;
   padding: 12.5px 8px;
   font-size: 15px;
   width: 100%;
