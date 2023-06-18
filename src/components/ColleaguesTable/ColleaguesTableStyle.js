@@ -59,7 +59,7 @@ export const StyledHeaderCell = styled.th`
   }
   &:nth-child(5) {
     width: 130px;
-    padding-left: 90px;
+    padding-left: 100px;
   }
 
   @media screen and (${breakpoints.tablet}) {
@@ -74,7 +74,7 @@ export const StyledHeaderCell = styled.th`
       padding-left: 0;
     }
     &:nth-child(5) {
-      padding-left: 50px;
+      padding-left: 64px;
     }
   }
   @media screen and (${breakpoints.desktopSmall}) {
@@ -85,16 +85,22 @@ export const StyledHeaderCell = styled.th`
       padding-left: 10px;
     }
     &:nth-child(4) {
-      width: 260px;
+      width: 275px;
+      padding-left: 5px;
     }
     &:nth-child(5) {
-      padding-left: 10px;
+      padding-left: 12px;
       width: 120px;
     }
   }
   @media screen and (${breakpoints.desktopSmall}) {
     &:nth-child(5) {
       padding-left: 30px;
+    }
+  }
+  @media screen and (${breakpoints.desktop}) {
+    &:nth-child(5) {
+      padding-left: 26px;
     }
   }
 `;
@@ -169,7 +175,7 @@ export const StyledCell = styled.td`
       width: 245px;
     }
     &:nth-child(5) {
-      padding-left: 5px;
+      padding-left: 30px;
     }
   }
   @media screen and (${breakpoints.desktop}) {
