@@ -60,11 +60,14 @@ export const StyledHeaderCell = styled.th`
     width: 180px;
 
     &:nth-child(3) {
+      width: 130px;
       padding-left: 16px;
     }
     &:nth-child(4) {
       padding-left: 0;
-      background-color: red;
+    }
+    &:nth-child(5) {
+      padding-left: 70px;
     }
   }
 `;
@@ -113,6 +116,10 @@ export const StyledCell = styled.td`
   }
 
   @media screen and (${breakpoints.tablet}) {
-    width: 154px;
+    width: 180px;
+
+    &:nth-child(5) {
+      width: 100px;
+    }
   }
 `;
