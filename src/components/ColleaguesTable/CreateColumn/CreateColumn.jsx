@@ -19,7 +19,7 @@ const columns = [
 
   columnHelper.accessor((row) => row.email, {
     id: 'actions',
-    header: 'Actions',
+    header: 'Action',
     enableSorting: false,
     cell: (info) => {
       const mailTo = () => {
@@ -31,7 +31,7 @@ const columns = [
           isSecondary
           onClick={mailTo}
           style={{
-            padding: '12px 10px',
+            padding: '6px 10px',
             width: 'auto',
             fontFamily: 'Roboto',
             fontStyle: 'normal',

@@ -7,12 +7,18 @@ export const HeaderColumn = styled.div`
   gap: 9px;
   margin-left: 14px;
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.tablet}) {
+    gap: 52px;
+    margin-left: 6px;
+    justify-content: space-between;
   }
 `;
 
 export const AscDesc = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 21.75px;
+  margin-right: 18px;
+
+  @media screen and (${breakpoints.tablet}) {
+  }
 `;
