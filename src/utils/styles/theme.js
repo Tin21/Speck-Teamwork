@@ -43,6 +43,12 @@ export const colors = {
   textLightGrey: '#a3a2a2', //npr za text u disabled fieldovima
   tableHeaderBg: '#F9F9F9', //pozadina headera u tablicama
   tableBorder: '#e6e6e6',
+  greenPrimary: '#2E8A0D', //pozadina 2. mjesta u leadingu
+  greenSecondary: '#86CD6D', //pozadina gornjeg dijela 2. mjesta u leadingu
+  beigePrimary: '#CB7B2C', //pozadina 1. mjesta u leadingu
+  beigeSecondary: '#EBA760', //pozadina gornjeg dijela 1. mjesta u leadingu
+  bluePrimary: '#1D7FA9', //pozadina 3. mjesta u leadingu
+  blueSecondary: '#89C3DC', //pozadina gornjeg dijela 3. mjesta u leadingu
 };
 
 export const breakpoints = {
