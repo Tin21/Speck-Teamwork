@@ -12,13 +12,13 @@ export const HeaderColumn = styled.div`
     margin-left: 6px;
     justify-content: space-between;
   }
+  @media screen and (${breakpoints.desktopSmall}) {
+    gap: 150px;
+  }
 `;
 
 export const AscDesc = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 18px;
-
-  @media screen and (${breakpoints.tablet}) {
-  }
 `;
