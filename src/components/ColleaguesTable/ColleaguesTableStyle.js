@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { breakpoints, colors } from '../../utils/styles/theme';
 
 export const TableContainer = styled.div`
-  overflow-x: auto;
+  overflow: auto;
+  width: 100%;
 
   @media screen and (${breakpoints.tablet}) {
     background-color: ${colors.white};
@@ -14,15 +15,17 @@ export const TableContainer = styled.div`
 `;
 
 export const StyledTable = styled.table`
+  display: block;
+  overflow-x: auto;
+  table-layout: fixed;
   font-family: sans-serif;
-  border-collapse: separate;
   margin: 24px 0;
   background-color: #fff;
   border-radius: 10px;
   border-spacing: 0;
-  table-layout: fixed;
   border: 1px solid #ccc;
-  width: max-content;
+  max-width: fit-content;
+  /* width: max-content; */
 `;
 
 export const HeaderTable = styled.thead`
@@ -42,14 +45,27 @@ export const StyledHeaderCell = styled.th`
   align-items: center;
   justify-content: center;
   color: ${colors.textSecondaryGrey};
-  /* background-color: red; */
 
   &:nth-child(4) {
-    padding-left: 20px;
+    padding-right: 40px;
+    width: 160px;
   }
   &:nth-child(5) {
-    padding-left: 190px;
-    padding-right: 20px;
+    width: 160px;
+    padding-left: 100px;
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    justify-content: flex-start;
+    width: 180px;
+
+    &:nth-child(3) {
+      padding-left: 16px;
+    }
+    &:nth-child(4) {
+      padding-left: 0;
+      background-color: red;
+    }
   }
 `;
 
@@ -72,6 +88,10 @@ export const StyledRow = styled.tr`
   &:last-child {
     border-bottom: none;
   }
+
+  @media screen and (${breakpoints.tablet}) {
+    padding-left: 16px;
+  }
 `;
 
 export const StyledCell = styled.td`
@@ -83,12 +103,16 @@ export const StyledCell = styled.td`
   line-height: 150%;
   color: ${colors.textSecondary};
   width: 102px;
-  /* background-color: red; */
 
   &:nth-child(3) {
     width: 124px;
   }
+
   &:nth-child(4) {
     width: 234px;
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    width: 154px;
   }
 `;
