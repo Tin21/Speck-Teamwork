@@ -23,6 +23,13 @@ import {
   PedestalRightTrapezoid,
   ThirdPlaceFrame,
   ThirdPlaceAvatar,
+  NumberWrapper,
+  Number,
+  Suffix,
+  Name,
+  PointsWrapper,
+  PointsText,
+  FirstPlaceStar,
 } from './LeadingStyle';
 
 const Leading = ({
@@ -42,7 +49,16 @@ const Leading = ({
             <SecondPlaceAvatar src={secondImgSrc} alt={secondImgAlt} />
             <SecondPlaceFrame />
             <PedestalLeftTrapezoid />
-            <PedestalLeftRectangle></PedestalLeftRectangle>
+            <PedestalLeftRectangle>
+              <NumberWrapper>
+                <Number>2</Number>
+                <Suffix>nd</Suffix>
+              </NumberWrapper>
+              <Name>Dejan</Name>
+              <PointsWrapper>
+                <PointsText>279 points</PointsText>
+              </PointsWrapper>
+            </PedestalLeftRectangle>
           </PedestalLeftShapesContainer>
         </PedestalLeftWrapper>
         <PedestalCenterWrapper>
@@ -53,7 +69,17 @@ const Leading = ({
               alt="First place frame"
             />
             <PedestalCenterTrapezoid />
-            <PedestalCenterRectangle></PedestalCenterRectangle>
+            <PedestalCenterRectangle>
+              <NumberWrapper>
+                <Number isFirstPlace>1</Number>
+                <Suffix>st</Suffix>
+              </NumberWrapper>
+              <Name isFirstPlace>Marijana</Name>
+              <FirstPlaceStar />
+              <PointsWrapper isFirstPlace>
+                <PointsText>300 points</PointsText>
+              </PointsWrapper>
+            </PedestalCenterRectangle>
           </PedestalCenterShapesContainer>
         </PedestalCenterWrapper>
         <PedestalRightWrapper>
@@ -61,7 +87,16 @@ const Leading = ({
             <ThirdPlaceAvatar src={thirdImgSrc} alt={thirdImgAlt} />
             <ThirdPlaceFrame />
             <PedestalRightTrapezoid />
-            <PedestalRightRectangle></PedestalRightRectangle>
+            <PedestalRightRectangle>
+              <NumberWrapper>
+                <Number isThirdPlace>3</Number>
+                <Suffix>rd</Suffix>
+              </NumberWrapper>
+              <Name isThirdPlace>Kristijan</Name>
+              <PointsWrapper isThirdPlace>
+                <PointsText>201 points</PointsText>
+              </PointsWrapper>
+            </PedestalRightRectangle>
           </PedestalCenterShapesContainer>
         </PedestalRightWrapper>
       </PedestalWrapper>

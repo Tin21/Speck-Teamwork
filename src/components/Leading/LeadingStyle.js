@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { colors, breakpoints } from '../../utils/styles/theme';
 import { ReactComponent as SecondPlaceFrameIcon } from '../../assets/images/second-place-frame.svg';
 import { ReactComponent as ThirdPlaceFrameIcon } from '../../assets/images/third-place-frame.svg';
+import { ReactComponent as StarIcon } from '../../assets/images/star-icon.svg';
 
 export const LeadingWrapper = styled.div`
   padding: 8px;
@@ -54,6 +55,10 @@ export const PedestalLeftRectangle = styled.div`
   width: 100%;
   background-color: ${colors.greenPrimary};
   border-bottom-left-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px 4px 7px 4px;
 `;
 
 export const SecondPlaceFrame = styled(SecondPlaceFrameIcon)`
@@ -102,6 +107,10 @@ export const PedestalCenterRectangle = styled.div`
   height: 122px;
   width: 100%;
   background-color: ${colors.beigePrimary};
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 4px 7px 4px;
 `;
 
 export const FirstPlaceFrame = styled.img`
@@ -150,6 +159,10 @@ export const PedestalRightRectangle = styled.div`
   width: 100%;
   background-color: ${colors.bluePrimary};
   border-bottom-right-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 6px 4px 7px 4px;
 `;
 
 export const ThirdPlaceFrame = styled(ThirdPlaceFrameIcon)`
@@ -168,4 +181,95 @@ export const ThirdPlaceAvatar = styled.img`
   right: 3px;
   top: 90px;
   z-index: 2;
+`;
+
+export const NumberWrapper = styled.div`
+  width: max-content;
+  height: max-content;
+  /* margin-bottom: 6px; */
+  display: flex;
+  flex-direction: row;
+  z-index: 1;
+`;
+
+export const Number = styled.p`
+  font-weight: 700;
+  font-size: 20px;
+  color: ${colors.white};
+  padding-top: 4px;
+
+  ${(props) =>
+    props.isFirstPlace &&
+    `
+     font-size: 25px;
+     padding-top: 2px;
+  `}
+
+  ${(props) =>
+    props.isThirdPlace &&
+    `
+        font-size: 18px;
+    `}
+`;
+
+export const Suffix = styled.p`
+  font-weight: 700;
+  font-size: 13px;
+  color: ${colors.white};
+`;
+
+export const Name = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  color: ${colors.white};
+  margin-bottom: 5px;
+
+  ${(props) =>
+    props.isFirstPlace &&
+    `
+    margin-bottom: 2px;
+  `}
+
+  ${(props) =>
+    props.isThirdPlace &&
+    `
+        margin-bottom: 3px;
+    `}
+`;
+
+export const PointsWrapper = styled.div`
+  border-radius: 24px;
+  height: 18px;
+  width: 100%;
+  background-color: ${colors.greenTertiary};
+  display: flex;
+  justify-content: center;
+  padding-top: 1px;
+  max-width: 80px;
+
+  ${(props) =>
+    props.isFirstPlace &&
+    `
+    background-color: ${colors.beigeTertiary};
+  `}
+
+  ${(props) =>
+    props.isThirdPlace &&
+    `
+        background-color: ${colors.blueTertiary};
+    `}
+`;
+
+export const PointsText = styled.p`
+  font-weight: 500;
+  font-size: 12px;
+  color: ${colors.white};
+  white-space: nowrap;
+`;
+
+export const FirstPlaceStar = styled(StarIcon)`
+  z-index: 2;
+  position: relative;
+  left: 36px;
+  top: 8px;
 `;
