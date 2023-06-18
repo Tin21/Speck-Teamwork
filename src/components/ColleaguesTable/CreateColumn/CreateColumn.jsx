@@ -38,6 +38,7 @@ const columns = [
             fontWeight: '400',
             fontSize: '14px',
             lineHeight: '16px',
+            order: '3',
           }}
         >
           Send email
@@ -47,7 +48,7 @@ const columns = [
   }),
 
   columnHelper.accessor('email', {
-    header: 'Email',
+    header: () => <ColumnHeader columnName="Email" />,
     cell: (info) => info.renderValue(),
     enableSorting: false,
   }),
