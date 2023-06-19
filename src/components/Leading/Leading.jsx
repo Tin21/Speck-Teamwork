@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import UserAvatar from '../../assets/images/user-avatar.jpg';
 import FirstPlaceFrameIcon from '../../assets/images/first-place-frameimg.png';
@@ -30,6 +30,7 @@ import {
   PointsWrapper,
   PointsText,
   FirstPlaceStar,
+  FullName,
 } from './LeadingStyle';
 
 const Leading = ({
@@ -39,7 +40,28 @@ const Leading = ({
   secondImgAlt,
   thirdImgSrc,
   thirdImgAlt,
+  firstStudent,
+  secondStudent,
+  thirdStudent,
+  firstPoints,
+  secondPoints,
+  thirdPoints,
 }) => {
+  const [firstPlaceName, setFirstPlaceName] = useState(null);
+  const [secondPlaceName, setSecondPlaceName] = useState(null);
+  const [thirdPlaceName, setThirdPlaceName] = useState(null);
+
+  useEffect(
+    () => {
+      setFirstPlaceName(firstStudent.substr(0, firstStudent.indexOf(' ')));
+      setSecondPlaceName(secondStudent.substr(0, secondStudent.indexOf(' ')));
+      setThirdPlaceName(thirdStudent.substr(0, thirdStudent.indexOf(' ')));
+    },
+    [
+      /* firstStudent, secondStudent, thirdStudent */
+    ],
+  );
+
   return (
     <LeadingWrapper>
       <LeadingTitle>Leading</LeadingTitle>
@@ -54,9 +76,10 @@ const Leading = ({
                 <Number>2</Number>
                 <Suffix>nd</Suffix>
               </NumberWrapper>
-              <Name>Dejan</Name>
+              <FullName>{thirdStudent}</FullName>
+              <Name>{secondPlaceName}</Name>
               <PointsWrapper>
-                <PointsText>279 points</PointsText>
+                <PointsText>{secondPoints} points</PointsText>
               </PointsWrapper>
             </PedestalLeftRectangle>
           </PedestalLeftShapesContainer>
@@ -74,10 +97,11 @@ const Leading = ({
                 <Number isFirstPlace>1</Number>
                 <Suffix>st</Suffix>
               </NumberWrapper>
-              <Name isFirstPlace>Marijana</Name>
+              <Name isFirstPlace>{firstPlaceName}</Name>
+              <FullName isFirstPlace>{firstStudent}</FullName>
               <FirstPlaceStar />
               <PointsWrapper isFirstPlace>
-                <PointsText>300 points</PointsText>
+                <PointsText>{firstPoints} points</PointsText>
               </PointsWrapper>
             </PedestalCenterRectangle>
           </PedestalCenterShapesContainer>
@@ -92,9 +116,10 @@ const Leading = ({
                 <Number isThirdPlace>3</Number>
                 <Suffix>rd</Suffix>
               </NumberWrapper>
-              <Name isThirdPlace>Kristijan</Name>
+              <FullName isThirdPlace>{thirdStudent}</FullName>
+              <Name isThirdPlace>{thirdPlaceName}</Name>
               <PointsWrapper isThirdPlace>
-                <PointsText>201 points</PointsText>
+                <PointsText>{thirdPoints} points</PointsText>
               </PointsWrapper>
             </PedestalRightRectangle>
           </PedestalCenterShapesContainer>
@@ -111,6 +136,12 @@ Leading.propTypes = {
   secondImgAlt: PropTypes.string,
   thirdImgSrc: PropTypes.string,
   thirdImgAlt: PropTypes.string,
+  firstStudent: PropTypes.string,
+  secondStudent: PropTypes.string,
+  thirdStudent: PropTypes.string,
+  firstPoints: PropTypes.string,
+  secondPoints: PropTypes.string,
+  thirdPoints: PropTypes.string,
 };
 
 export default Leading;

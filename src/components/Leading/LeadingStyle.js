@@ -288,6 +288,50 @@ export const Name = styled.p`
     `
         margin-bottom: 3px;
     `}
+
+  @media screen and (${breakpoints.tablet}) {
+    display: none;
+  }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    display: block;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    display: none;
+  }
+`;
+
+export const FullName = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  color: ${colors.white};
+  margin-bottom: 5px;
+  display: none;
+
+  ${(props) =>
+    props.isFirstPlace &&
+    `
+    margin-bottom: 2px;
+  `}
+
+  ${(props) =>
+    props.isThirdPlace &&
+    `
+        margin-bottom: 3px;
+    `}
+
+  @media screen and (${breakpoints.tablet}) {
+    display: block;
+  }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    display: none;
+  }
+
+  @media screen and (${breakpoints.desktop}) {
+    display: block;
+  }
 `;
 
 export const PointsWrapper = styled.div`
