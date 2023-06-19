@@ -27,7 +27,6 @@ export const LeadingWrapper = styled.div`
   @media screen and (${breakpoints.desktopSmall}) {
     height: 233px;
     margin: 0;
-    /* width: 100% - 200px; */
     width: 60%;
   }
 `;

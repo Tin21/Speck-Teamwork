@@ -50,7 +50,7 @@ export const StyledHeaderCell = styled.th`
   font-size: 16px;
   line-height: 19px;
   height: 54px;
-  width: 140px;
+  width: 145px;
   display: flex;
   align-items: center;
 
@@ -63,22 +63,18 @@ export const StyledHeaderCell = styled.th`
   }
 
   &:last-child {
-    width: 400px;
+    width: 408px;
   }
 
-  @media screen and (${breakpoints.tabletSmall}) {
-    width: 170px;
+  @media screen and (${breakpoints.desktopSmall}) {
+    width: 140px;
 
     &:nth-child(2) {
-      width: 240px;
-    }
-
-    &:nth-child(4) {
       width: 200px;
     }
 
-    &:last-child {
-      width: 426px;
+    &:nth-child(4) {
+      width: 160px;
     }
   }
 `;
@@ -132,7 +128,7 @@ export const StyledCell = styled.td`
   line-height: 150%;
   color: ${colors.textSecondary};
   overflow: hidden;
-  width: 140px;
+  width: 145px;
   display: flex;
   align-items: center;
   min-height: 50px;
@@ -147,22 +143,18 @@ export const StyledCell = styled.td`
   }
 
   &:last-child {
-    width: 400px;
+    width: 408px;
   }
 
-  @media screen and (${breakpoints.tabletSmall}) {
-    width: 170px;
+  @media screen and (${breakpoints.desktopSmall}) {
+    width: 140px;
 
     &:nth-child(2) {
-      width: 240px;
-    }
-
-    &:nth-child(4) {
       width: 200px;
     }
 
-    &:last-child {
-      width: 426px;
+    &:nth-child(4) {
+      width: 160px;
     }
   }
 `;

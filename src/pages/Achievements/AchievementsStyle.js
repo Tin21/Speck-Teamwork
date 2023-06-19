@@ -19,6 +19,7 @@ export const DesktopVersionWrapper = styled.div`
   }
 
   @media screen and (${breakpoints.desktop}) {
+    max-width: 1118px;
   }
 `;
 
@@ -26,5 +27,9 @@ export const DesktopUpperConteiner = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 32px;
-  gap: 32px;
+  gap: 24px;
+
+  @media screen and (${breakpoints.desktop}) {
+    gap: 32px;
+  }
 `;
