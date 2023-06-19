@@ -11,12 +11,30 @@ export const LeadingWrapper = styled.div`
   width: 100% - 24px;
   background-color: ${colors.bgSecondary};
   border-radius: 12px;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    padding: 8px 20px 12px 20px;
+    height: 230px;
+    max-width: 528px;
+    margin: 32px calc((100% - 528px) / 2);
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    max-width: none;
+    margin: 0 70px 32px 70px;
+  }
 `;
 
 export const LeadingTitle = styled.h2`
   font-weight: 500;
   font-size: 18px;
   margin: 16px 0 14px 12px;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    font-weight: 600;
+    font-size: 20px;
+    margin: 16px 0 14px 0;
+  }
 `;
 
 export const PedestalWrapper = styled.div`
@@ -24,6 +42,10 @@ export const PedestalWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    height: 155px;
+  }
 `;
 
 export const PedestalLeftWrapper = styled.div`
@@ -48,6 +70,10 @@ export const PedestalLeftTrapezoid = styled.div`
   border-bottom-color: ${colors.greenSecondary};
   height: 0;
   width: 100%;
+
+  @media screen and (${breakpoints.tablet}) {
+    border-left: 9vw solid transparent;
+  }
 `;
 
 export const PedestalLeftRectangle = styled.div`

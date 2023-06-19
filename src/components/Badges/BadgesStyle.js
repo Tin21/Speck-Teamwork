@@ -15,7 +15,7 @@ export const BadgesWrapper = styled.div`
   }
 
   @media screen and (${breakpoints.tablet}) {
-    margin: 32px 70px 24px 70px;
+    margin: 32px 70px 32px 70px;
     padding: 34px 34px 14px 34px;
     max-width: none;
   }

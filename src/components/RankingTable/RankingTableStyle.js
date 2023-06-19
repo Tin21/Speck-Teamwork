@@ -4,9 +4,15 @@ import { colors, breakpoints } from '../../utils/styles/theme';
 export const TableWrapper = styled.div`
   margin: 0 24px;
 
+  calc((100% - 528px) / 2);
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    margin: 0 calc((100% - 528px) / 2);;
+  }
+
   @media screen and (${breakpoints.tablet}) {
     margin: 0 70px;
-    padding: 16px 0;
+    padding-bottom: 16px;
     margin-bottom: 70px;
     border-radius: 14px;
   }
