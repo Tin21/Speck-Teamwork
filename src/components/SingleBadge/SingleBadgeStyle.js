@@ -16,7 +16,7 @@ export const BadgeIcon = styled.img`
     max-width: 76px;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     min-height: 50px;
     max-height: 50px;
     min-width: 50px;
@@ -50,7 +50,7 @@ export const BadgeTickIcon = styled(TickIcon)`
     bottom: 92px;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     min-width: 16px;
     width: 18px;
     min-height: 16px;
@@ -76,7 +76,7 @@ export const SingleBadgeTitle = styled.p`
     font-size: 18px;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     font-size: 12px;
   }
 `;

@@ -23,6 +23,13 @@ export const LeadingWrapper = styled.div`
     max-width: none;
     margin: 0 70px 32px 70px;
   }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    height: 233px;
+    margin: 0;
+    /* width: 100% - 200px; */
+    width: 60%;
+  }
 `;
 
 export const LeadingTitle = styled.h2`
@@ -35,6 +42,10 @@ export const LeadingTitle = styled.h2`
     font-size: 20px;
     margin: 16px 0 14px 0;
   }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    font-size: 18px;
+  }
 `;
 
 export const PedestalWrapper = styled.div`
@@ -45,6 +56,10 @@ export const PedestalWrapper = styled.div`
 
   @media screen and (${breakpoints.tabletSmall}) {
     height: 155px;
+  }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    height: 161px;
   }
 `;
 
@@ -73,6 +88,10 @@ export const PedestalLeftTrapezoid = styled.div`
 
   @media screen and (${breakpoints.tablet}) {
     border-left: 9vw solid transparent;
+  }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    border-left: 4vw solid transparent;
   }
 `;
 
@@ -127,6 +146,11 @@ export const PedestalCenterTrapezoid = styled.div`
   border-bottom-color: ${colors.beigeSecondary};
   height: 0;
   width: 100%;
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    border-left: 4vw solid transparent;
+    border-right: 4vw solid transparent;
+  }
 `;
 
 export const PedestalCenterRectangle = styled.div`
@@ -178,6 +202,10 @@ export const PedestalRightTrapezoid = styled.div`
   border-right: 12vw solid transparent;
   border-bottom-color: ${colors.blueSecondary};
   width: 100%;
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    border-right: 5vw solid transparent;
+  }
 `;
 
 export const PedestalRightRectangle = styled.div`

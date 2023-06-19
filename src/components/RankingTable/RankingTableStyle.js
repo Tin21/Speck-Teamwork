@@ -4,10 +4,8 @@ import { colors, breakpoints } from '../../utils/styles/theme';
 export const TableWrapper = styled.div`
   margin: 0 24px;
 
-  calc((100% - 528px) / 2);
-
   @media screen and (${breakpoints.tabletSmall}) {
-    margin: 0 calc((100% - 528px) / 2);;
+    margin: 0 calc((100% - 528px) / 2);
   }
 
   @media screen and (${breakpoints.tablet}) {
@@ -18,10 +16,9 @@ export const TableWrapper = styled.div`
   }
 
   @media screen and (${breakpoints.desktopSmall}) {
-    margin: 0 32px;
+    margin: 0;
     background-color: ${colors.bgSecondary};
     padding: 16px;
-    margin-bottom: 70px;
     border-radius: 14px;
   }
 
@@ -139,6 +136,7 @@ export const StyledCell = styled.td`
   display: flex;
   align-items: center;
   min-height: 50px;
+  white-space: nowrap;
 
   &:nth-child(2) {
     width: 200px;
