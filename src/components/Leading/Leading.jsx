@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import UserAvatar from '../../assets/images/user-avatar.jpg';
 import FirstPlaceFrameIcon from '../../assets/images/first-place-frameimg.png';
 import {
   LeadingTitle,
@@ -51,16 +50,11 @@ const Leading = ({
   const [secondPlaceName, setSecondPlaceName] = useState(null);
   const [thirdPlaceName, setThirdPlaceName] = useState(null);
 
-  useEffect(
-    () => {
-      setFirstPlaceName(firstStudent.substr(0, firstStudent.indexOf(' ')));
-      setSecondPlaceName(secondStudent.substr(0, secondStudent.indexOf(' ')));
-      setThirdPlaceName(thirdStudent.substr(0, thirdStudent.indexOf(' ')));
-    },
-    [
-      /* firstStudent, secondStudent, thirdStudent */
-    ],
-  );
+  useEffect(() => {
+    setFirstPlaceName(firstStudent.substr(0, firstStudent.indexOf(' ')));
+    setSecondPlaceName(secondStudent.substr(0, secondStudent.indexOf(' ')));
+    setThirdPlaceName(thirdStudent.substr(0, thirdStudent.indexOf(' ')));
+  }, []);
 
   return (
     <LeadingWrapper>

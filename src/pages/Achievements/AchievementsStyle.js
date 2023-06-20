@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { colors, breakpoints } from '../../utils/styles/theme';
+import { breakpoints } from '../../utils/styles/theme';
 
 export const MobileAndTabletVersionWrapper = styled.div`
   @media screen and (${breakpoints.desktopSmall}) {
-    visibility: hidden;
+    visibility: collapse; //koristim ovo jer display: none corrupta svgove, a visibility: hidden rezultira praznim prostorom na dnu stranice
     max-height: 0;
     max-width: 0;
   }

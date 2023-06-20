@@ -142,15 +142,13 @@ export const HeaderText = styled.p`
 export const LeftContainer = styled.div`
   @media screen and (${breakpoints.desktopSmall}) {
     display: flex;
-    position: sticky;
-    bottom: 0;
+    position: relative;
+    min-height: 100%;
   }
 `;
 
 export const RightContainer = styled.div`
   width: 100%;
-  /* position: sticky;
-  bottom: 0; */
 `;
 
 export const Menu = styled.div`
@@ -161,7 +159,7 @@ export const Menu = styled.div`
     left: 0;
     top: 0;
     width: 242px;
-    height: 100%;
+    min-height: 100%;
     background-color: ${colors.bgSecondary};
     border-right: 2px solid ${colors.border};
   }
