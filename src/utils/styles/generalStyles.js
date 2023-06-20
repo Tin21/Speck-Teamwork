@@ -5,6 +5,7 @@ import {
   Form as FormFormik,
   ErrorMessage as ErrorMessageFormik,
 } from 'formik';
+import { Link } from 'react-router-dom';
 
 //GRID
 export const Grid = styled.div`
@@ -109,15 +110,18 @@ export const InputField = styled(FieldFormik)`
       ? `2px solid ${colors.redPrimary}`
       : `1px solid ${colors.avatarBorder}`};
 
+  @media screen and (${breakpoints.mobileLarge}) {
+    height: 48px;
+  }
+
   @media screen and (${breakpoints.desktop}) {
+    padding: 16px 24px;
+    height: 56px;
   }
 
   @media screen and (${breakpoints.tablet}) {
     padding: 16px 24px;
-  }
-
-  @media screen and (${breakpoints.desktop}) {
-    padding: 16px 24px;
+    height: 56px;
   }
 `;
 
@@ -155,4 +159,15 @@ export const ErrorMessage = styled(ErrorMessageFormik)`
   font-size: 14px;
   color: ${colors.redPrimary};
   padding-top: 6px;
+`;
+
+export const StyledLink = styled(Link)`
+  color: ${colors.textLink};
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+  line-height: 17px;
+  float: right;
+  margin-bottom: 48px;
+  margin-top: 8px;
 `;
