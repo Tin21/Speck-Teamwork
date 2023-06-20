@@ -29,6 +29,14 @@ export const HeaderInner = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  @media screen and (${breakpoints.tabletSmall}) {
+    ${(props) =>
+      props.isAchievements &&
+      `
+      padding: 0 calc((100% - 524px) / 2);
+  `}
+  }
+
   @media screen and (${breakpoints.tablet}) {
     padding: 0 70px;
   }

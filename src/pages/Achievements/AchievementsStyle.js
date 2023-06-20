@@ -15,11 +15,12 @@ export const DesktopVersionWrapper = styled.div`
   @media screen and (${breakpoints.desktopSmall}) {
     max-width: calc(100vw - 322px);
     display: block;
-    margin: 32px 40px;
+    margin: 32px;
   }
 
   @media screen and (${breakpoints.desktop}) {
     max-width: 1118px;
+    margin-left: 48px;
   }
 `;
 
