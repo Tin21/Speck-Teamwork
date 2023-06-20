@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginSection from '../../components/LoginSection/LoginSection';
+import * as Yup from 'yup';
 
 import {
   InputField,
@@ -8,9 +9,11 @@ import {
   FieldLabelWrapper,
   FormRow,
   Button,
+  StyledLink,
+  ErrorMessage,
 } from '../../utils/styles/generalStyles';
 
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 
 import loginImage from '../../assets/images/login-image.jpg';
 
@@ -22,7 +25,16 @@ const Login = () => {
       logo_text="Learning Academy"
       login_image={loginImage}
     >
-      <Formik initialValues={{}} onSubmit={(values, actions) => {}}>
+      <Formik
+        initialValues={{}}
+        validationSchema={Yup.object({
+          email: Yup.string()
+            .email('Email is invalid!')
+            .required('Email is required!'),
+          password: Yup.string().required('Password is required!'),
+        })}
+        onSubmit={(values, actions) => {}}
+      >
         {(formik) => (
           <>
             <FormRow>
@@ -33,12 +45,12 @@ const Login = () => {
               <InputField
                 placeholder="Enter your email..."
                 type="text"
-                id="mail"
-                name="mail"
+                id="email"
+                name="email"
                 disabled={formik.isSubmitting}
                 error={formik.errors.mail && formik.touched.mail}
               />
-              <ErrorMessage name="email" />
+              <ErrorMessage component={'div'} name="email" />
             </FormRow>
             <FormRow>
               <FieldLabelWrapper>
@@ -47,13 +59,14 @@ const Login = () => {
               </FieldLabelWrapper>
               <InputField
                 placeholder="Enter your password..."
-                type="passowrd"
+                type="password"
                 id="password"
                 name="password"
                 disabled={formik.isSubmitting}
                 error={formik.errors.password && formik.touched.password}
               />
-              <ErrorMessage name="password" />
+              <ErrorMessage component={'div'} name="password" />
+              <StyledLink>Forgot your password?</StyledLink>
             </FormRow>
             <FormRow>
               <Button type="submit" disabled={formik.isSubmitting}>
