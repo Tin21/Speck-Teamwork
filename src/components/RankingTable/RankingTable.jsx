@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { rankingData } from '../../utils/mock/rankingData';
 import {
   StyledCell,
@@ -20,13 +20,43 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import columns from './Column/Column';
-import TableFooter from '../TableFooter/TableFooter';
 import TableHeader from '../TableHeader/TableHeader';
+import TableFooter from '../TableFooter/TableFooter';
 import { entriesSmall } from '../../utils/mock/entriesSmall';
+import { getUsers } from '../../api/users';
 
 const RankingTable = () => {
   const [data, setData] = useState(() => [...rankingData]);
   const [sorting, setSorting] = useState();
+
+  const getTableData = async () => {
+    const loggedUser = localStorage.getItem('jwt_token');
+    const users = await getUsers(loggedUser);
+    console.log(loggedUser);
+    users.data.map((user) => {
+      //dodaje svakom useru ukupne bodove i postotak bodova
+      var pointsUser = 0;
+      user.user_lecture_criteria.map((lecturePoints) => {
+        pointsUser += lecturePoints.points;
+      });
+      user.pointsUser = pointsUser;
+      var percentage = Math.round((pointsUser / 219) * 100);
+      user.percentage = `${percentage} %`;
+    });
+    console.log(users.data);
+    users.data.sort((a, b) => b.pointsUser - a.pointsUser);
+    var rank = 1;
+    users.data.map((user) => {
+      //dodaje svakom useru ranking
+      user.ranking = rank;
+      rank++;
+    });
+    setData(users.data);
+  };
+
+  useEffect(() => {
+    getTableData();
+  }, []);
 
   const table = useReactTable({
     data,
@@ -71,8 +101,7 @@ const RankingTable = () => {
                             ? 'cursor-pointer select-none'
                             : ''
                         }
-                        onClick={header.column.getToggleSortingHandler()}
-                      >
+                        onClick={header.column.getToggleSortingHandler()}>
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext(),
