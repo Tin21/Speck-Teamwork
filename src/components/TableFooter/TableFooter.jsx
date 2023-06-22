@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import TablePageCounter from '../PageCounter/PageCounter';
+import TablePageCounter from '../TablePageCounter/TablePageCounter';
 import TablePagination from '../TablePagination/TablePagination';
 import { FooterWrapper } from './TableFooterStyle';
 

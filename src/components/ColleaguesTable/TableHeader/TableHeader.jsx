@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
 
-import HeaderEntriesDropdown from '../HeaderEntriesDropdown/HeaderEntriesDropdown';
-import HeaderSearch from '../HeaderSearch/HeaderSearch';
+import TableHeaderEntriesDropdown from '../../TableHeaderEntriesDropdown/TableHeaderEntriesDropdown';
+import TableHeaderSearch from '../../TableHeaderSearch/TableHeaderSearch';
 import { TableHeaderWrapper } from './TableHeaderStyle';
+import { colleaguesData } from '../../../utils/mock/colleaguesTest';
+import { entriesLarge } from '../../../utils/mock/entriesLarge';
 
 const TableHeader = ({ table, setData }) => {
   return (
     <TableHeaderWrapper>
-      <HeaderEntriesDropdown table={table} />
-      <HeaderSearch setData={setData} />
+      <TableHeaderEntriesDropdown table={table} entriesList={entriesLarge} />
+      <TableHeaderSearch
+        setData={setData}
+        dataList={colleaguesData}
+        placeholderText={'Search name, email or year'}
+      />
     </TableHeaderWrapper>
   );
 };

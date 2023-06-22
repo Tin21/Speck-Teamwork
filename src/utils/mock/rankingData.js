@@ -12,7 +12,8 @@ import BadgeTimeSilver from '../../assets/images/badges/badge-time-icon-silver.s
 export const rankingData = [
   {
     id: 1,
-    name: 'Adrijano Tubak',
+    firstName: 'Adrijano',
+    lastName: ' Tubak',
     points: 145,
     percentage: '90%',
     badges: [
@@ -52,7 +53,8 @@ export const rankingData = [
   },
   {
     id: 2,
-    name: 'Anton Majstorka',
+    firstName: 'Anton',
+    lastName: 'Majstorka',
     points: 141,
     percentage: '88%',
     badges: [
@@ -88,7 +90,8 @@ export const rankingData = [
   },
   {
     id: 3,
-    name: 'Dejan Soldo',
+    firstName: 'Dejan',
+    lastName: 'Soldo',
     points: 132,
     percentage: '85%',
     badges: [
@@ -124,7 +127,8 @@ export const rankingData = [
   },
   {
     id: 4,
-    name: 'Gabrijela Leskovac',
+    firstName: 'Gabrijela',
+    lastName: 'Leskovac',
     points: 130,
     percentage: '79%',
     badges: [
@@ -156,7 +160,8 @@ export const rankingData = [
   },
   {
     id: 5,
-    name: 'Rafael Bodrušić',
+    firstName: 'Rafael',
+    lastName: 'Bodrušić',
     points: 123,
     percentage: '77%',
     badges: [
@@ -188,7 +193,7 @@ export const rankingData = [
   },
   {
     id: 6,
-    name: 'Ivan Horvat',
+    firstName: 'Ivan',
     points: 120,
     percentage: '75%',
     badges: [
@@ -220,7 +225,8 @@ export const rankingData = [
   },
   {
     id: 7,
-    name: 'Marija Horvat',
+    firstName: 'Marija',
+    lastName: 'Horvat',
     points: 118,
     percentage: '74%',
     badges: [
@@ -252,7 +258,8 @@ export const rankingData = [
   },
   {
     id: 8,
-    name: 'Hrvoje Horvat',
+    firstName: 'Hrvoje',
+
     points: 115,
     percentage: '72%',
     badges: [
@@ -280,7 +287,8 @@ export const rankingData = [
   },
   {
     id: 9,
-    name: 'Adrijano Tubak',
+    firstName: 'Adrijano',
+    lastName: 'Horvat',
     points: 145,
     percentage: '90%',
     badges: [
@@ -308,7 +316,8 @@ export const rankingData = [
   },
   {
     id: 10,
-    name: 'Anton Majstorka',
+    firstName: 'Anton',
+    lastName: 'Horvat',
     points: 141,
     percentage: '88%',
     badges: [
@@ -336,7 +345,8 @@ export const rankingData = [
   },
   {
     id: 11,
-    name: 'Dejan Soldo',
+    firstName: 'Dejan',
+    lastName: 'Horvat',
     points: 132,
     percentage: '85%',
     badges: [
@@ -360,7 +370,8 @@ export const rankingData = [
   },
   {
     id: 12,
-    name: 'Gabrijela Leskovac',
+    firstName: 'Gabrijela',
+    lastName: 'Horvat',
     points: 130,
     percentage: '79%',
     badges: [
@@ -384,7 +395,8 @@ export const rankingData = [
   },
   {
     id: 13,
-    name: 'Rafael Bodrušić',
+    firstName: 'Rafael',
+    lastName: 'Horvat',
     points: 123,
     percentage: '77%',
     badges: [
@@ -404,7 +416,8 @@ export const rankingData = [
   },
   {
     id: 14,
-    name: 'Ivan Horvat',
+    firstName: 'Ivan',
+    lastName: 'Horvat',
     points: 120,
     percentage: '75%',
     badges: [
@@ -424,7 +437,8 @@ export const rankingData = [
   },
   {
     id: 15,
-    name: 'Marija Horvat',
+    firstName: 'Marija',
+    lastName: 'Horvat',
     points: 118,
     percentage: '74%',
     badges: [
@@ -444,7 +458,8 @@ export const rankingData = [
   },
   {
     id: 16,
-    name: 'Adrijano Tubak',
+    firstName: 'Adrijano',
+    lastName: 'Horvat',
     points: 145,
     percentage: '90%',
     badges: [
@@ -464,7 +479,8 @@ export const rankingData = [
   },
   {
     id: 17,
-    name: 'Anton Majstorka',
+    firstName: 'Anton',
+    lastName: 'Horvat',
     points: 141,
     percentage: '88%',
     badges: [
@@ -484,7 +500,8 @@ export const rankingData = [
   },
   {
     id: 18,
-    name: 'Dejan Soldo',
+    firstName: 'Dejan',
+    lastName: 'Horvat',
     points: 132,
     percentage: '85%',
     badges: [
@@ -504,7 +521,8 @@ export const rankingData = [
   },
   {
     id: 19,
-    name: 'Gabrijela Leskovac',
+    firstName: 'Gabrijela',
+    lastName: 'Horvat',
     points: 130,
     percentage: '79%',
     badges: [
@@ -524,7 +542,8 @@ export const rankingData = [
   },
   {
     id: 20,
-    name: 'Rafael Bodrušić',
+    firstName: 'Rafael',
+    lastName: 'Horvat',
     points: 123,
     percentage: '77%',
     badges: [
@@ -544,7 +563,8 @@ export const rankingData = [
   },
   {
     id: 21,
-    name: 'Ivan Horvat',
+    firstName: 'Ivan',
+    lastName: 'Horvat',
     points: 120,
     percentage: '75%',
     badges: [
@@ -564,7 +584,8 @@ export const rankingData = [
   },
   {
     id: 22,
-    name: 'Marija Horvat',
+    firstName: 'Marija',
+    lastName: 'Horvat',
     points: 118,
     percentage: '74%',
     badges: [
@@ -584,7 +605,8 @@ export const rankingData = [
   },
   {
     id: 23,
-    name: 'Hrvoje Horvat',
+    firstName: 'Hrvoje',
+    lastName: 'Horvat',
     points: 115,
     percentage: '72%',
     badges: [
@@ -604,7 +626,8 @@ export const rankingData = [
   },
   {
     id: 24,
-    name: 'Adrijano Tubak',
+    firstName: 'Adrijano',
+    lastName: 'Horvat',
     points: 145,
     percentage: '90%',
     badges: [
@@ -624,7 +647,8 @@ export const rankingData = [
   },
   {
     id: 25,
-    name: 'Anton Majstorka',
+    firstName: 'Anton',
+    lastName: 'Horvat',
     points: 141,
     percentage: '88%',
     badges: [
@@ -644,7 +668,8 @@ export const rankingData = [
   },
   {
     id: 26,
-    name: 'Dejan Soldo',
+    firstName: 'Dejan',
+    lastName: 'Horvat',
     points: 132,
     percentage: '85%',
     badges: [
@@ -664,7 +689,8 @@ export const rankingData = [
   },
   {
     id: 27,
-    name: 'Gabrijela Leskovac',
+    firstName: 'Gabrijela',
+    lastName: 'Horvat',
     points: 130,
     percentage: '79%',
     badges: [
@@ -684,7 +710,8 @@ export const rankingData = [
   },
   {
     id: 28,
-    name: 'Rafael Bodrušić',
+    firstName: 'Rafael',
+    lastName: 'Horvat',
     points: 123,
     percentage: '77%',
     badges: [
@@ -704,7 +731,8 @@ export const rankingData = [
   },
   {
     id: 29,
-    name: 'Ivan Horvat',
+    firstName: 'Ivan',
+    lastName: 'Horvat',
     points: 120,
     percentage: '75%',
     badges: [
@@ -724,7 +752,8 @@ export const rankingData = [
   },
   {
     id: 30,
-    name: 'Marija Horvat',
+    firstName: 'Marija',
+    lastName: 'Horvat',
     points: 118,
     percentage: '74%',
     badges: [
@@ -744,7 +773,8 @@ export const rankingData = [
   },
   {
     id: 31,
-    name: 'Ivan Horvat',
+    firstName: 'Ivan',
+    lastName: 'Horvat',
     points: 120,
     percentage: '75%',
     badges: [
@@ -764,7 +794,8 @@ export const rankingData = [
   },
   {
     id: 32,
-    name: 'Marija Horvat',
+    firstName: 'Marija',
+    lastName: 'Horvat',
     points: 118,
     percentage: '74%',
     badges: [

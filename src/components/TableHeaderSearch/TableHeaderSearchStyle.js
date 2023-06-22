@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../../utils/styles/theme';
+import { colors } from '../../utils/styles/theme';
 
 export const SearchBarWrapper = styled.div`
   display: flex;

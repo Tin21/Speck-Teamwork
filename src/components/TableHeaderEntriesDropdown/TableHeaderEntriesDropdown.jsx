@@ -4,9 +4,9 @@ import {
   HeaderEntriesText,
   HeaderEntriesWrapper,
   HeaderSelect,
-} from './HeaderEntriesDropdownStyle';
+} from './TableHeaderEntriesDropdownStyle';
 
-const HeaderEntriesDropdown = ({ table }) => {
+const TableHeaderEntriesDropdown = ({ table, entriesList }) => {
   return (
     <HeaderEntriesWrapper>
       <HeaderEntriesText>Show</HeaderEntriesText>
@@ -16,7 +16,7 @@ const HeaderEntriesDropdown = ({ table }) => {
           table.setPageSize(Number(e.target.value));
         }}
       >
-        {[12, 24, 36, 48, 60].map((pageSize) => (
+        {entriesList.map((pageSize) => (
           <option key={pageSize} value={pageSize}>
             {pageSize}
           </option>
@@ -27,4 +27,4 @@ const HeaderEntriesDropdown = ({ table }) => {
   );
 };
 
-export default HeaderEntriesDropdown;
+export default TableHeaderEntriesDropdown;
