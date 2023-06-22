@@ -22,8 +22,23 @@ export const EmailHeader = styled.div`
   border-radius: 8px 8px 0px 0px;
   width: 100%;
   color: ${colors.white};
-  align-items: center;
   padding: 12px 16px;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const EmailHeaderText = styled.p`
+  font-size: 14px;
+  font-family: Inter;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: -0.14px;
+  color: ${colors.white};
+`;
+
+export const MinCloseWrapper = styled.div`
+  display: flex;
+  gap: 16px;
 `;
 
 export const EmailBody = styled.div`
