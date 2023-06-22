@@ -10,7 +10,7 @@ export const BadgesWrapper = styled.div`
   padding: 24px 20px 6px 20px;
 
   @media screen and (${breakpoints.tabletSmall}) {
-    max-width: 528px; /* !! uskladiti s ostalim komponentama na pageu !! */
+    max-width: 528px;
     margin: 32px calc((100% - 528px) / 2);
   }
 
@@ -21,12 +21,10 @@ export const BadgesWrapper = styled.div`
   }
 
   @media screen and (${breakpoints.desktopSmall}) {
-    /* margin: 32px 40px 32px 32px; */
     margin: 0;
     padding: 24px 24px 6px 24px;
     min-width: 390px;
     width: 40%;
-    /* width: 430px;  !! vratiti na max-content nakon dodavanja ostalih komponenti achievements pagea !! */
   }
 `;
 
@@ -37,7 +35,7 @@ export const BadgesTitle = styled.h2`
   color: ${colors.textPrimaryGrey};
 
   @media screen and (${breakpoints.tabletSmall}) {
-    font-weight: 600; /* !! uskladiti s ostalim komponentama na pageu !! */
+    font-weight: 600;
     font-size: 20px;
     margin-left: 6px;
   }

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../../utils/styles/theme';
 
 export const ColumnBody = styled.div`
   ${(props) =>
@@ -7,7 +6,4 @@ export const ColumnBody = styled.div`
     `
         margin-left: 26px;
     `}
-
-  @media screen and (${breakpoints.desktopSmall}) {
-  }
 `;
