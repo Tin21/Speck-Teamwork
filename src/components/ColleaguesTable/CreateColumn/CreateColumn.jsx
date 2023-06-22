@@ -1,6 +1,8 @@
 import { createColumnHelper } from '@tanstack/table-core';
 import { ColumnHeader } from '../ColumnHeader/ColumnHeader';
 import { Button } from '../../../utils/styles/generalStyles';
+import Email from '../../Email/Email';
+import { useState } from 'react';
 
 const columnHelper = createColumnHelper();
 
@@ -21,28 +23,37 @@ const columns = [
     id: 'actions',
     header: 'Action',
     enableSorting: false,
-    cell: (info) => {
-      const mailTo = () => {
-        window.open(`mailto:${info.getValue()}`, '_blank');
+    cell: () => {
+      const [isPopupOpen, setPopupOpen] = useState(false);
+
+      const handleClickOpenPop = () => {
+        setPopupOpen(!isPopupOpen);
+      };
+
+      const handleClosePopup = () => {
+        setPopupOpen(false);
       };
 
       return (
-        <Button
-          isSecondary
-          onClick={mailTo}
-          style={{
-            padding: '6px 10px',
-            width: 'auto',
-            fontFamily: 'Roboto',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            fontSize: '14px',
-            lineHeight: '16px',
-            order: '3',
-          }}
-        >
-          Send email
-        </Button>
+        <>
+          <Button
+            isSecondary
+            onClick={handleClickOpenPop}
+            style={{
+              padding: '6px 10px',
+              width: 'auto',
+              fontFamily: 'Roboto',
+              fontStyle: 'normal',
+              fontWeight: '400',
+              fontSize: '14px',
+              lineHeight: '16px',
+              order: '3',
+            }}
+          >
+            Send email
+          </Button>
+          {isPopupOpen && <Email onClose={handleClosePopup} />}
+        </>
       );
     },
   }),
