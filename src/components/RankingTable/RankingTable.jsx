@@ -21,8 +21,7 @@ import {
 } from '@tanstack/react-table';
 import columns from './Column/Column';
 import Header from './RankingTableHeader/Header';
-import Footer from './Footer/Footer';
-
+import TableFooter from '../TableFooter/TableFooter';
 const RankingTable = () => {
   const [data, setData] = useState(() => [...rankingData]);
   const [sorting, setSorting] = useState();
@@ -95,7 +94,7 @@ const RankingTable = () => {
             ))}
           </TableBody>
         </StyledTable>
-        <Footer table={table} />
+        <TableFooter table={table} />
       </TableContainer>
     </TableWrapper>
   );

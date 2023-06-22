@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { colors, breakpoints } from '../../../utils/styles/theme';
-import { ReactComponent as PageLeftIcon } from '../../../assets/images/page-left-icon.svg';
-import { ReactComponent as PageRightIcon } from '../../../assets/images/page-right-icon.svg';
+import { colors, breakpoints } from '../../utils/styles/theme';
+import { ReactComponent as PageLeftIcon } from '../../assets/images/page-left-icon.svg';
+import { ReactComponent as PageRightIcon } from '../../assets/images/page-right-icon.svg';
 
 export const PaginationWrapper = styled.div`
   padding: 8px;

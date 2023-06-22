@@ -18,8 +18,8 @@ import {
   TableContainer,
 } from './ColleaguesTableStyle';
 import columns from './CreateColumn/CreateColumn';
-import TableFooter from './TableFooter/TableFooter';
 import TableHeader from './TableHeader/TableHeader';
+import TableFooter from '../TableFooter/TableFooter';
 
 function ColleaguesTable() {
   const [data, setData] = useState(() => [...colleaguesData]);
