@@ -1,66 +1,189 @@
 import styled from 'styled-components';
-import { colors } from '../../utils/styles/theme';
+import { breakpoints, colors } from '../../utils/styles/theme';
 
 export const TableContainer = styled.div`
-  padding: 20px;
-  overflow-x: auto;
-  /* width: 100%; */
-`;
+  overflow: auto;
+  width: 100%;
 
-export const Test = styled.div`
-  padding: 24px;
+  @media screen and (${breakpoints.tablet}) {
+    background-color: ${colors.white};
+    border-radius: 10px;
+  }
+  @media screen and (${breakpoints.tablet}) {
+    padding: 16px 16px 24px 16px;
+  }
+  @media screen and (${breakpoints.desktop}) {
+    width: 1120px;
+  }
 `;
 
 export const StyledTable = styled.table`
+  display: block;
+  overflow-x: auto;
+  table-layout: fixed;
   font-family: sans-serif;
-  border-collapse: collapse;
-  margin: 25px;
+  margin: 24px 0;
   background-color: #fff;
   border-radius: 10px;
-  table-layout: fixed;
+  border-spacing: 0;
+  border: 1px solid #ccc;
+  max-width: fit-content;
+  /* width: max-content; */
+
+  @media screen and (${breakpoints.desktop}) {
+    width: 100%;
+  }
 `;
+
+export const HeaderTable = styled.thead`
+  background-color: #f9f9f9;
+`;
+
 export const StyledHeaderCell = styled.th`
   font-family: 'Inter';
+  text-align: left;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   height: 54px;
-  /* width: 111px; */
+  width: 101px;
   display: flex;
   align-items: center;
+  justify-content: center;
   color: ${colors.textSecondaryGrey};
+
+  &:nth-child(4) {
+    padding-right: 40px;
+    width: 180px;
+  }
+  &:nth-child(5) {
+    width: 130px;
+    padding-left: 100px;
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    justify-content: flex-start;
+    width: 180px;
+
+    &:nth-child(3) {
+      width: 120px;
+      padding-left: 16px;
+    }
+    &:nth-child(4) {
+      padding-left: 0;
+    }
+    &:nth-child(5) {
+      padding-left: 64px;
+    }
+  }
+  @media screen and (${breakpoints.desktopSmall}) {
+    width: 280px;
+
+    &:nth-child(3) {
+      order: 5;
+      padding-left: 10px;
+    }
+    &:nth-child(4) {
+      width: 275px;
+      padding-left: 5px;
+    }
+    &:nth-child(5) {
+      padding-left: 12px;
+      width: 120px;
+    }
+  }
+  @media screen and (${breakpoints.desktopSmall}) {
+    &:nth-child(5) {
+      padding-left: 30px;
+    }
+  }
+  @media screen and (${breakpoints.desktop}) {
+    &:nth-child(5) {
+      padding-left: 26px;
+    }
+  }
 `;
 
 export const StyledHeaderRow = styled.tr`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-left: 24px;
+  padding-left: 10px;
   border-bottom: 1px solid #ccc;
 `;
+
+export const BodyTable = styled.tbody``;
 
 export const StyledRow = styled.tr`
   border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 20.5px;
+  padding-left: 28.5px;
 
   &:last-child {
     border-bottom: none;
   }
+
+  @media screen and (${breakpoints.tablet}) {
+    padding-left: 16px;
+  }
 `;
 
 export const StyledCell = styled.td`
-  padding: 14px 10px;
+  padding: 10px 0;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
   color: ${colors.textSecondary};
-  padding: 14.5px 8px;
-  /* width: 150px; */
-  overflow: hidden;
+  width: 102px;
+
+  &:nth-child(3) {
+    width: 124px;
+  }
+
+  &:nth-child(4) {
+    width: 234px;
+  }
+
+  @media screen and (${breakpoints.tablet}) {
+    width: 180px;
+
+    &:nth-child(5) {
+      width: 100px;
+    }
+  }
+
+  @media screen and (${breakpoints.desktopSmall}) {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    width: 270px;
+
+    &:nth-child(2) {
+      width: 265px;
+    }
+    &:nth-child(3) {
+      order: 5;
+    }
+    &:nth-child(4) {
+      width: 245px;
+    }
+    &:nth-child(5) {
+      padding-left: 30px;
+    }
+  }
+  @media screen and (${breakpoints.desktop}) {
+    &:nth-child(4) {
+      width: 250px;
+    }
+    &:nth-child(5) {
+      padding-left: 25px;
+    }
+  }
 `;

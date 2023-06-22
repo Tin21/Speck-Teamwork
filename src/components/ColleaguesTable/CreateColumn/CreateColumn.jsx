@@ -8,7 +8,6 @@ const columns = [
   columnHelper.accessor('firstName', {
     cell: (info) => info.getValue(),
     header: () => <ColumnHeader columnName="First Name" />,
-    size: 50,
     // footer: (info) => info.column.id,
   }),
 
@@ -18,31 +17,46 @@ const columns = [
     header: () => <ColumnHeader columnName="Last Name" />,
   }),
 
-  columnHelper.accessor('email', {
-    header: 'Email',
-    cell: (info) => info.renderValue(),
-    size: 200,
-  }),
-
-  columnHelper.accessor('year', {
-    header: 'Year',
-    cell: (info) => info.renderValue(),
-  }),
-
   columnHelper.accessor((row) => row.email, {
     id: 'actions',
-    header: 'Actions',
+    header: 'Action',
+    enableSorting: false,
     cell: (info) => {
       const mailTo = () => {
         window.open(`mailto:${info.getValue()}`, '_blank');
       };
 
       return (
-        <Button isSecondary onClick={mailTo}>
+        <Button
+          isSecondary
+          onClick={mailTo}
+          style={{
+            padding: '6px 10px',
+            width: 'auto',
+            fontFamily: 'Roboto',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            fontSize: '14px',
+            lineHeight: '16px',
+            order: '3',
+          }}
+        >
           Send email
         </Button>
       );
     },
+  }),
+
+  columnHelper.accessor('email', {
+    header: () => <ColumnHeader columnName="Email" />,
+    cell: (info) => info.renderValue(),
+    enableSorting: false,
+  }),
+
+  columnHelper.accessor('year', {
+    header: 'Year',
+    cell: (info) => info.renderValue(),
+    enableSorting: false,
   }),
 ];
 
