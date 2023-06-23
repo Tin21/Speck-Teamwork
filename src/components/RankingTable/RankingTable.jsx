@@ -71,7 +71,7 @@ const RankingTable = () => {
       user.examPoints = lecturePoints[3];
       user.attendancePoints = lecturePoints[4];
 
-      var badges = [];
+      var badges = []; //moguce da se ne vide badgevi u tablici, ali to je trenutno realno stanje podataka sa starog apia
       if (user.quizPoints / 44 >= 0.7)
         badges.push({ id: 1, src: BadgeQuizSilver });
       if (user.homeworkPoints / 90 >= 0.7)
