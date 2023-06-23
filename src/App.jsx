@@ -10,24 +10,27 @@ import Lectures from './pages/Lectures/Lectures';
 import Colleagues from './pages/Colleauges/Colleauges';
 import Layout from './components/Layout/Layout';
 import UserAvatar from './assets/images/user-avatar.jpg';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path={'/'}
-        element={<Layout imgSrc={UserAvatar} imgAlt={'User avatar'} />}
-      >
-        <Route path={'/profile'} element={<ProfilePage />} />
-        <Route path={'/achievements'} element={<Achievements />} />
+    <AuthProvider>
+      <Routes>
         <Route path={'/login'} element={<Login />} />
-        <Route path={'/my-results'} element={<MyResults />} />
-        <Route path={'/reset'} element={<Reset />} />
-        <Route path={'/colleauges'} element={<Colleagues />} />
-        <Route path={'/lectures'} element={<Lectures />} />
-        <Route path={'/lectures/:id'} element={<LectureDetails />} />
-      </Route>
-    </Routes>
+        <Route
+          path={'/'}
+          element={<Layout imgSrc={UserAvatar} imgAlt={'User avatar'} />}
+        >
+          <Route path={'/profile'} element={<ProfilePage />} />
+          <Route path={'/achievements'} element={<Achievements />} />
+          <Route path={'/my-results'} element={<MyResults />} />
+          <Route path={'/reset'} element={<Reset />} />
+          <Route path={'/colleauges'} element={<Colleagues />} />
+          <Route path={'/lectures'} element={<Lectures />} />
+          <Route path={'/lectures/:id'} element={<LectureDetails />} />
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
 

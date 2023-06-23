@@ -11,6 +11,7 @@ import {
   LoginRightContainer,
   LoginImage,
 } from './LoginSectionStyle';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const LoginSection = ({
@@ -25,7 +26,9 @@ const LoginSection = ({
       <LoginLeftContainer>
         <LoginSectionInner>
           <LoginLogoWrapper>
-            <LoginSpeckLogo></LoginSpeckLogo>
+            <Link to="/login">
+              <LoginSpeckLogo></LoginSpeckLogo>
+            </Link>
             <LoginLogoText>{logo_text}</LoginLogoText>
           </LoginLogoWrapper>
           <LoginSectionTitle>{title}</LoginSectionTitle>
