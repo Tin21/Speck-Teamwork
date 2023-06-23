@@ -17,9 +17,12 @@ const TableHeaderSearch = ({
         const lowerCasedValue = value.toLowerCase();
         return byRankIsTrue
           ? item.id.toString().includes(lowerCasedValue) ||
-              item.firstName.toString().includes(lowerCasedValue)
-          : //  ||              item.lastName.toLowerCase().includes(lowerCasedValue)
-            item.firstName.toLowerCase().includes(lowerCasedValue) ||
+              item.firstName
+                .toString()
+                .toLowerCase()
+                .includes(lowerCasedValue) ||
+              item.lastName.toString().toLowerCase().includes(lowerCasedValue)
+          : item.firstName.toLowerCase().includes(lowerCasedValue) ||
               item.lastName.toLowerCase().includes(lowerCasedValue) ||
               item.email.toLowerCase().includes(lowerCasedValue) ||
               item.year.toString().includes(lowerCasedValue);

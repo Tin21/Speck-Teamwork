@@ -11,8 +11,12 @@ const columns = [
     enableSorting: false,
   }),
 
-  columnHelper.accessor('firstName', {
-    cell: (info) => <ColumnBody isName>{info.getValue()}</ColumnBody>,
+  columnHelper.accessor('fullName', {
+    cell: (info) => {
+      const { firstName, lastName } = info.row.original;
+      const fullName = `${firstName} ${lastName}`;
+      return <ColumnBody isName>{fullName}</ColumnBody>;
+    },
     header: () => <ColumnHeader asdDesc={true} columnName="Student" />,
   }),
 

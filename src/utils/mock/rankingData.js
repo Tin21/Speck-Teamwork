@@ -194,6 +194,7 @@ export const rankingData = [
   {
     id: 6,
     firstName: 'Ivan',
+    lastName: 'Bodrušić',
     points: 120,
     percentage: '75%',
     badges: [
@@ -259,7 +260,7 @@ export const rankingData = [
   {
     id: 8,
     firstName: 'Hrvoje',
-
+    lastName: 'Bodrušić',
     points: 115,
     percentage: '72%',
     badges: [
