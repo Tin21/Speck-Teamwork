@@ -8,7 +8,6 @@ const columns = [
   columnHelper.accessor('firstName', {
     cell: (info) => info.getValue(),
     header: () => <ColumnHeader columnName="First Name" />,
-    // footer: (info) => info.column.id,
   }),
 
   columnHelper.accessor((row) => row.lastName, {
@@ -50,7 +49,6 @@ const columns = [
   columnHelper.accessor('email', {
     header: () => <ColumnHeader columnName="Email" />,
     cell: (info) => info.renderValue(),
-    enableSorting: false,
   }),
 
   columnHelper.accessor('year', {

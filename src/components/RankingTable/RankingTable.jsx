@@ -8,9 +8,9 @@ import {
   StyledTable,
   TableContainer,
   TableWrapper,
-  TableHeader,
   TableBody,
   HeaderCellContent,
+  HeaderTable,
 } from './RankingTableStyle';
 import {
   flexRender,
@@ -20,8 +20,10 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import columns from './Column/Column';
-import Header from './RankingTableHeader/Header';
 import TableFooter from '../TableFooter/TableFooter';
+import TableHeader from '../TableHeader/TableHeader';
+import { entriesSmall } from '../../utils/mock/entriesSmall';
+
 const RankingTable = () => {
   const [data, setData] = useState(() => [...rankingData]);
   const [sorting, setSorting] = useState();
@@ -48,9 +50,16 @@ const RankingTable = () => {
   return (
     <TableWrapper>
       <TableContainer>
-        <Header table={table} setData={setData}></Header>
+        <TableHeader
+          table={table}
+          setData={setData}
+          dataList={rankingData}
+          placeholderText={'Search name or ranking'}
+          byRankIsTrue={true}
+          entriesList={entriesSmall}
+        />
         <StyledTable>
-          <TableHeader>
+          <HeaderTable>
             {table.getHeaderGroups().map((headerGroup, index) => (
               <StyledHeaderRow key={index}>
                 {headerGroup.headers.map((header) => (
@@ -74,7 +83,7 @@ const RankingTable = () => {
                 ))}
               </StyledHeaderRow>
             ))}
-          </TableHeader>
+          </HeaderTable>
           <TableBody>
             {table.getRowModel().rows.map((row) => (
               <StyledRow key={row.id}>
