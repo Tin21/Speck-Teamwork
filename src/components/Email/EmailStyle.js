@@ -1,28 +1,33 @@
 import styled from 'styled-components';
-import { colors, breakpoints, fonts } from '../../utils/styles/theme';
+import { colors, breakpoints } from '../../utils/styles/theme';
+import { ReactComponent as ClipperIconWhite } from './../../assets/images/emailIcon/clipperWhite.svg';
+import { ReactComponent as ClipperIcon } from './../../assets/images/emailIcon/clipper.svg';
 
-export const EmailContainer = styled.div`
+export const EmailContainer = styled.dialog`
+  min-width: 100%;
+  height: calc(100vh - 60px);
   position: absolute;
-  width: 50%;
-  height: 620px;
-  top: 25%;
-  right: 25%;
+  border: none;
+  left: 0;
+  top: 60px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   box-sizing: border-box;
-  /* border: 1px solid #ccc; */
-  /* background-color: red; */
+  z-index: 2;
+  @media screen and (${breakpoints.tablet}) {
+    width: 50%;
+    height: 620px;
+    top: 25%;
+    right: 25%;
+  }
 `;
 
 export const EmailHeader = styled.div`
   display: flex;
   background-color: ${colors.textPrimaryGrey};
   border-radius: 8px 8px 0px 0px;
-  width: 100%;
   color: ${colors.white};
-  padding: 12px 16px;
+  padding: 14px;
   align-items: center;
   justify-content: space-between;
 `;
@@ -42,13 +47,17 @@ export const MinCloseWrapper = styled.div`
 `;
 
 export const EmailBody = styled.div`
-  height: 430px;
-  width: 100%;
   background-color: white;
   display: flex;
+  height: 100%;
   flex-direction: column;
   padding: 0 16px;
   border-radius: 0 0 8px 8px;
+
+  @media screen and (${breakpoints.tablet}) {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const Recipients = styled.div`
@@ -64,7 +73,7 @@ export const Subject = styled.div`
 `;
 
 export const BodyTextWrapper = styled.div`
-  height: 80%;
+  height: 100%;
 `;
 export const BodyText = styled.p`
   padding: 10px 0 8px 0;
@@ -99,4 +108,16 @@ export const MultipleIconWrapper = styled.div`
   align-items: center;
   gap: 8px;
   width: 252px;
+`;
+
+export const ClipperLogoWhite = styled(ClipperIconWhite)`
+  @media screen and (${breakpoints.tablet}) {
+    display: none;
+  }
+`;
+export const ClipperLogo = styled(ClipperIcon)`
+  display: none;
+  @media screen and (${breakpoints.tablet}) {
+    display: initial;
+  }
 `;
