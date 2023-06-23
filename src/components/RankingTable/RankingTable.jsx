@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { rankingData } from '../../utils/mock/rankingData';
 import BadgeExamGold from '../../assets/images/badges/badge-exam-icon-gold.svg';
 import BadgeExamSilver from '../../assets/images/badges/badge-exam-icon-silver.svg';
@@ -33,20 +33,22 @@ import columns from './Column/Column';
 import TableHeader from '../TableHeader/TableHeader';
 import TableFooter from '../TableFooter/TableFooter';
 import { entriesSmall } from '../../utils/mock/entriesSmall';
-import { getUsers, getLectureCriteria } from '../../api/users';
+import { getUsers } from '../../api/users';
+import { Context } from '../../context/Context';
 
 const RankingTable = () => {
   const [data, setData] = useState(() => [...rankingData]);
   const [sorting, setSorting] = useState();
+  const { usersTable, setUsersTable } = useContext(Context);
 
   const getTableData = async () => {
     const loggedUser = localStorage.getItem('jwt_token');
     const users = await getUsers(loggedUser);
-    const criteria = await getLectureCriteria(loggedUser);
-    console.log(criteria);
     console.log(loggedUser);
     users.data.map((user) => {
       //dodaje svakom useru ukupne bodove i postotak bodova
+      var fullName = user.first_name + ' ' + user.last_name;
+      user.full_name = fullName;
       var pointsUser = 0;
       var lecturePoints = [0, 0, 0, 0, 0];
       user.user_lecture_criteria.map((lecture) => {
@@ -104,6 +106,7 @@ const RankingTable = () => {
       rank++;
     });
     setData(users.data);
+    setUsersTable(users.data);
   };
 
   useEffect(() => {
