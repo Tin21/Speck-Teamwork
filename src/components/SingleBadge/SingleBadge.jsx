@@ -16,7 +16,7 @@ const SingleBadge = ({ title, imgSrc, imgAlt, checked, isGolden }) => {
       )}
       {isGolden === false && <SingleBadgeTitle>{title}</SingleBadgeTitle>}
       {checked === true && <BadgeTickIcon />}
-      {checked === false && <BadgeTickIcon isUnvisible />}
+      {checked === false && <BadgeTickIcon unvisible="true" />}
     </SingleBadgeWrapper>
   );
 };

@@ -98,7 +98,7 @@ export const StyledHeaderRow = styled.tr`
   }
 `;
 
-export const TableBody = styled.div``;
+export const TableBody = styled.tbody``;
 
 export const StyledRow = styled.tr`
   border-bottom: 1px solid ${colors.tableBorder};

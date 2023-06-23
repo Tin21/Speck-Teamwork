@@ -14,6 +14,7 @@ const TableHeader = ({ table, setData }) => {
         setData={setData}
         dataList={colleaguesData}
         placeholderText={'Search name, email or year'}
+        byRankIsTrue={false}
       />
     </TableHeaderWrapper>
   );

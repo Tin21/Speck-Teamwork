@@ -40,7 +40,7 @@ export const BadgeTickIcon = styled(TickIcon)`
   z-index: 1;
 
   ${(props) =>
-    props.isUnvisible &&
+    props.unvisible &&
     `
       z-index: -1;
     `}

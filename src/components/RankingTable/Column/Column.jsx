@@ -1,11 +1,8 @@
 import { createColumnHelper } from '@tanstack/table-core';
 import { ColumnHeader } from '../ColumnHeader/ColumnHeader';
 import { ColumnBody } from './ColumnStyle';
-import SilverIcon from '../../../assets/images/badges/badge-exam-icon-gold.svg';
 
 const columnHelper = createColumnHelper();
-
-const badge = 'src/assets/images/badges/badge-quiz-icon-gold.svg';
 
 const columns = [
   columnHelper.accessor('id', {

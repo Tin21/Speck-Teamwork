@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { rankingData } from '../../utils/mock/rankingData';
 import {
   StyledCell,
@@ -45,12 +45,13 @@ const RankingTable = () => {
     },
   });
 
+  /*
   const SortTable = (index) => {
     if (index !== 1) {
       return true;
     }
     return false;
-  };
+  };*/
 
   return (
     <TableWrapper>

@@ -46,7 +46,6 @@ function ColleaguesTable() {
   return (
     <TableContainer>
       <TableHeader table={table} setData={setData} />
-
       <StyledTable>
         <HeaderTable>
           {table.getHeaderGroups().map((headerGroup, index) => (

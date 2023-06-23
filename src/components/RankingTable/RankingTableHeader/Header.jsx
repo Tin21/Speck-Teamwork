@@ -13,6 +13,7 @@ const Header = ({ table, setData }) => {
         setData={setData}
         dataList={rankingData}
         placeholderText={'Search name or ranking'}
+        byRankIsTrue={true}
       />
     </HeaderWrapper>
   );
