@@ -30,7 +30,7 @@ const columns = [
     ),
   }),
 
-  /* columnHelper.accessor('badges', {
+  columnHelper.accessor('badges', {
     cell: (info) => (
       <ColumnBody>
         {info.renderValue().map((badge) => (
@@ -40,7 +40,7 @@ const columns = [
     ),
     header: () => <ColumnHeader columnName="Badges" />,
     enableSorting: false,
-  }), */
+  }),
 ];
 
 export default columns;

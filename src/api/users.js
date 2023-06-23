@@ -14,3 +14,18 @@ export const getUsers = (jwt) => {
     return res.json();
   });
 };
+
+export const getLectureCriteria = (jwt) => {
+  return fetch(`${apiOrigin}/api/lecture-criteria`, {
+    //fetch je po defaultu GET
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`,
+    },
+  }).then((res) => {
+    if (!res.ok) {
+      throw res;
+    }
+    return res.json();
+  });
+};
