@@ -3,6 +3,8 @@ import {
   BodyText,
   BodyTextWrapper,
   ButtonWrapper,
+  ClipperLogo,
+  ClipperLogoWhite,
   DeleteWrapper,
   EmailBody,
   EmailContainer,
@@ -18,7 +20,6 @@ import { ReactComponent as MinimizeIcon } from './../../assets/images/emailIcon/
 import { ReactComponent as CloseIcon } from './../../assets/images/emailIcon/close.svg';
 import { ReactComponent as DeleteIcon } from './../../assets/images/emailIcon/trash.svg';
 import { ReactComponent as TextIcon } from './../../assets/images/emailIcon/text.svg';
-import { ReactComponent as ClipperIcon } from './../../assets/images/emailIcon/clipper.svg';
 import { ReactComponent as LinkIcon } from './../../assets/images/emailIcon/linker.svg';
 import { ReactComponent as EmojiIcon } from './../../assets/images/emailIcon/emoji.svg';
 import { ReactComponent as TriangleIcon } from './../../assets/images/emailIcon/triangle.svg';
@@ -33,6 +34,7 @@ const Email = ({ onClose }) => {
       <EmailHeader>
         <EmailHeaderText>Send email</EmailHeaderText>
         <MinCloseWrapper>
+          <ClipperLogoWhite />
           <MinimizeIcon />
           <CloseIcon onClick={onClose} />
         </MinCloseWrapper>
@@ -49,7 +51,7 @@ const Email = ({ onClose }) => {
           </DeleteWrapper>
           <MultipleIconWrapper>
             <TextIcon />
-            <ClipperIcon />
+            <ClipperLogo />
             <LinkIcon />
             <EmojiIcon />
             <TriangleIcon />

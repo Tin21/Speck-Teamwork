@@ -26,6 +26,7 @@ const columns = [
 
       const handleClickOpenPop = () => {
         setPopupOpen(!isPopupOpen);
+        window.scrollTo(0, 0);
       };
 
       const handleClosePopup = () => {
