@@ -5,22 +5,18 @@ import { ColumnBody } from './ColumnStyle';
 const columnHelper = createColumnHelper();
 
 const columns = [
-  columnHelper.accessor('id', {
+  columnHelper.accessor('ranking', {
     cell: (info) => <ColumnBody isRanking>{info.getValue()}</ColumnBody>,
     header: () => <ColumnHeader columnName="Ranking" />,
     enableSorting: false,
   }),
-
-  columnHelper.accessor('fullName', {
-    cell: (info) => {
-      const { firstName, lastName } = info.row.original;
-      const fullName = `${firstName} ${lastName}`;
-      return <ColumnBody isName>{fullName}</ColumnBody>;
-    },
+  columnHelper.accessor((row) => `${row.first_name} ${row.last_name}`, {
+    id: 'fullName',
+    cell: (info) => <ColumnBody isName>{info.getValue()}</ColumnBody>,
     header: () => <ColumnHeader asdDesc={true} columnName="Student" />,
   }),
 
-  columnHelper.accessor('points', {
+  columnHelper.accessor('pointsUser', {
     cell: (info) => <ColumnBody isPoints>{info.renderValue()}</ColumnBody>,
     header: () => <ColumnHeader asdDesc={true} columnName="Points" />,
   }),

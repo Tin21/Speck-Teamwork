@@ -31,6 +31,10 @@ export const PaginationArrowWrapper = styled.button`
   background-color: ${colors.lightRed};
   border: none;
   border-radius: 8px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const PaginationNumberWrapper = styled.button`
@@ -38,6 +42,10 @@ export const PaginationNumberWrapper = styled.button`
   background-color: ${colors.lightRed};
   border: none;
   border-radius: 8px;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   ${(props) =>
     props.isCurrent &&
