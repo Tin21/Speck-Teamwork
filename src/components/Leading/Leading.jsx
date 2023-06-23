@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import FirstPlaceFrameIcon from '../../assets/images/first-place-frameimg.png';
 import {
@@ -31,6 +31,7 @@ import {
   FirstPlaceStar,
   FullName,
 } from './LeadingStyle';
+import { Context } from '../../context/Context';
 
 const Leading = ({
   firstImgSrc,
@@ -39,22 +40,34 @@ const Leading = ({
   secondImgAlt,
   thirdImgSrc,
   thirdImgAlt,
-  firstStudent,
-  secondStudent,
-  thirdStudent,
-  firstPoints,
-  secondPoints,
-  thirdPoints,
 }) => {
+  const { usersTable } = useContext(Context);
+  const [firstStudent, setFirstStudent] = useState(null);
+  const [secondStudent, setSecondStudent] = useState(null);
+  const [thirdStudent, setThirdStudent] = useState(null);
   const [firstPlaceName, setFirstPlaceName] = useState(null);
   const [secondPlaceName, setSecondPlaceName] = useState(null);
   const [thirdPlaceName, setThirdPlaceName] = useState(null);
+  const [firstPoints, setFirstPoints] = useState(null);
+  const [secondPoints, setSecondPoints] = useState(null);
+  const [thirdPoints, setThirdPoints] = useState(null);
 
   useEffect(() => {
-    setFirstPlaceName(firstStudent.substr(0, firstStudent.indexOf(' ')));
-    setSecondPlaceName(secondStudent.substr(0, secondStudent.indexOf(' ')));
-    setThirdPlaceName(thirdStudent.substr(0, thirdStudent.indexOf(' ')));
-  }, []);
+    usersTable && setFirstStudent(usersTable[0].full_name);
+    usersTable && setSecondStudent(usersTable[1].full_name);
+    usersTable && setThirdStudent(usersTable[2].full_name);
+    usersTable && setFirstPoints(usersTable[0].pointsUser);
+    usersTable && setSecondPoints(usersTable[1].pointsUser);
+    usersTable && setThirdPoints(usersTable[2].pointsUser);
+    firstStudent !== null &&
+      setFirstPlaceName(firstStudent.substr(0, firstStudent.indexOf(' ')));
+    secondStudent !== null &&
+      setSecondPlaceName(secondStudent.substr(0, secondStudent.indexOf(' ')));
+    thirdStudent !== null &&
+      setThirdPlaceName(thirdStudent.substr(0, thirdStudent.indexOf(' ')));
+  }, [usersTable]);
+
+  useEffect(() => {}, []);
 
   return (
     <LeadingWrapper>
@@ -70,7 +83,7 @@ const Leading = ({
                 <Number>2</Number>
                 <Suffix>nd</Suffix>
               </NumberWrapper>
-              <FullName>{thirdStudent}</FullName>
+              <FullName>{secondStudent}</FullName>
               <Name>{secondPlaceName}</Name>
               <PointsWrapper>
                 <PointsText>{secondPoints} points</PointsText>

@@ -46,7 +46,7 @@ const RankingTable = () => {
     const users = await getUsers(loggedUser);
     console.log(loggedUser);
     users.data.map((user) => {
-      //dodaje svakom useru ukupne bodove i postotak bodova
+      //dodaje svakom useru ukupne bodove, postotak bodova i bodove po pojedinom lecture po cemu se izracunava ima li user odredeni badge
       var fullName = user.first_name + ' ' + user.last_name;
       user.full_name = fullName;
       var pointsUser = 0;
@@ -99,9 +99,9 @@ const RankingTable = () => {
     });
     console.log(users.data);
     users.data.sort((a, b) => b.pointsUser - a.pointsUser);
+    //dodaje svakom useru ranking
     var rank = 1;
     users.data.map((user) => {
-      //dodaje svakom useru ranking
       user.ranking = rank;
       rank++;
     });

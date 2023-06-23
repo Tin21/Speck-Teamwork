@@ -20,12 +20,6 @@ const Achievements = () => {
           secondImgAlt={'Second place avatar'}
           thirdImgSrc={UserAvatar}
           thirdImgAlt={'Third place avatar'}
-          firstStudent={'Marijana Marić'}
-          secondStudent={'Dejan Majstorović'}
-          thirdStudent={'Kristijan Ilić'}
-          firstPoints={'300'}
-          secondPoints={'279'}
-          thirdPoints={'201'}
         />
         <RankingTable />
       </MobileAndTabletVersionWrapper>
@@ -38,12 +32,6 @@ const Achievements = () => {
             secondImgAlt={'Second place avatar'}
             thirdImgSrc={UserAvatar}
             thirdImgAlt={'Third place avatar'}
-            firstStudent={'Marijana Marić'}
-            secondStudent={'Dejan Majstorović'}
-            thirdStudent={'Kristijan Ilić'}
-            firstPoints={'300'}
-            secondPoints={'279'}
-            thirdPoints={'201'}
           />
           <Badges />
         </DesktopUpperConteiner>
