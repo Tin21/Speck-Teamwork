@@ -119,163 +119,328 @@ const Layout = ({ imgSrc, imgAlt }) => {
 
           <RightContainer>
             <HeaderWrapper>
-              <HeaderInner>
-                <LogoWrapper>
-                  <NavLink to={'/'}>
-                    <SpeckLogo />
-                  </NavLink>
-                  <LogoText> Learning Academy</LogoText>
-                </LogoWrapper>
-                {headerText === 'Lectures' && contextLecture === '' && (
-                  <>
-                    {/* <LectureLink to={'/lectures'}>Lecture</LectureLink> */}
-                    <HeaderText>Lectures</HeaderText>
+              {headerText === 'Achievements' && (
+                <HeaderInner isAchievements>
+                  <LogoWrapper>
+                    <NavLink to={'/'}>
+                      <SpeckLogo />
+                    </NavLink>
+                    <LogoText> Learning Academy</LogoText>
+                  </LogoWrapper>
+                  {headerText === 'Lectures' && contextLecture === '' && (
+                    <>
+                      {/* <LectureLink to={'/lectures'}>Lecture</LectureLink> */}
+                      <HeaderText>Lectures</HeaderText>
 
-                    <p>{contextLecture}</p>
-                  </>
-                )}
-                {headerText === 'Lectures' && contextLecture !== '' && (
-                  <LectureBreadcrumbWrapper>
-                    <LectureLink to={'/lectures'}>Lectures</LectureLink>
-                    <ArrowImg />
-                    <LectureBreadcrumbText>
-                      {contextLecture}
-                    </LectureBreadcrumbText>
-                  </LectureBreadcrumbWrapper>
-                )}
-
-                {headerText === 'Results' && <HeaderText>Results</HeaderText>}
-                {headerText === 'Achievements' && (
-                  <HeaderText>Achievements</HeaderText>
-                )}
-                {headerText === 'Colleauges' && (
-                  <HeaderText>Colleauges</HeaderText>
-                )}
-                {headerText === 'Your profile' && (
-                  <HeaderText>Your profile</HeaderText>
-                )}
-                <AvatarHamburgerWrapper>
-                  <UserAvatar
-                    src={imgSrc}
-                    alt={imgAlt}
-                    onClick={() => changeProfileDropdownState()}
-                  />
-                  <DropdownArrow onClick={() => changeProfileDropdownState()} />
-                  {profileDropdownActive && (
-                    <ProfileDropdownMenu>
-                      <NavLink to={'/profile'}>
-                        <DropdownMenuItem
-                          onClick={() => {
-                            changeHeaderText('Your profile');
-                            changeProfileDropdownState();
-                          }}
-                        >
-                          <DropdownMenuText>Your profile</DropdownMenuText>
-                        </DropdownMenuItem>
-                      </NavLink>
-                      <NavLink to={'/login'}>
-                        <DropdownMenuItem
-                          isBottomItem
-                          onClick={() => changeProfileDropdownState()}
-                        >
-                          <DropdownMenuText>Log out</DropdownMenuText>
-                        </DropdownMenuItem>
-                      </NavLink>
-                    </ProfileDropdownMenu>
+                      <p>{contextLecture}</p>
+                    </>
                   )}
-                  <HamburgerLogo onClick={() => changeHamburgerMenuState()} />
-                </AvatarHamburgerWrapper>
+                  {headerText === 'Lectures' && contextLecture !== '' && (
+                    <LectureBreadcrumbWrapper>
+                      <LectureLink to={'/lectures'}>Lectures</LectureLink>
+                      <ArrowImg />
+                      <LectureBreadcrumbText>
+                        {contextLecture}
+                      </LectureBreadcrumbText>
+                    </LectureBreadcrumbWrapper>
+                  )}
 
-                {hamburgerMenuActive && (
-                  <>
-                    <HamburgerMenuBackground
-                      onClick={() => changeHamburgerMenuState()}
+                  {headerText === 'Results' && <HeaderText>Results</HeaderText>}
+                  {headerText === 'Achievements' && (
+                    <HeaderText>Achievements</HeaderText>
+                  )}
+                  {headerText === 'Colleauges' && (
+                    <HeaderText>Colleauges</HeaderText>
+                  )}
+                  {headerText === 'Your profile' && (
+                    <HeaderText>Your profile</HeaderText>
+                  )}
+                  <AvatarHamburgerWrapper>
+                    <UserAvatar
+                      src={imgSrc}
+                      alt={imgAlt}
+                      onClick={() => changeProfileDropdownState()}
                     />
-                    <HamburgerMenu>
-                      <HamburgerMenuTitleWrapper>
-                        <HamburgerMenuTitle>Menu</HamburgerMenuTitle>
-                        <HamburgerMenuCancel
-                          onClick={() => changeHamburgerMenuState()}
-                        />
-                      </HamburgerMenuTitleWrapper>
-                      <HamburgerMenuInner>
-                        <MenuItem
-                          to={'/lectures'}
-                          onClick={() => {
-                            changeHeaderText('Lectures');
-                            changeHamburgerMenuState();
-                          }}
-                        >
-                          <MenuLecturesIcon />
-                          <MenuItemText>Lectures</MenuItemText>
-                        </MenuItem>
+                    <DropdownArrow
+                      onClick={() => changeProfileDropdownState()}
+                    />
+                    {profileDropdownActive && (
+                      <ProfileDropdownMenu>
+                        <NavLink to={'/profile'}>
+                          <DropdownMenuItem
+                            onClick={() => {
+                              changeHeaderText('Your profile');
+                              changeProfileDropdownState();
+                            }}
+                          >
+                            <DropdownMenuText>Your profile</DropdownMenuText>
+                          </DropdownMenuItem>
+                        </NavLink>
+                        <NavLink to={'/login'}>
+                          <DropdownMenuItem
+                            isBottomItem
+                            onClick={() => changeProfileDropdownState()}
+                          >
+                            <DropdownMenuText>Log out</DropdownMenuText>
+                          </DropdownMenuItem>
+                        </NavLink>
+                      </ProfileDropdownMenu>
+                    )}
+                    <HamburgerLogo onClick={() => changeHamburgerMenuState()} />
+                  </AvatarHamburgerWrapper>
 
-                        <MenuItem
-                          to={'/my-results'}
-                          onClick={() => {
-                            changeHeaderText('Results');
-                            changeHamburgerMenuState();
-                          }}
-                        >
-                          <MenuResultsIcon />
-                          <MenuItemText>My results</MenuItemText>
-                        </MenuItem>
-
-                        <MenuItem
-                          to={'/achievements'}
-                          onClick={() => {
-                            changeHeaderText('Achievements');
-                            changeHamburgerMenuState();
-                          }}
-                        >
-                          <MenuAchievementsIcon />
-                          <MenuItemText>Achievements</MenuItemText>
-                        </MenuItem>
-
-                        <MenuItem
-                          to={'/colleauges'}
-                          onClick={() => {
-                            changeHeaderText('Colleauges');
-                            changeHamburgerMenuState();
-                          }}
-                        >
-                          <MenuColleaugesIcon />
-                          <MenuItemText>Colleauges</MenuItemText>
-                        </MenuItem>
-
-                        <MenuItem
-                          to={'/profile'}
-                          onClick={() => {
-                            changeHeaderText('Your profile');
-                            changeHamburgerMenuState();
-                          }}
-                        >
-                          <UserAvatar
-                            isInHamburgerMenu
-                            src={imgSrc}
-                            alt={imgAlt}
+                  {hamburgerMenuActive && (
+                    <>
+                      <HamburgerMenuBackground
+                        onClick={() => changeHamburgerMenuState()}
+                      />
+                      <HamburgerMenu>
+                        <HamburgerMenuTitleWrapper>
+                          <HamburgerMenuTitle>Menu</HamburgerMenuTitle>
+                          <HamburgerMenuCancel
+                            onClick={() => changeHamburgerMenuState()}
                           />
-                          <MenuItemText>Your profile</MenuItemText>
-                        </MenuItem>
-                      </HamburgerMenuInner>
+                        </HamburgerMenuTitleWrapper>
+                        <HamburgerMenuInner>
+                          <MenuItem
+                            to={'/lectures'}
+                            onClick={() => {
+                              changeHeaderText('Lectures');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <MenuLecturesIcon />
+                            <MenuItemText>Lectures</MenuItemText>
+                          </MenuItem>
 
-                      <NavLink
-                        to={'/login'}
-                        onClick={() => {
-                          changeHamburgerMenuState();
-                        }}
-                      >
-                        <HamburgerMenuLogoutWrapper>
-                          <HamburgerMenuLogoutIcon />
-                          <HamburgerMenuLogoutText>
-                            Log out
-                          </HamburgerMenuLogoutText>
-                        </HamburgerMenuLogoutWrapper>
-                      </NavLink>
-                    </HamburgerMenu>
-                  </>
-                )}
-              </HeaderInner>
+                          <MenuItem
+                            to={'/my-results'}
+                            onClick={() => {
+                              changeHeaderText('Results');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <MenuResultsIcon />
+                            <MenuItemText>My results</MenuItemText>
+                          </MenuItem>
+
+                          <MenuItem
+                            to={'/achievements'}
+                            onClick={() => {
+                              changeHeaderText('Achievements');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <MenuAchievementsIcon />
+                            <MenuItemText>Achievements</MenuItemText>
+                          </MenuItem>
+
+                          <MenuItem
+                            to={'/colleauges'}
+                            onClick={() => {
+                              changeHeaderText('Colleauges');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <MenuColleaugesIcon />
+                            <MenuItemText>Colleauges</MenuItemText>
+                          </MenuItem>
+
+                          <MenuItem
+                            to={'/profile'}
+                            onClick={() => {
+                              changeHeaderText('Your profile');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <UserAvatar
+                              isInHamburgerMenu
+                              src={imgSrc}
+                              alt={imgAlt}
+                            />
+                            <MenuItemText>Your profile</MenuItemText>
+                          </MenuItem>
+                        </HamburgerMenuInner>
+
+                        <NavLink
+                          to={'/login'}
+                          onClick={() => {
+                            changeHamburgerMenuState();
+                          }}
+                        >
+                          <HamburgerMenuLogoutWrapper>
+                            <HamburgerMenuLogoutIcon />
+                            <HamburgerMenuLogoutText>
+                              Log out
+                            </HamburgerMenuLogoutText>
+                          </HamburgerMenuLogoutWrapper>
+                        </NavLink>
+                      </HamburgerMenu>
+                    </>
+                  )}
+                </HeaderInner>
+              )}
+              {headerText !== 'Achievements' && (
+                <HeaderInner>
+                  <LogoWrapper>
+                    <NavLink to={'/'}>
+                      <SpeckLogo />
+                    </NavLink>
+                    <LogoText> Learning Academy</LogoText>
+                  </LogoWrapper>
+                  {headerText === 'Lectures' && contextLecture === '' && (
+                    <>
+                      {/* <LectureLink to={'/lectures'}>Lecture</LectureLink> */}
+                      <HeaderText>Lectures</HeaderText>
+
+                      <p>{contextLecture}</p>
+                    </>
+                  )}
+                  {headerText === 'Lectures' && contextLecture !== '' && (
+                    <LectureBreadcrumbWrapper>
+                      <LectureLink to={'/lectures'}>Lectures</LectureLink>
+                      <ArrowImg />
+                      <LectureBreadcrumbText>
+                        {contextLecture}
+                      </LectureBreadcrumbText>
+                    </LectureBreadcrumbWrapper>
+                  )}
+
+                  {headerText === 'Results' && <HeaderText>Results</HeaderText>}
+                  {headerText === 'Achievements' && (
+                    <HeaderText>Achievements</HeaderText>
+                  )}
+                  {headerText === 'Colleauges' && (
+                    <HeaderText>Colleauges</HeaderText>
+                  )}
+                  {headerText === 'Your profile' && (
+                    <HeaderText>Your profile</HeaderText>
+                  )}
+                  <AvatarHamburgerWrapper>
+                    <UserAvatar
+                      src={imgSrc}
+                      alt={imgAlt}
+                      onClick={() => changeProfileDropdownState()}
+                    />
+                    <DropdownArrow
+                      onClick={() => changeProfileDropdownState()}
+                    />
+                    {profileDropdownActive && (
+                      <ProfileDropdownMenu>
+                        <NavLink to={'/profile'}>
+                          <DropdownMenuItem
+                            onClick={() => {
+                              changeHeaderText('Your profile');
+                              changeProfileDropdownState();
+                            }}
+                          >
+                            <DropdownMenuText>Your profile</DropdownMenuText>
+                          </DropdownMenuItem>
+                        </NavLink>
+                        <NavLink to={'/login'}>
+                          <DropdownMenuItem
+                            isBottomItem
+                            onClick={() => changeProfileDropdownState()}
+                          >
+                            <DropdownMenuText>Log out</DropdownMenuText>
+                          </DropdownMenuItem>
+                        </NavLink>
+                      </ProfileDropdownMenu>
+                    )}
+                    <HamburgerLogo onClick={() => changeHamburgerMenuState()} />
+                  </AvatarHamburgerWrapper>
+
+                  {hamburgerMenuActive && (
+                    <>
+                      <HamburgerMenuBackground
+                        onClick={() => changeHamburgerMenuState()}
+                      />
+                      <HamburgerMenu>
+                        <HamburgerMenuTitleWrapper>
+                          <HamburgerMenuTitle>Menu</HamburgerMenuTitle>
+                          <HamburgerMenuCancel
+                            onClick={() => changeHamburgerMenuState()}
+                          />
+                        </HamburgerMenuTitleWrapper>
+                        <HamburgerMenuInner>
+                          <MenuItem
+                            to={'/lectures'}
+                            onClick={() => {
+                              changeHeaderText('Lectures');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <MenuLecturesIcon />
+                            <MenuItemText>Lectures</MenuItemText>
+                          </MenuItem>
+
+                          <MenuItem
+                            to={'/my-results'}
+                            onClick={() => {
+                              changeHeaderText('Results');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <MenuResultsIcon />
+                            <MenuItemText>My results</MenuItemText>
+                          </MenuItem>
+
+                          <MenuItem
+                            to={'/achievements'}
+                            onClick={() => {
+                              changeHeaderText('Achievements');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <MenuAchievementsIcon />
+                            <MenuItemText>Achievements</MenuItemText>
+                          </MenuItem>
+
+                          <MenuItem
+                            to={'/colleauges'}
+                            onClick={() => {
+                              changeHeaderText('Colleauges');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <MenuColleaugesIcon />
+                            <MenuItemText>Colleauges</MenuItemText>
+                          </MenuItem>
+
+                          <MenuItem
+                            to={'/profile'}
+                            onClick={() => {
+                              changeHeaderText('Your profile');
+                              changeHamburgerMenuState();
+                            }}
+                          >
+                            <UserAvatar
+                              isInHamburgerMenu
+                              src={imgSrc}
+                              alt={imgAlt}
+                            />
+                            <MenuItemText>Your profile</MenuItemText>
+                          </MenuItem>
+                        </HamburgerMenuInner>
+
+                        <NavLink
+                          to={'/login'}
+                          onClick={() => {
+                            changeHamburgerMenuState();
+                          }}
+                        >
+                          <HamburgerMenuLogoutWrapper>
+                            <HamburgerMenuLogoutIcon />
+                            <HamburgerMenuLogoutText>
+                              Log out
+                            </HamburgerMenuLogoutText>
+                          </HamburgerMenuLogoutWrapper>
+                        </NavLink>
+                      </HamburgerMenu>
+                    </>
+                  )}
+                </HeaderInner>
+              )}
             </HeaderWrapper>
             <Outlet />
           </RightContainer>

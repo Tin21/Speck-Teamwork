@@ -10,20 +10,21 @@ export const BadgesWrapper = styled.div`
   padding: 24px 20px 6px 20px;
 
   @media screen and (${breakpoints.tabletSmall}) {
-    max-width: 528px; /* !! uskladiti s ostalim komponentama na pageu !! */
+    max-width: 528px;
     margin: 32px calc((100% - 528px) / 2);
   }
 
   @media screen and (${breakpoints.tablet}) {
-    margin: 32px 70px 24px 70px;
+    margin: 32px 70px 32px 70px;
     padding: 34px 34px 14px 34px;
     max-width: none;
   }
 
-  @media screen and (${breakpoints.desktop}) {
-    margin: 32px 40px 32px 32px;
+  @media screen and (${breakpoints.desktopSmall}) {
+    margin: 0;
     padding: 24px 24px 6px 24px;
-    width: 430px; /* !! vratiti na max-content nakon dodavanja ostalih komponenti achievements pagea !! */
+    min-width: 390px;
+    width: 40%;
   }
 `;
 
@@ -34,7 +35,7 @@ export const BadgesTitle = styled.h2`
   color: ${colors.textPrimaryGrey};
 
   @media screen and (${breakpoints.tabletSmall}) {
-    font-weight: 600; /* !! uskladiti s ostalim komponentama na pageu !! */
+    font-weight: 600;
     font-size: 20px;
     margin-left: 6px;
   }
@@ -44,8 +45,9 @@ export const BadgesTitle = styled.h2`
     margin-bottom: 24px;
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     margin-bottom: 16px;
+    font-size: 18px;
   }
 `;
 
@@ -60,7 +62,7 @@ export const BadgesGrid = styled.div`
     grid-template-columns: repeat(5, 1fr);
   }
 
-  @media screen and (${breakpoints.desktop}) {
+  @media screen and (${breakpoints.desktopSmall}) {
     gap: 0 10px;
   }
 `;
