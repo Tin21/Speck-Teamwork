@@ -10,8 +10,13 @@ const columns = [
     header: () => <ColumnHeader columnName="Ranking" />,
     enableSorting: false,
   }),
-  columnHelper.accessor('name', {
-    cell: (info) => <ColumnBody isName>{info.getValue()}</ColumnBody>,
+
+  columnHelper.accessor('fullName', {
+    cell: (info) => {
+      const { firstName, lastName } = info.row.original;
+      const fullName = `${firstName} ${lastName}`;
+      return <ColumnBody isName>{fullName}</ColumnBody>;
+    },
     header: () => <ColumnHeader asdDesc={true} columnName="Student" />,
   }),
 

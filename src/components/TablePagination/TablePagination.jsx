@@ -1,13 +1,13 @@
+/* eslint-disable react/prop-types */
 import {
   PaginationArrowWrapper,
   PaginationNumberWrapper,
   PaginationWrapper,
   PageLeft,
   PageRight,
-} from './PaginationStyle';
-import React from 'react';
+} from './TablePaginationStyle';
 
-const Pagination = ({ table }) => {
+const TablePagination = ({ table }) => {
   return (
     <PaginationWrapper>
       <PaginationArrowWrapper
@@ -73,4 +73,4 @@ const Pagination = ({ table }) => {
   );
 };
 
-export default Pagination;
+export default TablePagination;

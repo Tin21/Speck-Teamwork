@@ -18,8 +18,9 @@ import {
   TableContainer,
 } from './ColleaguesTableStyle';
 import columns from './CreateColumn/CreateColumn';
-import TableFooter from './TableFooter/TableFooter';
-import TableHeader from './TableHeader/TableHeader';
+import TableFooter from '../TableFooter/TableFooter';
+import TableHeader from '../TableHeader/TableHeader';
+import { entriesLarge } from '../../utils/mock/entriesLarge';
 
 function ColleaguesTable() {
   const [data, setData] = useState(() => [...colleaguesData]);
@@ -45,8 +46,14 @@ function ColleaguesTable() {
 
   return (
     <TableContainer>
-      <TableHeader table={table} setData={setData} />
-
+      <TableHeader
+        table={table}
+        setData={setData}
+        dataList={colleaguesData}
+        placeholderText={'Search name, email or year'}
+        byRankIsTrue={false}
+        entriesList={entriesLarge}
+      />
       <StyledTable>
         <HeaderTable>
           {table.getHeaderGroups().map((headerGroup, index) => (

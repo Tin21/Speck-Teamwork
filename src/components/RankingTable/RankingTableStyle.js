@@ -32,6 +32,8 @@ export const TableContainer = styled.div`
 `;
 
 export const StyledTable = styled.table`
+  display: block;
+  overflow-x: auto;
   table-layout: fixed;
   font-family: sans-serif;
   border-collapse: collapse;
@@ -41,7 +43,7 @@ export const StyledTable = styled.table`
   width: max-content;
 `;
 
-export const TableHeader = styled.thead``;
+export const HeaderTable = styled.thead``;
 
 export const StyledHeaderCell = styled.th`
   font-family: 'Inter';
@@ -97,7 +99,7 @@ export const StyledHeaderRow = styled.tr`
   }
 `;
 
-export const TableBody = styled.div``;
+export const TableBody = styled.tbody``;
 
 export const StyledRow = styled.tr`
   border-bottom: 1px solid ${colors.tableBorder};

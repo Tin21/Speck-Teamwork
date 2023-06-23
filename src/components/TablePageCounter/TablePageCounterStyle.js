@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../../utils/styles/theme';
+import { breakpoints } from '../../utils/styles/theme';
 
-export const PageCounterWrapper = styled.p`
+export const TablePageCounterWrapper = styled.p`
   margin-bottom: 16px;
 
   @media screen and (${breakpoints.tablet}) {
