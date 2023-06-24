@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const Context = createContext(['Lecture1', () => {}]);
 
@@ -34,5 +35,9 @@ const ContextProvider = (props) => {
 };
 
 const ContextConsumer = Context.Consumer;
+
+ContextProvider.propTypes = {
+  children: PropTypes.node,
+};
 
 export { Context, ContextProvider, ContextConsumer };

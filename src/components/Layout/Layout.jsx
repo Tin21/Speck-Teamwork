@@ -46,6 +46,7 @@ import {
 } from './LayoutStyle';
 import { Outlet } from 'react-router-dom';
 import { Context } from '../../context/Context';
+import { AuthContext } from '../../context/AuthContext';
 
 const Layout = ({ imgSrc, imgAlt }) => {
   const [hamburgerMenuActive, setHamburgerMenuActive] = useState(false);
@@ -55,6 +56,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
       ? localStorage.getItem('header_text')
       : 'Lectures',
   );
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const { contextLecture, setContextLecture } = useContext(Context);
 
   const changeHamburgerMenuState = () => {
@@ -68,6 +70,12 @@ const Layout = ({ imgSrc, imgAlt }) => {
   const changeHeaderText = (pageName) => {
     setHeaderText(pageName);
     localStorage.setItem('header_text', pageName);
+  };
+
+  const logOut = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('logged_user_id');
+    localStorage.removeItem('jwt_token');
   };
 
   return (
@@ -129,9 +137,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
                   </LogoWrapper>
                   {headerText === 'Lectures' && contextLecture === '' && (
                     <>
-                      {/* <LectureLink to={'/lectures'}>Lecture</LectureLink> */}
                       <HeaderText>Lectures</HeaderText>
-
                       <p>{contextLecture}</p>
                     </>
                   )}
@@ -340,7 +346,10 @@ const Layout = ({ imgSrc, imgAlt }) => {
                         <NavLink to={'/login'}>
                           <DropdownMenuItem
                             isBottomItem
-                            onClick={() => changeProfileDropdownState()}
+                            onClick={() => {
+                              changeProfileDropdownState();
+                              logOut();
+                            }}
                           >
                             <DropdownMenuText>Log out</DropdownMenuText>
                           </DropdownMenuItem>

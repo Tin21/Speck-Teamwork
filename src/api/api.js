@@ -1,4 +1,4 @@
-const apiOrigin = 'https://speck-academy-api.herokuapp.com';
+const apiOrigin = 'https://sa-api.appcode.academy';
 
 // OLD: https://speck-academy-api.herokuapp.com
 // NEW: https://sa-api.appcode.academy

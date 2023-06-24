@@ -57,6 +57,7 @@ const Login = () => {
             console.log(users);
             const user = users.data.find((user) => user.email == values.email);
             console.log(user);
+            localStorage.setItem('logged_user_id', user.id);
             setSuccessMessage({
               error: false,
               message: `User ${user.first_name} ${user.last_name} logged in successfully!`,

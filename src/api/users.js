@@ -43,3 +43,17 @@ export const getUsers = (jwt) => {
     return res.json();
   });
 };
+
+export const getLoggedUser = (jwt, loggedUserId) => {
+  return fetch(`${apiOrigin}/api/users/${loggedUserId}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`,
+    },
+  }).then((res) => {
+    if (!res.ok) {
+      throw res;
+    }
+    return res.json();
+  });
+};
