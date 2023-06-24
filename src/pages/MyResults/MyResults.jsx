@@ -15,58 +15,85 @@ import {
   doughnutMock1,
   doughnutMock2,
 } from '../../utils/mock/chartData';
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import { useEffect } from 'react';
-import { getLoggedUser } from '../../api/users';
-import { getAllLectures, getResultByUserId } from '../../api/lectures';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {
+  getAllLectures,
+  getLectureCriteriaByUserId,
+  getLectureCriteriaDataById,
+  getLectureNameById,
+} from '../../api/lectures';
 
 const MyResults = () => {
-  const { loggedUser, setLoggedUser } = useContext(AuthContext);
-  const [usersQuizResults, setUsersQuizResults] = useState([]);
+  const [usersQuizResults, setUsersResults] = useState([]);
 
-  const getLoggedUserData = async () => {
-    const loggedUser = await getLoggedUser(
+  useEffect(() => {
+    _getChartData();
+  }, []);
+
+  const _getChartData = async () => {
+    const allLectures = await getAllLectures(localStorage.getItem('jwt_token'));
+    const lectureCriteriaById = await getLectureCriteriaByUserId(
       localStorage.getItem('jwt_token'),
       localStorage.getItem('logged_user_id'),
     );
-    setLoggedUser(loggedUser);
-    console.log(loggedUser.first_name);
+    const filteredByNameList = _filterByName('Quiz', lectureCriteriaById); // TODO promijeni da se 1. parametar salje ko argument
+
+    const results = await Promise.all(
+      allLectures.map(async (element) => {
+        const lectureNames = await Promise.all(
+          filteredByNameList.map(async (el) => {
+            const lectureCriteriaData = await _getlectureCriteriaData(
+              el.lecture_criteria_id,
+            );
+            const lectureName = await _getLectureNameByLectureId(
+              lectureCriteriaData.lecture_id,
+            );
+            return lectureName;
+          }),
+        );
+
+        // prikaz samo onih koji su trazenog tipa (kviz/zadaca)
+        if (lectureNames.includes(element.name)) {
+          return {
+            id: element.id, // useless
+            name: element.name,
+            percentage: Math.floor(Math.random() * 101),
+          };
+        }
+
+        return null;
+      }),
+    );
+
+    const filteredResults = results.filter((result) => result !== null);
+    setUsersResults(filteredResults);
   };
 
-  const getUsersQuizResults = async () => {
-    let allLectures = await getAllLectures(localStorage.getItem('jwt_token'));
-    console.log(allLectures);
-
-    getResultByUserId();
-
-    // izvuci id i name svakog lecturea
-    const quizResults = allLectures.map((element) => {
-      return {
-        id: element.id,
-        name: element.name,
-        percentage: Math.floor(Math.random() * 101),
-      };
-    });
-    setUsersQuizResults(quizResults);
-
-    console.log('---usersQuizResults:');
-    console.log(quizResults);
+  const _filterByName = (name, lectureCriteria) => {
+    const filteredByName = lectureCriteria.filter(
+      (el) => el.lecture_criterium.criteria.name === name,
+    );
+    return filteredByName;
   };
 
-  useEffect(() => {
-    getLoggedUserData();
-    getUsersQuizResults();
-  }, []);
+  const _getlectureCriteriaData = async (id) => {
+    const data = await getLectureCriteriaDataById(
+      localStorage.getItem('jwt_token'),
+      id,
+    );
+    return data;
+  };
+
+  const _getLectureNameByLectureId = async (id) => {
+    const data = await getLectureNameById(
+      localStorage.getItem('jwt_token'),
+      id,
+    );
+    return data.name;
+  };
 
   return (
     <>
-      <div>
-        <p>
-          Logirani user: {loggedUser ? loggedUser.first_name : 'Loading...'}
-        </p>
-      </div>
       <ChartsWrapper>
         <BarChartGrid>
           <SingleChartOuterWrapper>
@@ -89,8 +116,8 @@ const MyResults = () => {
           </SingleChartOuterWrapper>
           <SingleChartOuterWrapper>
             <SingleChartInnerWrapper>
-              <ChartTitle>Quiz results per lecture (%)</ChartTitle>
-              <ChartSubtitle>Your quiz results</ChartSubtitle>
+              <ChartTitle>Homework per lecture (%)</ChartTitle>
+              <ChartSubtitle>Your homework</ChartSubtitle>
               <BarChartWrapper>
                 <BarChart barData={chartMock} />
               </BarChartWrapper>
