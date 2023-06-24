@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,8 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import { chartMock } from '../../utils/mock/chartData';
+import { ThreeDots } from 'react-loader-spinner';
 import { colors } from '../../utils/styles/theme';
 
 ChartJS.register(
@@ -19,7 +21,7 @@ ChartJS.register(
   Tooltip,
   Legend,
 );
-// TODO make rows thicker and remove space between 2 rows
+
 const getBarColor = (percentage) => {
   if (percentage === 100) {
     return colors.chartBarBrownDark;
@@ -44,7 +46,7 @@ const getTextColor = (percentage) => {
   }
 };
 
-export const options = {
+const options = {
   responsive: true,
   indexAxis: 'y',
   plugins: {
@@ -75,21 +77,10 @@ export const options = {
   },
 };
 
-const labels = chartMock.map((item) => item.title);
+const BarChart = ({ barData }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [chartData, setChartData] = useState(null);
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      data: chartMock.map((item) => item.percentage),
-      backgroundColor: chartMock.map((item) => getBarColor(item.percentage)),
-      barPercentage: 1.0,
-      categoryPercentage: 1.0,
-    },
-  ],
-};
-
-const BarChart = () => {
   const handleAfterRender = (chart) => {
     const ctx = chart.ctx;
     const meta = chart.getDatasetMeta(0);
@@ -107,18 +98,55 @@ const BarChart = () => {
 
       const x = bar.x - 10;
       const y = bar.y;
-      ctx.fillText(`${index + 1}. ${label} ${data}%`, x, y);
+      ctx.fillText(`${label} ${data}%`, x, y);
       ctx.restore();
     });
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      const labels = barData.map((item) => item.name);
+      const data = {
+        labels,
+        datasets: [
+          {
+            data: barData.map((item) => item.percentage),
+            backgroundColor: barData.map((item) =>
+              getBarColor(item.percentage),
+            ),
+            barPercentage: 1.0,
+            categoryPercentage: 1.0,
+          },
+        ],
+      };
+
+      setChartData(data);
+      setIsLoading(false);
+    }, 400);
+  }, [barData]);
+
   return (
-    <Bar
-      options={options}
-      data={data}
-      plugins={[{ afterDraw: handleAfterRender }]}
-    />
+    <>
+      {isLoading ? (
+        <ThreeDots
+          color="#af6118"
+          wrapperStyle={{
+            justifyContent: 'center',
+          }}
+        />
+      ) : (
+        <Bar
+          options={options}
+          data={chartData}
+          plugins={[{ afterDraw: handleAfterRender }]}
+        />
+      )}
+    </>
   );
+};
+
+BarChart.propTypes = {
+  barData: PropTypes.array,
 };
 
 export default BarChart;

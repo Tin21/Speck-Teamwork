@@ -10,12 +10,55 @@ import {
 } from '../../components/Chart/ChartStyle';
 import BarChart from '../../components/Chart/BarChart';
 import DoughnutChart from '../../components/Chart/DoughnutChart';
-import { doughnutMock1, doughnutMock2 } from '../../utils/mock/chartData';
+import {
+  chartMock,
+  doughnutMock1,
+  doughnutMock2,
+} from '../../utils/mock/chartData';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useEffect } from 'react';
+import { getLoggedUser } from '../../api/users';
+import { getAllLectures, getResultByUserId } from '../../api/lectures';
+import { useState } from 'react';
 
 const MyResults = () => {
   const { loggedUser, setLoggedUser } = useContext(AuthContext);
+  const [usersQuizResults, setUsersQuizResults] = useState([]);
+
+  const getLoggedUserData = async () => {
+    const loggedUser = await getLoggedUser(
+      localStorage.getItem('jwt_token'),
+      localStorage.getItem('logged_user_id'),
+    );
+    setLoggedUser(loggedUser);
+    console.log(loggedUser.first_name);
+  };
+
+  const getUsersQuizResults = async () => {
+    let allLectures = await getAllLectures(localStorage.getItem('jwt_token'));
+    console.log(allLectures);
+
+    getResultByUserId();
+
+    // izvuci id i name svakog lecturea
+    const quizResults = allLectures.map((element) => {
+      return {
+        id: element.id,
+        name: element.name,
+        percentage: Math.floor(Math.random() * 101),
+      };
+    });
+    setUsersQuizResults(quizResults);
+
+    console.log('---usersQuizResults:');
+    console.log(quizResults);
+  };
+
+  useEffect(() => {
+    getLoggedUserData();
+    getUsersQuizResults();
+  }, []);
 
   return (
     <>
@@ -31,7 +74,7 @@ const MyResults = () => {
               <ChartTitle>Attendance per lecture (%)</ChartTitle>
               <ChartSubtitle>Your attendance</ChartSubtitle>
               <BarChartWrapper>
-                <BarChart />
+                <BarChart barData={chartMock} />
               </BarChartWrapper>
             </SingleChartInnerWrapper>
           </SingleChartOuterWrapper>
@@ -40,7 +83,7 @@ const MyResults = () => {
               <ChartTitle>Quiz results per lecture (%)</ChartTitle>
               <ChartSubtitle>Your quiz results</ChartSubtitle>
               <BarChartWrapper>
-                <BarChart />
+                <BarChart barData={usersQuizResults} />
               </BarChartWrapper>
             </SingleChartInnerWrapper>
           </SingleChartOuterWrapper>
@@ -49,7 +92,7 @@ const MyResults = () => {
               <ChartTitle>Quiz results per lecture (%)</ChartTitle>
               <ChartSubtitle>Your quiz results</ChartSubtitle>
               <BarChartWrapper>
-                <BarChart />
+                <BarChart barData={chartMock} />
               </BarChartWrapper>
             </SingleChartInnerWrapper>
           </SingleChartOuterWrapper>
