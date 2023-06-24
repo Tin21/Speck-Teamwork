@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { loginUser, getUsers } from '../../api/users';
+import { loginUser, getUsers, getLoggedUser } from '../../api/users';
 import { useNavigate } from 'react-router-dom';
 import LoginSection from '../../components/LoginSection/LoginSection';
 import { AuthContext } from '../../context/AuthContext';
@@ -23,9 +23,22 @@ import loginImage from '../../assets/images/login-image.jpg';
 
 const Login = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
+  const { loggedUser, setLoggedUser } = useContext(AuthContext);
   const [successMessage, setSuccessMessage] = useState(null);
   const navigate = useNavigate();
   const [formState, setFormState] = useState('login');
+
+  const getLoggedUserData = async () => {
+    const loggedUser = await getLoggedUser(
+      localStorage.getItem('jwt_token'),
+      localStorage.getItem('logged_user_id'),
+    );
+    console.log(loggedUser);
+
+    setLoggedUser(loggedUser);
+    console.log(loggedUser.first_name);
+    console.log(loggedUser.id);
+  };
 
   return (
     <LoginSection
@@ -66,6 +79,7 @@ const Login = () => {
             setTimeout(() => navigate('/'), 1500);
             localStorage.setItem('jwt_token', response.access_token);
             setIsLoggedIn(response.access_token);
+            getLoggedUserData();
             resetForm();
           } catch (err) {
             setSuccessMessage({

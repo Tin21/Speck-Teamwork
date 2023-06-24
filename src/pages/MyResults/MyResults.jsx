@@ -11,30 +11,11 @@ import {
 import BarChart from '../../components/Chart/BarChart';
 import DoughnutChart from '../../components/Chart/DoughnutChart';
 import { doughnutMock1, doughnutMock2 } from '../../utils/mock/chartData';
-import { getLoggedUser } from '../../api/users';
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 const MyResults = () => {
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const { loggedUser, setLoggedUser } = useContext(AuthContext);
-
-  const getLoggedUserData = async () => {
-    const loggedUser = await getLoggedUser(
-      localStorage.getItem('jwt_token'),
-      localStorage.getItem('logged_user_id'),
-    );
-    console.log(loggedUser);
-    console.log(`isLoggedIn ${isLoggedIn}`);
-
-    setLoggedUser(loggedUser);
-    console.log(loggedUser.first_name);
-    console.log(loggedUser.id);
-  };
-
-  useEffect(() => {
-    getLoggedUserData();
-  }, []);
 
   return (
     <>
