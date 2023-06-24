@@ -22,22 +22,26 @@ import {
 } from '../../api/lectures';
 
 const MyResults = () => {
-  const [usersQuizResults, setUsersResults] = useState([]);
+  const [usersQuizResults, setUsersQuizResults] = useState([]);
+  const [usersHomeworkResults, setUsersHomeworkResults] = useState([]);
+  const [usersAttendanceResults, setUsersAttendanceResults] = useState([]);
 
   useEffect(() => {
-    _getChartData();
+    _getChartData('Quiz');
+    _getChartData('Homework');
+    _getChartData('Attendance');
   }, []);
 
-  const _getChartData = async () => {
+  const _getChartData = async (type) => {
     const lectureCriteriaById = await getLectureCriteriaByUserId(
       localStorage.getItem('jwt_token'),
       localStorage.getItem('logged_user_id'),
     );
 
     const filteredLectureCriteriaByNameList = _filterByName(
-      'Quiz',
+      type,
       lectureCriteriaById,
-    ); // TODO promijeni da se 1. parametar salje ko argument
+    );
     console.log(filteredLectureCriteriaByNameList);
 
     const results = [];
@@ -55,7 +59,13 @@ const MyResults = () => {
       });
     }
     console.log(results);
-    setUsersResults(results);
+    if (type == 'Quiz') {
+      setUsersQuizResults(results);
+    } else if (type == 'Homework') {
+      setUsersHomeworkResults(results);
+    } else if (type == 'Attendance') {
+      setUsersAttendanceResults(results);
+    }
   };
 
   const _getData = async (id) => {
@@ -82,7 +92,7 @@ const MyResults = () => {
               <ChartTitle>Attendance per lecture (%)</ChartTitle>
               <ChartSubtitle>Your attendance</ChartSubtitle>
               <BarChartWrapper>
-                <BarChart barData={chartMock} />
+                <BarChart barData={usersAttendanceResults} />
               </BarChartWrapper>
             </SingleChartInnerWrapper>
           </SingleChartOuterWrapper>
@@ -100,7 +110,7 @@ const MyResults = () => {
               <ChartTitle>Homework per lecture (%)</ChartTitle>
               <ChartSubtitle>Your homework</ChartSubtitle>
               <BarChartWrapper>
-                <BarChart barData={chartMock} />
+                <BarChart barData={usersHomeworkResults} />
               </BarChartWrapper>
             </SingleChartInnerWrapper>
           </SingleChartOuterWrapper>
