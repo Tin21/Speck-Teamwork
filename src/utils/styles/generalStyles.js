@@ -47,7 +47,7 @@ export const Button = styled.button`
   gap: 8px;
   background: ${colors.buttonPrimary};
   border-radius: 48px;
-  color: white;
+  color: ${colors.white};
   border: 0;
   width: 100%;
   font-weight: 600;
@@ -60,11 +60,20 @@ export const Button = styled.button`
       color: ${colors.buttonPrimary};
       background: rgba(191, 57, 57, 0);
     `}
+
   ${(props) =>
     props.isVariant &&
     `
       color: ${colors.textPrimary};;
       background: ${colors.bgMenuItem};;
+    `}
+
+${(props) =>
+    props.isEmail &&
+    `
+      padding: 8px 16px;
+      background: ${colors.buttonPrimary};
+
     `}
 
   &:hover {
