@@ -44,7 +44,8 @@ const MyResults = () => {
     for (const element of filteredLectureCriteriaByNameList) {
       console.log(element);
 
-      const itemName = (await _getData(element.lecture_criteria_id)).name;
+      const itemName = (await _getData(element.lecture_criterium.lecture_id))
+        .name;
       const itemUserPoints = element.points;
       const itemMaxPoints = element.lecture_criterium.total_points;
 
