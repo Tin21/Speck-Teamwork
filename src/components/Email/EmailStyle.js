@@ -4,8 +4,26 @@ import { ReactComponent as ClipperIconWhite } from './../../assets/images/emailI
 import { ReactComponent as ClipperIcon } from './../../assets/images/emailIcon/clipper.svg';
 import { ReactComponent as MinimizeIcon } from './../../assets/images/emailIcon/minimize.svg';
 import { ReactComponent as CloseIcon } from './../../assets/images/emailIcon/close.svg';
+import { Field as FieldFormik, Form as FormFormik } from 'formik';
 
-export const EmailContainer = styled.dialog`
+export const EmailBackgroundModal = styled.div`
+  overflow: hidden;
+  @media screen and (${breakpoints.tablet}) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: ${colors.bgModalOpaque};
+    z-index: 8;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const EmailContainer = styled.div`
   min-width: 100%;
   height: calc(100vh - 60px);
   position: absolute;
@@ -16,7 +34,7 @@ export const EmailContainer = styled.dialog`
   flex-direction: column;
   box-sizing: border-box;
   z-index: 2;
-
+  border-radius: 8px 8px 0px 0px;
   @media screen and (${breakpoints.tablet}) {
     position: fixed;
     min-width: auto;
@@ -36,21 +54,41 @@ export const EmailHeader = styled.div`
   padding: 14px;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (${breakpoints.tablet}) {
+    padding: 12px 12px 12px 16px;
+  }
 `;
 
 export const EmailHeaderText = styled.p`
-  font-size: 14px;
-  font-family: Inter;
-  font-weight: 500;
-  line-height: 120%;
-  letter-spacing: -0.14px;
-  color: ${colors.white};
+  display: none;
+  @media screen and (${breakpoints.tablet}) {
+    display: initial;
+    font-size: 14px;
+    font-family: Inter;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: -0.14px;
+    color: ${colors.white};
+  }
+`;
+
+export const MobileHeaderWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  padding-right: 16px;
+  @media screen and (${breakpoints.tablet}) {
+    display: none;
+  }
 `;
 
 export const MinCloseWrapper = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
+  padding-left: 12px;
 `;
 
 export const EmailBody = styled.div`
@@ -63,19 +101,45 @@ export const EmailBody = styled.div`
   @media screen and (${breakpoints.tablet}) {
     height: 100%;
     width: 100%;
+    justify-content: space-between;
   }
 `;
+//FORMIK
 
-export const Recipients = styled.div`
-  color: ${colors.textSecondary};
-  border-bottom: 1px solid #edeff1;
-  padding: 10px 0 8px 16px;
+export const EmailForm = styled(FormFormik)``;
+
+export const EmailInputField = styled(FieldFormik)`
+  width: 100%;
+  border: none;
+  outline: none;
+  min-width: max-content;
+
+  ${(props) =>
+    props.isTextArea &&
+    `
+    padding: 26px 16px 0 16px;
+    font-size: 14px;
+    font-family: Inter;
+    color:${colors.textSecondary};
+    height:100vh
+    @media screen and (${breakpoints.tablet}) {
+      height:100%
+    }
+
+
+  `}
 `;
 
-export const Subject = styled.div`
+export const EmailLabel = styled.label`
   color: ${colors.textSecondary};
+  padding: 10px 16px 8px 16px;
+`;
+
+export const LabelWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
   border-bottom: 1px solid #edeff1;
-  padding: 10px 0 8px 16px;
+  color: ${colors.textSecondary};
 `;
 
 export const BodyTextWrapper = styled.div`
@@ -92,13 +156,7 @@ export const EmailFooterWrapper = styled.div`
     background-color: rgba(202, 202, 202, 0.2);
     display: flex;
     justify-content: space-between;
-    align-content: center;
     padding: 12px 48px;
-    margin: 0 10px;
-    /* gap: 72px; */
-    @media screen and (${breakpoints.desktopSmall}) {
-      margin: 0;
-    }
   }
 `;
 
@@ -120,6 +178,9 @@ export const MultipleIconWrapper = styled.div`
 `;
 
 export const ClipperLogoWhite = styled(ClipperIconWhite)`
+  height: 100%;
+  width: 100%;
+
   @media screen and (${breakpoints.tablet}) {
     display: none;
   }
@@ -132,6 +193,8 @@ export const ClipperLogo = styled(ClipperIcon)`
 `;
 
 export const MinimizeLogo = styled(MinimizeIcon)`
+  order: 1;
+
   path {
     fill-opacity: 1;
   }
