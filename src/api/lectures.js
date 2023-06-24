@@ -32,21 +32,7 @@ export const getLectureCriteriaByUserId = (jwt, userId) => {
     });
 };
 
-export const getLectureCriteriaDataById = (jwt, id) => {
-  return fetch(`${apiOrigin}/api/lecture-criteria/${id}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${jwt}`,
-    },
-  }).then((res) => {
-    if (!res.ok) {
-      throw res;
-    }
-    return res.json();
-  });
-};
-
-export const getLectureNameById = (jwt, id) => {
+export const getLectureDataById = (jwt, id) => {
   return fetch(`${apiOrigin}/api/lectures/${id}`, {
     headers: {
       'Content-Type': 'application/json',

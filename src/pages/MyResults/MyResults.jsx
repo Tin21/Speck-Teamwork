@@ -17,10 +17,8 @@ import {
 } from '../../utils/mock/chartData';
 import { useEffect, useState } from 'react';
 import {
-  getAllLectures,
   getLectureCriteriaByUserId,
-  getLectureCriteriaDataById,
-  getLectureNameById,
+  getLectureDataById,
 } from '../../api/lectures';
 
 const MyResults = () => {
@@ -31,42 +29,40 @@ const MyResults = () => {
   }, []);
 
   const _getChartData = async () => {
-    const allLectures = await getAllLectures(localStorage.getItem('jwt_token'));
     const lectureCriteriaById = await getLectureCriteriaByUserId(
       localStorage.getItem('jwt_token'),
       localStorage.getItem('logged_user_id'),
     );
-    const filteredByNameList = _filterByName('Quiz', lectureCriteriaById); // TODO promijeni da se 1. parametar salje ko argument
 
-    const results = await Promise.all(
-      allLectures.map(async (element) => {
-        const lectureNames = await Promise.all(
-          filteredByNameList.map(async (el) => {
-            const lectureCriteriaData = await _getlectureCriteriaData(
-              el.lecture_criteria_id,
-            );
-            const lectureName = await _getLectureNameByLectureId(
-              lectureCriteriaData.lecture_id,
-            );
-            return lectureName;
-          }),
-        );
+    const filteredLectureCriteriaByNameList = _filterByName(
+      'Quiz',
+      lectureCriteriaById,
+    ); // TODO promijeni da se 1. parametar salje ko argument
+    console.log(filteredLectureCriteriaByNameList);
 
-        // prikaz samo onih koji su trazenog tipa (kviz/zadaca)
-        if (lectureNames.includes(element.name)) {
-          return {
-            id: element.id, // useless
-            name: element.name,
-            percentage: Math.floor(Math.random() * 101),
-          };
-        }
+    const results = [];
+    for (const element of filteredLectureCriteriaByNameList) {
+      console.log(element);
 
-        return null;
-      }),
+      const itemName = (await _getData(element.lecture_criteria_id)).name;
+      const itemUserPoints = element.points;
+      const itemMaxPoints = element.lecture_criterium.total_points;
+
+      results.push({
+        name: itemName,
+        percentage: Math.round((itemUserPoints * 100) / itemMaxPoints),
+      });
+    }
+    console.log(results);
+    setUsersResults(results);
+  };
+
+  const _getData = async (id) => {
+    const data = await getLectureDataById(
+      localStorage.getItem('jwt_token'),
+      id,
     );
-
-    const filteredResults = results.filter((result) => result !== null);
-    setUsersResults(filteredResults);
+    return data;
   };
 
   const _filterByName = (name, lectureCriteria) => {
@@ -74,22 +70,6 @@ const MyResults = () => {
       (el) => el.lecture_criterium.criteria.name === name,
     );
     return filteredByName;
-  };
-
-  const _getlectureCriteriaData = async (id) => {
-    const data = await getLectureCriteriaDataById(
-      localStorage.getItem('jwt_token'),
-      id,
-    );
-    return data;
-  };
-
-  const _getLectureNameByLectureId = async (id) => {
-    const data = await getLectureNameById(
-      localStorage.getItem('jwt_token'),
-      id,
-    );
-    return data.name;
   };
 
   return (
