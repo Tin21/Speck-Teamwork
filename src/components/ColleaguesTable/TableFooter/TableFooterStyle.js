@@ -10,7 +10,7 @@ export const FooterWrapper = styled.div`
   margin-bottom: 67px;
 
   @media screen and (${breakpoints.tablet}) {
-    margin-bottom: 8px;
+    margin-bottom: 0;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
