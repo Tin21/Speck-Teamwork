@@ -57,3 +57,18 @@ export const getLoggedUser = (jwt, loggedUserId) => {
     return res.json();
   });
 };
+
+export const forgotPassword = (email) => {
+  return fetch(`${apiOrigin}/api/users/forgot-password`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email }),
+  }).then((res) => {
+    if (!res.ok) {
+      throw res;
+    }
+    return res.json();
+  });
+};
