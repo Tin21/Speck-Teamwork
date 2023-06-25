@@ -3,11 +3,11 @@
 import { TablePageCounterWrapper } from './TablePageCounterStyle';
 
 function calculateFirstEntryOfPage(table) {
-  return (
-    table.getState().pagination.pageSize *
-      table.getState().pagination.pageIndex +
-    1
-  );
+  return table.getPrePaginationRowModel().rows.length == 0
+    ? 0
+    : table.getState().pagination.pageSize *
+        table.getState().pagination.pageIndex +
+        1;
 }
 
 function calculateLastEntryOfPage(table) {
