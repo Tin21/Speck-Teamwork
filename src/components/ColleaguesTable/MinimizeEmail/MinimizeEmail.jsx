@@ -12,7 +12,8 @@ export const MinimizeEmail = () => {
   return (
     <MinimizedBottom>
       <InnerWrapperMini>
-        <CloseLogo />
+        <MinimizedText miniLeftRounded>Delete</MinimizedText>
+        <CloseLogo isMini />
         <ExpandWrapper>
           <MinimizedText>Keep Writing</MinimizedText>
           <ExpandedMin />

@@ -212,4 +212,13 @@ export const CloseLogo = styled(CloseIcon)`
       fill-opacity: 0.6;
     }
   }
+  ${(props) =>
+    props.isMini &&
+    `
+    @media screen and (${breakpoints.tablet}) {
+      display:none;   
+    }
+
+
+  `}
 `;
