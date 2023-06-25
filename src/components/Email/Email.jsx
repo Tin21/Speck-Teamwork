@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   BodyTextWrapper,
   ButtonWrapper,
@@ -33,27 +33,42 @@ import { EmailForm } from './EmailStyle';
 import { EmailLabel } from './EmailStyle';
 import { LabelWrapper } from './EmailStyle';
 import { MobileHeaderWrapper } from './EmailStyle';
+import { EmailContext } from './.././../context/EmailContext';
 
-const Email = ({ onClose }) => {
+const Email = () => {
   const [successMessage, setSuccessMessage] = useState(null);
   const [showToast, setShowToast] = useState(false);
+  const {
+    isPopupOpen,
+    setIsPopupOpen,
+    isMinimized,
+    setIsMinimized,
+    emailData,
+    setEmailData,
+  } = useContext(EmailContext);
+
+  useEffect(() => {
+    document.body.style.overflow = isPopupOpen ? 'hidden' : 'auto';
+
+    return () => {
+      //kad se unmounta vrati na staro
+      document.body.style.overflow = 'auto';
+    };
+  }, [isPopupOpen]); // kad god je aktivan, ponovi efekt
 
   return (
     <EmailBackgroundModal>
-      {showToast && successMessage && (
-        <Toast title={'Success!'} subtitle={successMessage} />
-      )}
       <EmailContainer>
         <EmailHeader>
           <EmailHeaderText>Send email</EmailHeaderText>
           <MinCloseWrapper>
-            <MinimizeLogo />
-            <CloseLogo onClick={onClose} />
+            <MinimizeLogo onClick={() => setIsMinimized(true)} />
+            <CloseLogo onClick={() => setIsPopupOpen(false)} />
           </MinCloseWrapper>
           <MobileHeaderWrapper>
             <ClipperLogoWhite />
-            <Button onClick={onClose} type="submit" isEmail>
-              Send
+            <Button onClick={() => setIsPopupOpen(false)} type="submit" isEmail>
+              Close
             </Button>
           </MobileHeaderWrapper>
         </EmailHeader>
@@ -65,9 +80,9 @@ const Email = ({ onClose }) => {
               bodyText: '',
             }}
             validationSchema={Yup.object({
-              recipients: Yup.string().email(),
-              subject: Yup.string(),
-              bodyText: Yup.string(),
+              recipients: Yup.string().email().required('Required'),
+              subject: Yup.string().required('Required'),
+              bodyText: Yup.string().required('Required'),
             })}
             onSubmit={(values, { setSubmitting, resetForm }) => {
               setTimeout(() => {
@@ -79,7 +94,7 @@ const Email = ({ onClose }) => {
 
                 setSubmitting(false);
                 setSuccessMessage('Email sent successfully!');
-                setShowToast(true);
+                setEmailData(data);
                 resetForm();
               }, 1000);
             }}
@@ -106,7 +121,6 @@ const Email = ({ onClose }) => {
                 </LabelWrapper>
 
                 <BodyTextWrapper>
-                  {/* <EmailLabel htmlFor="bodyText">Body text</EmailLabel> */}
                   <EmailInputField
                     isTextArea
                     as="textarea"
@@ -116,34 +130,30 @@ const Email = ({ onClose }) => {
                     disabled={formik.isSubmitting}
                   />
                 </BodyTextWrapper>
+
+                <EmailFooterWrapper>
+                  <DeleteWrapper>
+                    <DeleteIcon />
+                  </DeleteWrapper>
+                  <MultipleIconWrapper>
+                    <TextIcon />
+                    <ClipperLogo />
+                    <LinkIcon />
+                    <EmojiIcon />
+                    <TriangleIcon />
+                    <PhotoIcon />
+                    <DelayIcon />
+                    <SignatureIcon />
+                  </MultipleIconWrapper>
+                  <ButtonWrapper>
+                    <Button type="submit" disabled={formik.isSubmitting}>
+                      Send Email
+                    </Button>
+                  </ButtonWrapper>
+                </EmailFooterWrapper>
               </EmailForm>
             )}
           </Formik>
-          {/* <Recipients>Recipients</Recipients>
-            <Field />
-            <Subject>Subject</Subject>
-            <BodyTextWrapper>
-              <BodyText>Body text</BodyText>
-            </BodyTextWrapper> */}
-
-          <EmailFooterWrapper>
-            <DeleteWrapper>
-              <DeleteIcon />
-            </DeleteWrapper>
-            <MultipleIconWrapper>
-              <TextIcon />
-              <ClipperLogo />
-              <LinkIcon />
-              <EmojiIcon />
-              <TriangleIcon />
-              <PhotoIcon />
-              <DelayIcon />
-              <SignatureIcon />
-            </MultipleIconWrapper>
-            <ButtonWrapper>
-              <Button type="submit">Send Email</Button>
-            </ButtonWrapper>
-          </EmailFooterWrapper>
         </EmailBody>
       </EmailContainer>
     </EmailBackgroundModal>
