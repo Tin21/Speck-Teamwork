@@ -74,17 +74,25 @@ export const forgotPassword = (email) => {
 };
 
 export const resetPassword = (hash, newPassword) => {
-  return fetch(`${apiOrigin}/api/users/password-reset/${hash}`, {
+  const url = `${apiOrigin}/api/users/password-reset/${hash}`;
+  const body = JSON.stringify({ password: newPassword });
+
+  return fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ newPassword }),
-  }).then((res) => {
-    console.log(res);
-    if (!res.ok) {
-      throw res;
-    }
-    return res.json();
-  });
+    body: body,
+  })
+    .then((res) => {
+      console.log(res);
+      if (!res.ok) {
+        throw res;
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      console.log(error);
+      throw error;
+    });
 };
