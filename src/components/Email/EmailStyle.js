@@ -9,9 +9,9 @@ import { Field as FieldFormik, Form as FormFormik } from 'formik';
 export const EmailBackgroundModal = styled.div`
   overflow: hidden;
   position: fixed;
+  top: 60px;
   left: 0;
   right: 0;
-  top: 0;
   bottom: 0;
   z-index: 8;
   height: 100%;
@@ -30,6 +30,9 @@ export const EmailBackgroundModal = styled.div`
     z-index: -1;
     opacity: 20%;
   }
+  @media screen and (${breakpoints.tablet}) {
+    top: 0;
+  }
 `;
 
 export const EmailContainer = styled.div`
@@ -39,7 +42,7 @@ export const EmailContainer = styled.div`
   position: relative;
   border: none;
   left: 0;
-  top: 60px;
+  top: 0;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -139,8 +142,6 @@ export const EmailInputField = styled(FieldFormik)`
     @media screen and (${breakpoints.tablet}) {
       height:100%
     }
-
-
   `}
 `;
 
@@ -218,21 +219,38 @@ export const MinimizeLogo = styled(MinimizeIcon)`
   }
 `;
 
-export const CloseLogo = styled(CloseIcon)`
+// export const CloseLogo = styled(CloseIcon)`
+//   path {
+//     fill-opacity: 1;
+//   }
+//   @media screen and (${breakpoints.tablet}) {
+//     fill-opacity: 0.6;
+//   }
+//   ${(props) =>
+//     props.isMini &&
+//     `
+//     @media screen and (${breakpoints.tablet}) {
+//       display:none;
+//     }
+//   `}
+// `;
+export const CloseLogoMobile = styled(CloseIcon)`
   path {
     fill-opacity: 1;
-
     @media screen and (${breakpoints.tablet}) {
       fill-opacity: 0.6;
     }
   }
-  ${(props) =>
-    props.isMini &&
-    `
+`;
+
+export const CloseLogoTablet = styled(CloseIcon)`
+  path {
+    fill-opacity: 1;
     @media screen and (${breakpoints.tablet}) {
-      display:none;   
+      fill-opacity: 0.6;
     }
-
-
-  `}
+  }
+  @media screen and (${breakpoints.tablet}) {
+    display: none;
+  }
 `;

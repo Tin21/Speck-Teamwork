@@ -1,5 +1,5 @@
-import React from 'react';
-import { CloseLogo } from '../../Email/EmailStyle';
+import React, { useContext } from 'react';
+import { CloseLogoTablet } from '../../Email/EmailStyle';
 import {
   ExpandWrapper,
   ExpandedMin,
@@ -7,16 +7,35 @@ import {
   MinimizedBottom,
   MinimizedText,
 } from './MinimizeEmailStyle';
+import { EmailContext } from '../../../context/EmailContext';
 
 export const MinimizeEmail = () => {
+  const {
+    isPopupOpen,
+    setIsPopupOpen,
+    isMinimized,
+    setIsMinimized,
+    emailData,
+    setEmailData,
+  } = useContext(EmailContext);
+
+  // if (!isMinimized) {
+  //   return null;
+  // }
+
   return (
     <MinimizedBottom>
       <InnerWrapperMini>
         <MinimizedText miniLeftRounded>Delete</MinimizedText>
-        <CloseLogo isMini />
+        <CloseLogoTablet />
         <ExpandWrapper>
           <MinimizedText>Keep Writing</MinimizedText>
-          <ExpandedMin />
+          <ExpandedMin
+            onClick={() => {
+              setIsPopupOpen(true);
+              setIsMinimized(false);
+            }}
+          />
         </ExpandWrapper>
       </InnerWrapperMini>
     </MinimizedBottom>
