@@ -16,6 +16,7 @@ import {
   ErrorMessage,
   Form,
 } from '../../utils/styles/generalStyles';
+import Toast from '../../components/Toast/Toast';
 
 import { Formik } from 'formik';
 
@@ -23,21 +24,19 @@ import loginImage from '../../assets/images/login-image.jpg';
 
 const Login = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
-  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
-  const [formState, setFormState] = useState('login');
 
   return (
     <LoginSection
-      title={
-        formState === 'forgotPassword'
-          ? 'Reset your password'
-          : 'Login to Academy'
-      }
+      title={'Login to Academy'}
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mi ante, porttitor quis neque in, accumsan aliquet nunc. Aenean accumsan eget neque non sodales."
       logo_text="Learning Academy"
       login_image={loginImage}
     >
+      {errorMessage && (
+        <Toast title="Login Error" subtitle={errorMessage.message} />
+      )}
       <Formik
         initialValues={{
           email: '',
@@ -58,16 +57,12 @@ const Login = () => {
             const user = users.data.find((user) => user.email == values.email);
             console.log(user);
             localStorage.setItem('logged_user_id', user.id);
-            setSuccessMessage({
-              error: false,
-              message: `User ${user.first_name} ${user.last_name} logged in successfully!`,
-            });
             navigate('/');
             localStorage.setItem('jwt_token', response.access_token);
             setIsLoggedIn(response.access_token);
             resetForm();
           } catch (err) {
-            setSuccessMessage({
+            setErrorMessage({
               error: true,
               message: 'Failed to login!',
             });
@@ -77,7 +72,7 @@ const Login = () => {
         }}
       >
         {(formik) => (
-          <Form>
+          <Form isLogin>
             <FormRow>
               <FieldLabelWrapper>
                 <InputLabel>Email</InputLabel>
@@ -109,7 +104,7 @@ const Login = () => {
                 }
               />
               <ErrorMessage component={'div'} name="password" />
-              <StyledLink onClick={() => setFormState('forgotPassword')}>
+              <StyledLink to="/password-reset">
                 Forgot your password?
               </StyledLink>
             </FormRow>
