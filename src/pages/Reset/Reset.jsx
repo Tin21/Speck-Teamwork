@@ -17,6 +17,27 @@ const Reset = () => {
       setSubmitting(false);
     }
   };
+  const resetPasswordSubmit = async (values, { setSubmitting }) => {
+    try {
+      const response = await resetPassword(hash, values.password);
+      console.log(response);
+      setErrorMessage({
+        error: false,
+        message: 'Password reset successful!',
+      });
+
+      setTimeout(() => {
+        navigate('/login');
+      }, 3000);
+    } catch (err) {
+      setErrorMessage({
+        error: true,
+        message: 'Failed to reset password!',
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 };
 
 export default Reset;
