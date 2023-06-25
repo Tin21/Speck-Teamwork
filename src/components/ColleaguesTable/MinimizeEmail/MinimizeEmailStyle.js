@@ -56,4 +56,6 @@ export const MinimizedText = styled.p`
   `}
 `;
 
-export const ExpandedMin = styled(ExpandMin)``;
+export const ExpandedMin = styled(ExpandMin)`
+  cursor: pointer;
+`;

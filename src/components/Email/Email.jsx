@@ -4,7 +4,7 @@ import {
   ButtonWrapper,
   ClipperLogo,
   ClipperLogoWhite,
-  CloseLogo,
+  CloseLogoMobile,
   DeleteWrapper,
   EmailBody,
   EmailContainer,
@@ -36,8 +36,6 @@ import { MobileHeaderWrapper } from './EmailStyle';
 import { EmailContext } from './.././../context/EmailContext';
 
 const Email = () => {
-  const [successMessage, setSuccessMessage] = useState(null);
-  const [showToast, setShowToast] = useState(false);
   const {
     isPopupOpen,
     setIsPopupOpen,
@@ -62,13 +60,18 @@ const Email = () => {
         <EmailHeader>
           <EmailHeaderText>Send email</EmailHeaderText>
           <MinCloseWrapper>
-            <MinimizeLogo onClick={() => setIsMinimized(true)} />
-            <CloseLogo onClick={() => setIsPopupOpen(false)} />
+            <MinimizeLogo
+              onClick={() => {
+                setIsMinimized(true);
+                setIsPopupOpen(false);
+              }}
+            />
+            <CloseLogoMobile onClick={() => setIsPopupOpen(false)} />
           </MinCloseWrapper>
           <MobileHeaderWrapper>
             <ClipperLogoWhite />
             <Button onClick={() => setIsPopupOpen(false)} type="submit" isEmail>
-              Close
+              Send
             </Button>
           </MobileHeaderWrapper>
         </EmailHeader>
@@ -93,7 +96,6 @@ const Email = () => {
                 };
 
                 setSubmitting(false);
-                setSuccessMessage('Email sent successfully!');
                 setEmailData(data);
                 resetForm();
               }, 1000);
