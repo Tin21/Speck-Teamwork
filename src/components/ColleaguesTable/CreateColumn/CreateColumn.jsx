@@ -2,7 +2,8 @@ import { createColumnHelper } from '@tanstack/table-core';
 import { ColumnHeader } from '../ColumnHeader/ColumnHeader';
 import { Button } from '../../../utils/styles/generalStyles';
 import Email from '../../Email/Email';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { EmailContext } from '../../../context/EmailContext';
 
 const columnHelper = createColumnHelper();
 
@@ -24,15 +25,21 @@ const columns = [
     header: 'Action',
     enableSorting: false,
     cell: () => {
-      const [isPopupOpen, setPopupOpen] = useState(false);
+      const { isPopupOpen, setIsPopupOpen, setEmailData } =
+        useContext(EmailContext);
 
       const handleClickOpenPop = () => {
-        setPopupOpen(!isPopupOpen);
+        setIsPopupOpen(true);
+        setEmailData({
+          recipient: '',
+          subject: '',
+          body: '',
+        });
         window.scrollTo(0, 0);
       };
 
       const handleClosePopup = () => {
-        setPopupOpen(false);
+        setIsPopupOpen(false);
       };
 
       return (

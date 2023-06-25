@@ -8,25 +8,35 @@ import { Field as FieldFormik, Form as FormFormik } from 'formik';
 
 export const EmailBackgroundModal = styled.div`
   overflow: hidden;
-  @media screen and (${breakpoints.tablet}) {
-    position: fixed;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 8;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:before {
+    content: '';
+    position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     background-color: ${colors.bgModalOpaque};
-    z-index: 8;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: -1;
+    opacity: 20%;
   }
 `;
 
 export const EmailContainer = styled.div`
   min-width: 100%;
-  height: calc(100vh - 60px);
-  position: absolute;
+  height: 100vh;
+  background-color: white;
+  position: relative;
   border: none;
   left: 0;
   top: 60px;
@@ -105,8 +115,11 @@ export const EmailBody = styled.div`
   }
 `;
 //FORMIK
-
-export const EmailForm = styled(FormFormik)``;
+export const EmailForm = styled(FormFormik)`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
 
 export const EmailInputField = styled(FieldFormik)`
   width: 100%;
@@ -117,6 +130,7 @@ export const EmailInputField = styled(FieldFormik)`
   ${(props) =>
     props.isTextArea &&
     `
+    height:100%;
     padding: 26px 16px 0 16px;
     font-size: 14px;
     font-family: Inter;
