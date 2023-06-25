@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import FirstPlaceFrameIcon from '../../assets/images/first-place-frameimg.png';
 import {
@@ -41,7 +41,6 @@ const Leading = ({
   thirdImgSrc,
   thirdImgAlt,
 }) => {
-  const { usersTable } = useContext(Context);
   const [firstStudent, setFirstStudent] = useState(null);
   const [secondStudent, setSecondStudent] = useState(null);
   const [thirdStudent, setThirdStudent] = useState(null);
@@ -51,23 +50,45 @@ const Leading = ({
   const [firstPoints, setFirstPoints] = useState(null);
   const [secondPoints, setSecondPoints] = useState(null);
   const [thirdPoints, setThirdPoints] = useState(null);
+  const { usersTable } = useContext(Context);
 
   useEffect(() => {
-    usersTable && setFirstStudent(usersTable[0].full_name);
-    usersTable && setSecondStudent(usersTable[1].full_name);
-    usersTable && setThirdStudent(usersTable[2].full_name);
-    usersTable && setFirstPoints(usersTable[0].pointsUser);
-    usersTable && setSecondPoints(usersTable[1].pointsUser);
-    usersTable && setThirdPoints(usersTable[2].pointsUser);
-    firstStudent !== null &&
-      setFirstPlaceName(firstStudent.substr(0, firstStudent.indexOf(' ')));
-    secondStudent !== null &&
-      setSecondPlaceName(secondStudent.substr(0, secondStudent.indexOf(' ')));
-    thirdStudent !== null &&
-      setThirdPlaceName(thirdStudent.substr(0, thirdStudent.indexOf(' ')));
-  }, [usersTable]);
+    console.log(usersTable);
+    console.log(firstStudent);
 
-  useEffect(() => {}, []);
+    if (usersTable && usersTable.length >= 3) {
+      setFirstStudent(usersTable[0].full_name);
+      setSecondStudent(usersTable[1].full_name);
+      setThirdStudent(usersTable[2].full_name);
+      setFirstPoints(usersTable[0].pointsUser);
+      setSecondPoints(usersTable[1].pointsUser);
+      setThirdPoints(usersTable[2].pointsUser);
+    }
+
+    if (
+      firstStudent !== null &&
+      typeof firstStudent === 'string' &&
+      firstStudent.includes(' ')
+    ) {
+      setFirstPlaceName(firstStudent.substr(0, firstStudent.indexOf(' ')));
+    }
+
+    if (
+      secondStudent !== null &&
+      typeof secondStudent === 'string' &&
+      secondStudent.includes(' ')
+    ) {
+      setSecondPlaceName(secondStudent.substr(0, secondStudent.indexOf(' ')));
+    }
+
+    if (
+      thirdStudent !== null &&
+      typeof thirdStudent === 'string' &&
+      thirdStudent.includes(' ')
+    ) {
+      setThirdPlaceName(thirdStudent.substr(0, thirdStudent.indexOf(' ')));
+    }
+  }, [usersTable, firstStudent, secondStudent, thirdStudent]);
 
   return (
     <LeadingWrapper>
