@@ -62,8 +62,7 @@ const Login = () => {
               error: false,
               message: `User ${user.first_name} ${user.last_name} logged in successfully!`,
             });
-            setTimeout(() => setSuccessMessage(null), 2000);
-            setTimeout(() => navigate('/'), 1500);
+            navigate('/');
             localStorage.setItem('jwt_token', response.access_token);
             setIsLoggedIn(response.access_token);
             resetForm();
