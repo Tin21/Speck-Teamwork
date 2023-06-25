@@ -31,6 +31,7 @@ export const StyledTable = styled.table`
   /* width: max-content; */
 
   @media screen and (${breakpoints.desktop}) {
+    margin: 16px 0;
     width: 100%;
   }
 `;
