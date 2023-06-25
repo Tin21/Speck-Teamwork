@@ -9,14 +9,16 @@ export const AuthProvider = ({ children }) => {
     localStorage.getItem('jwt_token') ? true : false,
   );
 
-  const [loggedUser, setLoggedUser] = useState(
-    localStorage.getItem('jwt_token') == null
-      ? ''
-      : getLoggedUser(
-          localStorage.getItem('jwt_token'),
-          localStorage.getItem('logged_user_id'),
-        ),
-  );
+  const [loggedUser, setLoggedUser] = useState(() => {
+    const jwtToken = localStorage.getItem('jwt_token');
+    const loggedUserId = localStorage.getItem('logged_user_id');
+
+    if (jwtToken && loggedUserId) {
+      return getLoggedUser(jwtToken, loggedUserId);
+    } else {
+      return null;
+    }
+  });
 
   return (
     <AuthContext.Provider
