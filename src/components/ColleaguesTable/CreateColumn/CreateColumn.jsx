@@ -5,14 +5,13 @@ import { Button } from '../../../utils/styles/generalStyles';
 const columnHelper = createColumnHelper();
 
 const columns = [
-  columnHelper.accessor('firstName', {
+  columnHelper.accessor('first_name', {
     cell: (info) => info.getValue(),
     header: () => <ColumnHeader columnName="First Name" />,
   }),
 
-  columnHelper.accessor((row) => row.lastName, {
-    id: 'lastName',
-    cell: (info) => info.renderValue(),
+  columnHelper.accessor('last_name', {
+    cell: (info) => info.getValue(),
     header: () => <ColumnHeader columnName="Last Name" />,
   }),
 
@@ -51,7 +50,7 @@ const columns = [
     cell: (info) => info.renderValue(),
   }),
 
-  columnHelper.accessor('year', {
+  columnHelper.accessor('active_faculty_year', {
     header: 'Year',
     cell: (info) => info.renderValue(),
     enableSorting: false,

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { colleaguesData } from '../../utils/mock/colleaguesTest';
 import {
   flexRender,
@@ -21,10 +21,22 @@ import columns from './CreateColumn/CreateColumn';
 import TableFooter from '../TableFooter/TableFooter';
 import TableHeader from '../TableHeader/TableHeader';
 import { entriesLarge } from '../../utils/mock/entriesLarge';
+import { getUsers } from '../../api/users';
 
 function ColleaguesTable() {
-  const [data, setData] = useState(() => [...colleaguesData]);
+  const [data, setData] = useState([]);
   const [sorting, setSorting] = useState();
+
+  const getTableData = async () => {
+    let usersList = await getUsers(localStorage.getItem('jwt_token'));
+    console.log(usersList);
+
+    setData(usersList.data);
+  };
+
+  useEffect(() => {
+    getTableData();
+  }, []);
 
   const table = useReactTable({
     data,
