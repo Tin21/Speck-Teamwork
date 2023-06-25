@@ -22,16 +22,19 @@ import TableFooter from '../TableFooter/TableFooter';
 import TableHeader from '../TableHeader/TableHeader';
 import { entriesLarge } from '../../utils/mock/entriesLarge';
 import { getUsers } from '../../api/users';
+import { Context } from '../../context/Context';
 
 function ColleaguesTable() {
   const [data, setData] = useState([]);
   const [sorting, setSorting] = useState();
+  const { usersTable, setUsersTable } = useContext(Context);
 
   const getTableData = async () => {
     let usersList = await getUsers(localStorage.getItem('jwt_token'));
     console.log(usersList);
 
     setData(usersList.data);
+    setUsersTable(usersList.data);
   };
 
   useEffect(() => {

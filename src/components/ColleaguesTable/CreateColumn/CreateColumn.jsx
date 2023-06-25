@@ -52,7 +52,7 @@ const columns = [
 
   columnHelper.accessor('active_faculty_year', {
     header: 'Year',
-    cell: (info) => info.renderValue(),
+    cell: (info) => info.renderValue() || 'NS',
     enableSorting: false,
   }),
 ];
