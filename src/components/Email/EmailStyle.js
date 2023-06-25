@@ -199,6 +199,7 @@ export const MinimizeLogo = styled(MinimizeIcon)`
     fill-opacity: 1;
   }
   @media screen and (${breakpoints.tablet}) {
+    order: 0;
     opacity: 0.6;
   }
 `;

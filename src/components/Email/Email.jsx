@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BodyTextWrapper,
   ButtonWrapper,
@@ -27,6 +27,7 @@ import { ReactComponent as SignatureIcon } from './../../assets/images/emailIcon
 import { Button } from '../../utils/styles/generalStyles';
 import { EmailBackgroundModal } from './EmailStyle';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 import { EmailInputField } from './EmailStyle';
 import { EmailForm } from './EmailStyle';
 import { EmailLabel } from './EmailStyle';
@@ -34,8 +35,14 @@ import { LabelWrapper } from './EmailStyle';
 import { MobileHeaderWrapper } from './EmailStyle';
 
 const Email = ({ onClose }) => {
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+
   return (
     <EmailBackgroundModal>
+      {showToast && successMessage && (
+        <Toast title={'Success!'} subtitle={successMessage} />
+      )}
       <EmailContainer>
         <EmailHeader>
           <EmailHeaderText>Send email</EmailHeaderText>
@@ -45,11 +52,38 @@ const Email = ({ onClose }) => {
           </MinCloseWrapper>
           <MobileHeaderWrapper>
             <ClipperLogoWhite />
-            <Button isEmail>Send</Button>
+            <Button onClick={onClose} type="submit" isEmail>
+              Send
+            </Button>
           </MobileHeaderWrapper>
         </EmailHeader>
         <EmailBody>
-          <Formik>
+          <Formik
+            initialValues={{
+              recipients: '',
+              subject: '',
+              bodyText: '',
+            }}
+            validationSchema={Yup.object({
+              recipients: Yup.string().email(),
+              subject: Yup.string(),
+              bodyText: Yup.string(),
+            })}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setTimeout(() => {
+                const data = {
+                  recipients: values.recipients,
+                  subject: values.subject,
+                  body_text: values.bodyText,
+                };
+
+                setSubmitting(false);
+                setSuccessMessage('Email sent successfully!');
+                setShowToast(true);
+                resetForm();
+              }, 1000);
+            }}
+          >
             {(formik) => (
               <EmailForm>
                 <LabelWrapper>
@@ -58,11 +92,17 @@ const Email = ({ onClose }) => {
                     type="text"
                     id="recipients"
                     name="recipients"
+                    disabled={formik.isSubmitting}
                   />
                 </LabelWrapper>
                 <LabelWrapper>
                   <EmailLabel htmlFor="subject">Subject</EmailLabel>
-                  <EmailInputField type="text" id="subject" name="subject" />
+                  <EmailInputField
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    disabled={formik.isSubmitting}
+                  />
                 </LabelWrapper>
 
                 <BodyTextWrapper>
@@ -73,12 +113,12 @@ const Email = ({ onClose }) => {
                     id="bodyText"
                     name="bodyText"
                     placeholder="Body Text"
+                    disabled={formik.isSubmitting}
                   />
                 </BodyTextWrapper>
               </EmailForm>
             )}
           </Formik>
-
           {/* <Recipients>Recipients</Recipients>
             <Field />
             <Subject>Subject</Subject>
@@ -101,7 +141,7 @@ const Email = ({ onClose }) => {
               <SignatureIcon />
             </MultipleIconWrapper>
             <ButtonWrapper>
-              <Button>Send Email</Button>
+              <Button type="submit">Send Email</Button>
             </ButtonWrapper>
           </EmailFooterWrapper>
         </EmailBody>
