@@ -72,3 +72,19 @@ export const forgotPassword = (email) => {
     return res.json();
   });
 };
+
+export const resetPassword = (hash, newPassword) => {
+  return fetch(`${apiOrigin}/api/users/password-reset/${hash}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ newPassword }),
+  }).then((res) => {
+    console.log(res);
+    if (!res.ok) {
+      throw res;
+    }
+    return res.json();
+  });
+};
