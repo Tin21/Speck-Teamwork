@@ -11,14 +11,7 @@ import {
 import { EmailContext } from '../../../context/EmailContext';
 
 export const MinimizeEmail = () => {
-  const {
-    isPopupOpen,
-    setIsPopupOpen,
-    isMinimized,
-    setIsMinimized,
-    emailData,
-    setEmailData,
-  } = useContext(EmailContext);
+  const { setIsPopupOpen, setIsMinimized } = useContext(EmailContext);
 
   return (
     <MinimizedBottom>
