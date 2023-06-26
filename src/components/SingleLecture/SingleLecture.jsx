@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from 'react';
+import { useContext } from 'react';
 import {
   SingleLectureInner,
   SingleLectureSubtitle,
@@ -10,21 +10,21 @@ import { Button } from '../../utils/styles/generalStyles';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../../context/Context';
 
-const SingleLecture = ({ title, content, id }) => {
+const SingleLecture = ({ description, name, id }) => {
   const navigate = useNavigate();
-  const { contextLecture, setContextLecture } = useContext(Context);
+  const { setContextLecture } = useContext(Context);
 
   const onClickActions = () => {
     navigate(`/lectures/${id}`);
-    setContextLecture(`${id}. ${title}`);
-    localStorage.setItem('active_lecture', `${id}. ${title}`);
+    setContextLecture(`${id}. ${name}`);
+    localStorage.setItem('active_lecture', `${id}. ${name}`);
   };
 
   return (
     <SingleLectureWrapper>
       <SingleLectureInner>
-        <SingleLectureTitle>{title}</SingleLectureTitle>
-        <SingleLectureSubtitle>{content}</SingleLectureSubtitle>
+        <SingleLectureTitle>{name}</SingleLectureTitle>
+        <SingleLectureSubtitle>{description}</SingleLectureSubtitle>
         <Button
           onClick={() => {
             onClickActions();
@@ -39,8 +39,8 @@ const SingleLecture = ({ title, content, id }) => {
 };
 
 SingleLecture.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
+  name: PropTypes.string,
+  description: PropTypes.string,
   id: PropTypes.number,
 };
 
