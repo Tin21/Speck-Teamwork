@@ -57,3 +57,42 @@ export const getLoggedUser = (jwt, loggedUserId) => {
     return res.json();
   });
 };
+
+export const forgotPassword = (email) => {
+  return fetch(`${apiOrigin}/api/users/forgot-password`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email }),
+  }).then((res) => {
+    if (!res.ok) {
+      throw res;
+    }
+    return res.json();
+  });
+};
+
+export const resetPassword = (hash, newPassword) => {
+  const url = `${apiOrigin}/api/users/password-reset/${hash}`;
+  const body = JSON.stringify({ password: newPassword });
+
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: body,
+  })
+    .then((res) => {
+      console.log(res);
+      if (!res.ok) {
+        throw res;
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      console.log(error);
+      throw error;
+    });
+};

@@ -53,7 +53,7 @@ export const LoginSectionSubtitle = styled.p`
   text-align: left;
   color: ${colors.textSecondary};
   font-size: 16px;
-  max-width: 663px;
+  max-width: 100%;
   line-height: 150%;
   letter-spacing: 0.01em;
 

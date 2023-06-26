@@ -142,6 +142,11 @@ export const FieldLabelWrapper = styled.div``;
 // FORM
 
 export const Form = styled(FormFormik)`
+  ${(props) =>
+    props.isLogin &&
+    `
+      min-width: 100%;
+    `}
   @media screen and (${breakpoints.tabletSmall}) {
     max-width: 400px;
   }

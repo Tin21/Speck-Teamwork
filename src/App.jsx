@@ -16,7 +16,9 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path={'/login'} element={<Login />} />
+        <Route path={'/login'} element={<Login />} />{' '}
+        <Route path="/reset" element={<Reset />} />
+        <Route path="/password-reset/:hash" element={<Reset />} />
         <Route
           path={'/'}
           element={<Layout imgSrc={UserAvatar} imgAlt={'User avatar'} />}
@@ -24,7 +26,7 @@ function App() {
           <Route path={'/profile'} element={<ProfilePage />} />
           <Route path={'/achievements'} element={<Achievements />} />
           <Route path={'/my-results'} element={<MyResults />} />
-          <Route path={'/reset'} element={<Reset />} />
+
           <Route path={'/colleauges'} element={<Colleagues />} />
           <Route path={'/lectures'} element={<Lectures />} />
           <Route path={'/lectures/:id'} element={<LectureDetails />} />
