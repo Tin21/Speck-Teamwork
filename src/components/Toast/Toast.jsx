@@ -44,7 +44,7 @@ const Toast = ({ title, subtitle, type }) => {
 
   return (
     <>
-      {visible && (
+      {visible && showToast && (
         <ToastWrapper>
           {renderIcon()}
           <ToastContentWrapper>
