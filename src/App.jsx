@@ -11,6 +11,7 @@ import Colleagues from './pages/Colleauges/Colleauges';
 import Layout from './components/Layout/Layout';
 import UserAvatar from './assets/images/user-avatar.jpg';
 import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
   return (
@@ -21,7 +22,11 @@ function App() {
         <Route path="/password-reset/:hash" element={<Reset />} />
         <Route
           path={'/'}
-          element={<Layout imgSrc={UserAvatar} imgAlt={'User avatar'} />}
+          element={
+            <ProtectedRoute>
+              <Layout imgSrc={UserAvatar} imgAlt={'User avatar'} />
+            </ProtectedRoute>
+          }
         >
           <Route path={'/profile'} element={<ProfilePage />} />
           <Route path={'/achievements'} element={<Achievements />} />
