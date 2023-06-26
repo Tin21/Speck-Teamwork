@@ -5,6 +5,7 @@ import {
   ExpandedMin,
   InnerWrapperMini,
   MinimizedBottom,
+  MinimizedButton,
   MinimizedText,
 } from './MinimizeEmailStyle';
 import { EmailContext } from '../../../context/EmailContext';
@@ -19,23 +20,31 @@ export const MinimizeEmail = () => {
     setEmailData,
   } = useContext(EmailContext);
 
-  // if (!isMinimized) {
-  //   return null;
-  // }
-
   return (
     <MinimizedBottom>
       <InnerWrapperMini>
-        <MinimizedText miniLeftRounded>Delete</MinimizedText>
-        <CloseLogoTablet />
-        <ExpandWrapper>
+        <MinimizedButton
+          onClick={() => {
+            setIsPopupOpen(false);
+            setIsMinimized(false);
+          }}
+        >
+          Delete
+        </MinimizedButton>
+        <CloseLogoTablet
+          onClick={() => {
+            setIsPopupOpen(false);
+            setIsMinimized(false);
+          }}
+        />
+        <ExpandWrapper
+          onClick={() => {
+            setIsPopupOpen(true);
+            setIsMinimized(false);
+          }}
+        >
           <MinimizedText>Keep Writing</MinimizedText>
-          <ExpandedMin
-            onClick={() => {
-              setIsPopupOpen(true);
-              setIsMinimized(false);
-            }}
-          />
+          <ExpandedMin />
         </ExpandWrapper>
       </InnerWrapperMini>
     </MinimizedBottom>
