@@ -10,11 +10,7 @@ import {
 } from '../../components/Chart/ChartStyle';
 import BarChart from '../../components/Chart/BarChart';
 import DoughnutChart from '../../components/Chart/DoughnutChart';
-import {
-  chartMock,
-  doughnutMock1,
-  doughnutMock2,
-} from '../../utils/mock/chartData';
+import { doughnutMock1, doughnutMock2 } from '../../utils/mock/chartData';
 import { useEffect, useState } from 'react';
 import {
   getLectureCriteriaByUserId,
@@ -29,6 +25,10 @@ const MyResults = () => {
   const [firstCertificatePercentage, setFirstCertificatePercentage] = useState(
     [],
   );
+
+  const [teamworkResult, setTeamworkResult] = useState(0);
+  const [finalExamResult, setFinalExamResult] = useState(0);
+
   const [secondCertificatePercentage, setSecondCertificatePercentage] =
     useState([]);
 
@@ -36,6 +36,8 @@ const MyResults = () => {
     _getChartData('Quiz');
     _getChartData('Homework');
     _getChartData('Attendance');
+    _getChartData('Final exam');
+    _getChartData('Teamwork');
     _calculateCertificatePercentages();
   }, []);
 
@@ -51,27 +53,43 @@ const MyResults = () => {
     );
     console.log(filteredLectureCriteriaByNameList);
 
-    const results = [];
-    for (const element of filteredLectureCriteriaByNameList) {
-      console.log(element);
+    let results;
+    if (type == 'Quiz' || type == 'Attendance' || type == 'Homework') {
+      results = [];
+    } else {
+      results = 0;
+    }
 
+    for (const element of filteredLectureCriteriaByNameList) {
       const itemName = (await _getData(element.lecture_criterium.lecture_id))
         .name;
       const itemUserPoints = element.points;
       const itemMaxPoints = element.lecture_criterium.total_points;
 
-      results.push({
-        name: itemName,
-        percentage: Math.round((itemUserPoints * 100) / itemMaxPoints),
-      });
+      if (type == 'Quiz' || type == 'Attendance' || type == 'Homework') {
+        results.push({
+          name: itemName,
+          percentage: Math.round((itemUserPoints * 100) / itemMaxPoints),
+        });
+      } else {
+        await _getData(element.lecture_criterium.lecture_id).name;
+        const itemUserPoints = element.points;
+        const itemMaxPoints = element.lecture_criterium.total_points;
+        results = Math.round((itemUserPoints * 100) / itemMaxPoints);
+      }
     }
-    console.log(results);
+
+    // console.log(results);
     if (type == 'Quiz') {
       setUsersQuizResults(results);
     } else if (type == 'Homework') {
       setUsersHomeworkResults(results);
     } else if (type == 'Attendance') {
       setUsersAttendanceResults(results);
+    } else if (type == 'Final exam') {
+      setFinalExamResult(results);
+    } else if (type == 'Teamwork') {
+      setTeamworkResult(results);
     }
   };
 
@@ -112,11 +130,11 @@ const MyResults = () => {
         (usersHomeworkResults[i].percentage / 100) * homeworkPoints;
     }
 
-    //team work points
-    earnedPoints += (doughnutMock1 / 100) * 40;
+    // team work points
+    earnedPoints += (doughnutMock1 / 100) * 40; // TODO spojit s API-jem
 
-    //final exam points
-    earnedPoints += (doughnutMock2 / 100) * 30;
+    // final exam points
+    earnedPoints += (doughnutMock2 / 100) * 30; // TODO spojit s API-jem
 
     if (earnedPoints >= 0.5 * totalPoints) {
       setFirstCertificatePercentage(100);
@@ -176,14 +194,14 @@ const MyResults = () => {
               <SingleChartInnerWrapper>
                 <ChartTitle>Team work</ChartTitle>
                 <ChartSubtitle>Your team work results</ChartSubtitle>
-                <DoughnutChart doughnutData={doughnutMock1} />
+                <DoughnutChart doughnutData={teamworkResult} />
               </SingleChartInnerWrapper>
             </SingleChartOuterWrapper>
             <SingleChartOuterWrapper isDoughnut={true}>
               <SingleChartInnerWrapper>
                 <ChartTitle>Final exam</ChartTitle>
                 <ChartSubtitle>Your final exam results</ChartSubtitle>
-                <DoughnutChart doughnutData={doughnutMock2} />
+                <DoughnutChart doughnutData={finalExamResult} />
               </SingleChartInnerWrapper>
             </SingleChartOuterWrapper>
           </DoughnutChartsWrapper>
