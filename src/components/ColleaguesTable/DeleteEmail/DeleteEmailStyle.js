@@ -85,7 +85,6 @@ export const KeepEditingButton = styled.button`
   font-weight: 600;
   padding: 10px 24px;
   border-radius: 48px;
-  transition: all 0.3s ease-out;
   border: none;
   white-space: nowrap;
   cursor: pointer;
@@ -122,7 +121,6 @@ export const DeleteButton = styled.button`
   border-radius: 48px;
   border: 1px solid ${colors.buttonBorder};
   background-color: ${colors.white};
-  transition: all 0.3s ease-out;
   cursor: pointer;
   order: 0;
   ${(props) =>
