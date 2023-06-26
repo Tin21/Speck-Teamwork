@@ -104,9 +104,7 @@ const Login = () => {
                 }
               />
               <ErrorMessage component={'div'} name="password" />
-              <StyledLink to="/password-reset">
-                Forgot your password?
-              </StyledLink>
+              <StyledLink to="/reset">Forgot your password?</StyledLink>
             </FormRow>
 
             <FormRow>

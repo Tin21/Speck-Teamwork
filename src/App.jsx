@@ -17,7 +17,7 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path={'/login'} element={<Login />} />{' '}
-        <Route path="/password-reset" element={<Reset />} />
+        <Route path="/reset" element={<Reset />} />
         <Route path="/password-reset/:hash" element={<Reset />} />
         <Route
           path={'/'}
