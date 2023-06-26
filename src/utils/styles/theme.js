@@ -52,6 +52,10 @@ export const colors = {
   bluePrimary: '#1D7FA9', //pozadina 3. mjesta u leadingu
   blueSecondary: '#89C3DC', //pozadina gornjeg dijela 3. mjesta u leadingu
   blueTertiary: '#0F6387', //pozadina bodova 3. mjesta u leadingu
+  grayBorder: '#D2D6DC',
+  lightGreen: '#cddbc8',
+  orangeBorder: '#DE9300',
+  lightOrange: '#F9ECD2',
 };
 
 export const breakpoints = {
