@@ -11,7 +11,8 @@ import {
 import { EmailContext } from '../../../context/EmailContext';
 
 export const MinimizeEmail = () => {
-  const { setIsPopupOpen, setIsMinimized } = useContext(EmailContext);
+  const { setIsPopupOpen, setIsMinimized, setIsDeleteOpen } =
+    useContext(EmailContext);
 
   return (
     <MinimizedBottom>
@@ -20,6 +21,7 @@ export const MinimizeEmail = () => {
           onClick={() => {
             setIsPopupOpen(false);
             setIsMinimized(false);
+            setIsDeleteOpen(true);
           }}
         >
           Delete
@@ -28,6 +30,7 @@ export const MinimizeEmail = () => {
           onClick={() => {
             setIsPopupOpen(false);
             setIsMinimized(false);
+            setIsDeleteOpen(true);
           }}
         />
         <ExpandWrapper

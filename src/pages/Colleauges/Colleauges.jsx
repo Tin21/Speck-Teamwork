@@ -13,13 +13,23 @@ const Colleauges = () => {
     setIsMinimized,
     emailData,
     setEmailData,
+    setShowToast,
+    showToast,
+    isDeleteOpen,
+    setIsDeleteOpen,
+    recipients,
+    setRecipients,
+    subject,
+    setSubject,
+    bodyText,
+    setBodyText,
   } = useContext(EmailContext);
   return (
     <>
       <Section isFlexDisplay={false} title={'List of your colleagues'}>
-        <DeleteEmail />
         <ColleaguesTable />
         {isMinimized && <MinimizeEmail />}
+        {isDeleteOpen && <DeleteEmail />}
       </Section>
     </>
   );

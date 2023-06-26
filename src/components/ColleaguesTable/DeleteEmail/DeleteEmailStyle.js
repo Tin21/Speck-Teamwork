@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../../utils/styles/theme';
+import { breakpoints, colors } from '../../../utils/styles/theme';
 
 export const DeleteModalBackground = styled.div`
   overflow: hidden;
@@ -73,7 +73,83 @@ export const DeleteBodyText = styled.div`
 
 export const DeleteFooter = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
   padding: 0 20px 22px 26px;
+`;
+
+export const KeepEditingButton = styled.button`
+  color: ${colors.white};
+  background-color: ${colors.buttonPrimary};
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 48px;
+  transition: all 0.3s ease-out;
+  border: none;
+  white-space: nowrap;
+  cursor: pointer;
+  order: 1;
+  ${(props) =>
+    props.textEdit &&
+    `
+    &::after{
+      content:'Keep editing'
+    }
+  `}
+
+  @media screen and (${breakpoints.tablet}) {
+    color: ${colors.textPrimaryGrey};
+    border: none;
+    background-color: ${colors.bgMenuItem};
+
+    order: 0;
+    ${(props) =>
+      props.textEdit &&
+      `
+      &::after{
+      content:'Cancel'
+    }
+  `}
+  }
+`;
+
+export const DeleteButton = styled.button`
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 16px;
+  color: ${colors.buttonPrimary};
+  border-radius: 48px;
+  border: 1px solid ${colors.buttonBorder};
+  background-color: ${colors.white};
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  order: 0;
+  ${(props) =>
+    props.textDelete &&
+    `
+    &::after{
+      content:'Delete'
+    }
+  `}
+
+  @media screen and (${breakpoints.tablet}) {
+    padding: 12px 24px;
+    color: ${colors.white};
+    background-color: ${colors.buttonPrimary};
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    white-space: nowrap;
+    order: 1;
+
+    cursor: pointer;
+    ${(props) =>
+      props.textDelete &&
+      `
+      &::after{
+      content:'Delete message'
+    }
+  `}
+  }
 `;
