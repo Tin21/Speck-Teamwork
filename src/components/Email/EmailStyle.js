@@ -219,21 +219,6 @@ export const MinimizeLogo = styled(MinimizeIcon)`
   }
 `;
 
-// export const CloseLogo = styled(CloseIcon)`
-//   path {
-//     fill-opacity: 1;
-//   }
-//   @media screen and (${breakpoints.tablet}) {
-//     fill-opacity: 0.6;
-//   }
-//   ${(props) =>
-//     props.isMini &&
-//     `
-//     @media screen and (${breakpoints.tablet}) {
-//       display:none;
-//     }
-//   `}
-// `;
 export const CloseLogoMobile = styled(CloseIcon)`
   path {
     fill-opacity: 1;

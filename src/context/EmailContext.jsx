@@ -7,6 +7,10 @@ const EmailProvider = (props) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [emailData, setEmailData] = useState(null);
 
+  const [recipients, setRecipients] = useState('');
+  const [subject, setSubject] = useState('');
+  const [bodyText, setBodyText] = useState('');
+
   return (
     <EmailContext.Provider
       value={{
@@ -16,6 +20,12 @@ const EmailProvider = (props) => {
         setIsMinimized,
         emailData,
         setEmailData,
+        recipients,
+        setRecipients,
+        subject,
+        setSubject,
+        bodyText,
+        setBodyText,
       }}
     >
       {props.children}

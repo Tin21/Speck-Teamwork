@@ -33,6 +33,7 @@ export const ExpandWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 `;
 
 export const MinimizedText = styled.p`
@@ -56,6 +57,17 @@ export const MinimizedText = styled.p`
   `}
 `;
 
-export const ExpandedMin = styled(ExpandMin)`
-  cursor: pointer;
+export const MinimizedButton = styled.button`
+  display: none;
+  @media screen and (${breakpoints.tablet}) {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 48px;
+    border: 1px solid ${colors.buttonBorder};
+    background-color: ${colors.textPrimaryGrey};
+    color: ${colors.white};
+    cursor: pointer;
+  }
 `;
+
+export const ExpandedMin = styled(ExpandMin)``;

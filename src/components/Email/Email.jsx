@@ -43,6 +43,12 @@ const Email = () => {
     setIsMinimized,
     emailData,
     setEmailData,
+    recipients,
+    setRecipients,
+    subject,
+    setSubject,
+    bodyText,
+    setBodyText,
   } = useContext(EmailContext);
 
   useEffect(() => {
@@ -78,9 +84,9 @@ const Email = () => {
         <EmailBody>
           <Formik
             initialValues={{
-              recipients: '',
-              subject: '',
-              bodyText: '',
+              recipients: recipients,
+              subject: subject,
+              bodyText: bodyText,
             }}
             validationSchema={Yup.object({
               recipients: Yup.string().email().required('Required'),
@@ -88,16 +94,28 @@ const Email = () => {
               bodyText: Yup.string().required('Required'),
             })}
             onSubmit={(values, { setSubmitting, resetForm }) => {
+              const closeAndReset = () => {
+                setSubmitting(false);
+                resetForm();
+                setIsPopupOpen(false);
+              };
               setTimeout(() => {
-                const data = {
-                  recipients: values.recipients,
-                  subject: values.subject,
-                  body_text: values.bodyText,
-                };
+                // const data = {
+                //   recipients: values.recipients,
+                //   subject: values.subject,
+                //   body_text: values.bodyText,
+                // };
 
+                setRecipients(values.recipients);
+                setSubject(values.subject);
+                setBodyText(values.bodyText);
                 setSubmitting(false);
                 setEmailData(data);
-                resetForm();
+                // resetForm();
+
+                if (!isMinimized || !isPopupOpen) {
+                  closeAndReset();
+                }
               }, 1000);
             }}
           >
@@ -148,7 +166,11 @@ const Email = () => {
                     <SignatureIcon />
                   </MultipleIconWrapper>
                   <ButtonWrapper>
-                    <Button type="submit" disabled={formik.isSubmitting}>
+                    <Button
+                      type="submit"
+                      onClick={formik.submitForm}
+                      disabled={formik.isSubmitting}
+                    >
                       Send Email
                     </Button>
                   </ButtonWrapper>
