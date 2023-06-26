@@ -35,7 +35,11 @@ const Login = () => {
       login_image={loginImage}
     >
       {errorMessage && (
-        <Toast title="Login Error" subtitle={errorMessage.message} />
+        <Toast
+          type="error"
+          title="Login Error"
+          subtitle={errorMessage.message}
+        />
       )}
       <Formik
         initialValues={{
@@ -60,6 +64,7 @@ const Login = () => {
             navigate('/');
             localStorage.setItem('jwt_token', response.access_token);
             setIsLoggedIn(response.access_token);
+            setErrorMessage({ error: false, message: 'Successful login!' });
             resetForm();
           } catch (err) {
             setErrorMessage({
