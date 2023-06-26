@@ -36,7 +36,13 @@ const Certificate = ({ title, subtitle, percentage, isSecondary }) => {
         ) : (
           <CertificateImage src={TrophyCupImage} alt="Certificate trophy" />
         )}
-        {percentage === 100 && (
+        {percentage === 100 && !isSecondary && (
+          <CertificateCheck
+            src={CertificateSuccessIcon}
+            alt="Certificate success"
+          />
+        )}
+        {percentage >= 90 && isSecondary && (
           <CertificateCheck
             src={CertificateSuccessIcon}
             alt="Certificate success"

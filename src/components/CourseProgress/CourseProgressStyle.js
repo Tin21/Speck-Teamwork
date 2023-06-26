@@ -9,6 +9,7 @@ export const CourseProgress = styled.div`
 
   @media screen and (${breakpoints.tablet}) {
     margin: 32px;
+    padding: 24px;
   }
   @media screen and (${breakpoints.desktop}) {
     margin: 32px 48px 0 48px;
