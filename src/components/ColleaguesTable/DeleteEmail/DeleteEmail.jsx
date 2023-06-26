@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from './.././../../utils/styles/generalStyles';
 import {
   DeleteBody,
   DeleteBodyText,
+  DeleteButton,
   DeleteContainer,
   DeleteFooter,
   DeleteModalBackground,
   HeaderDelete,
   HeaderDeleteText,
+  KeepEditingButton,
 } from './DeleteEmailStyle';
 import { CloseLogoTablet } from '../../Email/EmailStyle';
+import { EmailContext } from '../../../context/EmailContext';
 
 const DeleteEmail = () => {
+  const { setIsPopupOpen, setIsMinimized, setIsDeleteOpen } =
+    useContext(EmailContext);
+
+  const handleDelete = () => {
+    setIsDeleteOpen(false);
+    setIsPopupOpen(false);
+  };
+
+  const handleKeepEditing = () => {
+    setIsDeleteOpen(false);
+    setIsPopupOpen(true);
+  };
   return (
     <DeleteModalBackground>
       <DeleteContainer>
@@ -25,10 +40,12 @@ const DeleteEmail = () => {
           </DeleteBodyText>
         </DeleteBody>
         <DeleteFooter>
-          <Button isSecondary>Delete</Button>
-          <Button style={{ whiteSpace: 'nowrap', padding: '10px 24px' }}>
-            Keep editing
-          </Button>
+          <DeleteButton textDelete onClick={handleDelete}></DeleteButton>
+          <KeepEditingButton
+            textEdit
+            onClick={handleKeepEditing}
+            isDeleteEmail
+          ></KeepEditingButton>
         </DeleteFooter>
       </DeleteContainer>
     </DeleteModalBackground>

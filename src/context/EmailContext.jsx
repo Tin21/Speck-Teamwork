@@ -5,6 +5,7 @@ const EmailContext = createContext();
 const EmailProvider = (props) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [emailData, setEmailData] = useState(null);
   const [showToast, setShowToast] = useState(false);
 
@@ -23,6 +24,8 @@ const EmailProvider = (props) => {
         setEmailData,
         setShowToast,
         showToast,
+        isDeleteOpen,
+        setIsDeleteOpen,
         recipients,
         setRecipients,
         subject,

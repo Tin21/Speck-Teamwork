@@ -43,6 +43,10 @@ const Email = () => {
     setIsMinimized,
     emailData,
     setEmailData,
+    setShowToast,
+    showToast,
+    isDeleteOpen,
+    setIsDeleteOpen,
     recipients,
     setRecipients,
     subject,
@@ -58,7 +62,7 @@ const Email = () => {
       //kad se unmounta vrati na staro
       document.body.style.overflow = 'auto';
     };
-  }, [isPopupOpen]); // kad god je aktivan, ponovi efekt
+  }, [isPopupOpen, isDeleteOpen]); // kad god je aktivan, ponovi efekt
 
   return (
     <EmailBackgroundModal>
@@ -72,7 +76,12 @@ const Email = () => {
                 setIsPopupOpen(false);
               }}
             />
-            <CloseLogoMobile onClick={() => setIsPopupOpen(false)} />
+            <CloseLogoMobile
+              onClick={() => {
+                setIsPopupOpen(false);
+                setIsDeleteOpen(true);
+              }}
+            />
           </MinCloseWrapper>
           <MobileHeaderWrapper>
             <ClipperLogoWhite />
