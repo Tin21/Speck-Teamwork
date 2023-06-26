@@ -10,8 +10,7 @@ import {
   ProfileButton,
   UserAvatar,
   ProfileWrapper,
-  VisibleIcon,
-  PassChangeWrapper,
+  ProfileButtonWrapper,
   PassChangeLink,
   Field,
   Label,
@@ -27,22 +26,16 @@ import { Context } from '../../context/Context';
 
 const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
-  const [passwordVisible, setPasswordVisible] = useState(false);
   const { showModal, setShowModal, showToast, setShowToast } =
     useContext(Context);
   const [user, setUser] = useState({
     firstName: 'Ivan',
     lastName: 'Ivanovic',
     email: 'ivanivanovic@gmail.com',
-    password: '123456789abc',
   });
 
   const changeUpdate = () => {
     setUpdate(!update);
-  };
-
-  const changePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
   };
 
   const changeToast = () => {
@@ -58,7 +51,6 @@ const Profile = ({ imgSrc, imgAlt }) => {
       firstName: newData.firstName,
       lastName: newData.lastName,
       email: newData.email,
-      password: newData.password,
     });
   };
 
@@ -75,7 +67,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
           title={'Delete account?'}
           subtitle={'If you delete your account, all your data will be lost.'}
           acceptText={'Delete'}
-          declineText={'Keep editing'}
+          declineText={'Cancel'}
         />
       )}
       {!update && ( //INITIAL STATE
@@ -93,11 +85,11 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <PictureFrame />
               </PictureWrapper>
               <FormRow>
-                <Label isDisabled htmlFor="firstName">
+                <Label isdisabled="true" htmlFor="firstName">
                   Ime
                 </Label>
                 <Field
-                  isDisabled
+                  isdisabled="true"
                   type="text"
                   name="firstName"
                   value={user.firstName}
@@ -106,11 +98,11 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ErrorMessage component={'div'} name="firstName" />
               </FormRow>
               <FormRow>
-                <Label isDisabled htmlFor="lastName">
+                <Label isdisabled="true" htmlFor="lastName">
                   Prezime
                 </Label>
                 <Field
-                  isDisabled
+                  isdisabled="true"
                   type="text"
                   name="lastName"
                   value={user.lastName}
@@ -119,32 +111,17 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ErrorMessage component={'div'} name="lastName" />
               </FormRow>
               <FormRow>
-                <Label isDisabled htmlFor="email">
+                <Label isdisabled="true" htmlFor="email">
                   Email
                 </Label>
                 <Field
-                  isDisabled
+                  isdisabled="true"
                   type="text"
                   name="email"
                   value={user.email}
                   disabled
                 />
                 <ErrorMessage component={'div'} name="email" />
-              </FormRow>
-              <FormRow>
-                <Label isDisabled htmlFor="password">
-                  Password
-                </Label>
-
-                <Field
-                  isPasswordDisabled
-                  isDisabled
-                  type="password"
-                  name="password"
-                  value={user.password}
-                  disabled
-                />
-                <ErrorMessage component={'div'} name="password" />
               </FormRow>
               <FormRow>
                 <ProfileButton disabled isSecondaryDisabled>
@@ -208,66 +185,40 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <UploadPhotoIcon />
               </PictureWrapper>
               <FormRow>
-                <Label isEnabled htmlFor="firstName">
+                <Label isenabled="true" htmlFor="firstName">
                   Ime
                 </Label>
-                <Field isEnabled type="text" name="firstName" />
+                <Field isenabled="true" type="text" name="firstName" />
 
                 <ErrorMessage component={'div'} name="firstName" />
               </FormRow>
               <FormRow>
-                <Label isEnabled htmlFor="lastName">
+                <Label isenabled="true" htmlFor="lastName">
                   Prezime
                 </Label>
-                <Field isEnabled type="text" name="lastName" />
+                <Field isenabled="true" type="text" name="lastName" />
                 <ErrorMessage component={'div'} name="lastName" />
               </FormRow>
               <FormRow>
-                <Label isEnabled htmlFor="email">
+                <Label isenabled="true" htmlFor="email">
                   Email
                 </Label>
-                <Field isEnabled type="text" name="email" />
+                <Field isenabled="true" type="text" name="email" />
                 <ErrorMessage component={'div'} name="email" />
               </FormRow>
-
               <FormRow>
-                <Label isEnabled htmlFor="password">
-                  Password
-                </Label>
-                <VisibleIcon onClick={() => changePasswordVisibility()} />
-                {!passwordVisible && (
-                  <Field
-                    isPasswordEnabled
-                    isEnabled
-                    type="password"
-                    name="password"
-                    value={user.password}
-                  />
-                )}
-                {passwordVisible && (
-                  <Field
-                    isPasswordVisible
-                    isEnabled
-                    type="text"
-                    name="password"
-                    value={user.password}
-                  />
-                )}
-                <ErrorMessage component={'div'} name="password" />
-                <PassChangeWrapper>
+                <ProfileButtonWrapper>
+                  <ProfileButton
+                    type="button"
+                    isSecondaryEnabled
+                    onClick={() => changeModal()}
+                  >
+                    Delete your account
+                  </ProfileButton>
                   <PassChangeLink to={'/reset'}>
                     Change your password
                   </PassChangeLink>
-                </PassChangeWrapper>
-              </FormRow>
-              <FormRow>
-                <ProfileButton
-                  type="button"
-                  isSecondaryEnabled
-                  onClick={() => changeModal()}
-                >
-                  Delete your account
-                </ProfileButton>
+                </ProfileButtonWrapper>
               </FormRow>
             </Form>
           )}

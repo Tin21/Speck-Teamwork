@@ -321,16 +321,19 @@ export const VisibleIcon = styled(VisibilityIcon)`
   }
 `;
 
-export const PassChangeWrapper = styled.div`
+export const ProfileButtonWrapper = styled.div`
   display: flex;
-  justify-content: right;
-  margin-top: 8px;
+
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const PassChangeLink = styled(NavLink)`
   font-weight: 600;
   font-size: 14px;
   color: #0085ff;
+
+  margin-top: 8px;
 `;
 
 export const Form = styled(FormikForm)`
