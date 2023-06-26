@@ -120,18 +120,21 @@ export const ModalBodyText = styled.p`
 
 export const ModalButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 
-  @media screen and (${breakpoints.desktopSmall}) {
-    justify-content: space-around;
-  }
+  /* @media screen and (${breakpoints.desktopSmall}) { */
+  /* justify-content: space-around; */
+  /* } */
 `;
 
 export const Button = styled(GeneralButton)`
   height: 38px;
   padding: 0 18px;
   width: max-content;
+  &:first-child {
+    margin-right: 16px;
+  }
 
   @media screen and (${breakpoints.tabletSmall}) {
     padding: 0 22px;
