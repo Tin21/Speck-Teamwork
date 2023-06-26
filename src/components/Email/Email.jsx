@@ -62,7 +62,7 @@ const Email = () => {
       //kad se unmounta vrati na staro
       document.body.style.overflow = 'auto';
     };
-  }, [isPopupOpen, isDeleteOpen]); // kad god je aktivan, ponovi efekt
+  }, [isPopupOpen]); // kad god je aktivan, ponovi efekt
 
   return (
     <EmailBackgroundModal>
@@ -109,11 +109,11 @@ const Email = () => {
                 setIsPopupOpen(false);
               };
               setTimeout(() => {
-                // const data = {
-                //   recipients: values.recipients,
-                //   subject: values.subject,
-                //   body_text: values.bodyText,
-                // };
+                const data = {
+                  recipients: values.recipients,
+                  subject: values.subject,
+                  body_text: values.bodyText,
+                };
 
                 setRecipients(values.recipients);
                 setSubject(values.subject);
@@ -162,7 +162,12 @@ const Email = () => {
 
                 <EmailFooterWrapper>
                   <DeleteWrapper>
-                    <DeleteIcon />
+                    <DeleteIcon
+                      onClick={() => {
+                        setIsPopupOpen(false);
+                        setIsDeleteOpen(true);
+                      }}
+                    />
                   </DeleteWrapper>
                   <MultipleIconWrapper>
                     <TextIcon />

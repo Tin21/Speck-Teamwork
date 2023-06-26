@@ -31,7 +31,7 @@ const DeleteEmail = () => {
       <DeleteContainer>
         <HeaderDelete>
           <HeaderDeleteText>Delete email?</HeaderDeleteText>
-          <CloseDeleteContainer />
+          <CloseDeleteContainer onClick={handleKeepEditing} />
         </HeaderDelete>
         <DeleteBody>
           <DeleteBodyText>

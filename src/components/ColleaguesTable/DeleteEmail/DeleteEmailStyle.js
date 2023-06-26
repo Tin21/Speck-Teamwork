@@ -153,4 +153,6 @@ export const DeleteButton = styled.button`
   }
 `;
 
-export const CloseDeleteContainer = styled(CloseDelete)``;
+export const CloseDeleteContainer = styled(CloseDelete)`
+  cursor: pointer;
+`;

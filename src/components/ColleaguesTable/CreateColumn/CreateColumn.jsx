@@ -22,17 +22,18 @@ const columns = [
     id: 'actions',
     header: 'Action',
     enableSorting: false,
-    cell: () => {
-      const { isPopupOpen, setIsPopupOpen, setEmailData } =
+    cell: (info) => {
+      const { isPopupOpen, setIsPopupOpen, setEmailData, setRecipients } =
         useContext(EmailContext);
 
-      const handleClickOpenPop = () => {
+      const handleClickOpenPop = (email) => {
         setIsPopupOpen(true);
         setEmailData({
           recipient: '',
           subject: '',
           body: '',
         });
+        setRecipients(info.row.original.email);
         window.scrollTo(0, 0);
       };
 
