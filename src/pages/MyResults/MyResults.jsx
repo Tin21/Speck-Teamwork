@@ -20,16 +20,23 @@ import {
   getLectureCriteriaByUserId,
   getLectureDataById,
 } from '../../api/lectures';
+import CourseProgress from '../../components/CourseProgress/CourseProgress';
 
 const MyResults = () => {
   const [usersQuizResults, setUsersQuizResults] = useState([]);
   const [usersHomeworkResults, setUsersHomeworkResults] = useState([]);
   const [usersAttendanceResults, setUsersAttendanceResults] = useState([]);
+  const [firstCertificatePercentage, setFirstCertificatePercentage] = useState(
+    [],
+  );
+  const [secondCertificatePercentage, setSecondCertificatePercentage] =
+    useState([]);
 
   useEffect(() => {
     _getChartData('Quiz');
     _getChartData('Homework');
     _getChartData('Attendance');
+    _calculateCertificatePercentages();
   }, []);
 
   const _getChartData = async (type) => {
@@ -83,8 +90,58 @@ const MyResults = () => {
     return filteredByName;
   };
 
+  const _calculateCertificatePercentages = () => {
+    let earnedPoints = 0;
+    let totalPoints = 219;
+    usersAttendanceResults.forEach((element) => {
+      if (element.percentage === 100) earnedPoints++;
+    });
+
+    for (let i = 0; i < usersQuizResults.length; i++) {
+      let quizPoints;
+      if (i === 1 || i === 5) quizPoints = 15;
+      else quizPoints = 20;
+      earnedPoints += (usersQuizResults[i].percentage / 100) * quizPoints * 0.4;
+    }
+
+    for (let i = 0; i < usersHomeworkResults.length; i++) {
+      let homeworkPoints;
+      if (i === 4) homeworkPoints = 10;
+      else homeworkPoints = 20;
+      earnedPoints +=
+        (usersHomeworkResults[i].percentage / 100) * homeworkPoints;
+    }
+
+    //team work points
+    earnedPoints += (doughnutMock1 / 100) * 40;
+
+    //final exam points
+    earnedPoints += (doughnutMock2 / 100) * 30;
+
+    if (earnedPoints >= 0.5 * totalPoints) {
+      setFirstCertificatePercentage(100);
+    } else {
+      setFirstCertificatePercentage(
+        Math.round((earnedPoints / totalPoints) * 100),
+      );
+    }
+
+    setSecondCertificatePercentage(
+      Math.round((earnedPoints / totalPoints) * 100),
+    );
+  };
+
   return (
     <>
+      <CourseProgress
+        firstPercentage={firstCertificatePercentage}
+        firstCertificateTitle="Certifikat prolaznosti"
+        firstCertificateSubtitle="Potrebno 50% bodova"
+        secondPercentage={secondCertificatePercentage}
+        secondCertificateTitle="Certifikat izvrsnosti"
+        secondCertificateSubtitle="Potrebno 90% bodova"
+        title="My course progress"
+      />
       <ChartsWrapper>
         <BarChartGrid>
           <SingleChartOuterWrapper>

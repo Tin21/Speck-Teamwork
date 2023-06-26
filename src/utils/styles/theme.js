@@ -41,6 +41,10 @@ export const colors = {
   doughnutChartGrey: '#CFD8DC',
   greyBody: '#7F8591',
   textLightGrey: '#a3a2a2', //npr za text u disabled fieldovima
+  grayBorder: '#D2D6DC',
+  lightGreen: '#cddbc8',
+  orangeBorder: '#DE9300',
+  lightOrange: '#F9ECD2',
   tableHeaderBg: '#F9F9F9', //pozadina headera u tablicama
   tableBorder: '#e6e6e6',
   greenPrimary: '#2E8A0D', //pozadina 2. mjesta u leadingu
@@ -52,6 +56,10 @@ export const colors = {
   bluePrimary: '#1D7FA9', //pozadina 3. mjesta u leadingu
   blueSecondary: '#89C3DC', //pozadina gornjeg dijela 3. mjesta u leadingu
   blueTertiary: '#0F6387', //pozadina bodova 3. mjesta u leadingu
+  grayBorder: '#D2D6DC',
+  lightGreen: '#cddbc8',
+  orangeBorder: '#DE9300',
+  lightOrange: '#F9ECD2',
 };
 
 export const breakpoints = {
