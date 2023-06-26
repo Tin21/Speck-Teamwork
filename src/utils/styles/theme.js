@@ -39,6 +39,10 @@ export const colors = {
   doughnutChartGrey: '#CFD8DC',
   greyBody: '#7F8591',
   textLightGrey: '#a3a2a2', //npr za text u disabled fieldovima
+  grayBorder: '#D2D6DC',
+  lightGreen: '#cddbc8',
+  orangeBorder: '#DE9300',
+  lightOrange: '#F9ECD2',
 };
 
 export const breakpoints = {

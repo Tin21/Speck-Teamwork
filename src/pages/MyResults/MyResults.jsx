@@ -10,6 +10,7 @@ import {
 import BarChart from '../../components/Chart/BarChart';
 import DoughnutChart from '../../components/Chart/DoughnutChart';
 import { doughnutMock1, doughnutMock2 } from '../../utils/mock/chartData';
+import CourseProgress from '../../components/CourseProgress/CourseProgress';
 
 const MyResults = () => {
   return (
