@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Button } from './.././../../utils/styles/generalStyles';
 import {
+  CloseDeleteContainer,
   DeleteBody,
   DeleteBodyText,
   DeleteButton,
@@ -11,7 +11,6 @@ import {
   HeaderDeleteText,
   KeepEditingButton,
 } from './DeleteEmailStyle';
-import { CloseLogoTablet } from '../../Email/EmailStyle';
 import { EmailContext } from '../../../context/EmailContext';
 
 const DeleteEmail = () => {
@@ -32,7 +31,7 @@ const DeleteEmail = () => {
       <DeleteContainer>
         <HeaderDelete>
           <HeaderDeleteText>Delete email?</HeaderDeleteText>
-          <CloseLogoTablet />
+          <CloseDeleteContainer />
         </HeaderDelete>
         <DeleteBody>
           <DeleteBodyText>

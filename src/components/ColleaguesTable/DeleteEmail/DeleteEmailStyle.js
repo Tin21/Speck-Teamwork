@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { breakpoints, colors } from '../../../utils/styles/theme';
+import { ReactComponent as CloseDelete } from './../../../assets/images/emailIcon/closeDelete.svg';
 
 export const DeleteModalBackground = styled.div`
   overflow: hidden;
@@ -151,3 +152,5 @@ export const DeleteButton = styled.button`
   `}
   }
 `;
+
+export const CloseDeleteContainer = styled(CloseDelete)``;
