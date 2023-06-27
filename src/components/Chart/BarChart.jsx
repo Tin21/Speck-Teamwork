@@ -62,6 +62,8 @@ const options = {
   },
   scales: {
     x: {
+      min: 0,
+      max: 100,
       grid: {
         display: false,
       },
@@ -96,7 +98,14 @@ const BarChart = ({ barData }) => {
       ctx.textAlign = 'end';
       ctx.fillStyle = `${getTextColor(data)}`;
 
-      const x = bar.x - 10;
+      let x;
+      if (data > 40) {
+        x = bar.x - 10;
+      } else {
+        const labelWidth = ctx.measureText(label).width;
+        x = bar.x + 30 + labelWidth;
+      }
+
       const y = bar.y;
       ctx.fillText(`${label} ${data}%`, x, y);
       ctx.restore();
