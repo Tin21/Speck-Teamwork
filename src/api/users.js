@@ -96,3 +96,32 @@ export const resetPassword = (hash, newPassword) => {
       throw error;
     });
 };
+
+export const updateUser = (id, newUser, jwt) => {
+  const url = `${apiOrigin}/api/users/${id}`;
+  const body = JSON.stringify({
+    first_name: newUser.first_name,
+    last_name: newUser.last_name,
+    email: newUser.email,
+  });
+
+  return fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`,
+    },
+    body: body,
+  })
+    .then((res) => {
+      console.log(res);
+      if (!res.ok) {
+        throw res;
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      console.log(error);
+      throw error;
+    });
+};
