@@ -164,7 +164,7 @@ const MyResults = () => {
       localStorage.getItem('logged_user_id'),
     );
 
-    const totalPoints = getTotalPoints(lectureCriteria);
+    const totalPoints = 219;
     const earnedPoints = getEarnedPoints(lectureCriteria);
 
     if (earnedPoints >= 0.5 * totalPoints) {
@@ -180,15 +180,6 @@ const MyResults = () => {
     if (secondPercentage > 100) secondPercentage = 100;
     if (secondPercentage < 0) secondPercentage = 0;
     setSecondCertificatePercentage(secondPercentage);
-  };
-
-  const getTotalPoints = (lectureCriteria) => {
-    let totalPoints = 0;
-    for (const element of lectureCriteria) {
-      const itemMaxPoints = element.lecture_criterium.total_points;
-      totalPoints += itemMaxPoints;
-    }
-    return totalPoints;
   };
 
   const getEarnedPoints = (lectureCriteria) => {
