@@ -26,6 +26,7 @@ const Login = () => {
   const { setIsLoggedIn } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
+  const { setLoggedUser } = useContext(AuthContext);
 
   return (
     <LoginSection
@@ -59,6 +60,7 @@ const Login = () => {
             localStorage.setItem('logged_user_id', user.id);
             navigate('/');
             localStorage.setItem('jwt_token', response.access_token);
+            setLoggedUser(user);
             setIsLoggedIn(response.access_token);
             resetForm();
           } catch (err) {
