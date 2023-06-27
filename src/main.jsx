@@ -7,13 +7,14 @@ import { ContextProvider } from './context/Context.jsx';
 import { EmailProvider } from './context/EmailContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <BrowserRouter>
-    <ContextProvider>
-      <EmailProvider>
-        <App />
-      </EmailProvider>
-    </ContextProvider>
-  </BrowserRouter>,
-  // </React.StrictMode>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <ContextProvider>
+        <EmailProvider>
+          <App />
+        </EmailProvider>
+      </ContextProvider>
+    </BrowserRouter>
+    ,
+  </React.StrictMode>,
 );

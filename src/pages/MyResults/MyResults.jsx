@@ -29,7 +29,7 @@ const MyResults = () => {
 
   const [teamworkResult, setTeamworkResult] = useState(0);
   const [finalExamResult, setFinalExamResult] = useState(0);
-
+  let allLectures;
   const [secondCertificatePercentage, setSecondCertificatePercentage] =
     useState([]);
 
@@ -43,6 +43,7 @@ const MyResults = () => {
   }, []);
 
   const _getChartData = async (type) => {
+    allLectures = await getAllLectures(localStorage.getItem('jwt_token'));
     const lectureCriteriaById = await getLectureCriteriaByUserId(
       localStorage.getItem('jwt_token'),
       localStorage.getItem('logged_user_id'),
@@ -52,7 +53,6 @@ const MyResults = () => {
       type,
       lectureCriteriaById,
     );
-    console.log(filteredLectureCriteriaByNameList);
 
     let results;
     if (type == 'Quiz' || type == 'Attendance' || type == 'Homework') {
@@ -80,11 +80,8 @@ const MyResults = () => {
       }
     }
 
-    if (type == 'Attendance') {
-      await checkIfAllLecturesAreShown(results);
-    }
+    await checkIfAllLecturesAreShown(type, results);
 
-    // console.log(results);
     if (type == 'Quiz') {
       setUsersQuizResults(results);
     } else if (type == 'Homework') {
@@ -98,19 +95,48 @@ const MyResults = () => {
     }
   };
 
-  const checkIfAllLecturesAreShown = async (results) => {
-    const allLectures = await getAllLectures(localStorage.getItem('jwt_token'));
-    console.log(allLectures);
-    console.log(results);
-    allLectures.map((el) => {
-      console.log(el);
-      if (results.find((res) => res.name == el.name) == undefined) {
-        console.log(`not found ${el.name}`);
-        results.push({
-          name: el.name,
-          percentage: 0,
+  const checkIfAllLecturesAreShown = async (type, results) => {
+    if (type == 'Attendance') {
+      allLectures.map((el) => {
+        if (results.find((res) => res.name == el.name) == undefined) {
+          results.push({
+            name: el.name,
+            percentage: 0,
+          });
+        }
+      });
+      _sortResults(results);
+    } else if (type == 'Quiz' || type == 'Homework') {
+      let lecturesWithTypeCriteria = [];
+      for (const el of allLectures) {
+        let criterias = await _getAllLectureCriteriasByLectureId(el.id);
+        if (
+          criterias.find((criteria) => criteria.criteria.name == type) !==
+          undefined
+        ) {
+          lecturesWithTypeCriteria.push({
+            name: el.name,
+          });
+        }
+
+        lecturesWithTypeCriteria.map((el) => {
+          if (results.find((res) => res.name == el.name) == undefined) {
+            results.push({
+              name: el.name,
+              percentage: 0,
+            });
+          }
         });
+        _sortResults(results);
       }
+    }
+  };
+
+  const _sortResults = (results) => {
+    results.sort((a, b) => {
+      const first = parseInt(a.name.split('. ')[0]);
+      const second = parseInt(b.name.split('. ')[0]);
+      return first - second;
     });
   };
 
@@ -127,6 +153,11 @@ const MyResults = () => {
       (el) => el.lecture_criterium.criteria.name === name,
     );
     return filteredByName;
+  };
+
+  const _getAllLectureCriteriasByLectureId = async (id) => {
+    const lecture = await _getData(id);
+    return lecture.lecture_criteria;
   };
 
   const _calculateCertificatePercentages = () => {
