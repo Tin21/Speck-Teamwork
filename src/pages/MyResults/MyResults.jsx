@@ -13,6 +13,7 @@ import DoughnutChart from '../../components/Chart/DoughnutChart';
 import { doughnutMock1, doughnutMock2 } from '../../utils/mock/chartData';
 import { useEffect, useState } from 'react';
 import {
+  getAllLectures,
   getLectureCriteriaByUserId,
   getLectureDataById,
 } from '../../api/lectures';
@@ -79,6 +80,10 @@ const MyResults = () => {
       }
     }
 
+    if (type == 'Attendance') {
+      await checkIfAllLecturesAreShown(results);
+    }
+
     // console.log(results);
     if (type == 'Quiz') {
       setUsersQuizResults(results);
@@ -91,6 +96,22 @@ const MyResults = () => {
     } else if (type == 'Teamwork') {
       setTeamworkResult(results);
     }
+  };
+
+  const checkIfAllLecturesAreShown = async (results) => {
+    const allLectures = await getAllLectures(localStorage.getItem('jwt_token'));
+    console.log(allLectures);
+    console.log(results);
+    allLectures.map((el) => {
+      console.log(el);
+      if (results.find((res) => res.name == el.name) == undefined) {
+        console.log(`not found ${el.name}`);
+        results.push({
+          name: el.name,
+          percentage: 0,
+        });
+      }
+    });
   };
 
   const _getData = async (id) => {
