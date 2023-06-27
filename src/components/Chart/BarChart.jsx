@@ -60,6 +60,7 @@ const options = {
   hover: {
     mode: null,
   },
+
   scales: {
     x: {
       min: 0,
@@ -113,30 +114,30 @@ const BarChart = ({ barData }) => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      const labels = barData.map((item) => item.name);
-      const data = {
-        labels,
-        datasets: [
-          {
-            data: barData.map((item) => item.percentage),
-            backgroundColor: barData.map((item) =>
-              getBarColor(item.percentage),
-            ),
-            barPercentage: 1.0,
-            categoryPercentage: 1.0,
-          },
-        ],
-      };
-
-      setChartData(data);
-      setIsLoading(false);
-    }, 400);
+    setIsLoading(true);
+    fetchData();
   }, [barData]);
+
+  const fetchData = async () => {
+    const labels = barData.map((item) => item.name);
+    const data = {
+      labels,
+      datasets: [
+        {
+          data: barData.map((item) => item.percentage),
+          backgroundColor: barData.map((item) => getBarColor(item.percentage)),
+          barPercentage: 1.0,
+          categoryPercentage: 1.0,
+        },
+      ],
+    };
+    setChartData(data);
+    setIsLoading(false);
+  };
 
   return (
     <>
-      {isLoading ? (
+      {isLoading || !chartData ? (
         <ThreeDots
           color="#af6118"
           wrapperStyle={{
