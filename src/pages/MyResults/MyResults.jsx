@@ -23,15 +23,13 @@ const MyResults = () => {
   const [usersQuizResults, setUsersQuizResults] = useState([]);
   const [usersHomeworkResults, setUsersHomeworkResults] = useState([]);
   const [usersAttendanceResults, setUsersAttendanceResults] = useState([]);
-  const [firstCertificatePercentage, setFirstCertificatePercentage] = useState(
-    [],
-  );
-
+  const [firstCertificatePercentage, setFirstCertificatePercentage] =
+    useState(0);
+  const [secondCertificatePercentage, setSecondCertificatePercentage] =
+    useState(0);
   const [teamworkResult, setTeamworkResult] = useState(0);
   const [finalExamResult, setFinalExamResult] = useState(0);
   let allLectures;
-  const [secondCertificatePercentage, setSecondCertificatePercentage] =
-    useState([]);
 
   useEffect(() => {
     _getChartData('Quiz');
@@ -160,44 +158,76 @@ const MyResults = () => {
     return lecture.lecture_criteria;
   };
 
-  const _calculateCertificatePercentages = () => {
-    let earnedPoints = 0;
-    let totalPoints = 219;
-    usersAttendanceResults.forEach((element) => {
-      if (element.percentage === 100) earnedPoints++;
-    });
+  const _calculateCertificatePercentages = async () => {
+    const lectureCriteria = await getLectureCriteriaByUserId(
+      localStorage.getItem('jwt_token'),
+      localStorage.getItem('logged_user_id'),
+    );
 
-    for (let i = 0; i < usersQuizResults.length; i++) {
-      let quizPoints;
-      if (i === 1 || i === 5) quizPoints = 15;
-      else quizPoints = 20;
-      earnedPoints += (usersQuizResults[i].percentage / 100) * quizPoints * 0.4;
-    }
-
-    for (let i = 0; i < usersHomeworkResults.length; i++) {
-      let homeworkPoints;
-      if (i === 4) homeworkPoints = 10;
-      else homeworkPoints = 20;
-      earnedPoints +=
-        (usersHomeworkResults[i].percentage / 100) * homeworkPoints;
-    }
-
-    // team work points
-    earnedPoints += (doughnutMock1 / 100) * 40; // TODO spojit s API-jem
-
-    // final exam points
-    earnedPoints += (doughnutMock2 / 100) * 30; // TODO spojit s API-jem
+    const totalPoints = getTotalPoints(lectureCriteria);
+    const earnedPoints = getEarnedPoints(lectureCriteria);
 
     if (earnedPoints >= 0.5 * totalPoints) {
       setFirstCertificatePercentage(100);
     } else {
-      setFirstCertificatePercentage(
-        Math.round((earnedPoints / totalPoints) * 100),
-      );
+      let firstPercentage = Math.round((earnedPoints / totalPoints) * 100 * 2);
+      if (firstPercentage > 100) firstPercentage = 100;
+      if (firstPercentage < 0) firstPercentage = 0;
+      setFirstCertificatePercentage(firstPercentage);
     }
 
-    setSecondCertificatePercentage(
-      Math.round((earnedPoints / totalPoints) * 100),
+    let secondPercentage = Math.round((earnedPoints / totalPoints) * 100);
+    if (secondPercentage > 100) secondPercentage = 100;
+    if (secondPercentage < 0) secondPercentage = 0;
+    setSecondCertificatePercentage(secondPercentage);
+  };
+
+  const getTotalPoints = (lectureCriteria) => {
+    let totalPoints = 0;
+    for (const element of lectureCriteria) {
+      const itemMaxPoints = element.lecture_criterium.total_points;
+      totalPoints += itemMaxPoints;
+    }
+    return totalPoints;
+  };
+
+  const getEarnedPoints = (lectureCriteria) => {
+    let quizPoints = 0;
+    let attendancePoints = 0;
+    let homeworkPoints = 0;
+    let teamworkPoints = 0;
+    let finalExamPoints = 0;
+
+    for (const element of lectureCriteria) {
+      const itemUserPoints = element.points;
+
+      switch (element.lecture_criterium.criteria.name) {
+        case 'Quiz':
+          quizPoints += itemUserPoints;
+          break;
+        case 'Attendance':
+          attendancePoints += itemUserPoints;
+          break;
+        case 'Homework':
+          homeworkPoints += itemUserPoints;
+          break;
+        case 'Teamwork':
+          teamworkPoints += itemUserPoints;
+          break;
+        case 'Final exam':
+          finalExamPoints += itemUserPoints;
+          break;
+        default:
+          break;
+      }
+    }
+
+    return (
+      0.4 * quizPoints +
+      attendancePoints +
+      homeworkPoints +
+      teamworkPoints +
+      finalExamPoints
     );
   };
 
