@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   ButtonWrapper,
@@ -10,8 +10,7 @@ import {
   ProfileButton,
   UserAvatar,
   ProfileWrapper,
-  VisibleIcon,
-  PassChangeWrapper,
+  ProfileButtonWrapper,
   PassChangeLink,
   Field,
   Label,
@@ -24,25 +23,51 @@ import * as Yup from 'yup';
 import Toast from '../Toast/Toast';
 import Modal from '../Modal/Modal';
 import { Context } from '../../context/Context';
+import { AuthContext } from '../../context/AuthContext';
+import { deleteUser, updateUser } from '../../api/users';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
-  const [passwordVisible, setPasswordVisible] = useState(false);
   const { showModal, setShowModal, showToast, setShowToast } =
     useContext(Context);
+
+  const { loggedUser } = useContext(AuthContext);
   const [user, setUser] = useState({
-    firstName: 'Ivan',
-    lastName: 'Ivanovic',
-    email: 'ivanivanovic@gmail.com',
-    password: '123456789abc',
+    firstName: '',
+    lastName: '',
+    email: '',
   });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const user = await loggedUser;
+        if (user) {
+          setUser({
+            firstName: user.first_name,
+            lastName: user.last_name,
+            email: user.email,
+          });
+        }
+      } catch (error) {
+        console.log('Error fetching user:', error);
+      }
+    };
+
+    if (loggedUser instanceof Promise) {
+      fetchUser();
+    } else if (loggedUser) {
+      setUser({
+        firstName: loggedUser.first_name,
+        lastName: loggedUser.last_name,
+        email: loggedUser.email,
+      });
+    }
+  }, [loggedUser]);
 
   const changeUpdate = () => {
     setUpdate(!update);
-  };
-
-  const changePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
   };
 
   const changeToast = () => {
@@ -58,8 +83,32 @@ const Profile = ({ imgSrc, imgAlt }) => {
       firstName: newData.firstName,
       lastName: newData.lastName,
       email: newData.email,
-      password: newData.password,
     });
+  };
+
+  const updateUserData = (newData) => {
+    const loggedUserId = localStorage.getItem('logged_user_id');
+    const updatedUser = {
+      first_name: newData.firstName,
+      last_name: newData.lastName,
+      email: newData.email,
+    };
+    const jwtToken = localStorage.getItem('jwt_token');
+
+    updateUser(loggedUserId, updatedUser, jwtToken);
+  };
+
+  const navigate = useNavigate();
+
+  const deleteAccount = () => {
+    const loggedUserId = localStorage.getItem('logged_user_id');
+    const jwtToken = localStorage.getItem('jwt_token');
+    deleteUser(loggedUserId, jwtToken);
+
+    localStorage.removeItem('logged_user_id');
+    localStorage.removeItem('jwt_token');
+
+    navigate('/login');
   };
 
   return (
@@ -75,7 +124,8 @@ const Profile = ({ imgSrc, imgAlt }) => {
           title={'Delete account?'}
           subtitle={'If you delete your account, all your data will be lost.'}
           acceptText={'Delete'}
-          declineText={'Keep editing'}
+          declineText={'Cancel'}
+          acceptCallback={deleteAccount}
         />
       )}
       {!update && ( //INITIAL STATE
@@ -93,11 +143,11 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <PictureFrame />
               </PictureWrapper>
               <FormRow>
-                <Label isDisabled htmlFor="firstName">
+                <Label isdisabled="true" htmlFor="firstName">
                   Ime
                 </Label>
                 <Field
-                  isDisabled
+                  isdisabled="true"
                   type="text"
                   name="firstName"
                   value={user.firstName}
@@ -106,11 +156,11 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ErrorMessage component={'div'} name="firstName" />
               </FormRow>
               <FormRow>
-                <Label isDisabled htmlFor="lastName">
+                <Label isdisabled="true" htmlFor="lastName">
                   Prezime
                 </Label>
                 <Field
-                  isDisabled
+                  isdisabled="true"
                   type="text"
                   name="lastName"
                   value={user.lastName}
@@ -119,32 +169,17 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ErrorMessage component={'div'} name="lastName" />
               </FormRow>
               <FormRow>
-                <Label isDisabled htmlFor="email">
+                <Label isdisabled="true" htmlFor="email">
                   Email
                 </Label>
                 <Field
-                  isDisabled
+                  isdisabled="true"
                   type="text"
                   name="email"
                   value={user.email}
                   disabled
                 />
                 <ErrorMessage component={'div'} name="email" />
-              </FormRow>
-              <FormRow>
-                <Label isDisabled htmlFor="password">
-                  Password
-                </Label>
-
-                <Field
-                  isPasswordDisabled
-                  isDisabled
-                  type="password"
-                  name="password"
-                  value={user.password}
-                  disabled
-                />
-                <ErrorMessage component={'div'} name="password" />
               </FormRow>
               <FormRow>
                 <ProfileButton disabled isSecondaryDisabled>
@@ -161,7 +196,6 @@ const Profile = ({ imgSrc, imgAlt }) => {
             firstName: `${user.firstName}`,
             lastName: `${user.lastName}`,
             email: `${user.email}`,
-            password: `${user.password}`,
           }}
           validationSchema={Yup.object({
             firstName: Yup.string()
@@ -179,13 +213,13 @@ const Profile = ({ imgSrc, imgAlt }) => {
               firstName: values.firstName,
               lastName: values.lastName,
               email: values.email,
-              password: values.password,
             };
             changeUpdate();
             setSubmitting();
             changeToast();
             changeUpdate();
             changeData(newData);
+            updateUserData(newData);
             resetForm();
           }}
         >
@@ -208,66 +242,40 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <UploadPhotoIcon />
               </PictureWrapper>
               <FormRow>
-                <Label isEnabled htmlFor="firstName">
+                <Label isenabled="true" htmlFor="firstName">
                   Ime
                 </Label>
-                <Field isEnabled type="text" name="firstName" />
+                <Field isenabled="true" type="text" name="firstName" />
 
                 <ErrorMessage component={'div'} name="firstName" />
               </FormRow>
               <FormRow>
-                <Label isEnabled htmlFor="lastName">
+                <Label isenabled="true" htmlFor="lastName">
                   Prezime
                 </Label>
-                <Field isEnabled type="text" name="lastName" />
+                <Field isenabled="true" type="text" name="lastName" />
                 <ErrorMessage component={'div'} name="lastName" />
               </FormRow>
               <FormRow>
-                <Label isEnabled htmlFor="email">
+                <Label isenabled="true" htmlFor="email">
                   Email
                 </Label>
-                <Field isEnabled type="text" name="email" />
+                <Field isenabled="true" type="text" name="email" />
                 <ErrorMessage component={'div'} name="email" />
               </FormRow>
-
               <FormRow>
-                <Label isEnabled htmlFor="password">
-                  Password
-                </Label>
-                <VisibleIcon onClick={() => changePasswordVisibility()} />
-                {!passwordVisible && (
-                  <Field
-                    isPasswordEnabled
-                    isEnabled
-                    type="password"
-                    name="password"
-                    value={user.password}
-                  />
-                )}
-                {passwordVisible && (
-                  <Field
-                    isPasswordVisible
-                    isEnabled
-                    type="text"
-                    name="password"
-                    value={user.password}
-                  />
-                )}
-                <ErrorMessage component={'div'} name="password" />
-                <PassChangeWrapper>
+                <ProfileButtonWrapper>
+                  <ProfileButton
+                    type="button"
+                    isSecondaryEnabled
+                    onClick={() => changeModal()}
+                  >
+                    Delete your account
+                  </ProfileButton>
                   <PassChangeLink to={'/reset'}>
                     Change your password
                   </PassChangeLink>
-                </PassChangeWrapper>
-              </FormRow>
-              <FormRow>
-                <ProfileButton
-                  type="button"
-                  isSecondaryEnabled
-                  onClick={() => changeModal()}
-                >
-                  Delete your account
-                </ProfileButton>
+                </ProfileButtonWrapper>
               </FormRow>
             </Form>
           )}
