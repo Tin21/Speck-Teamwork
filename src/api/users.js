@@ -125,3 +125,25 @@ export const updateUser = (id, newUser, jwt) => {
       throw error;
     });
 };
+
+export const deleteUser = (id, jwt) => {
+  const url = `${apiOrigin}/api/users/${id}`;
+
+  return fetch(url, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      if (!res.ok) {
+        throw res;
+      }
+      return res.json();
+    })
+    .catch((error) => {
+      console.log(error);
+      throw error;
+    });
+};

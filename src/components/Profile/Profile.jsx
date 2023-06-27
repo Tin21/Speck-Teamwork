@@ -24,7 +24,8 @@ import Toast from '../Toast/Toast';
 import Modal from '../Modal/Modal';
 import { Context } from '../../context/Context';
 import { AuthContext } from '../../context/AuthContext';
-import { updateUser } from '../../api/users';
+import { deleteUser, updateUser } from '../../api/users';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
@@ -42,11 +43,13 @@ const Profile = ({ imgSrc, imgAlt }) => {
     const fetchUser = async () => {
       try {
         const user = await loggedUser;
-        setUser({
-          firstName: user.first_name,
-          lastName: user.last_name,
-          email: user.email,
-        });
+        if (user) {
+          setUser({
+            firstName: user.first_name,
+            lastName: user.last_name,
+            email: user.email,
+          });
+        }
       } catch (error) {
         console.log('Error fetching user:', error);
       }
@@ -54,7 +57,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
 
     if (loggedUser instanceof Promise) {
       fetchUser();
-    } else {
+    } else if (loggedUser) {
       setUser({
         firstName: loggedUser.first_name,
         lastName: loggedUser.last_name,
@@ -95,6 +98,19 @@ const Profile = ({ imgSrc, imgAlt }) => {
     updateUser(loggedUserId, updatedUser, jwtToken);
   };
 
+  const navigate = useNavigate();
+
+  const deleteAccount = () => {
+    const loggedUserId = localStorage.getItem('logged_user_id');
+    const jwtToken = localStorage.getItem('jwt_token');
+    deleteUser(loggedUserId, jwtToken);
+
+    localStorage.removeItem('logged_user_id');
+    localStorage.removeItem('jwt_token');
+
+    navigate('/login');
+  };
+
   return (
     <ProfileWrapper>
       {showToast && (
@@ -109,6 +125,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
           subtitle={'If you delete your account, all your data will be lost.'}
           acceptText={'Delete'}
           declineText={'Cancel'}
+          acceptCallback={deleteAccount}
         />
       )}
       {!update && ( //INITIAL STATE

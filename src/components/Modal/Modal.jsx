@@ -13,7 +13,13 @@ import {
 } from './ModalStyle';
 import { Context } from '../../context/Context';
 
-const Modal = ({ title, subtitle, acceptText, declineText }) => {
+const Modal = ({
+  title,
+  subtitle,
+  acceptText,
+  declineText,
+  acceptCallback = () => {},
+}) => {
   const { showModal, setShowModal, modalAccept, setModalAccept } =
     useContext(Context);
 
@@ -46,6 +52,7 @@ const Modal = ({ title, subtitle, acceptText, declineText }) => {
                 <Button
                   isAcceptButton
                   onClick={() => {
+                    acceptCallback();
                     changeVisibility();
                     acceptModal();
                   }}
@@ -69,6 +76,7 @@ Modal.propTypes = {
   subtitle: PropTypes.string,
   acceptText: PropTypes.string,
   declineText: PropTypes.string,
+  acceptCallback: PropTypes.func,
 };
 
 export default Modal;
