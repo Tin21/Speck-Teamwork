@@ -24,7 +24,7 @@ import Toast from '../Toast/Toast';
 import Modal from '../Modal/Modal';
 import { Context } from '../../context/Context';
 import { AuthContext } from '../../context/AuthContext';
-import { deleteUser, updateUser } from '../../api/users';
+import { deleteUser, getLoggedUser, updateUser } from '../../api/users';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = ({ imgSrc, imgAlt }) => {
@@ -32,7 +32,7 @@ const Profile = ({ imgSrc, imgAlt }) => {
   const { showModal, setShowModal, showToast, setShowToast } =
     useContext(Context);
 
-  const { loggedUser } = useContext(AuthContext);
+  const { loggedUser, setLoggedUser } = useContext(AuthContext);
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -42,12 +42,12 @@ const Profile = ({ imgSrc, imgAlt }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const user = await loggedUser;
-        if (user) {
+        const loggedInUser = await loggedUser;
+        if (loggedInUser) {
           setUser({
-            firstName: user.first_name,
-            lastName: user.last_name,
-            email: user.email,
+            firstName: loggedInUser.first_name,
+            lastName: loggedInUser.last_name,
+            email: loggedInUser.email,
           });
         }
       } catch (error) {
@@ -78,24 +78,30 @@ const Profile = ({ imgSrc, imgAlt }) => {
     setShowModal(true);
   };
 
-  const changeData = (newData) => {
-    setUser({
-      firstName: newData.firstName,
-      lastName: newData.lastName,
-      email: newData.email,
-    });
-  };
+  const updateUserData = async (newData) => {
+    try {
+      const loggedUserId = localStorage.getItem('logged_user_id');
+      const jwtToken = localStorage.getItem('jwt_token');
+      const updatedUser = {
+        first_name: newData.firstName,
+        last_name: newData.lastName,
+        email: newData.email,
+      };
 
-  const updateUserData = (newData) => {
-    const loggedUserId = localStorage.getItem('logged_user_id');
-    const updatedUser = {
-      first_name: newData.firstName,
-      last_name: newData.lastName,
-      email: newData.email,
-    };
-    const jwtToken = localStorage.getItem('jwt_token');
+      await updateUser(loggedUserId, updatedUser, jwtToken);
+      const updatedLoggedUser = await getLoggedUser(jwtToken, loggedUserId);
 
-    updateUser(loggedUserId, updatedUser, jwtToken);
+      if (updatedLoggedUser) {
+        setLoggedUser(updatedLoggedUser);
+        setUser({
+          firstName: updatedLoggedUser.first_name,
+          lastName: updatedLoggedUser.last_name,
+          email: updatedLoggedUser.email,
+        });
+      }
+    } catch (error) {
+      console.log('Error updating user data:', error);
+    }
   };
 
   const navigate = useNavigate();
@@ -218,7 +224,6 @@ const Profile = ({ imgSrc, imgAlt }) => {
             setSubmitting();
             changeToast();
             changeUpdate();
-            changeData(newData);
             updateUserData(newData);
             resetForm();
           }}
