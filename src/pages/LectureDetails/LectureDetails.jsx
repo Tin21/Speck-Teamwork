@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import Section from '../../components/Section/Section';
 import { Grid, GridWrapper } from '../../utils/styles/generalStyles';
-import cardsDetailData from '../../utils/mock/lectureDetails';
 import SingleLectureDetails from '../../components/SingleLectureDetails/SingleLectureDetails';
-import singleLectureMock from '../../utils/mock/singleLecture';
-import { Link, useParams } from 'react-router-dom';
+import { ReactComponent as ArrowImg } from '../../assets/images/right-arrow.svg';
 import {
   LectureBreadcrumbText,
   LectureCriteriaText,
@@ -15,58 +14,87 @@ import {
   LectureFlexedNav,
   LectureUnderline,
 } from '../../components/SingleLectureDetails/SingleLectureDetailsStyle';
-import { ReactComponent as ArrowImg } from '../../assets/images/right-arrow.svg';
+
+import CriteriaAwardIcon from '../../assets/images/criteria-award.png';
+import CriteriaQuizIcon from '../../assets/images/criteria-quiz.jpg';
+import CriteriaHwIcon from '../../assets/images/criteria-hw.jpg';
+import CriteriaTeamIcon from '../../assets/images/criteria-team.jpg';
+import CriteriaWatchIcon from '../../assets/images/criteria-watch.jpg';
+import CriteriaBellIcon from '../../assets/images/criteria-final-exam.jpg';
+
+import { getLectureDataById } from '../../api/lectures';
 
 const LectureDetails = () => {
   const { id } = useParams();
 
   const [detail, setDetail] = useState(null);
-  const [lectures, setLectures] = useState(null);
   const [lecture, setLecture] = useState(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setDetail(cardsDetailData);
-      setLectures(singleLectureMock);
-    }, 1000);
-  }, []);
+    const fetchData = async () => {
+      try {
+        const lectureData = await getLectureDataById(
+          localStorage.getItem('jwt_token'),
+          id,
+        );
+        setLecture(lectureData);
 
-  useEffect(() => {
-    lectures &&
-      setLecture(lectures.find((lecture) => lecture.id === parseInt(id)));
-  }, [lectures]);
+        const lectureCriteria = lectureData.lecture_criteria;
+        setDetail(lectureCriteria);
+      } catch (error) {
+        console.error('Error occured while fetching lecture details:', error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  const getIconByCriteria = (criteriaName) => {
+    switch (criteriaName) {
+      case 'Quiz':
+        return CriteriaQuizIcon;
+      case 'Homework':
+        return CriteriaHwIcon;
+      case 'Teamwork':
+        return CriteriaTeamIcon;
+      case 'Attendance':
+        return CriteriaWatchIcon;
+      case 'Final exam':
+        return CriteriaBellIcon;
+      default:
+        return '';
+    }
+  };
 
   return (
     <>
       <Section isFlexDisplay={false}>
         <LectureFlexedNav>
-          <Link to={'/lectures'}>
+          <Link to="/lectures">
             <LectureUnderline>Lectures</LectureUnderline>
           </Link>
           <ArrowImg />
-          <LectureBreadcrumbText>
-            {lecture?.id}. {lecture?.title}
-          </LectureBreadcrumbText>
+          <LectureBreadcrumbText>{lecture?.name}</LectureBreadcrumbText>
         </LectureFlexedNav>
         <LectureDetailsWrapper>
-          <LectureDetailsTitle>{lecture?.title}</LectureDetailsTitle>
-          <LectureDetailsContent>{lecture?.content}</LectureDetailsContent>
+          <LectureDetailsTitle>{lecture?.name}</LectureDetailsTitle>
+          <LectureDetailsContent>{lecture?.description}</LectureDetailsContent>
         </LectureDetailsWrapper>
 
-        <LectureCriteriaText>Lecture criteria's</LectureCriteriaText>
+        <LectureCriteriaText>Lecture criteria's and points</LectureCriteriaText>
 
         <GridWrapper>
           {detail && (
             <Grid isAwards>
-              {detail.map((detail) => (
+              {detail.map((lectureCriteria) => (
                 <SingleLectureDetails
-                  key={detail.id}
-                  title={detail.title}
-                  subtitle={detail.subtitle}
-                  imageAward={detail.imageAward}
-                  logoImg={detail.logoImage}
-                  awardPoint={lecture?.awardPoint[detail.title]}
-                  id={detail.id}
+                  key={lectureCriteria.id}
+                  title={lectureCriteria.criteria.name}
+                  subtitle={lecture.description}
+                  imageAward={CriteriaAwardIcon}
+                  logoImg={getIconByCriteria(lectureCriteria.criteria.name)}
+                  awardPoint={`+${lectureCriteria.total_points}`}
+                  id={lectureCriteria.criteria.id}
                 />
               ))}
             </Grid>
