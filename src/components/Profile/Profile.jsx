@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   ButtonWrapper,
@@ -23,16 +23,45 @@ import * as Yup from 'yup';
 import Toast from '../Toast/Toast';
 import Modal from '../Modal/Modal';
 import { Context } from '../../context/Context';
+import { AuthContext } from '../../context/AuthContext';
+import { updateUser } from '../../api/users';
 
 const Profile = ({ imgSrc, imgAlt }) => {
   const [update, setUpdate] = useState(false);
   const { showModal, setShowModal, showToast, setShowToast } =
     useContext(Context);
+
+  const { loggedUser } = useContext(AuthContext);
   const [user, setUser] = useState({
-    firstName: 'Ivan',
-    lastName: 'Ivanovic',
-    email: 'ivanivanovic@gmail.com',
+    firstName: '',
+    lastName: '',
+    email: '',
   });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const user = await loggedUser;
+        setUser({
+          firstName: user.first_name,
+          lastName: user.last_name,
+          email: user.email,
+        });
+      } catch (error) {
+        console.log('Error fetching user:', error);
+      }
+    };
+
+    if (loggedUser instanceof Promise) {
+      fetchUser();
+    } else {
+      setUser({
+        firstName: loggedUser.first_name,
+        lastName: loggedUser.last_name,
+        email: loggedUser.email,
+      });
+    }
+  }, [loggedUser]);
 
   const changeUpdate = () => {
     setUpdate(!update);
@@ -52,6 +81,18 @@ const Profile = ({ imgSrc, imgAlt }) => {
       lastName: newData.lastName,
       email: newData.email,
     });
+  };
+
+  const updateUserData = (newData) => {
+    const loggedUserId = localStorage.getItem('logged_user_id');
+    const updatedUser = {
+      first_name: newData.firstName,
+      last_name: newData.lastName,
+      email: newData.email,
+    };
+    const jwtToken = localStorage.getItem('jwt_token');
+
+    updateUser(loggedUserId, updatedUser, jwtToken);
   };
 
   return (
@@ -138,7 +179,6 @@ const Profile = ({ imgSrc, imgAlt }) => {
             firstName: `${user.firstName}`,
             lastName: `${user.lastName}`,
             email: `${user.email}`,
-            password: `${user.password}`,
           }}
           validationSchema={Yup.object({
             firstName: Yup.string()
@@ -156,13 +196,13 @@ const Profile = ({ imgSrc, imgAlt }) => {
               firstName: values.firstName,
               lastName: values.lastName,
               email: values.email,
-              password: values.password,
             };
             changeUpdate();
             setSubmitting();
             changeToast();
             changeUpdate();
             changeData(newData);
+            updateUserData(newData);
             resetForm();
           }}
         >
