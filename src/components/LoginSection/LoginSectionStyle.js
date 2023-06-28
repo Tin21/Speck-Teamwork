@@ -108,6 +108,7 @@ export const LoginLogoText = styled.p`
 `;
 
 export const LoginContainer = styled.div`
+  overflow: hidden;
   display: flex;
   height: 100vh;
   background-color: ${colors.bgSecondary};
@@ -139,7 +140,6 @@ export const LoginLeftContainer = styled.div`
 
 export const LoginRightContainer = styled.div`
   overflow: hidden;
-
   display: none;
 
   @media screen and (${breakpoints.tablet}) {
