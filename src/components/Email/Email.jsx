@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import {
   BodyTextWrapper,
   ButtonWrapper,
@@ -64,6 +64,14 @@ const Email = () => {
     };
   }, [isPopupOpen]); // kad god je aktivan, ponovi efekt
 
+  const formRef = useRef();
+
+  const handleSubmit = () => {
+    if (formRef.current) {
+      formRef.current.handleSubmit();
+    }
+  };
+
   return (
     <EmailBackgroundModal>
       <EmailContainer>
@@ -85,112 +93,119 @@ const Email = () => {
           </MinCloseWrapper>
           <MobileHeaderWrapper>
             <ClipperLogoWhite />
-            <Button onClick={() => setIsPopupOpen(false)} type="submit" isEmail>
+            <Button
+              onClick={(() => setIsPopupOpen(false), handleSubmit)}
+              type="submit"
+              isEmail
+            >
               Send
             </Button>
           </MobileHeaderWrapper>
         </EmailHeader>
         <EmailBody>
           <Formik
+            innerRef={formRef}
             initialValues={{
               recipients: recipients,
-              subject: subject,
-              bodyText: bodyText,
+              subject: localStorage.getItem('savedSubject') || '',
+              bodyText: localStorage.getItem('savedBodyText') || '',
             }}
             validationSchema={Yup.object({
               recipients: Yup.string().email().required('Required'),
               subject: Yup.string().required('Required'),
               bodyText: Yup.string().required('Required'),
             })}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              const closeAndReset = () => {
-                setSubmitting(false);
-                resetForm();
-                setIsPopupOpen(false);
-              };
+            onSubmit={(values, { setSubmitting, resetForm, handleSubmit }) => {
               setTimeout(() => {
-                const data = {
+                setRecipients(values.recipients);
+                setEmailData({
                   recipients: values.recipients,
                   subject: values.subject,
-                  body_text: values.bodyText,
-                };
-
-                setRecipients(values.recipients);
-                setSubject(values.subject);
-                setBodyText(values.bodyText);
+                  bodyText: values.bodyText,
+                });
+                localStorage.removeItem('savedSubject');
+                localStorage.removeItem('savedBodyText');
                 setSubmitting(false);
-                setEmailData(data);
-                // resetForm();
-
-                if (!isMinimized || !isPopupOpen) {
-                  closeAndReset();
-                }
+                setIsPopupOpen(false);
+                resetForm();
               }, 1000);
             }}
           >
-            {(formik) => (
-              <EmailForm>
-                <LabelWrapper>
-                  <EmailLabel htmlFor="recipients">Recipients</EmailLabel>
-                  <EmailInputField
-                    type="text"
-                    id="recipients"
-                    name="recipients"
-                    disabled={formik.isSubmitting}
-                  />
-                </LabelWrapper>
-                <LabelWrapper>
-                  <EmailLabel htmlFor="subject">Subject</EmailLabel>
-                  <EmailInputField
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    disabled={formik.isSubmitting}
-                  />
-                </LabelWrapper>
+            {(formik) => {
+              useEffect(() => {
+                localStorage.setItem('savedSubject', formik.values.subject);
+                localStorage.setItem('savedBodyText', formik.values.bodyText);
+              }, [formik.values]);
 
-                <BodyTextWrapper>
-                  <EmailInputField
-                    isTextArea
-                    as="textarea"
-                    id="bodyText"
-                    name="bodyText"
-                    placeholder="Body Text"
-                    disabled={formik.isSubmitting}
-                  />
-                </BodyTextWrapper>
-
-                <EmailFooterWrapper>
-                  <DeleteWrapper>
-                    <DeleteIcon
-                      onClick={() => {
-                        setIsPopupOpen(false);
-                        setIsDeleteOpen(true);
-                      }}
-                    />
-                  </DeleteWrapper>
-                  <MultipleIconWrapper>
-                    <TextIcon />
-                    <ClipperLogo />
-                    <LinkIcon />
-                    <EmojiIcon />
-                    <TriangleIcon />
-                    <PhotoIcon />
-                    <DelayIcon />
-                    <SignatureIcon />
-                  </MultipleIconWrapper>
-                  <ButtonWrapper>
-                    <Button
-                      type="submit"
-                      onClick={formik.submitForm}
+              return (
+                <EmailForm>
+                  <LabelWrapper>
+                    <EmailLabel htmlFor="recipients">Recipients</EmailLabel>
+                    <EmailInputField
+                      type="text"
+                      id="recipients"
+                      name="recipients"
                       disabled={formik.isSubmitting}
-                    >
-                      Send Email
-                    </Button>
-                  </ButtonWrapper>
-                </EmailFooterWrapper>
-              </EmailForm>
-            )}
+                    />
+                  </LabelWrapper>
+                  <LabelWrapper>
+                    <EmailLabel htmlFor="subject">Subject</EmailLabel>
+                    <EmailInputField
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      disabled={formik.isSubmitting}
+                    />
+                  </LabelWrapper>
+
+                  <BodyTextWrapper>
+                    <EmailInputField
+                      isTextArea
+                      as="textarea"
+                      id="bodyText"
+                      name="bodyText"
+                      placeholder="Body Text"
+                      disabled={formik.isSubmitting}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.bodyText}
+                    />
+                  </BodyTextWrapper>
+
+                  <EmailFooterWrapper>
+                    <DeleteWrapper>
+                      <DeleteIcon
+                        onClick={() => {
+                          setIsPopupOpen(false);
+                          setIsDeleteOpen(true);
+                          localStorage.removeItem('savedSubject');
+                          localStorage.removeItem('savedBodyText');
+                        }}
+                      />
+                    </DeleteWrapper>
+                    <MultipleIconWrapper>
+                      <TextIcon />
+                      <ClipperLogo />
+                      <LinkIcon />
+                      <EmojiIcon />
+                      <TriangleIcon />
+                      <PhotoIcon />
+                      <DelayIcon />
+                      <SignatureIcon />
+                    </MultipleIconWrapper>
+                    <ButtonWrapper>
+                      <Button
+                        type="submit"
+                        onClick={formik.submitForm}
+                        disabled={formik.isSubmitting}
+                      >
+                        Send Email
+                      </Button>
+                    </ButtonWrapper>
+                  </EmailFooterWrapper>
+                </EmailForm>
+              );
+            }}
           </Formik>
         </EmailBody>
       </EmailContainer>

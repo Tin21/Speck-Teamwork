@@ -20,6 +20,8 @@ const DeleteEmail = () => {
   const handleDelete = () => {
     setIsDeleteOpen(false);
     setIsPopupOpen(false);
+    localStorage.removeItem('savedSubject');
+    localStorage.removeItem('savedBodyText');
   };
 
   const handleKeepEditing = () => {
