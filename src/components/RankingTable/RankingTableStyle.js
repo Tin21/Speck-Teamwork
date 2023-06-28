@@ -65,11 +65,11 @@ export const StyledHeaderCell = styled.th`
   }
 
   &:last-child {
-    width: 408px;
+    width: 454px;
   }
 
   @media screen and (${breakpoints.desktopSmall}) {
-    width: 140px;
+    width: 117px;
 
     &:nth-child(2) {
       width: 200px;
@@ -145,11 +145,11 @@ export const StyledCell = styled.td`
   }
 
   &:last-child {
-    width: 408px;
+    width: 454px;
   }
 
   @media screen and (${breakpoints.desktopSmall}) {
-    width: 140px;
+    width: 117px;
 
     &:nth-child(2) {
       width: 200px;
