@@ -1,6 +1,7 @@
 export const fonts = {
   primary: '"Inter", sans-serif',
   secondary: '"IBM Plex Sans", sans-serif',
+  tertiary: '"Roboto", sans-serif',
 };
 
 export const colors = {
