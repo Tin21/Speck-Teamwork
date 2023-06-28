@@ -129,7 +129,7 @@ export const ProfileButton = styled(Button)`
     width: 160px;
     border: 1px solid ${colors.buttonBorder};
     padding: 6px 12px;
-    color: ${colors.buttonPrimary};
+    color: ${colors.redPrimary};
     background: rgba(191, 57, 57, 0);
         
 
@@ -151,11 +151,11 @@ export const ProfileButton = styled(Button)`
       width: 160px;
       border: 1px solid ${colors.buttonBorder};
       padding: 6px 12px;
-      color: ${colors.buttonPrimary};
+      color: ${colors.redPrimary};
       background: rgba(191, 57, 57, 0);
 
       &:hover {
-          color: ${colors.white};
+          color: ${colors.bgSecondary};
         }
     `}
 `;
@@ -225,7 +225,7 @@ export const Label = styled(InputLabel)`
   ${(props) =>
     props.isDisabled &&
     `
-      color: ${colors.textSecondaryGrey};
+      color: ${colors.textSecondary};
   `}
 
   ${(props) =>
@@ -370,7 +370,7 @@ export const UploadPhotoIcon = styled(UploadIcon)`
   &:hover {
     cursor: pointer;
     path {
-      fill: ${colors.textTertiaryGrey};
+      fill: ${colors.textSecondaryGrey};
     }
   }
 

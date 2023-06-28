@@ -78,10 +78,10 @@ export const PedestalLeftShapesContainer = styled.div`
 `;
 
 export const PedestalLeftTrapezoid = styled.div`
-  border-bottom: 12px solid ${colors.greenSecondary};
+  border-bottom: 12px solid ${colors.greenPrimary};
   border-left: 12vw solid transparent;
   border-right: 0 solid transparent;
-  border-bottom-color: ${colors.greenSecondary};
+  border-bottom-color: ${colors.greenPrimary};
   height: 0;
   width: 100%;
 
@@ -97,7 +97,7 @@ export const PedestalLeftTrapezoid = styled.div`
 export const PedestalLeftRectangle = styled.div`
   height: 92px;
   width: 100%;
-  background-color: ${colors.greenPrimary};
+  background-color: ${colors.greenSuccess};
   border-bottom-left-radius: 8px;
   display: flex;
   align-items: center;
@@ -139,10 +139,10 @@ export const PedestalCenterShapesContainer = styled.div`
 `;
 
 export const PedestalCenterTrapezoid = styled.div`
-  border-bottom: 12px solid ${colors.beigeSecondary};
+  border-bottom: 12px solid ${colors.beigePrimary};
   border-left: 9vw solid transparent;
   border-right: 9vw solid transparent;
-  border-bottom-color: ${colors.beigeSecondary};
+  border-bottom-color: ${colors.beigePrimary};
   height: 0;
   width: 100%;
 
@@ -155,7 +155,7 @@ export const PedestalCenterTrapezoid = styled.div`
 export const PedestalCenterRectangle = styled.div`
   height: 122px;
   width: 100%;
-  background-color: ${colors.beigePrimary};
+  background-color: ${colors.chartBarBrownDark};
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -248,7 +248,7 @@ export const NumberWrapper = styled.div`
 export const Number = styled.p`
   font-weight: 700;
   font-size: 20px;
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
   padding-top: 4px;
 
   ${(props) =>
@@ -268,13 +268,13 @@ export const Number = styled.p`
 export const Suffix = styled.p`
   font-weight: 700;
   font-size: 13px;
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
 `;
 
 export const Name = styled.p`
   font-weight: 400;
   font-size: 14px;
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
   margin-bottom: 5px;
 
   ${(props) =>
@@ -305,7 +305,7 @@ export const Name = styled.p`
 export const FullName = styled.p`
   font-weight: 400;
   font-size: 14px;
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
   margin-bottom: 5px;
   display: none;
 
@@ -338,7 +338,7 @@ export const PointsWrapper = styled.div`
   border-radius: 24px;
   height: 18px;
   width: 100%;
-  background-color: ${colors.greenTertiary};
+  background-color: ${colors.greenSecondary};
   display: flex;
   justify-content: center;
   padding-top: 1px;
@@ -347,7 +347,7 @@ export const PointsWrapper = styled.div`
   ${(props) =>
     props.isFirstPlace &&
     `
-    background-color: ${colors.beigeTertiary};
+    background-color: ${colors.beigeSecondary};
   `}
 
   ${(props) =>
@@ -360,7 +360,7 @@ export const PointsWrapper = styled.div`
 export const PointsText = styled.p`
   font-weight: 500;
   font-size: 12px;
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
   white-space: nowrap;
 `;
 

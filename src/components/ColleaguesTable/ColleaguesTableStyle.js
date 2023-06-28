@@ -6,7 +6,7 @@ export const TableContainer = styled.div`
   width: 100%;
 
   @media screen and (${breakpoints.tablet}) {
-    background-color: ${colors.white};
+    background-color: ${colors.bgSecondary};
     border-radius: 10px;
   }
   @media screen and (${breakpoints.tablet}) {
@@ -52,7 +52,7 @@ export const StyledHeaderCell = styled.th`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${colors.textSecondaryGrey};
+  color: ${colors.textSecondary};
 
   &:nth-child(4) {
     padding-right: 40px;

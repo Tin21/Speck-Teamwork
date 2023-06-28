@@ -63,7 +63,7 @@ export const EmailHeader = styled.div`
   display: flex;
   background-color: ${colors.textPrimaryGrey};
   border-radius: 8px 8px 0px 0px;
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
   padding: 14px;
   align-items: center;
   justify-content: space-between;
@@ -82,7 +82,7 @@ export const EmailHeaderText = styled.p`
     font-weight: 500;
     line-height: 120%;
     letter-spacing: -0.14px;
-    color: ${colors.white};
+    color: ${colors.bgSecondary};
   }
 `;
 
