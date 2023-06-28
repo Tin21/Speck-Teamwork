@@ -2,16 +2,24 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { DoughnutChartText, DoughnutChartWrapper } from './ChartStyle';
 import { colors } from '../../utils/styles/theme';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 const options = {
   cutout: '85%',
   responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+    },
+    datalabels: {
+      display: false,
+    },
+  },
 };
 
 const DoughnutChart = ({ doughnutData }) => {
@@ -19,28 +27,30 @@ const DoughnutChart = ({ doughnutData }) => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
-    setTimeout(() => {
+    const fetchData = async () => {
+      const data = {
+        labels: [],
+        datasets: [
+          {
+            data: [doughnutData, 100 - doughnutData],
+            backgroundColor: [
+              `${colors.chartBarBrownDark}`,
+              `${colors.doughnutChartGrey}`,
+            ],
+            borderColor: [
+              `${colors.chartBarBrownDark}`,
+              `${colors.doughnutChartGrey}`,
+            ],
+            borderWidth: 0.1,
+          },
+        ],
+      };
       setChartData(data);
       setIsLoading(false);
-    }, 400);
-
-    const data = {
-      labels: [],
-      datasets: [
-        {
-          data: [doughnutData, 100 - doughnutData],
-          backgroundColor: [
-            `${colors.chartBarBrownDark}`,
-            `${colors.doughnutChartGrey}`,
-          ],
-          borderColor: [
-            `${colors.chartBarBrownDark}`,
-            `${colors.doughnutChartGrey}`,
-          ],
-          borderWidth: 0.1,
-        },
-      ],
     };
+
+    setIsLoading(true);
+    fetchData();
   }, [doughnutData]);
 
   return (
