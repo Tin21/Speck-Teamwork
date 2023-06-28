@@ -10,7 +10,6 @@ import {
 } from '../../components/Chart/ChartStyle';
 import BarChart from '../../components/Chart/BarChart';
 import DoughnutChart from '../../components/Chart/DoughnutChart';
-import { doughnutMock1, doughnutMock2 } from '../../utils/mock/chartData';
 import { useEffect, useState } from 'react';
 import {
   getAllLectures,
@@ -52,11 +51,9 @@ const MyResults = () => {
       lectureCriteriaById,
     );
 
-    let results;
+    let results = 0;
     if (type == 'Quiz' || type == 'Attendance' || type == 'Homework') {
       results = [];
-    } else {
-      results = 0;
     }
 
     for (const element of filteredLectureCriteriaByNameList) {
@@ -68,7 +65,8 @@ const MyResults = () => {
       if (type == 'Quiz' || type == 'Attendance' || type == 'Homework') {
         results.push({
           name: itemName,
-          percentage: Math.round((itemUserPoints * 100) / itemMaxPoints),
+          userPoints: itemUserPoints,
+          maxPoints: itemMaxPoints,
         });
       } else {
         await _getData(element.lecture_criterium.lecture_id).name;
@@ -78,7 +76,7 @@ const MyResults = () => {
       }
     }
 
-    await checkIfAllLecturesAreShown(type, results);
+    await _checkIfAllLecturesAreShown(type, results);
 
     if (type == 'Quiz') {
       setUsersQuizResults(results);
@@ -93,13 +91,14 @@ const MyResults = () => {
     }
   };
 
-  const checkIfAllLecturesAreShown = async (type, results) => {
+  const _checkIfAllLecturesAreShown = async (type, results) => {
     if (type == 'Attendance') {
       allLectures.map((el) => {
         if (results.find((res) => res.name == el.name) == undefined) {
           results.push({
             name: el.name,
-            percentage: 0,
+            userPoints: 0,
+            maxPoints: 1,
           });
         }
       });
@@ -112,8 +111,16 @@ const MyResults = () => {
           criterias.find((criteria) => criteria.criteria.name == type) !==
           undefined
         ) {
+          let maxPoints = 0;
+          criterias.map((element) => {
+            if (element.criteria.name == type) {
+              maxPoints = element.total_points;
+            }
+          });
+
           lecturesWithTypeCriteria.push({
             name: el.name,
+            maxPoints: maxPoints,
           });
         }
 
@@ -121,7 +128,8 @@ const MyResults = () => {
           if (results.find((res) => res.name == el.name) == undefined) {
             results.push({
               name: el.name,
-              percentage: 0,
+              maxPoints: el.maxPoints,
+              userPoints: 0,
             });
           }
         });

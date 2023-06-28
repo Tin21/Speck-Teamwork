@@ -20,6 +20,9 @@ const options = {
       display: false,
     },
   },
+  hover: {
+    mode: null,
+  },
 };
 
 const DoughnutChart = ({ doughnutData }) => {

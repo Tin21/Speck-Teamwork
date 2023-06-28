@@ -48,68 +48,6 @@ const getTextColor = (percentage) => {
   }
 };
 
-const options = {
-  responsive: true,
-  indexAxis: 'y',
-  plugins: {
-    legend: {
-      display: false,
-    },
-    title: {
-      display: false,
-    },
-    datalabels: {
-      color: (context) => getTextColor(context.dataset.data[context.dataIndex]),
-      font: {
-        size: 12,
-        family: 'Inter',
-      },
-      align: (context) => {
-        const percentage = context.dataset.data[context.dataIndex];
-        if (percentage < 40) {
-          return 'end';
-        } else {
-          return 'start';
-        }
-      },
-      anchor: 'end',
-      offset: (context) => {
-        const dataWidth = context.chart.ctx.measureText(
-          `${context.dataset.data[context.dataIndex]}%`,
-        ).width;
-        const percentage = context.dataset.data[context.dataIndex];
-        if (percentage < 40) {
-          return dataWidth - 10;
-        } else {
-          return dataWidth - 20;
-        }
-      },
-      formatter: (value, context) =>
-        `${context.chart.data.labels[context.dataIndex]} ${value}%`,
-    },
-  },
-  hover: {
-    mode: null,
-  },
-  scales: {
-    x: {
-      min: 0,
-      max: 100,
-      grid: {
-        display: false,
-      },
-    },
-    y: {
-      grid: {
-        display: false,
-      },
-      ticks: {
-        display: false,
-      },
-    },
-  },
-};
-
 const BarChart = ({ barData }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState(null);
@@ -125,15 +63,93 @@ const BarChart = ({ barData }) => {
       labels,
       datasets: [
         {
-          data: barData.map((item) => item.percentage),
-          backgroundColor: barData.map((item) => getBarColor(item.percentage)),
+          data: barData.map((item) =>
+            Math.round((item.userPoints * 100) / item.maxPoints),
+          ),
+          backgroundColor: barData.map((item) =>
+            getBarColor(Math.round((item.userPoints * 100) / item.maxPoints)),
+          ),
           barPercentage: 1.0,
           categoryPercentage: 1.0,
         },
       ],
     };
+
     setChartData(data);
     setIsLoading(false);
+  };
+
+  const options = {
+    responsive: true,
+    indexAxis: 'y',
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: false,
+      },
+      datalabels: {
+        color: (context) =>
+          getTextColor(context.dataset.data[context.dataIndex]),
+        font: {
+          size: 12,
+          family: 'Inter',
+        },
+        align: (context) => {
+          const percentage = context.dataset.data[context.dataIndex];
+          if (percentage < 40) {
+            return 'end';
+          } else {
+            return 'start';
+          }
+        },
+        anchor: 'end',
+        offset: (context) => {
+          const dataWidth = context.chart.ctx.measureText(
+            `${context.dataset.data[context.dataIndex]}%`,
+          ).width;
+          const percentage = context.dataset.data[context.dataIndex];
+          if (percentage < 40) {
+            return dataWidth - 10;
+          } else {
+            return dataWidth - 20;
+          }
+        },
+        formatter: (value, context) =>
+          `${context.chart.data.labels[context.dataIndex]} ${value}%`,
+      },
+      tooltip: {
+        enabled: true,
+        callbacks: {
+          label: (context) => {
+            const index = context.dataIndex;
+            const { userPoints, maxPoints } = barData[index];
+            return `Your points: ${userPoints}\nMax points: ${maxPoints}`;
+          },
+        },
+      },
+    },
+    hover: {
+      mode: null,
+    },
+    scales: {
+      x: {
+        min: 0,
+        max: 100,
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          display: false,
+        },
+      },
+    },
   };
 
   return (
