@@ -16,8 +16,8 @@ const SingleLecture = ({ description, name, id }) => {
 
   const onClickActions = () => {
     navigate(`/lectures/${id}`);
-    setContextLecture(`${id}. ${name}`);
-    localStorage.setItem('active_lecture', `${id}. ${name}`);
+    setContextLecture(`${name}`);
+    localStorage.setItem('active_lecture', `${name}`);
   };
 
   return (

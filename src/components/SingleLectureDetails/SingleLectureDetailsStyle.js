@@ -135,7 +135,6 @@ export const AwardWrapper = styled.div`
 `;
 
 export const LogoImg = styled.img`
-  width: 60px;
   height: 60px;
 `;
 
