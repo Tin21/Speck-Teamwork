@@ -12,16 +12,19 @@ import {
   KeepEditingButton,
 } from './DeleteEmailStyle';
 import { EmailContext } from '../../../context/EmailContext';
+import { Context } from '../../../context/Context';
 
 const DeleteEmail = () => {
-  const { setIsPopupOpen, setIsMinimized, setIsDeleteOpen } =
-    useContext(EmailContext);
+  const { setIsPopupOpen, setIsDeleteOpen } = useContext(EmailContext);
+  const { setShowToast, setDeleteMessage } = useContext(Context);
 
   const handleDelete = () => {
     setIsDeleteOpen(false);
     setIsPopupOpen(false);
     localStorage.removeItem('savedSubject');
     localStorage.removeItem('savedBodyText');
+    setShowToast(true);
+    setDeleteMessage(true);
   };
 
   const handleKeepEditing = () => {
