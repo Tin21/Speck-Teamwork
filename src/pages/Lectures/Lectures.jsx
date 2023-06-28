@@ -27,7 +27,7 @@ const Lectures = () => {
 
   return (
     <>
-      <Section isFlexDisplay={false} title={'Your lectures'}>
+      <Section isFlexDisplay={false} title={'List of lectures'}>
         {isLoading ? (
           <ThreeDots
             color="#af6118"

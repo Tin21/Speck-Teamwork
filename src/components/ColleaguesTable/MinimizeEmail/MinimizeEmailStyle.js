@@ -37,7 +37,7 @@ export const ExpandWrapper = styled.div`
 `;
 
 export const MinimizedText = styled.p`
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
   font-size: 15.435px;
   font-family: Inter;
   font-weight: 500;
@@ -65,7 +65,7 @@ export const MinimizedButton = styled.button`
     border-radius: 48px;
     border: 1px solid ${colors.buttonBorder};
     background-color: ${colors.textPrimaryGrey};
-    color: ${colors.white};
+    color: ${colors.bgSecondary};
     cursor: pointer;
   }
 `;

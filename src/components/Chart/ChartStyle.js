@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors, breakpoints, fonts } from '../../utils/styles/theme';
 
 export const SingleChartOuterWrapper = styled.div`
-  background: ${colors.white};
+  background: ${colors.bgSecondary};
   border-radius: 8px;
   margin: 26px;
   flex-grow: 1;
@@ -44,7 +44,7 @@ export const ChartTitle = styled.h3`
   line-height: 24px;
   color: ${colors.textPrimaryGrey};
   letter-spacing: 0.44px;
-  color: ${colors.textQuaternaryGrey};
+  color: ${colors.textTertiaryGrey};
 `;
 
 export const ChartSubtitle = styled.p`

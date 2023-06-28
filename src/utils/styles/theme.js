@@ -16,10 +16,7 @@ export const colors = {
   bgMenuItem: '#FAFAFA',
   textPrimary: '#000000',
   textSecondary: '#4D4D4D',
-  buttonPrimary: '#bf3939',
-  buttonPrimaryDark: '#aa1d1d',
   buttonBorder: '#D2D2D2',
-  logoText: '#626267',
   textLink: '#0085FF', //npr link za Git
   chartBarBrownDark: '#CB7B2C',
   chartBarBrownMedium: '#d59556',
@@ -30,10 +27,8 @@ export const colors = {
   lightRed: '#BF393914', //npr aktivan nav item, neaktivan page number
   lighterRed: '#FBF7F8', //npr za hover nad nav itemom
   textPrimaryGrey: '#081131', //npr title u sectionu, nav itemi
-  textSecondaryGrey: '#4D4D4D', //npr text u lecturima, subtitle u sectionu
-  white: '#FFFFFF',
-  textTertiaryGrey: '#515151',
-  textQuaternaryGrey: '#263238',
+  textSecondaryGrey: '#515151',
+  textTertiaryGrey: '#263238',
   textGold: '#774C0D',
   chartBarGreyDark: '#dcdedf',
   chartBarGreyMedium: '#e3e5e5',
@@ -47,19 +42,13 @@ export const colors = {
   lightOrange: '#F9ECD2',
   tableHeaderBg: '#F9F9F9', //pozadina headera u tablicama
   tableBorder: '#e6e6e6',
-  greenPrimary: '#2E8A0D', //pozadina 2. mjesta u leadingu
-  greenSecondary: '#86CD6D', //pozadina gornjeg dijela 2. mjesta u leadingu
-  greenTertiary: '#1C6A00', //pozadina bodova 2. mjesta u leadingu
-  beigePrimary: '#CB7B2C', //pozadina 1. mjesta u leadingu
-  beigeSecondary: '#EBA760', //pozadina gornjeg dijela 1. mjesta u leadingu
-  beigeTertiary: '#9E5500', //pozadina bodova 1. mjesta u leadingu
+  greenPrimary: '#86CD6D', //pozadina gornjeg dijela 2. mjesta u leadingu
+  greenSecondary: '#1C6A00', //pozadina bodova 2. mjesta u leadingu
+  beigePrimary: '#EBA760', //pozadina gornjeg dijela 1. mjesta u leadingu
+  beigeSecondary: '#9E5500', //pozadina bodova 1. mjesta u leadingu
   bluePrimary: '#1D7FA9', //pozadina 3. mjesta u leadingu
   blueSecondary: '#89C3DC', //pozadina gornjeg dijela 3. mjesta u leadingu
   blueTertiary: '#0F6387', //pozadina bodova 3. mjesta u leadingu
-  grayBorder: '#D2D6DC',
-  lightGreen: '#cddbc8',
-  orangeBorder: '#DE9300',
-  lightOrange: '#F9ECD2',
 };
 
 export const breakpoints = {

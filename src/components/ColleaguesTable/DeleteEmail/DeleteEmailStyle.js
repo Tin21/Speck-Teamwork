@@ -44,8 +44,8 @@ export const DeleteContainer = styled.div`
 
 export const HeaderDelete = styled.div`
   display: flex;
-  background-color: ${colors.white};
-  color: ${colors.white};
+  background-color: ${colors.bgSecondary};
+  color: ${colors.bgSecondary};
   border-radius: 8px 8px 0 0;
   padding: 14px 16px;
   align-items: center;
@@ -69,7 +69,7 @@ export const DeleteBodyText = styled.div`
   font-size: 14px;
   font-family: Inter;
   line-height: 140%;
-  color: ${colors.textSecondaryGrey};
+  color: ${colors.textSecondary};
 `;
 
 export const DeleteFooter = styled.div`
@@ -80,8 +80,8 @@ export const DeleteFooter = styled.div`
 `;
 
 export const KeepEditingButton = styled.button`
-  color: ${colors.white};
-  background-color: ${colors.buttonPrimary};
+  color: ${colors.bgSecondary};
+  background-color: ${colors.redPrimary};
   font-size: 15px;
   font-weight: 600;
   padding: 10px 24px;
@@ -118,10 +118,10 @@ export const DeleteButton = styled.button`
   font-size: 16px;
   font-weight: 600;
   padding: 12px 16px;
-  color: ${colors.buttonPrimary};
+  color: ${colors.redPrimary};
   border-radius: 48px;
   border: 1px solid ${colors.buttonBorder};
-  background-color: ${colors.white};
+  background-color: ${colors.bgSecondary};
   cursor: pointer;
   order: 0;
   ${(props) =>
@@ -134,8 +134,8 @@ export const DeleteButton = styled.button`
 
   @media screen and (${breakpoints.tablet}) {
     padding: 12px 24px;
-    color: ${colors.white};
-    background-color: ${colors.buttonPrimary};
+    color: ${colors.bgSecondary};
+    background-color: ${colors.redPrimary};
     font-size: 15px;
     font-weight: 600;
     border: none;
