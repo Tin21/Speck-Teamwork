@@ -22,7 +22,7 @@ const TableHeaderEntriesDropdown = ({ table, entriesList }) => {
           </option>
         ))}
       </HeaderSelect>
-      <HeaderEntriesText>entries</HeaderEntriesText>
+      <HeaderEntriesText isEntries>entries</HeaderEntriesText>
     </HeaderEntriesWrapper>
   );
 };
