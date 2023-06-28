@@ -123,15 +123,13 @@ export const LoginContainer = styled.div`
 
 export const LoginLeftContainer = styled.div`
   background-color: ${colors.bgSecondary};
+  height: 100%;
 
   @media screen and (${breakpoints.tablet}) {
     min-width: 799px;
     width: 100%;
   }
 
-  @media screen and (${breakpoints.mobileLarge}) {
-    height: 100%;
-  }
   @media screen and (${breakpoints.desktop}) {
     padding: 96px;
     max-width: 500px;
@@ -142,9 +140,7 @@ export const LoginLeftContainer = styled.div`
 export const LoginRightContainer = styled.div`
   overflow: hidden;
 
-  @media screen and (${breakpoints.mobileLarge}) {
-    display: none;
-  }
+  display: none;
 
   @media screen and (${breakpoints.tablet}) {
     display: block;
