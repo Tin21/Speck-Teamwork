@@ -40,7 +40,7 @@ export const StyledTable = styled.table`
   margin: 25px 0;
   background-color: #fff;
   border-radius: 14px;
-  width: max-content;
+  max-width: max-content;
 `;
 
 export const HeaderTable = styled.thead``;
