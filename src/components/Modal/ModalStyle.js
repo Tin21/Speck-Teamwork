@@ -18,7 +18,7 @@ export const ModalBackground = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-  background-color: ${colors.white};
+  background-color: ${colors.bgSecondary};
   width: calc(100% - 48px);
   max-width: 340px;
   border-radius: 4px;
@@ -83,7 +83,7 @@ export const CancelIcon = styled(ModalCancelIcon)`
   height: 18px;
   width: 18px;
   path {
-    fill: ${colors.textSecondaryGrey};
+    fill: ${colors.textSecondary};
   }
 
   &:hover {
@@ -104,7 +104,7 @@ export const ModalBodyText = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 140%;
-  color: ${colors.textSecondaryGrey};
+  color: ${colors.textSecondary};
   margin-bottom: 32px;
 
   @media screen and (${breakpoints.desktopSmall}) {
@@ -154,11 +154,11 @@ export const Button = styled(GeneralButton)`
     props.isAcceptButton &&
     `
       border: 1px solid ${colors.buttonBorder};
-      color: ${colors.buttonPrimary};
-      background: ${colors.white};
+      color: ${colors.redPrimary};
+      background: ${colors.bgSecondary};
 
       &:hover {
-          color: ${colors.white};
+          color: ${colors.bgSecondary};
         }
     `}
 `;

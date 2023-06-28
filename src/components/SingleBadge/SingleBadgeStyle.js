@@ -64,7 +64,7 @@ export const SingleBadgeTitle = styled.p`
   font-weight: 500;
   font-size: 16px;
   white-space: nowrap;
-  color: ${colors.textTertiaryGrey};
+  color: ${colors.textSecondaryGrey};
 
   ${(props) =>
     props.isGolden &&

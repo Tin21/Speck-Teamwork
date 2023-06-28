@@ -78,7 +78,7 @@ export const LectureDetailsContent = styled.p`
 `;
 
 export const LectureCriteriaText = styled.p`
-  color: ${colors.textSecondaryGrey};
+  color: ${colors.textSecondary};
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
@@ -87,7 +87,7 @@ export const LectureCriteriaText = styled.p`
   margin-bottom: 16px;
 `;
 export const DetailsWrapper = styled.div`
-  background: ${colors.white};
+  background: ${colors.bgSecondary};
   border-radius: 8px;
 `;
 
@@ -154,5 +154,5 @@ export const AwardText = styled.p`
   font-size: 14px;
   line-height: 19px;
   text-align: center;
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
 `;
