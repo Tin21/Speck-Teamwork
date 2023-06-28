@@ -1,6 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 import { colors, breakpoints } from '../../utils/styles/theme';
 import { ReactComponent as ToastSuccessIcon } from '../../assets/images/toast-success-icon.svg';
+import { ReactComponent as ToastErrorIcon } from '../../assets/images/toast-error-icon.svg';
+import { ReactComponent as ToastInfoIcon } from '../../assets/images/toast-info-icon.svg';
 import { ReactComponent as ToastCancelIcon } from '../../assets/images/cancel-icon.svg';
 
 const fadeOut = keyframes`
@@ -41,6 +43,26 @@ export const ToastWrapper = styled.div`
 `;
 
 export const SuccessIcon = styled(ToastSuccessIcon)`
+  margin-right: 10px;
+  min-height: 20px;
+  min-width: 20px;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    margin-right: 16px;
+  }
+`;
+
+export const ErrorIcon = styled(ToastErrorIcon)`
+  margin-right: 10px;
+  min-height: 20px;
+  min-width: 20px;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    margin-right: 16px;
+  }
+`;
+
+export const InfoIcon = styled(ToastInfoIcon)`
   margin-right: 10px;
   min-height: 20px;
   min-width: 20px;

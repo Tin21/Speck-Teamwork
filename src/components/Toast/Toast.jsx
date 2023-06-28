@@ -1,7 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Context } from '../../context/Context';
+
 import {
   CancelIcon,
   CancelIconWrapper,
+  ErrorIcon,
+  InfoIcon,
   SuccessIcon,
   ToastContentWrapper,
   ToastSubtitle,
@@ -9,10 +14,8 @@ import {
   ToastTitle,
   ToastWrapper,
 } from './ToastStyle';
-import PropTypes from 'prop-types';
-import { Context } from '../../context/Context';
 
-const Toast = ({ title, subtitle }) => {
+const Toast = ({ title, subtitle, type }) => {
   const { showToast, setShowToast } = useContext(Context);
   const [visible, setVisible] = useState(true);
 
@@ -27,18 +30,30 @@ const Toast = ({ title, subtitle }) => {
     setVisible(false);
   };
 
+  const renderIcon = () => {
+    switch (type) {
+      case 'error':
+        return <ErrorIcon />;
+      case 'info':
+        return <InfoIcon />;
+      case 'success':
+      default:
+        return <SuccessIcon />;
+    }
+  };
+
   return (
     <>
       {visible && showToast && (
         <ToastWrapper>
-          <SuccessIcon />
+          {renderIcon()}
           <ToastContentWrapper>
             <ToastTextWrapper>
               <ToastTitle>{title}</ToastTitle>
               <ToastSubtitle>{subtitle}</ToastSubtitle>
             </ToastTextWrapper>
             <CancelIconWrapper>
-              <CancelIcon onClick={() => changeVisibility()} />
+              <CancelIcon onClick={changeVisibility} />
             </CancelIconWrapper>
           </ToastContentWrapper>
         </ToastWrapper>
@@ -50,6 +65,7 @@ const Toast = ({ title, subtitle }) => {
 Toast.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  type: PropTypes.oneOf(['error', 'info', 'success']),
 };
 
 export default Toast;
