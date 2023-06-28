@@ -91,7 +91,7 @@ export const ToastTextWrapper = styled.div`
 
 export const ToastTitle = styled.p`
   display: none;
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
   font-weight: 500;
   font-size: 18px;
   margin-bottom: 6px;
@@ -102,7 +102,7 @@ export const ToastTitle = styled.p`
 `;
 
 export const ToastSubtitle = styled.p`
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
   font-weight: 400;
   font-size: 14px;
   line-height: 130%;

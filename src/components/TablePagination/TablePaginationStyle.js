@@ -6,7 +6,7 @@ import { ReactComponent as PageRightIcon } from '../../assets/images/page-right-
 export const PaginationWrapper = styled.div`
   padding: 8px;
   display: flex;
-  background-color: ${colors.white};
+  background-color: ${colors.bgSecondary};
   gap: 7px;
   width: fit-content;
   margin: 0 auto;
@@ -50,8 +50,8 @@ export const PaginationNumberWrapper = styled.button`
   ${(props) =>
     props.isCurrent &&
     `
-      background-color: ${colors.buttonPrimary};
-      color: ${colors.white};
+      background-color: ${colors.redPrimary};
+      color: ${colors.bgSecondary};
     `}
 `;
 

@@ -46,9 +46,9 @@ export const GridWrapper = styled.div`
 export const Button = styled.button`
   padding: 14px 24px;
   gap: 8px;
-  background: ${colors.buttonPrimary};
+  background: ${colors.redPrimary};
   border-radius: 48px;
-  color: ${colors.white};
+  color: ${colors.bgSecondary};
   border: 0;
   width: 100%;
   font-weight: 600;
@@ -58,7 +58,7 @@ export const Button = styled.button`
     `
       border: 1px solid ${colors.buttonBorder};
       padding: 12px 24px;
-      color: ${colors.buttonPrimary};
+      color: ${colors.redPrimary};
       background: rgba(191, 57, 57, 0);
     `}
 
@@ -73,12 +73,12 @@ ${(props) =>
     props.isEmail &&
     `
       padding: 8px 16px;
-      background: ${colors.buttonPrimary};
+      background: ${colors.redPrimary};
 
     `}
 
   &:hover {
-    background: ${colors.buttonPrimaryDark};
+    background: ${colors.redPrimaryDark};
     cursor: pointer;
 
     ${(props) =>
@@ -110,7 +110,7 @@ export const InputField = styled(FieldFormik)`
   color: ${colors.textPrimaryGrey};
 
   &::placeholder {
-    color: ${colors.textSecondaryGrey};
+    color: ${colors.textSecondary};
     font-weight: 400;
   }
 
@@ -152,7 +152,7 @@ export const FieldLabelWrapper = styled.div``;
 
 export const Form = styled(FormFormik)`
   ${(props) =>
-    props.isLogin &&
+    props.islogin &&
     `
       min-width: 100%;
     `}

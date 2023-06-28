@@ -4,6 +4,7 @@ import { Button } from '../../../utils/styles/generalStyles';
 import Email from '../../Email/Email';
 import { useContext } from 'react';
 import { EmailContext } from '../../../context/EmailContext';
+import { fonts } from '../../../utils/styles/theme';
 
 const columnHelper = createColumnHelper();
 
@@ -49,7 +50,7 @@ const columns = [
             style={{
               padding: '6px 10px',
               width: 'auto',
-              fontFamily: 'Roboto',
+              fontFamily: fonts.tertiary,
               fontStyle: 'normal',
               fontWeight: '400',
               fontSize: '14px',

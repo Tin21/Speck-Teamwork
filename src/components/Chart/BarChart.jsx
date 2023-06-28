@@ -42,7 +42,7 @@ const getBarColor = (percentage) => {
 
 const getTextColor = (percentage) => {
   if (percentage >= 80) {
-    return colors.white;
+    return colors.bgSecondary;
   } else {
     return colors.textPrimaryGrey;
   }

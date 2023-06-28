@@ -100,7 +100,7 @@ const Reset = () => {
           onSubmit={forgotPasswordSubmit}
         >
           {(formik) => (
-            <Form isLogin>
+            <Form islogin="true">
               <FormRow>
                 <FieldLabelWrapper>
                   <InputLabel>Email</InputLabel>
@@ -141,7 +141,7 @@ const Reset = () => {
           onSubmit={resetPasswordSubmit}
         >
           {(formik) => (
-            <Form isLogin>
+            <Form islogin="true">
               <FormRow>
                 <FieldLabelWrapper>
                   <InputLabel>New Password</InputLabel>

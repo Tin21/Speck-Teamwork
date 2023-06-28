@@ -326,7 +326,7 @@ export const HamburgerMenuLogoutIcon = styled(LogoutIcon)`
 
 export const HamburgerMenuLogoutText = styled.p`
   font-weight: 500;
-  color: ${colors.textSecondaryGrey};
+  color: ${colors.textSecondary};
 `;
 
 export const ProfileDropdownMenu = styled.div`

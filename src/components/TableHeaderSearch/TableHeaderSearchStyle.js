@@ -9,7 +9,7 @@ export const SearchBarWrapper = styled.div`
   align-items: center;
   border-radius: 8px;
   border: 1px solid ${colors.avatarBorder};
-  background-color: ${colors.white};
+  background-color: ${colors.bgSecondary};
   width: 250px;
   padding: 0 10px;
 
@@ -24,7 +24,7 @@ export const SearchBarWrapper = styled.div`
   `}
 
   ${(props) =>
-    props.isMobile &&
+    props.ismobile &&
     `
       display: flex;
 
@@ -49,7 +49,7 @@ export const SearchBarInput = styled.input`
 
 export const SearchIcon = styled(FontAwesomeIcon)`
   ${(props) =>
-    props.isMobile &&
+    props.ismobile &&
     `
       height: 24px;
       width: 24px;
