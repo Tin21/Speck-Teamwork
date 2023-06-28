@@ -129,6 +129,10 @@ export const EmailInputField = styled(FieldFormik)`
   border: none;
   outline: none;
   min-width: max-content;
+  font-size: 14px;
+  font-family: Inter;
+  font-weight: 500;
+  color: ${colors.textPrimaryGrey};
 
   ${(props) =>
     props.isTextArea &&
@@ -142,7 +146,7 @@ export const EmailInputField = styled(FieldFormik)`
     @media screen and (${breakpoints.tablet}) {
       height:100%
     }
-  `}
+  `};
 `;
 
 export const EmailLabel = styled.label`

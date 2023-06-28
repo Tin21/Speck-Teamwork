@@ -14,6 +14,10 @@ const ContextProvider = (props) => {
   const [modalAccept, setModalAccept] = useState(false); //postavlja se na true kada se pritisne Accept(lijevi) gumb u Modalu
   const [usersTable, setUsersTable] = useState(null);
 
+  const [deleteMessage, setDeleteMessage] = useState(false);
+
+  const [submitMessage, setSubmitMessage] = useState(false);
+
   return (
     <Context.Provider
       value={{
@@ -27,6 +31,10 @@ const ContextProvider = (props) => {
         setModalAccept,
         usersTable,
         setUsersTable,
+        deleteMessage,
+        setDeleteMessage,
+        submitMessage,
+        setSubmitMessage,
       }}
     >
       {props.children}
