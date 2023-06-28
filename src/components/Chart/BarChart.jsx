@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { ThreeDots } from 'react-loader-spinner';
 import { colors } from '../../utils/styles/theme';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 ChartJS.register(
   CategoryScale,
@@ -20,6 +21,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  ChartDataLabels,
 );
 
 const getBarColor = (percentage) => {
@@ -56,11 +58,39 @@ const options = {
     title: {
       display: false,
     },
+    datalabels: {
+      color: (context) => getTextColor(context.dataset.data[context.dataIndex]),
+      font: {
+        size: 12,
+        family: 'Inter',
+      },
+      align: (context) => {
+        const percentage = context.dataset.data[context.dataIndex];
+        if (percentage < 40) {
+          return 'end';
+        } else {
+          return 'start';
+        }
+      },
+      anchor: 'end',
+      offset: (context) => {
+        const dataWidth = context.chart.ctx.measureText(
+          `${context.dataset.data[context.dataIndex]}%`,
+        ).width;
+        const percentage = context.dataset.data[context.dataIndex];
+        if (percentage < 40) {
+          return dataWidth - 10;
+        } else {
+          return dataWidth - 20;
+        }
+      },
+      formatter: (value, context) =>
+        `${context.chart.data.labels[context.dataIndex]} ${value}%`,
+    },
   },
   hover: {
     mode: null,
   },
-
   scales: {
     x: {
       min: 0,
@@ -83,35 +113,6 @@ const options = {
 const BarChart = ({ barData }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [chartData, setChartData] = useState(null);
-
-  const handleAfterRender = (chart) => {
-    const ctx = chart.ctx;
-    const meta = chart.getDatasetMeta(0);
-
-    ctx.font = '12px Inter';
-
-    meta.data.forEach((bar, index) => {
-      const data = chart.data.datasets[0].data[index];
-      const label = chart.data.labels[index];
-      ctx.save();
-
-      ctx.textBaseline = 'middle';
-      ctx.textAlign = 'end';
-      ctx.fillStyle = `${getTextColor(data)}`;
-
-      let x;
-      if (data > 40) {
-        x = bar.x - 10;
-      } else {
-        const labelWidth = ctx.measureText(label).width;
-        x = bar.x + 30 + labelWidth;
-      }
-
-      const y = bar.y;
-      ctx.fillText(`${label} ${data}%`, x, y);
-      ctx.restore();
-    });
-  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -145,11 +146,7 @@ const BarChart = ({ barData }) => {
           }}
         />
       ) : (
-        <Bar
-          options={options}
-          data={chartData}
-          plugins={[{ afterDraw: handleAfterRender }]}
-        />
+        <Bar options={options} data={chartData} />
       )}
     </>
   );
