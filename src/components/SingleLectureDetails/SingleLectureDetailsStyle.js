@@ -66,7 +66,7 @@ export const LectureDetailsContent = styled.p`
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.01em;
-  max-width: 272px;
+  // max-width: 272px;
 
   @media screen and (${breakpoints.tablet}) {
     max-width: 621px;

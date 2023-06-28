@@ -1,15 +1,32 @@
 import styled from 'styled-components';
 import { breakpoints, colors } from './theme';
-import { Field as FieldFormik } from 'formik';
+import {
+  Field as FieldFormik,
+  Form as FormFormik,
+  ErrorMessage as ErrorMessageFormik,
+} from 'formik';
+import { Link } from 'react-router-dom';
 
 //GRID
 export const Grid = styled.div`
   display: grid;
   gap: 16px;
+
+  @media screen and (min-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
   @media screen and (${breakpoints.tablet}) {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
   @media screen and (${breakpoints.desktop}) {
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
@@ -22,38 +39,54 @@ export const Grid = styled.div`
   }
 `;
 
-//BUTTON
+export const GridWrapper = styled.div`
+  max-width: 1120px;
+`;
+
 export const Button = styled.button`
   padding: 14px 24px;
   gap: 8px;
-  background: ${colors.buttonPrimary};
+  background: ${colors.redPrimary};
   border-radius: 48px;
-  color: white;
+  color: ${colors.bgSecondary};
   border: 0;
   width: 100%;
   font-weight: 600;
+
   ${(props) =>
     props.isSecondary &&
     `
       border: 1px solid ${colors.buttonBorder};
       padding: 12px 24px;
-      color: ${colors.buttonPrimary};
+      color: ${colors.redPrimary};
       background: rgba(191, 57, 57, 0);
     `}
+
   ${(props) =>
     props.isVariant &&
     `
       color: ${colors.textPrimary};;
       background: ${colors.bgMenuItem};;
     `}
+
+${(props) =>
+    props.isEmail &&
+    `
+      padding: 8px 16px;
+      background: ${colors.redPrimary};
+
+    `}
+
   &:hover {
-    background: ${colors.buttonPrimaryDark};
+    background: ${colors.redPrimaryDark};
     cursor: pointer;
+
     ${(props) =>
       props.isSecondary &&
       `
         background: rgba(191, 57, 57, 0.08);
       `}
+
     ${(props) =>
       props.isVariant &&
       `
@@ -75,21 +108,29 @@ export const InputField = styled(FieldFormik)`
   margin-top: 8px;
   font-size: 16px;
   color: ${colors.textPrimaryGrey};
+
   &::placeholder {
-    color: ${colors.textSecondaryGrey};
+    color: ${colors.textSecondary};
     font-weight: 400;
   }
+
   border: ${({ error }) =>
     error
       ? `2px solid ${colors.redPrimary}`
       : `1px solid ${colors.avatarBorder}`};
-  @media screen and (${breakpoints.desktop}) {
+
+  @media screen and (${breakpoints.mobileLarge}) {
+    height: 48px;
   }
+
+  @media screen and (${breakpoints.desktop}) {
+    padding: 16px 24px;
+    height: 56px;
+  }
+
   @media screen and (${breakpoints.tablet}) {
     padding: 16px 24px;
-  }
-  @media screen and (${breakpoints.desktop}) {
-    padding: 16px 24px;
+    height: 56px;
   }
 `;
 
