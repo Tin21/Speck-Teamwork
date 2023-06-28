@@ -12,6 +12,7 @@ import Layout from './components/Layout/Layout';
 import UserAvatar from './assets/images/user-avatar.jpg';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 
 function App() {
   return (
@@ -21,13 +22,13 @@ function App() {
         <Route path="/reset" element={<Reset />} />
         <Route path="/password-reset/:hash" element={<Reset />} />
         <Route
-          path={'/'}
           element={
             <ProtectedRoute>
               <Layout imgSrc={UserAvatar} imgAlt={'User avatar'} />
             </ProtectedRoute>
           }
         >
+          <Route path={'/'} element={<ErrorMessage />} />
           <Route path={'/profile'} element={<ProfilePage />} />
           <Route path={'/achievements'} element={<Achievements />} />
           <Route path={'/my-results'} element={<MyResults />} />

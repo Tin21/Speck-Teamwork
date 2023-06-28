@@ -62,7 +62,7 @@ const Login = () => {
             const user = users.data.find((user) => user.email == values.email);
             console.log(user);
             localStorage.setItem('logged_user_id', user.id);
-            navigate('/');
+            navigate('/lectures');
             localStorage.setItem('jwt_token', response.access_token);
             setLoggedUser(user);
             setIsLoggedIn(response.access_token);

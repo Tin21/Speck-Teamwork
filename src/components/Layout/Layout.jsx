@@ -84,7 +84,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
         <LeftContainer>
           <Menu>
             <MenuLogoWrapper>
-              <NavLink to={'/'}>
+              <NavLink to={'/lectures'}>
                 <MenuSpeckLogo src={SpeckLogoImage} alt="Speck logo" />
               </NavLink>
 
@@ -130,7 +130,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
               {headerText === 'Achievements' && (
                 <HeaderInner isAchievements>
                   <LogoWrapper>
-                    <NavLink to={'/'}>
+                    <NavLink to={'/lectures'}>
                       <SpeckLogo />
                     </NavLink>
                     <LogoText> Learning Academy</LogoText>
@@ -289,7 +289,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
               {headerText !== 'Achievements' && (
                 <HeaderInner>
                   <LogoWrapper>
-                    <NavLink to={'/'}>
+                    <NavLink to={'/lectures'}>
                       <SpeckLogo />
                     </NavLink>
                     <LogoText> Learning Academy</LogoText>
