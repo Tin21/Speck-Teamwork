@@ -152,7 +152,7 @@ export const FieldLabelWrapper = styled.div``;
 
 export const Form = styled(FormFormik)`
   ${(props) =>
-    props.isLogin &&
+    props.islogin &&
     `
       min-width: 100%;
     `}

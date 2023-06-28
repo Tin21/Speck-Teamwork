@@ -51,14 +51,14 @@ const TableHeaderSearch = ({ setData, placeholderText, byRankIsTrue }) => {
     <>
       {!showSearchBar && (
         <SearchIcon
-          isMobile
+          ismobile="true"
           icon={faMagnifyingGlass}
           style={{ color: '#7F8590' }}
           onClick={() => changeSearchBar()}
         />
       )}
       {showSearchBar && (
-        <SearchBarWrapper isMobile>
+        <SearchBarWrapper ismobile="true">
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             style={{ color: '#7F8590' }}

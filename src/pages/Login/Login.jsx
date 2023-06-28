@@ -80,7 +80,7 @@ const Login = () => {
         }}
       >
         {(formik) => (
-          <Form isLogin>
+          <Form islogin="true">
             <FormRow>
               <FieldLabelWrapper>
                 <InputLabel>Email</InputLabel>
