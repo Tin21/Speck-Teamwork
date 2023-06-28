@@ -13,10 +13,12 @@ import UserAvatar from './assets/images/user-avatar.jpg';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
   return (
     <AuthProvider>
+      <ScrollToTop />
       <Routes>
         <Route path={'/login'} element={<Login />} />{' '}
         <Route path="/reset" element={<Reset />} />
