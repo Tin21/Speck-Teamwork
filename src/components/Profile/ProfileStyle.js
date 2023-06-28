@@ -322,18 +322,36 @@ export const VisibleIcon = styled(VisibilityIcon)`
 `;
 
 export const ProfileButtonWrapper = styled.div`
-  display: flex;
+  display: none;
 
-  justify-content: space-between;
-  align-items: center;
+  @media screen and (${breakpoints.tabletSmall}) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+export const ProfileButtonWrapperMobile = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    display: none;
+  }
 `;
 
 export const PassChangeLink = styled(NavLink)`
   font-weight: 600;
   font-size: 14px;
   color: #0085ff;
-
   margin-top: 8px;
+  position: absolute;
+  bottom: 76px;
+  right: 24px;
+
+  @media screen and (${breakpoints.tabletSmall}) {
+    position: static;
+  }
 `;
 
 export const Form = styled(FormikForm)`
