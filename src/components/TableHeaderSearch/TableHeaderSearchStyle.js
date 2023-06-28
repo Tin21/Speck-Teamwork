@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { colors } from '../../utils/styles/theme';
+import { colors, breakpoints } from '../../utils/styles/theme';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ReactComponent as CancelIcon } from '../../assets/images/cancel-icon.svg';
 
 export const SearchBarWrapper = styled.div`
   display: flex;
@@ -10,6 +12,26 @@ export const SearchBarWrapper = styled.div`
   background-color: ${colors.white};
   width: 250px;
   padding: 0 10px;
+
+  ${(props) =>
+    props.isTablet &&
+    `
+      display: none;
+
+      @media screen and (${breakpoints.tabletSmall}) {
+        display: flex;
+  }
+  `}
+
+  ${(props) =>
+    props.isMobile &&
+    `
+      display: flex;
+
+      @media screen and (${breakpoints.tabletSmall}) {
+        display: none;
+  }
+  `}
 `;
 
 export const SearchBarInput = styled.input`
@@ -23,4 +45,22 @@ export const SearchBarInput = styled.input`
     outline: none;
     border: none;
   }
+`;
+
+export const SearchIcon = styled(FontAwesomeIcon)`
+  ${(props) =>
+    props.isMobile &&
+    `
+      height: 24px;
+      width: 24px;
+
+      @media screen and (${breakpoints.tabletSmall}) {
+        display: none;
+  }
+  `}
+`;
+
+export const SearchCancelIcon = styled(CancelIcon)`
+  min-height: 12px;
+  min-width: 12px;
 `;

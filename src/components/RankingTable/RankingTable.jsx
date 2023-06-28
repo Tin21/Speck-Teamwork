@@ -54,9 +54,10 @@ const RankingTable = () => {
       var pointsUser = 0;
       var lecturePoints = [0, 0, 0, 0, 0];
       user.user_lecture_criteria.map((lecture) => {
-        pointsUser += lecture.points;
-        if (lecture.lecture_criterium.criteria.name === 'Quiz')
+        if (lecture.lecture_criterium.criteria.name === 'Quiz') {
+          lecture.points = lecture.points * 0.4;
           lecturePoints[0] += lecture.points;
+        }
         if (lecture.lecture_criterium.criteria.name === 'Homework')
           lecturePoints[1] += lecture.points;
         if (lecture.lecture_criterium.criteria.name === 'Teamwork')
@@ -65,7 +66,9 @@ const RankingTable = () => {
           lecturePoints[3] += lecture.points;
         if (lecture.lecture_criterium.criteria.name === 'Attendance')
           lecturePoints[4] += lecture.points;
+        pointsUser += lecture.points;
       });
+      pointsUser = Math.round(pointsUser * 10) / 10 /* .toFixed(1) */;
       user.pointsUser = pointsUser;
       var percentage = Math.round((pointsUser / 219) * 100);
       user.percentage = `${percentage} %`;

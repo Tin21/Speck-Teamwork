@@ -16,6 +16,7 @@ import {
   Label,
   Form,
   UploadPhotoIcon,
+  ProfileButtonWrapperMobile,
 } from './ProfileStyle';
 import { Formik } from 'formik';
 import { FormRow, ErrorMessage } from '../../utils/styles/generalStyles';
@@ -269,6 +270,18 @@ const Profile = ({ imgSrc, imgAlt }) => {
                 <ErrorMessage component={'div'} name="email" />
               </FormRow>
               <FormRow>
+                <ProfileButtonWrapperMobile>
+                  <PassChangeLink to={'/reset'}>
+                    Change your password
+                  </PassChangeLink>
+                  <ProfileButton
+                    type="button"
+                    isSecondaryEnabled
+                    onClick={() => changeModal()}
+                  >
+                    Delete your account
+                  </ProfileButton>
+                </ProfileButtonWrapperMobile>
                 <ProfileButtonWrapper>
                   <ProfileButton
                     type="button"

@@ -63,6 +63,7 @@ const Login = () => {
             console.log(user);
             localStorage.setItem('logged_user_id', user.id);
             navigate('/lectures');
+            localStorage.setItem('header_text', 'Lectures');
             localStorage.setItem('jwt_token', response.access_token);
             setLoggedUser(user);
             setIsLoggedIn(response.access_token);
