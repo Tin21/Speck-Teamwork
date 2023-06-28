@@ -34,26 +34,21 @@ import { EmailLabel } from './EmailStyle';
 import { LabelWrapper } from './EmailStyle';
 import { MobileHeaderWrapper } from './EmailStyle';
 import { EmailContext } from './.././../context/EmailContext';
+import { Context } from '../../context/Context';
+import Toast from '../Toast/Toast';
 
 const Email = () => {
   const {
     isPopupOpen,
     setIsPopupOpen,
-    isMinimized,
     setIsMinimized,
-    emailData,
     setEmailData,
-    setShowToast,
-    showToast,
-    isDeleteOpen,
     setIsDeleteOpen,
     recipients,
     setRecipients,
-    subject,
-    setSubject,
-    bodyText,
-    setBodyText,
   } = useContext(EmailContext);
+  const { setShowToast, setSubmitMessage, setDeleteMessage } =
+    useContext(Context);
 
   useEffect(() => {
     document.body.style.overflow = isPopupOpen ? 'hidden' : 'auto';
@@ -88,6 +83,8 @@ const Email = () => {
               onClick={() => {
                 setIsPopupOpen(false);
                 setIsDeleteOpen(true);
+                setDeleteMessage(true);
+                setSubmitMessage(false);
               }}
             />
           </MinCloseWrapper>
@@ -115,7 +112,7 @@ const Email = () => {
               subject: Yup.string().required('Required'),
               bodyText: Yup.string().required('Required'),
             })}
-            onSubmit={(values, { setSubmitting, resetForm, handleSubmit }) => {
+            onSubmit={(values, { setSubmitting, resetForm }) => {
               setTimeout(() => {
                 setRecipients(values.recipients);
                 setEmailData({
@@ -127,6 +124,9 @@ const Email = () => {
                 localStorage.removeItem('savedBodyText');
                 setSubmitting(false);
                 setIsPopupOpen(false);
+                setShowToast(true);
+                setSubmitMessage(true);
+                setDeleteMessage(false);
                 resetForm();
               }, 1000);
             }}
@@ -199,7 +199,7 @@ const Email = () => {
                         onClick={formik.submitForm}
                         disabled={formik.isSubmitting}
                       >
-                        Send Email
+                        {formik.isSubmitting ? 'Sending...' : 'Send email'}
                       </Button>
                     </ButtonWrapper>
                   </EmailFooterWrapper>

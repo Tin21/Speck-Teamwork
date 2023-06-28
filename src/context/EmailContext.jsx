@@ -7,7 +7,6 @@ const EmailProvider = (props) => {
   const [isMinimized, setIsMinimized] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [emailData, setEmailData] = useState(null);
-  const [showToast, setShowToast] = useState(false);
 
   const [recipients, setRecipients] = useState('');
   const [subject, setSubject] = useState('');
@@ -22,8 +21,6 @@ const EmailProvider = (props) => {
         setIsMinimized,
         emailData,
         setEmailData,
-        setShowToast,
-        showToast,
         isDeleteOpen,
         setIsDeleteOpen,
         recipients,
