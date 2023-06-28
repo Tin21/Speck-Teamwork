@@ -147,7 +147,7 @@ export const AwardText = styled.p`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-55%, -50%);
+  transform: translate(-55%, -60%);
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;

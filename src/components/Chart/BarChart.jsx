@@ -53,7 +53,6 @@ const BarChart = ({ barData }) => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
     fetchData();
   }, [barData]);
 

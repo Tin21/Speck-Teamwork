@@ -17,6 +17,7 @@ import {
   getLectureDataById,
 } from '../../api/lectures';
 import CourseProgress from '../../components/CourseProgress/CourseProgress';
+import { ThreeDots } from 'react-loader-spinner';
 
 const MyResults = () => {
   const [usersQuizResults, setUsersQuizResults] = useState([]);
@@ -29,6 +30,8 @@ const MyResults = () => {
   const [teamworkResult, setTeamworkResult] = useState(0);
   const [finalExamResult, setFinalExamResult] = useState(0);
   let allLectures;
+
+  const [isLoadingCertificate, setIsLoadingCertificate] = useState(true);
 
   useEffect(() => {
     _getChartData('Quiz');
@@ -188,6 +191,7 @@ const MyResults = () => {
     if (secondPercentage > 100) secondPercentage = 100;
     if (secondPercentage < 0) secondPercentage = 0;
     setSecondCertificatePercentage(secondPercentage);
+    setIsLoadingCertificate(false);
   };
 
   const getEarnedPoints = (lectureCriteria) => {
@@ -232,62 +236,82 @@ const MyResults = () => {
 
   return (
     <>
-      <CourseProgress
-        firstPercentage={firstCertificatePercentage}
-        firstCertificateTitle="Certifikat prolaznosti"
-        firstCertificateSubtitle="Potrebno 50% bodova"
-        secondPercentage={secondCertificatePercentage}
-        secondCertificateTitle="Certifikat izvrsnosti"
-        secondCertificateSubtitle="Potrebno 90% bodova"
-        title="My course progress"
-      />
-      <ChartsWrapper>
-        <BarChartGrid>
-          <SingleChartOuterWrapper>
-            <SingleChartInnerWrapper>
-              <ChartTitle>Attendance per lecture (%)</ChartTitle>
-              <ChartSubtitle>Your attendance</ChartSubtitle>
-              <BarChartWrapper>
-                <BarChart barData={usersAttendanceResults} />
-              </BarChartWrapper>
-            </SingleChartInnerWrapper>
-          </SingleChartOuterWrapper>
-          <SingleChartOuterWrapper>
-            <SingleChartInnerWrapper>
-              <ChartTitle>Quiz results per lecture (%)</ChartTitle>
-              <ChartSubtitle>Your quiz results</ChartSubtitle>
-              <BarChartWrapper>
-                <BarChart barData={usersQuizResults} />
-              </BarChartWrapper>
-            </SingleChartInnerWrapper>
-          </SingleChartOuterWrapper>
-          <SingleChartOuterWrapper>
-            <SingleChartInnerWrapper>
-              <ChartTitle>Homework per lecture (%)</ChartTitle>
-              <ChartSubtitle>Your homework</ChartSubtitle>
-              <BarChartWrapper>
-                <BarChart barData={usersHomeworkResults} />
-              </BarChartWrapper>
-            </SingleChartInnerWrapper>
-          </SingleChartOuterWrapper>
-          <DoughnutChartsWrapper>
-            <SingleChartOuterWrapper isDoughnut={true}>
+      {isLoadingCertificate ? (
+        <ThreeDots
+          color="#af6118"
+          wrapperStyle={{
+            justifyContent: 'center',
+          }}
+        />
+      ) : (
+        <CourseProgress
+          firstPercentage={firstCertificatePercentage}
+          firstCertificateTitle="Certifikat prolaznosti"
+          firstCertificateSubtitle="Potrebno 50% bodova"
+          secondPercentage={secondCertificatePercentage}
+          secondCertificateTitle="Certifikat izvrsnosti"
+          secondCertificateSubtitle="Potrebno 90% bodova"
+          title="My course progress"
+        />
+      )}
+      {usersAttendanceResults == [] ||
+      usersQuizResults == [] ||
+      usersAttendanceResults == [] ? (
+        <ThreeDots
+          color="#af6118"
+          wrapperStyle={{
+            justifyContent: 'center',
+          }}
+        />
+      ) : (
+        <ChartsWrapper>
+          <BarChartGrid>
+            <SingleChartOuterWrapper>
               <SingleChartInnerWrapper>
-                <ChartTitle>Team work</ChartTitle>
-                <ChartSubtitle>Your team work results</ChartSubtitle>
-                <DoughnutChart doughnutData={teamworkResult} />
+                <ChartTitle>Attendance per lecture (%)</ChartTitle>
+                <ChartSubtitle>Your attendance</ChartSubtitle>
+                <BarChartWrapper>
+                  <BarChart barData={usersAttendanceResults} />
+                </BarChartWrapper>
               </SingleChartInnerWrapper>
             </SingleChartOuterWrapper>
-            <SingleChartOuterWrapper isDoughnut={true}>
+            <SingleChartOuterWrapper>
               <SingleChartInnerWrapper>
-                <ChartTitle>Final exam</ChartTitle>
-                <ChartSubtitle>Your final exam results</ChartSubtitle>
-                <DoughnutChart doughnutData={finalExamResult} />
+                <ChartTitle>Quiz results per lecture (%)</ChartTitle>
+                <ChartSubtitle>Your quiz results</ChartSubtitle>
+                <BarChartWrapper>
+                  <BarChart barData={usersQuizResults} />
+                </BarChartWrapper>
               </SingleChartInnerWrapper>
             </SingleChartOuterWrapper>
-          </DoughnutChartsWrapper>
-        </BarChartGrid>
-      </ChartsWrapper>
+            <SingleChartOuterWrapper>
+              <SingleChartInnerWrapper>
+                <ChartTitle>Homework per lecture (%)</ChartTitle>
+                <ChartSubtitle>Your homework</ChartSubtitle>
+                <BarChartWrapper>
+                  <BarChart barData={usersHomeworkResults} />
+                </BarChartWrapper>
+              </SingleChartInnerWrapper>
+            </SingleChartOuterWrapper>
+            <DoughnutChartsWrapper>
+              <SingleChartOuterWrapper isDoughnut={true}>
+                <SingleChartInnerWrapper>
+                  <ChartTitle>Team work</ChartTitle>
+                  <ChartSubtitle>Your team work results</ChartSubtitle>
+                  <DoughnutChart doughnutData={teamworkResult} />
+                </SingleChartInnerWrapper>
+              </SingleChartOuterWrapper>
+              <SingleChartOuterWrapper isDoughnut={true}>
+                <SingleChartInnerWrapper>
+                  <ChartTitle>Final exam</ChartTitle>
+                  <ChartSubtitle>Your final exam results</ChartSubtitle>
+                  <DoughnutChart doughnutData={finalExamResult} />
+                </SingleChartInnerWrapper>
+              </SingleChartOuterWrapper>
+            </DoughnutChartsWrapper>
+          </BarChartGrid>
+        </ChartsWrapper>
+      )}
     </>
   );
 };

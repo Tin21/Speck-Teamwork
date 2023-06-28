@@ -23,12 +23,14 @@ import CriteriaWatchIcon from '../../assets/images/criteria-watch.jpg';
 import CriteriaBellIcon from '../../assets/images/criteria-final-exam.jpg';
 
 import { getLectureDataById } from '../../api/lectures';
+import { ThreeDots } from 'react-loader-spinner';
 
 const LectureDetails = () => {
   const { id } = useParams();
 
   const [detail, setDetail] = useState(null);
   const [lecture, setLecture] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +43,7 @@ const LectureDetails = () => {
 
         const lectureCriteria = lectureData.lecture_criteria;
         setDetail(lectureCriteria);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error occured while fetching lecture details:', error);
       }
@@ -68,39 +71,52 @@ const LectureDetails = () => {
 
   return (
     <>
-      <Section isFlexDisplay={false}>
-        <LectureFlexedNav>
-          <Link to="/lectures">
-            <LectureUnderline>Lectures</LectureUnderline>
-          </Link>
-          <ArrowImg />
-          <LectureBreadcrumbText>{lecture?.name}</LectureBreadcrumbText>
-        </LectureFlexedNav>
-        <LectureDetailsWrapper>
-          <LectureDetailsTitle>{lecture?.name}</LectureDetailsTitle>
-          <LectureDetailsContent>{lecture?.description}</LectureDetailsContent>
-        </LectureDetailsWrapper>
+      {isLoading ? (
+        <ThreeDots
+          color="#af6118"
+          wrapperStyle={{
+            justifyContent: 'center',
+          }}
+        />
+      ) : (
+        <Section isFlexDisplay={false}>
+          <LectureFlexedNav>
+            <Link to="/lectures">
+              <LectureUnderline>Lectures</LectureUnderline>
+            </Link>
+            <ArrowImg />
+            <LectureBreadcrumbText>{lecture?.name}</LectureBreadcrumbText>
+          </LectureFlexedNav>
+          <LectureDetailsWrapper>
+            <LectureDetailsTitle>{lecture?.name}</LectureDetailsTitle>
+            <LectureDetailsContent>
+              {lecture?.description}
+            </LectureDetailsContent>
+          </LectureDetailsWrapper>
 
-        <LectureCriteriaText>Lecture criteria's and points</LectureCriteriaText>
+          <LectureCriteriaText>
+            Lecture criteria&apos;s and points
+          </LectureCriteriaText>
 
-        <GridWrapper>
-          {detail && (
-            <Grid isAwards>
-              {detail.map((lectureCriteria) => (
-                <SingleLectureDetails
-                  key={lectureCriteria.id}
-                  title={lectureCriteria.criteria.name}
-                  subtitle={lecture.description}
-                  imageAward={CriteriaAwardIcon}
-                  logoImg={getIconByCriteria(lectureCriteria.criteria.name)}
-                  awardPoint={`+${lectureCriteria.total_points}`}
-                  id={lectureCriteria.criteria.id}
-                />
-              ))}
-            </Grid>
-          )}
-        </GridWrapper>
-      </Section>
+          <GridWrapper>
+            {detail && (
+              <Grid isAwards>
+                {detail.map((lectureCriteria) => (
+                  <SingleLectureDetails
+                    key={lectureCriteria.id}
+                    title={lectureCriteria.criteria.name}
+                    subtitle={lecture.description}
+                    imageAward={CriteriaAwardIcon}
+                    logoImg={getIconByCriteria(lectureCriteria.criteria.name)}
+                    awardPoint={`+${lectureCriteria.total_points}`}
+                    id={lectureCriteria.criteria.id}
+                  />
+                ))}
+              </Grid>
+            )}
+          </GridWrapper>
+        </Section>
+      )}
     </>
   );
 };

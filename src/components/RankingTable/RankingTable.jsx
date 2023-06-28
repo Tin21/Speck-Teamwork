@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { rankingData } from '../../utils/mock/rankingData';
 import BadgeExamGold from '../../assets/images/badges/badge-exam-icon-gold.svg';
 import BadgeExamSilver from '../../assets/images/badges/badge-exam-icon-silver.svg';
@@ -35,11 +35,13 @@ import TableFooter from '../TableFooter/TableFooter';
 import { entriesSmall } from '../../utils/mock/entriesSmall';
 import { getUsers } from '../../api/users';
 import { Context } from '../../context/Context';
+import { ThreeDots } from 'react-loader-spinner';
 
 const RankingTable = () => {
   const [data, setData] = useState(() => [...rankingData]);
   const [sorting, setSorting] = useState();
-  const { usersTable, setUsersTable } = useContext(Context);
+  const { setUsersTable } = useContext(Context);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getTableData = async () => {
     const loggedUser = localStorage.getItem('jwt_token');
@@ -99,6 +101,7 @@ const RankingTable = () => {
     });
     console.log(users.data);
     users.data.sort((a, b) => b.pointsUser - a.pointsUser);
+
     //dodaje svakom useru ranking
     var rank = 1;
     users.data.map((user) => {
@@ -107,6 +110,7 @@ const RankingTable = () => {
     });
     setData(users.data);
     setUsersTable(users.data);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -133,57 +137,71 @@ const RankingTable = () => {
   });
 
   return (
-    <TableWrapper>
-      <TableContainer>
-        <TableHeader
-          table={table}
-          setData={setData}
-          dataList={rankingData}
-          placeholderText={'Search name or ranking'}
-          byRankIsTrue={true}
-          entriesList={entriesSmall}
+    <>
+      {isLoading ? (
+        <ThreeDots
+          color="#af6118"
+          wrapperStyle={{
+            justifyContent: 'center',
+          }}
         />
-        <StyledTable>
-          <HeaderTable>
-            {table.getHeaderGroups().map((headerGroup, index) => (
-              <StyledHeaderRow key={index}>
-                {headerGroup.headers.map((header) => (
-                  <StyledHeaderCell key={header.id}>
-                    {header.isPlaceholder ? null : (
-                      <HeaderCellContent
-                        className={
-                          header.column.getCanSort()
-                            ? 'cursor-pointer select-none'
-                            : ''
-                        }
-                        onClick={header.column.getToggleSortingHandler()}
-                      >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
+      ) : (
+        <TableWrapper>
+          <TableContainer>
+            <TableHeader
+              table={table}
+              setData={setData}
+              dataList={rankingData}
+              placeholderText={'Search name or ranking'}
+              byRankIsTrue={true}
+              entriesList={entriesSmall}
+            />
+            <StyledTable>
+              <HeaderTable>
+                {table.getHeaderGroups().map((headerGroup, index) => (
+                  <StyledHeaderRow key={index}>
+                    {headerGroup.headers.map((header) => (
+                      <StyledHeaderCell key={header.id}>
+                        {header.isPlaceholder ? null : (
+                          <HeaderCellContent
+                            className={
+                              header.column.getCanSort()
+                                ? 'cursor-pointer select-none'
+                                : ''
+                            }
+                            onClick={header.column.getToggleSortingHandler()}
+                          >
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                          </HeaderCellContent>
                         )}
-                      </HeaderCellContent>
-                    )}
-                  </StyledHeaderCell>
+                      </StyledHeaderCell>
+                    ))}
+                  </StyledHeaderRow>
                 ))}
-              </StyledHeaderRow>
-            ))}
-          </HeaderTable>
-          <TableBody>
-            {table.getRowModel().rows.map((row) => (
-              <StyledRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <StyledCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </StyledCell>
+              </HeaderTable>
+              <TableBody>
+                {table.getRowModel().rows.map((row) => (
+                  <StyledRow key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                      <StyledCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </StyledCell>
+                    ))}
+                  </StyledRow>
                 ))}
-              </StyledRow>
-            ))}
-          </TableBody>
-        </StyledTable>
-        <TableFooter table={table} />
-      </TableContainer>
-    </TableWrapper>
+              </TableBody>
+            </StyledTable>
+            <TableFooter table={table} />
+          </TableContainer>
+        </TableWrapper>
+      )}
+    </>
   );
 };
 

@@ -32,6 +32,7 @@ import {
   FullName,
 } from './LeadingStyle';
 import { Context } from '../../context/Context';
+import { ThreeDots } from 'react-loader-spinner';
 
 const Leading = ({
   firstImgSrc,
@@ -51,6 +52,7 @@ const Leading = ({
   const [secondPoints, setSecondPoints] = useState(null);
   const [thirdPoints, setThirdPoints] = useState(null);
   const { usersTable } = useContext(Context);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     console.log(usersTable);
@@ -87,73 +89,85 @@ const Leading = ({
       thirdStudent.includes(' ')
     ) {
       setThirdPlaceName(thirdStudent.substr(0, thirdStudent.indexOf(' ')));
+      setIsLoading(false);
     }
   }, [usersTable, firstStudent, secondStudent, thirdStudent]);
 
   return (
-    <LeadingWrapper>
-      <LeadingTitle>Leading</LeadingTitle>
-      <PedestalWrapper>
-        <PedestalLeftWrapper>
-          <PedestalLeftShapesContainer>
-            <SecondPlaceAvatar src={secondImgSrc} alt={secondImgAlt} />
-            <SecondPlaceFrame />
-            <PedestalLeftTrapezoid />
-            <PedestalLeftRectangle>
-              <NumberWrapper>
-                <Number>2</Number>
-                <Suffix>nd</Suffix>
-              </NumberWrapper>
-              <FullName>{secondStudent}</FullName>
-              <Name>{secondPlaceName}</Name>
-              <PointsWrapper>
-                <PointsText>{secondPoints} points</PointsText>
-              </PointsWrapper>
-            </PedestalLeftRectangle>
-          </PedestalLeftShapesContainer>
-        </PedestalLeftWrapper>
-        <PedestalCenterWrapper>
-          <PedestalCenterShapesContainer>
-            <FirstPlaceAvatar src={firstImgSrc} alt={firstImgAlt} />
-            <FirstPlaceFrame
-              src={FirstPlaceFrameIcon}
-              alt="First place frame"
-            />
-            <PedestalCenterTrapezoid />
-            <PedestalCenterRectangle>
-              <NumberWrapper>
-                <Number isFirstPlace>1</Number>
-                <Suffix>st</Suffix>
-              </NumberWrapper>
-              <Name isFirstPlace>{firstPlaceName}</Name>
-              <FullName isFirstPlace>{firstStudent}</FullName>
-              <FirstPlaceStar />
-              <PointsWrapper isFirstPlace>
-                <PointsText>{firstPoints} points</PointsText>
-              </PointsWrapper>
-            </PedestalCenterRectangle>
-          </PedestalCenterShapesContainer>
-        </PedestalCenterWrapper>
-        <PedestalRightWrapper>
-          <PedestalCenterShapesContainer>
-            <ThirdPlaceAvatar src={thirdImgSrc} alt={thirdImgAlt} />
-            <ThirdPlaceFrame />
-            <PedestalRightTrapezoid />
-            <PedestalRightRectangle>
-              <NumberWrapper>
-                <Number isThirdPlace>3</Number>
-                <Suffix>rd</Suffix>
-              </NumberWrapper>
-              <FullName isThirdPlace>{thirdStudent}</FullName>
-              <Name isThirdPlace>{thirdPlaceName}</Name>
-              <PointsWrapper isThirdPlace>
-                <PointsText>{thirdPoints} points</PointsText>
-              </PointsWrapper>
-            </PedestalRightRectangle>
-          </PedestalCenterShapesContainer>
-        </PedestalRightWrapper>
-      </PedestalWrapper>
-    </LeadingWrapper>
+    <>
+      {isLoading ? (
+        <ThreeDots
+          color="#af6118"
+          wrapperStyle={{
+            justifyContent: 'center',
+          }}
+        />
+      ) : (
+        <LeadingWrapper>
+          <LeadingTitle>Leading</LeadingTitle>
+          <PedestalWrapper>
+            <PedestalLeftWrapper>
+              <PedestalLeftShapesContainer>
+                <SecondPlaceAvatar src={secondImgSrc} alt={secondImgAlt} />
+                <SecondPlaceFrame />
+                <PedestalLeftTrapezoid />
+                <PedestalLeftRectangle>
+                  <NumberWrapper>
+                    <Number>2</Number>
+                    <Suffix>nd</Suffix>
+                  </NumberWrapper>
+                  <FullName>{secondStudent}</FullName>
+                  <Name>{secondPlaceName}</Name>
+                  <PointsWrapper>
+                    <PointsText>{secondPoints} points</PointsText>
+                  </PointsWrapper>
+                </PedestalLeftRectangle>
+              </PedestalLeftShapesContainer>
+            </PedestalLeftWrapper>
+            <PedestalCenterWrapper>
+              <PedestalCenterShapesContainer>
+                <FirstPlaceAvatar src={firstImgSrc} alt={firstImgAlt} />
+                <FirstPlaceFrame
+                  src={FirstPlaceFrameIcon}
+                  alt="First place frame"
+                />
+                <PedestalCenterTrapezoid />
+                <PedestalCenterRectangle>
+                  <NumberWrapper>
+                    <Number isFirstPlace>1</Number>
+                    <Suffix>st</Suffix>
+                  </NumberWrapper>
+                  <Name isFirstPlace>{firstPlaceName}</Name>
+                  <FullName isFirstPlace>{firstStudent}</FullName>
+                  <FirstPlaceStar />
+                  <PointsWrapper isFirstPlace>
+                    <PointsText>{firstPoints} points</PointsText>
+                  </PointsWrapper>
+                </PedestalCenterRectangle>
+              </PedestalCenterShapesContainer>
+            </PedestalCenterWrapper>
+            <PedestalRightWrapper>
+              <PedestalCenterShapesContainer>
+                <ThirdPlaceAvatar src={thirdImgSrc} alt={thirdImgAlt} />
+                <ThirdPlaceFrame />
+                <PedestalRightTrapezoid />
+                <PedestalRightRectangle>
+                  <NumberWrapper>
+                    <Number isThirdPlace>3</Number>
+                    <Suffix>rd</Suffix>
+                  </NumberWrapper>
+                  <FullName isThirdPlace>{thirdStudent}</FullName>
+                  <Name isThirdPlace>{thirdPlaceName}</Name>
+                  <PointsWrapper isThirdPlace>
+                    <PointsText>{thirdPoints} points</PointsText>
+                  </PointsWrapper>
+                </PedestalRightRectangle>
+              </PedestalCenterShapesContainer>
+            </PedestalRightWrapper>
+          </PedestalWrapper>
+        </LeadingWrapper>
+      )}
+    </>
   );
 };
 

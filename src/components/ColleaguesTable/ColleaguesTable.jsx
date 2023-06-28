@@ -23,11 +23,13 @@ import TableHeader from '../TableHeader/TableHeader';
 import { entriesLarge } from '../../utils/mock/entriesLarge';
 import { getUsers } from '../../api/users';
 import { Context } from '../../context/Context';
+import { ThreeDots } from 'react-loader-spinner';
 
 function ColleaguesTable() {
   const [data, setData] = useState([]);
   const [sorting, setSorting] = useState();
-  const { usersTable, setUsersTable } = useContext(Context);
+  const { setUsersTable } = useContext(Context);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getTableData = async () => {
     let usersList = await getUsers(localStorage.getItem('jwt_token'));
@@ -35,6 +37,7 @@ function ColleaguesTable() {
 
     setData(usersList.data);
     setUsersTable(usersList.data);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -60,56 +63,70 @@ function ColleaguesTable() {
   });
 
   return (
-    <TableContainer>
-      <TableHeader
-        table={table}
-        setData={setData}
-        dataList={colleaguesData}
-        placeholderText={'Search name, email or year'}
-        byRankIsTrue={false}
-        entriesList={entriesLarge}
-      />
-      <StyledTable>
-        <HeaderTable>
-          {table.getHeaderGroups().map((headerGroup, index) => (
-            <StyledHeaderRow key={index}>
-              {headerGroup.headers.map((header) => (
-                <StyledHeaderCell key={header.id}>
-                  {header.isPlaceholder ? null : (
-                    <div
-                      className={
-                        header.column.getCanSort()
-                          ? 'cursor-pointer select-none'
-                          : ''
-                      }
-                      onClick={header.column.getToggleSortingHandler()}
-                    >
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
+    <>
+      {isLoading ? (
+        <ThreeDots
+          color="#af6118"
+          wrapperStyle={{
+            justifyContent: 'center',
+          }}
+        />
+      ) : (
+        <TableContainer>
+          <TableHeader
+            table={table}
+            setData={setData}
+            dataList={colleaguesData}
+            placeholderText={'Search name, email or year'}
+            byRankIsTrue={false}
+            entriesList={entriesLarge}
+          />
+          <StyledTable>
+            <HeaderTable>
+              {table.getHeaderGroups().map((headerGroup, index) => (
+                <StyledHeaderRow key={index}>
+                  {headerGroup.headers.map((header) => (
+                    <StyledHeaderCell key={header.id}>
+                      {header.isPlaceholder ? null : (
+                        <div
+                          className={
+                            header.column.getCanSort()
+                              ? 'cursor-pointer select-none'
+                              : ''
+                          }
+                          onClick={header.column.getToggleSortingHandler()}
+                        >
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                        </div>
                       )}
-                    </div>
-                  )}
-                </StyledHeaderCell>
+                    </StyledHeaderCell>
+                  ))}
+                </StyledHeaderRow>
               ))}
-            </StyledHeaderRow>
-          ))}
-        </HeaderTable>
+            </HeaderTable>
 
-        <BodyTable>
-          {table.getRowModel().rows.map((row) => (
-            <StyledRow key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <StyledCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </StyledCell>
+            <BodyTable>
+              {table.getRowModel().rows.map((row) => (
+                <StyledRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <StyledCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </StyledCell>
+                  ))}
+                </StyledRow>
               ))}
-            </StyledRow>
-          ))}
-        </BodyTable>
-      </StyledTable>
-      <TableFooter table={table} />
-    </TableContainer>
+            </BodyTable>
+          </StyledTable>
+          <TableFooter table={table} />
+        </TableContainer>
+      )}
+    </>
   );
 }
 
