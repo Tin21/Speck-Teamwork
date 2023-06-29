@@ -47,6 +47,7 @@ import {
 import { Outlet } from 'react-router-dom';
 import { Context } from '../../context/Context';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Layout = ({ imgSrc, imgAlt }) => {
   const [hamburgerMenuActive, setHamburgerMenuActive] = useState(false);
@@ -58,6 +59,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
   );
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const { contextLecture, setContextLecture } = useContext(Context);
+  const navigate = useNavigate();
 
   const changeHamburgerMenuState = () => {
     setHamburgerMenuActive(!hamburgerMenuActive);
@@ -76,6 +78,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
     setIsLoggedIn(false);
     localStorage.removeItem('logged_user_id');
     localStorage.removeItem('jwt_token');
+    navigate('/login');
   };
 
   return (
@@ -185,7 +188,10 @@ const Layout = ({ imgSrc, imgAlt }) => {
                         <NavLink to={'/login'}>
                           <DropdownMenuItem
                             isBottomItem
-                            onClick={() => changeProfileDropdownState()}
+                            onClick={() => {
+                              changeProfileDropdownState();
+                              logOut();
+                            }}
                           >
                             <DropdownMenuText>Log out</DropdownMenuText>
                           </DropdownMenuItem>
@@ -272,6 +278,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           to={'/login'}
                           onClick={() => {
                             changeHamburgerMenuState();
+                            logOut();
                           }}
                         >
                           <HamburgerMenuLogoutWrapper>
@@ -436,6 +443,7 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           to={'/login'}
                           onClick={() => {
                             changeHamburgerMenuState();
+                            logOut();
                           }}
                         >
                           <HamburgerMenuLogoutWrapper>
