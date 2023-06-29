@@ -10,7 +10,7 @@ import {
 } from '../../components/Chart/ChartStyle';
 import BarChart from '../../components/Chart/BarChart';
 import DoughnutChart from '../../components/Chart/DoughnutChart';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   getAllLectures,
   getLectureCriteriaByUserId,
@@ -18,8 +18,10 @@ import {
 } from '../../api/lectures';
 import CourseProgress from '../../components/CourseProgress/CourseProgress';
 import { ThreeDots } from 'react-loader-spinner';
+import { Context } from '../../context/Context';
 
 const MyResults = () => {
+  const { setHeaderText } = useContext(Context);
   const [usersQuizResults, setUsersQuizResults] = useState([]);
   const [usersHomeworkResults, setUsersHomeworkResults] = useState([]);
   const [usersAttendanceResults, setUsersAttendanceResults] = useState([]);
@@ -34,6 +36,7 @@ const MyResults = () => {
   const [isLoadingCertificate, setIsLoadingCertificate] = useState(true);
 
   useEffect(() => {
+    setHeaderText('Results');
     _getChartData('Quiz');
     _getChartData('Homework');
     _getChartData('Attendance');

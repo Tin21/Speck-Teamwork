@@ -52,13 +52,8 @@ import { useNavigate } from 'react-router-dom';
 const Layout = ({ imgSrc, imgAlt }) => {
   const [hamburgerMenuActive, setHamburgerMenuActive] = useState(false);
   const [profileDropdownActive, setProfileDropdownActive] = useState(false);
-  const [headerText, setHeaderText] = useState(
-    localStorage.getItem('header_text')
-      ? localStorage.getItem('header_text')
-      : 'Lectures',
-  );
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  const { contextLecture, setContextLecture } = useContext(Context);
+  const { setIsLoggedIn } = useContext(AuthContext);
+  const { contextLecture, headerText } = useContext(Context);
   const navigate = useNavigate();
 
   const changeHamburgerMenuState = () => {
@@ -67,11 +62,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
 
   const changeProfileDropdownState = () => {
     setProfileDropdownActive(!profileDropdownActive);
-  };
-
-  const changeHeaderText = (pageName) => {
-    setHeaderText(pageName);
-    localStorage.setItem('header_text', pageName);
   };
 
   const logOut = () => {
@@ -94,34 +84,22 @@ const Layout = ({ imgSrc, imgAlt }) => {
               <MenuLogoText>Learning Academy</MenuLogoText>
             </MenuLogoWrapper>
             <MenuInner>
-              <MenuItem
-                to={'/lectures'}
-                onClick={() => changeHeaderText('Lectures')}
-              >
+              <MenuItem to={'/lectures'}>
                 <MenuLecturesIcon />
                 <MenuItemText>Lectures</MenuItemText>
               </MenuItem>
 
-              <MenuItem
-                to={'/my-results'}
-                onClick={() => changeHeaderText('Results')}
-              >
+              <MenuItem to={'/my-results'}>
                 <MenuResultsIcon />
                 <MenuItemText>My results</MenuItemText>
               </MenuItem>
 
-              <MenuItem
-                to={'/achievements'}
-                onClick={() => changeHeaderText('Achievements')}
-              >
+              <MenuItem to={'/achievements'}>
                 <MenuAchievementsIcon />
                 <MenuItemText>Achievements</MenuItemText>
               </MenuItem>
 
-              <MenuItem
-                to={'/colleauges'}
-                onClick={() => changeHeaderText('Colleauges')}
-              >
+              <MenuItem to={'/colleauges'}>
                 <MenuColleaugesIcon />
                 <MenuItemText>Colleauges</MenuItemText>
               </MenuItem>
@@ -141,7 +119,9 @@ const Layout = ({ imgSrc, imgAlt }) => {
                   {headerText === 'Lectures' && contextLecture === '' && (
                     <>
                       <HeaderText>Lectures</HeaderText>
-                      <p>{contextLecture}</p>
+                      <LectureBreadcrumbText>
+                        {contextLecture}
+                      </LectureBreadcrumbText>
                     </>
                   )}
                   {headerText === 'Lectures' && contextLecture !== '' && (
@@ -217,7 +197,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/lectures'}
                             onClick={() => {
-                              changeHeaderText('Lectures');
                               changeHamburgerMenuState();
                             }}
                           >
@@ -228,7 +207,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/my-results'}
                             onClick={() => {
-                              changeHeaderText('Results');
                               changeHamburgerMenuState();
                             }}
                           >
@@ -239,7 +217,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/achievements'}
                             onClick={() => {
-                              changeHeaderText('Achievements');
                               changeHamburgerMenuState();
                             }}
                           >
@@ -250,7 +227,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/colleauges'}
                             onClick={() => {
-                              changeHeaderText('Colleauges');
                               changeHamburgerMenuState();
                             }}
                           >
@@ -261,7 +237,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/profile'}
                             onClick={() => {
-                              changeHeaderText('Your profile');
                               changeHamburgerMenuState();
                             }}
                           >
@@ -303,7 +278,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                   </LogoWrapper>
                   {headerText === 'Lectures' && contextLecture === '' && (
                     <>
-                      {/* <LectureLink to={'/lectures'}>Lecture</LectureLink> */}
                       <HeaderText>Lectures</HeaderText>
 
                       <p>{contextLecture}</p>
@@ -343,7 +317,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                         <NavLink to={'/profile'}>
                           <DropdownMenuItem
                             onClick={() => {
-                              changeHeaderText('Your profile');
                               changeProfileDropdownState();
                             }}
                           >
@@ -382,7 +355,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/lectures'}
                             onClick={() => {
-                              changeHeaderText('Lectures');
                               changeHamburgerMenuState();
                             }}
                           >
@@ -393,7 +365,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/my-results'}
                             onClick={() => {
-                              changeHeaderText('Results');
                               changeHamburgerMenuState();
                             }}
                           >
@@ -404,7 +375,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/achievements'}
                             onClick={() => {
-                              changeHeaderText('Achievements');
                               changeHamburgerMenuState();
                             }}
                           >
@@ -415,7 +385,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/colleauges'}
                             onClick={() => {
-                              changeHeaderText('Colleauges');
                               changeHamburgerMenuState();
                             }}
                           >
@@ -426,7 +395,6 @@ const Layout = ({ imgSrc, imgAlt }) => {
                           <MenuItem
                             to={'/profile'}
                             onClick={() => {
-                              changeHeaderText('Your profile');
                               changeHamburgerMenuState();
                             }}
                           >

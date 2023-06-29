@@ -21,9 +21,11 @@ import Toast from '../../components/Toast/Toast';
 import { Formik } from 'formik';
 
 import loginImage from '../../assets/images/login-image.jpg';
+import { Context } from '../../context/Context';
 
 const Login = () => {
   const { isLoggedIn, setIsLoggedIn, setLoggedUser } = useContext(AuthContext);
+  const { setHeaderText } = useContext(Context);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
@@ -67,7 +69,7 @@ const Login = () => {
               const loggedUser = user.data[0];
               localStorage.setItem('logged_user_id', loggedUser.id);
               navigate('/lectures');
-              localStorage.setItem('header_text', 'Lectures');
+              setHeaderText('Lectures');
               localStorage.setItem('jwt_token', response.access_token);
               setLoggedUser(loggedUser);
               setIsLoggedIn(response.access_token);

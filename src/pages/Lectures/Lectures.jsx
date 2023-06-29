@@ -8,7 +8,7 @@ import { ThreeDots } from 'react-loader-spinner';
 
 const Lectures = () => {
   const [lectures, setLectures] = useState(null);
-  const { setContextLecture } = useContext(Context);
+  const { setContextLecture, setHeaderText } = useContext(Context);
   const [isLoading, setIsLoading] = useState(true);
 
   const getData = async () => {
@@ -19,11 +19,9 @@ const Lectures = () => {
 
   useEffect(() => {
     getData();
-  }, []);
-
-  useEffect(() => {
     setContextLecture('');
-  });
+    setHeaderText('Lectures');
+  }, []);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import ColleaguesTable from '../../components/ColleaguesTable/ColleaguesTable';
 import { MinimizeEmail } from '../../components/ColleaguesTable/MinimizeEmail/MinimizeEmail';
 import Section from '../../components/Section/Section';
@@ -8,12 +8,13 @@ import { Context } from '../../context/Context';
 import Toast from '../../components/Toast/Toast';
 
 const Colleauges = () => {
-  const {
-    isMinimized,
+  const { isMinimized, isDeleteOpen } = useContext(EmailContext);
+  const { showToast, deleteMessage, submitMessage, setHeaderText } =
+    useContext(Context);
 
-    isDeleteOpen,
-  } = useContext(EmailContext);
-  const { showToast, deleteMessage, submitMessage } = useContext(Context);
+  useEffect(() => {
+    setHeaderText('Colleauges');
+  }, []);
 
   return (
     <>
