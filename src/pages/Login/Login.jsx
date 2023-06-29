@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { loginUser, getUsers, getLoggedUser } from '../../api/users';
+import React, { useState, useContext, useEffect } from 'react';
+import { loginUser, getUserByEmail } from '../../api/users';
 import { useNavigate } from 'react-router-dom';
 import LoginSection from '../../components/LoginSection/LoginSection';
 import { AuthContext } from '../../context/AuthContext';
@@ -23,10 +23,15 @@ import { Formik } from 'formik';
 import loginImage from '../../assets/images/login-image.jpg';
 
 const Login = () => {
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, setLoggedUser } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
-  const { setLoggedUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/lectures');
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <LoginSection
