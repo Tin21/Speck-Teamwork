@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const Context = createContext(['Lecture1', () => {}]);
 
 const ContextProvider = (props) => {
+  const [headerText, setHeaderText] = useState(null);
   const [contextLecture, setContextLecture] = useState(
     localStorage.getItem('active_lecture')
       ? localStorage.getItem('active_lecture')
@@ -13,14 +14,14 @@ const ContextProvider = (props) => {
   const [showModal, setShowModal] = useState(false); //na true Modal je prikazan, na false je zatvoren
   const [modalAccept, setModalAccept] = useState(false); //postavlja se na true kada se pritisne Accept(lijevi) gumb u Modalu
   const [usersTable, setUsersTable] = useState(null);
-
   const [deleteMessage, setDeleteMessage] = useState(false);
-
   const [submitMessage, setSubmitMessage] = useState(false);
 
   return (
     <Context.Provider
       value={{
+        headerText,
+        setHeaderText,
         contextLecture,
         setContextLecture,
         showToast,
