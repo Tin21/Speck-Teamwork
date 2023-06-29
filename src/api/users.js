@@ -31,13 +31,28 @@ export const loginUser = (user) => {
 };
 
 export const getUsers = (jwt) => {
-  return fetch(`${apiOrigin}/api/users?size=400`, {
+  return fetch(`${apiOrigin}/api/users`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${jwt}`,
     },
   }).then((res) => {
     if (!res.ok) {
+      throw res;
+    }
+    return res.json();
+  });
+};
+
+export const getUserByEmail = (jwt, email) => {
+  return fetch(`${apiOrigin}/api/users?email=${email}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`,
+    },
+  }).then((res) => {
+    if (!res.ok) {
+      console.log(res);
       throw res;
     }
     return res.json();
@@ -85,14 +100,12 @@ export const resetPassword = (hash, newPassword) => {
     body: body,
   })
     .then((res) => {
-      console.log(res);
       if (!res.ok) {
         throw res;
       }
       return res.json();
     })
     .catch((error) => {
-      console.log(error);
       throw error;
     });
 };
