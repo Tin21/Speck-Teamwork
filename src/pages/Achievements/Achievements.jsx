@@ -7,8 +7,16 @@ import {
   DesktopVersionWrapper,
   DesktopUpperConteiner,
 } from './AchievementsStyle';
+import { useContext, useEffect } from 'react';
+import { Context } from '../../context/Context';
 
 const Achievements = () => {
+  const { setHeaderText } = useContext(Context);
+
+  useEffect(() => {
+    setHeaderText('Achievements');
+  }, []);
+
   return (
     <>
       <MobileAndTabletVersionWrapper>

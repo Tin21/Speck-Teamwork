@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { loginUser, getUsers, getLoggedUser } from '../../api/users';
+import React, { useState, useContext, useEffect } from 'react';
+import { loginUser, getUserByEmail } from '../../api/users';
 import { useNavigate } from 'react-router-dom';
 import LoginSection from '../../components/LoginSection/LoginSection';
 import { AuthContext } from '../../context/AuthContext';
@@ -21,12 +21,19 @@ import Toast from '../../components/Toast/Toast';
 import { Formik } from 'formik';
 
 import loginImage from '../../assets/images/login-image.jpg';
+import { Context } from '../../context/Context';
 
 const Login = () => {
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn, setLoggedUser } = useContext(AuthContext);
+  const { setHeaderText } = useContext(Context);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
-  const { setLoggedUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/lectures');
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <LoginSection
@@ -56,19 +63,24 @@ const Login = () => {
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             const response = await loginUser(values);
-            console.log('Token: ' + response.access_token);
-            const users = await getUsers(response.access_token);
-            console.log(users);
-            const user = users.data.find((user) => user.email == values.email);
-            console.log(user);
-            localStorage.setItem('logged_user_id', user.id);
-            navigate('/lectures');
-            localStorage.setItem('header_text', 'Lectures');
-            localStorage.setItem('jwt_token', response.access_token);
-            setLoggedUser(user);
-            setIsLoggedIn(response.access_token);
-            setErrorMessage({ error: false, message: 'Successful login!' });
-            resetForm();
+            const { email } = values;
+            const user = await getUserByEmail(response.access_token, email);
+            if (user.data.length > 0) {
+              const loggedUser = user.data[0];
+              localStorage.setItem('logged_user_id', loggedUser.id);
+              navigate('/lectures');
+              setHeaderText('Lectures');
+              localStorage.setItem('jwt_token', response.access_token);
+              setLoggedUser(loggedUser);
+              setIsLoggedIn(response.access_token);
+              setErrorMessage({ error: false, message: 'Successful login!' });
+              resetForm();
+            } else {
+              setErrorMessage({
+                error: true,
+                message: 'User could not be found',
+              });
+            }
           } catch (err) {
             setErrorMessage({
               error: true,

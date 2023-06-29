@@ -68,7 +68,7 @@ const RankingTable = () => {
           lecturePoints[4] += lecture.points;
         pointsUser += lecture.points;
       });
-      pointsUser = Math.round(pointsUser * 10) / 10 /* .toFixed(1) */;
+      pointsUser = Math.round(pointsUser * 10) / 10;
       user.pointsUser = pointsUser;
       var percentage = Math.round((pointsUser / 219) * 100);
       user.percentage = `${percentage} %`;
