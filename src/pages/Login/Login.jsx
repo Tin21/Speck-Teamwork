@@ -61,19 +61,24 @@ const Login = () => {
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             const response = await loginUser(values);
-            console.log('Token: ' + response.access_token);
-            const users = await getUsers(response.access_token);
-            console.log(users);
-            const user = users.data.find((user) => user.email == values.email);
-            console.log(user);
-            localStorage.setItem('logged_user_id', user.id);
-            navigate('/lectures');
-            localStorage.setItem('header_text', 'Lectures');
-            localStorage.setItem('jwt_token', response.access_token);
-            setLoggedUser(user);
-            setIsLoggedIn(response.access_token);
-            setErrorMessage({ error: false, message: 'Successful login!' });
-            resetForm();
+            const { email } = values;
+            const user = await getUserByEmail(response.access_token, email);
+            if (user.data.length > 0) {
+              const loggedUser = user.data[0];
+              localStorage.setItem('logged_user_id', loggedUser.id);
+              navigate('/lectures');
+              localStorage.setItem('header_text', 'Lectures');
+              localStorage.setItem('jwt_token', response.access_token);
+              setLoggedUser(loggedUser);
+              setIsLoggedIn(response.access_token);
+              setErrorMessage({ error: false, message: 'Successful login!' });
+              resetForm();
+            } else {
+              setErrorMessage({
+                error: true,
+                message: 'User could not be found',
+              });
+            }
           } catch (err) {
             setErrorMessage({
               error: true,
