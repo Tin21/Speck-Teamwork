@@ -1,5 +1,5 @@
 // app.jsx
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import ProfilePage from './pages/Profile/ProfilePage';
 import Achievements from './pages/Achievements/Achievements';
@@ -30,7 +30,7 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route path={'/'} element={<ErrorMessage />} />
+          <Route path={'/'} element={<Navigate to="/lectures" replace />} />
           <Route path={'/profile'} element={<ProfilePage />} />
           <Route path={'/achievements'} element={<Achievements />} />
           <Route path={'/my-results'} element={<MyResults />} />
